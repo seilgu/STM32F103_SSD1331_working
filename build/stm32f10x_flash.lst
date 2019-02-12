@@ -1,0 +1,3618 @@
+ARM GAS  /tmp/ccaWNXPb.s 			page 1
+
+
+   1              		.cpu cortex-m3
+   2              		.eabi_attribute 20, 1
+   3              		.eabi_attribute 21, 1
+   4              		.eabi_attribute 23, 3
+   5              		.eabi_attribute 24, 1
+   6              		.eabi_attribute 25, 1
+   7              		.eabi_attribute 26, 1
+   8              		.eabi_attribute 30, 1
+   9              		.eabi_attribute 34, 1
+  10              		.eabi_attribute 18, 4
+  11              		.file	"stm32f10x_flash.c"
+  12              		.text
+  13              	.Ltext0:
+  14              		.cfi_sections	.debug_frame
+  15              		.section	.text.FLASH_SetLatency,"ax",%progbits
+  16              		.align	1
+  17              		.global	FLASH_SetLatency
+  18              		.syntax unified
+  19              		.thumb
+  20              		.thumb_func
+  21              		.fpu softvfp
+  23              	FLASH_SetLatency:
+  24              	.LFB56:
+  25              		.file 1 "stm_lib/src/stm32f10x_flash.c"
+   1:stm_lib/src/stm32f10x_flash.c **** /**
+   2:stm_lib/src/stm32f10x_flash.c ****   ******************************************************************************
+   3:stm_lib/src/stm32f10x_flash.c ****   * @file    stm32f10x_flash.c
+   4:stm_lib/src/stm32f10x_flash.c ****   * @author  MCD Application Team
+   5:stm_lib/src/stm32f10x_flash.c ****   * @version V3.5.0
+   6:stm_lib/src/stm32f10x_flash.c ****   * @date    11-March-2011
+   7:stm_lib/src/stm32f10x_flash.c ****   * @brief   This file provides all the FLASH firmware functions.
+   8:stm_lib/src/stm32f10x_flash.c ****   ******************************************************************************
+   9:stm_lib/src/stm32f10x_flash.c ****   * @attention
+  10:stm_lib/src/stm32f10x_flash.c ****   *
+  11:stm_lib/src/stm32f10x_flash.c ****   * THE PRESENT FIRMWARE WHICH IS FOR GUIDANCE ONLY AIMS AT PROVIDING CUSTOMERS
+  12:stm_lib/src/stm32f10x_flash.c ****   * WITH CODING INFORMATION REGARDING THEIR PRODUCTS IN ORDER FOR THEM TO SAVE
+  13:stm_lib/src/stm32f10x_flash.c ****   * TIME. AS A RESULT, STMICROELECTRONICS SHALL NOT BE HELD LIABLE FOR ANY
+  14:stm_lib/src/stm32f10x_flash.c ****   * DIRECT, INDIRECT OR CONSEQUENTIAL DAMAGES WITH RESPECT TO ANY CLAIMS ARISING
+  15:stm_lib/src/stm32f10x_flash.c ****   * FROM THE CONTENT OF SUCH FIRMWARE AND/OR THE USE MADE BY CUSTOMERS OF THE
+  16:stm_lib/src/stm32f10x_flash.c ****   * CODING INFORMATION CONTAINED HEREIN IN CONNECTION WITH THEIR PRODUCTS.
+  17:stm_lib/src/stm32f10x_flash.c ****   *
+  18:stm_lib/src/stm32f10x_flash.c ****   * <h2><center>&copy; COPYRIGHT 2011 STMicroelectronics</center></h2>
+  19:stm_lib/src/stm32f10x_flash.c ****   ******************************************************************************
+  20:stm_lib/src/stm32f10x_flash.c ****   */
+  21:stm_lib/src/stm32f10x_flash.c **** 
+  22:stm_lib/src/stm32f10x_flash.c **** /* Includes ------------------------------------------------------------------*/
+  23:stm_lib/src/stm32f10x_flash.c **** #include "stm32f10x_flash.h"
+  24:stm_lib/src/stm32f10x_flash.c **** 
+  25:stm_lib/src/stm32f10x_flash.c **** /** @addtogroup STM32F10x_StdPeriph_Driver
+  26:stm_lib/src/stm32f10x_flash.c ****   * @{
+  27:stm_lib/src/stm32f10x_flash.c ****   */
+  28:stm_lib/src/stm32f10x_flash.c **** 
+  29:stm_lib/src/stm32f10x_flash.c **** /** @defgroup FLASH 
+  30:stm_lib/src/stm32f10x_flash.c ****   * @brief FLASH driver modules
+  31:stm_lib/src/stm32f10x_flash.c ****   * @{
+  32:stm_lib/src/stm32f10x_flash.c ****   */ 
+  33:stm_lib/src/stm32f10x_flash.c **** 
+ARM GAS  /tmp/ccaWNXPb.s 			page 2
+
+
+  34:stm_lib/src/stm32f10x_flash.c **** /** @defgroup FLASH_Private_TypesDefinitions
+  35:stm_lib/src/stm32f10x_flash.c ****   * @{
+  36:stm_lib/src/stm32f10x_flash.c ****   */
+  37:stm_lib/src/stm32f10x_flash.c **** 
+  38:stm_lib/src/stm32f10x_flash.c **** /**
+  39:stm_lib/src/stm32f10x_flash.c ****   * @}
+  40:stm_lib/src/stm32f10x_flash.c ****   */ 
+  41:stm_lib/src/stm32f10x_flash.c **** 
+  42:stm_lib/src/stm32f10x_flash.c **** /** @defgroup FLASH_Private_Defines
+  43:stm_lib/src/stm32f10x_flash.c ****   * @{
+  44:stm_lib/src/stm32f10x_flash.c ****   */ 
+  45:stm_lib/src/stm32f10x_flash.c **** 
+  46:stm_lib/src/stm32f10x_flash.c **** /* Flash Access Control Register bits */
+  47:stm_lib/src/stm32f10x_flash.c **** #define ACR_LATENCY_Mask         ((uint32_t)0x00000038)
+  48:stm_lib/src/stm32f10x_flash.c **** #define ACR_HLFCYA_Mask          ((uint32_t)0xFFFFFFF7)
+  49:stm_lib/src/stm32f10x_flash.c **** #define ACR_PRFTBE_Mask          ((uint32_t)0xFFFFFFEF)
+  50:stm_lib/src/stm32f10x_flash.c **** 
+  51:stm_lib/src/stm32f10x_flash.c **** /* Flash Access Control Register bits */
+  52:stm_lib/src/stm32f10x_flash.c **** #define ACR_PRFTBS_Mask          ((uint32_t)0x00000020) 
+  53:stm_lib/src/stm32f10x_flash.c **** 
+  54:stm_lib/src/stm32f10x_flash.c **** /* Flash Control Register bits */
+  55:stm_lib/src/stm32f10x_flash.c **** #define CR_PG_Set                ((uint32_t)0x00000001)
+  56:stm_lib/src/stm32f10x_flash.c **** #define CR_PG_Reset              ((uint32_t)0x00001FFE) 
+  57:stm_lib/src/stm32f10x_flash.c **** #define CR_PER_Set               ((uint32_t)0x00000002)
+  58:stm_lib/src/stm32f10x_flash.c **** #define CR_PER_Reset             ((uint32_t)0x00001FFD)
+  59:stm_lib/src/stm32f10x_flash.c **** #define CR_MER_Set               ((uint32_t)0x00000004)
+  60:stm_lib/src/stm32f10x_flash.c **** #define CR_MER_Reset             ((uint32_t)0x00001FFB)
+  61:stm_lib/src/stm32f10x_flash.c **** #define CR_OPTPG_Set             ((uint32_t)0x00000010)
+  62:stm_lib/src/stm32f10x_flash.c **** #define CR_OPTPG_Reset           ((uint32_t)0x00001FEF)
+  63:stm_lib/src/stm32f10x_flash.c **** #define CR_OPTER_Set             ((uint32_t)0x00000020)
+  64:stm_lib/src/stm32f10x_flash.c **** #define CR_OPTER_Reset           ((uint32_t)0x00001FDF)
+  65:stm_lib/src/stm32f10x_flash.c **** #define CR_STRT_Set              ((uint32_t)0x00000040)
+  66:stm_lib/src/stm32f10x_flash.c **** #define CR_LOCK_Set              ((uint32_t)0x00000080)
+  67:stm_lib/src/stm32f10x_flash.c **** 
+  68:stm_lib/src/stm32f10x_flash.c **** /* FLASH Mask */
+  69:stm_lib/src/stm32f10x_flash.c **** #define RDPRT_Mask               ((uint32_t)0x00000002)
+  70:stm_lib/src/stm32f10x_flash.c **** #define WRP0_Mask                ((uint32_t)0x000000FF)
+  71:stm_lib/src/stm32f10x_flash.c **** #define WRP1_Mask                ((uint32_t)0x0000FF00)
+  72:stm_lib/src/stm32f10x_flash.c **** #define WRP2_Mask                ((uint32_t)0x00FF0000)
+  73:stm_lib/src/stm32f10x_flash.c **** #define WRP3_Mask                ((uint32_t)0xFF000000)
+  74:stm_lib/src/stm32f10x_flash.c **** #define OB_USER_BFB2             ((uint16_t)0x0008)
+  75:stm_lib/src/stm32f10x_flash.c **** 
+  76:stm_lib/src/stm32f10x_flash.c **** /* FLASH Keys */
+  77:stm_lib/src/stm32f10x_flash.c **** #define RDP_Key                  ((uint16_t)0x00A5)
+  78:stm_lib/src/stm32f10x_flash.c **** #define FLASH_KEY1               ((uint32_t)0x45670123)
+  79:stm_lib/src/stm32f10x_flash.c **** #define FLASH_KEY2               ((uint32_t)0xCDEF89AB)
+  80:stm_lib/src/stm32f10x_flash.c **** 
+  81:stm_lib/src/stm32f10x_flash.c **** /* FLASH BANK address */
+  82:stm_lib/src/stm32f10x_flash.c **** #define FLASH_BANK1_END_ADDRESS   ((uint32_t)0x807FFFF)
+  83:stm_lib/src/stm32f10x_flash.c **** 
+  84:stm_lib/src/stm32f10x_flash.c **** /* Delay definition */   
+  85:stm_lib/src/stm32f10x_flash.c **** #define EraseTimeout          ((uint32_t)0x000B0000)
+  86:stm_lib/src/stm32f10x_flash.c **** #define ProgramTimeout        ((uint32_t)0x00002000)
+  87:stm_lib/src/stm32f10x_flash.c **** /**
+  88:stm_lib/src/stm32f10x_flash.c ****   * @}
+  89:stm_lib/src/stm32f10x_flash.c ****   */ 
+  90:stm_lib/src/stm32f10x_flash.c **** 
+ARM GAS  /tmp/ccaWNXPb.s 			page 3
+
+
+  91:stm_lib/src/stm32f10x_flash.c **** /** @defgroup FLASH_Private_Macros
+  92:stm_lib/src/stm32f10x_flash.c ****   * @{
+  93:stm_lib/src/stm32f10x_flash.c ****   */
+  94:stm_lib/src/stm32f10x_flash.c **** 
+  95:stm_lib/src/stm32f10x_flash.c **** /**
+  96:stm_lib/src/stm32f10x_flash.c ****   * @}
+  97:stm_lib/src/stm32f10x_flash.c ****   */ 
+  98:stm_lib/src/stm32f10x_flash.c **** 
+  99:stm_lib/src/stm32f10x_flash.c **** /** @defgroup FLASH_Private_Variables
+ 100:stm_lib/src/stm32f10x_flash.c ****   * @{
+ 101:stm_lib/src/stm32f10x_flash.c ****   */
+ 102:stm_lib/src/stm32f10x_flash.c **** 
+ 103:stm_lib/src/stm32f10x_flash.c **** /**
+ 104:stm_lib/src/stm32f10x_flash.c ****   * @}
+ 105:stm_lib/src/stm32f10x_flash.c ****   */ 
+ 106:stm_lib/src/stm32f10x_flash.c **** 
+ 107:stm_lib/src/stm32f10x_flash.c **** /** @defgroup FLASH_Private_FunctionPrototypes
+ 108:stm_lib/src/stm32f10x_flash.c ****   * @{
+ 109:stm_lib/src/stm32f10x_flash.c ****   */
+ 110:stm_lib/src/stm32f10x_flash.c ****   
+ 111:stm_lib/src/stm32f10x_flash.c **** /**
+ 112:stm_lib/src/stm32f10x_flash.c ****   * @}
+ 113:stm_lib/src/stm32f10x_flash.c ****   */
+ 114:stm_lib/src/stm32f10x_flash.c **** 
+ 115:stm_lib/src/stm32f10x_flash.c **** /** @defgroup FLASH_Private_Functions
+ 116:stm_lib/src/stm32f10x_flash.c ****   * @{
+ 117:stm_lib/src/stm32f10x_flash.c ****   */
+ 118:stm_lib/src/stm32f10x_flash.c **** 
+ 119:stm_lib/src/stm32f10x_flash.c **** /**
+ 120:stm_lib/src/stm32f10x_flash.c **** @code  
+ 121:stm_lib/src/stm32f10x_flash.c ****  
+ 122:stm_lib/src/stm32f10x_flash.c ****  This driver provides functions to configure and program the Flash memory of all STM32F10x devices,
+ 123:stm_lib/src/stm32f10x_flash.c ****  including the latest STM32F10x_XL density devices. 
+ 124:stm_lib/src/stm32f10x_flash.c **** 
+ 125:stm_lib/src/stm32f10x_flash.c ****  STM32F10x_XL devices feature up to 1 Mbyte with dual bank architecture for read-while-write (RWW) 
+ 126:stm_lib/src/stm32f10x_flash.c ****     - bank1: fixed size of 512 Kbytes (256 pages of 2Kbytes each)
+ 127:stm_lib/src/stm32f10x_flash.c ****     - bank2: up to 512 Kbytes (up to 256 pages of 2Kbytes each)
+ 128:stm_lib/src/stm32f10x_flash.c ****  While other STM32F10x devices features only one bank with memory up to 512 Kbytes.
+ 129:stm_lib/src/stm32f10x_flash.c **** 
+ 130:stm_lib/src/stm32f10x_flash.c ****  In version V3.3.0, some functions were updated and new ones were added to support
+ 131:stm_lib/src/stm32f10x_flash.c ****  STM32F10x_XL devices. Thus some functions manages all devices, while other are 
+ 132:stm_lib/src/stm32f10x_flash.c ****  dedicated for XL devices only.
+ 133:stm_lib/src/stm32f10x_flash.c ****  
+ 134:stm_lib/src/stm32f10x_flash.c ****  The table below presents the list of available functions depending on the used STM32F10x devices. 
+ 135:stm_lib/src/stm32f10x_flash.c ****       
+ 136:stm_lib/src/stm32f10x_flash.c ****    ***************************************************
+ 137:stm_lib/src/stm32f10x_flash.c ****    * Legacy functions used for all STM32F10x devices *
+ 138:stm_lib/src/stm32f10x_flash.c ****    ***************************************************
+ 139:stm_lib/src/stm32f10x_flash.c ****    +-----------------------------------------------------------------------------------------------
+ 140:stm_lib/src/stm32f10x_flash.c ****    |       Functions prototypes         |STM32F10x_XL|Other STM32F10x|    Comments                 
+ 141:stm_lib/src/stm32f10x_flash.c ****    |                                    |   devices  |  devices      |                             
+ 142:stm_lib/src/stm32f10x_flash.c ****    |-----------------------------------------------------------------------------------------------
+ 143:stm_lib/src/stm32f10x_flash.c ****    |FLASH_SetLatency                    |    Yes     |      Yes      | No change                   
+ 144:stm_lib/src/stm32f10x_flash.c ****    |-----------------------------------------------------------------------------------------------
+ 145:stm_lib/src/stm32f10x_flash.c ****    |FLASH_HalfCycleAccessCmd            |    Yes     |      Yes      | No change                   
+ 146:stm_lib/src/stm32f10x_flash.c ****    |-----------------------------------------------------------------------------------------------
+ 147:stm_lib/src/stm32f10x_flash.c ****    |FLASH_PrefetchBufferCmd             |    Yes     |      Yes      | No change                   
+ARM GAS  /tmp/ccaWNXPb.s 			page 4
+
+
+ 148:stm_lib/src/stm32f10x_flash.c ****    |-----------------------------------------------------------------------------------------------
+ 149:stm_lib/src/stm32f10x_flash.c ****    |FLASH_Unlock                        |    Yes     |      Yes      | - For STM32F10X_XL devices: 
+ 150:stm_lib/src/stm32f10x_flash.c ****    |                                    |            |               | - For other devices: unlock 
+ 151:stm_lib/src/stm32f10x_flash.c ****    |                                    |            |               |   to FLASH_UnlockBank1 funct
+ 152:stm_lib/src/stm32f10x_flash.c ****    |-----------------------------------------------------------------------------------------------
+ 153:stm_lib/src/stm32f10x_flash.c ****    |FLASH_Lock                          |    Yes     |      Yes      | - For STM32F10X_XL devices: 
+ 154:stm_lib/src/stm32f10x_flash.c ****    |                                    |            |               | - For other devices: lock Ba
+ 155:stm_lib/src/stm32f10x_flash.c ****    |                                    |            |               |   to FLASH_LockBank1 functio
+ 156:stm_lib/src/stm32f10x_flash.c ****    |-----------------------------------------------------------------------------------------------
+ 157:stm_lib/src/stm32f10x_flash.c ****    |FLASH_ErasePage                     |    Yes     |      Yes      | - For STM32F10x_XL devices: 
+ 158:stm_lib/src/stm32f10x_flash.c ****    |                                    |            |               | - For other devices: erase a
+ 159:stm_lib/src/stm32f10x_flash.c ****    |-----------------------------------------------------------------------------------------------
+ 160:stm_lib/src/stm32f10x_flash.c ****    |FLASH_EraseAllPages                 |    Yes     |      Yes      | - For STM32F10x_XL devices: 
+ 161:stm_lib/src/stm32f10x_flash.c ****    |                                    |            |               | - For other devices: erase a
+ 162:stm_lib/src/stm32f10x_flash.c ****    |-----------------------------------------------------------------------------------------------
+ 163:stm_lib/src/stm32f10x_flash.c ****    |FLASH_EraseOptionBytes              |    Yes     |      Yes      | No change                   
+ 164:stm_lib/src/stm32f10x_flash.c ****    |-----------------------------------------------------------------------------------------------
+ 165:stm_lib/src/stm32f10x_flash.c ****    |FLASH_ProgramWord                   |    Yes     |      Yes      | Updated to program up to 1MB
+ 166:stm_lib/src/stm32f10x_flash.c ****    |-----------------------------------------------------------------------------------------------
+ 167:stm_lib/src/stm32f10x_flash.c ****    |FLASH_ProgramHalfWord               |    Yes     |      Yes      | Updated to program up to 1MB
+ 168:stm_lib/src/stm32f10x_flash.c ****    |-----------------------------------------------------------------------------------------------
+ 169:stm_lib/src/stm32f10x_flash.c ****    |FLASH_ProgramOptionByteData         |    Yes     |      Yes      | No change                   
+ 170:stm_lib/src/stm32f10x_flash.c ****    |-----------------------------------------------------------------------------------------------
+ 171:stm_lib/src/stm32f10x_flash.c ****    |FLASH_EnableWriteProtection         |    Yes     |      Yes      | No change                   
+ 172:stm_lib/src/stm32f10x_flash.c ****    |-----------------------------------------------------------------------------------------------
+ 173:stm_lib/src/stm32f10x_flash.c ****    |FLASH_ReadOutProtection             |    Yes     |      Yes      | No change                   
+ 174:stm_lib/src/stm32f10x_flash.c ****    |-----------------------------------------------------------------------------------------------
+ 175:stm_lib/src/stm32f10x_flash.c ****    |FLASH_UserOptionByteConfig          |    Yes     |      Yes      | No change                   
+ 176:stm_lib/src/stm32f10x_flash.c ****    |-----------------------------------------------------------------------------------------------
+ 177:stm_lib/src/stm32f10x_flash.c ****    |FLASH_GetUserOptionByte             |    Yes     |      Yes      | No change                   
+ 178:stm_lib/src/stm32f10x_flash.c ****    |-----------------------------------------------------------------------------------------------
+ 179:stm_lib/src/stm32f10x_flash.c ****    |FLASH_GetWriteProtectionOptionByte  |    Yes     |      Yes      | No change                   
+ 180:stm_lib/src/stm32f10x_flash.c ****    |-----------------------------------------------------------------------------------------------
+ 181:stm_lib/src/stm32f10x_flash.c ****    |FLASH_GetReadOutProtectionStatus    |    Yes     |      Yes      | No change                   
+ 182:stm_lib/src/stm32f10x_flash.c ****    |-----------------------------------------------------------------------------------------------
+ 183:stm_lib/src/stm32f10x_flash.c ****    |FLASH_GetPrefetchBufferStatus       |    Yes     |      Yes      | No change                   
+ 184:stm_lib/src/stm32f10x_flash.c ****    |-----------------------------------------------------------------------------------------------
+ 185:stm_lib/src/stm32f10x_flash.c ****    |FLASH_ITConfig                      |    Yes     |      Yes      | - For STM32F10x_XL devices: 
+ 186:stm_lib/src/stm32f10x_flash.c ****    |                                    |            |               | - For other devices: enable 
+ 187:stm_lib/src/stm32f10x_flash.c ****    |-----------------------------------------------------------------------------------------------
+ 188:stm_lib/src/stm32f10x_flash.c ****    |FLASH_GetFlagStatus                 |    Yes     |      Yes      | - For STM32F10x_XL devices: 
+ 189:stm_lib/src/stm32f10x_flash.c ****    |                                    |            |               | - For other devices: return 
+ 190:stm_lib/src/stm32f10x_flash.c ****    |-----------------------------------------------------------------------------------------------
+ 191:stm_lib/src/stm32f10x_flash.c ****    |FLASH_ClearFlag                     |    Yes     |      Yes      | - For STM32F10x_XL devices: 
+ 192:stm_lib/src/stm32f10x_flash.c ****    |                                    |            |               | - For other devices: clear B
+ 193:stm_lib/src/stm32f10x_flash.c ****    |-----------------------------------------------------------------------------------------------
+ 194:stm_lib/src/stm32f10x_flash.c ****    |FLASH_GetStatus                     |    Yes     |      Yes      | - Return the status of Bank1
+ 195:stm_lib/src/stm32f10x_flash.c ****    |                                    |            |               |   equivalent to FLASH_GetBan
+ 196:stm_lib/src/stm32f10x_flash.c ****    |-----------------------------------------------------------------------------------------------
+ 197:stm_lib/src/stm32f10x_flash.c ****    |FLASH_WaitForLastOperation          |    Yes     |      Yes      | - Wait for Bank1 last operat
+ 198:stm_lib/src/stm32f10x_flash.c ****    |                                    |            |               |   equivalent to: FLASH_WaitF
+ 199:stm_lib/src/stm32f10x_flash.c ****    +-----------------------------------------------------------------------------------------------
+ 200:stm_lib/src/stm32f10x_flash.c **** 
+ 201:stm_lib/src/stm32f10x_flash.c ****    ************************************************************************************************
+ 202:stm_lib/src/stm32f10x_flash.c ****    * New functions used for all STM32F10x devices to manage Bank1:                                 
+ 203:stm_lib/src/stm32f10x_flash.c ****    *   - These functions are mainly useful for STM32F10x_XL density devices, to have separate contr
+ 204:stm_lib/src/stm32f10x_flash.c ****    *   - For other devices, these functions are optional (covered by functions listed above)       
+ARM GAS  /tmp/ccaWNXPb.s 			page 5
+
+
+ 205:stm_lib/src/stm32f10x_flash.c ****    ************************************************************************************************
+ 206:stm_lib/src/stm32f10x_flash.c ****    +-----------------------------------------------------------------------------------------------
+ 207:stm_lib/src/stm32f10x_flash.c ****    |       Functions prototypes         |STM32F10x_XL|Other STM32F10x|    Comments                 
+ 208:stm_lib/src/stm32f10x_flash.c ****    |                                    |   devices  |  devices      |                             
+ 209:stm_lib/src/stm32f10x_flash.c ****    |-----------------------------------------------------------------------------------------------
+ 210:stm_lib/src/stm32f10x_flash.c ****    | FLASH_UnlockBank1                  |    Yes     |      Yes      | - Unlock Bank1              
+ 211:stm_lib/src/stm32f10x_flash.c ****    |-----------------------------------------------------------------------------------------------
+ 212:stm_lib/src/stm32f10x_flash.c ****    |FLASH_LockBank1                     |    Yes     |      Yes      | - Lock Bank1                
+ 213:stm_lib/src/stm32f10x_flash.c ****    |-----------------------------------------------------------------------------------------------
+ 214:stm_lib/src/stm32f10x_flash.c ****    | FLASH_EraseAllBank1Pages           |    Yes     |      Yes      | - Erase all pages in Bank1  
+ 215:stm_lib/src/stm32f10x_flash.c ****    |-----------------------------------------------------------------------------------------------
+ 216:stm_lib/src/stm32f10x_flash.c ****    | FLASH_GetBank1Status               |    Yes     |      Yes      | - Return the status of Bank1
+ 217:stm_lib/src/stm32f10x_flash.c ****    |-----------------------------------------------------------------------------------------------
+ 218:stm_lib/src/stm32f10x_flash.c ****    | FLASH_WaitForLastBank1Operation    |    Yes     |      Yes      | - Wait for Bank1 last operat
+ 219:stm_lib/src/stm32f10x_flash.c ****    +-----------------------------------------------------------------------------------------------
+ 220:stm_lib/src/stm32f10x_flash.c **** 
+ 221:stm_lib/src/stm32f10x_flash.c ****    *****************************************************************************
+ 222:stm_lib/src/stm32f10x_flash.c ****    * New Functions used only with STM32F10x_XL density devices to manage Bank2 *
+ 223:stm_lib/src/stm32f10x_flash.c ****    *****************************************************************************
+ 224:stm_lib/src/stm32f10x_flash.c ****    +-----------------------------------------------------------------------------------------------
+ 225:stm_lib/src/stm32f10x_flash.c ****    |       Functions prototypes         |STM32F10x_XL|Other STM32F10x|    Comments                 
+ 226:stm_lib/src/stm32f10x_flash.c ****    |                                    |   devices  |  devices      |                             
+ 227:stm_lib/src/stm32f10x_flash.c ****    |-----------------------------------------------------------------------------------------------
+ 228:stm_lib/src/stm32f10x_flash.c ****    | FLASH_UnlockBank2                  |    Yes     |      No       | - Unlock Bank2              
+ 229:stm_lib/src/stm32f10x_flash.c ****    |-----------------------------------------------------------------------------------------------
+ 230:stm_lib/src/stm32f10x_flash.c ****    |FLASH_LockBank2                     |    Yes     |      No       | - Lock Bank2                
+ 231:stm_lib/src/stm32f10x_flash.c ****    |-----------------------------------------------------------------------------------------------
+ 232:stm_lib/src/stm32f10x_flash.c ****    | FLASH_EraseAllBank2Pages           |    Yes     |      No       | - Erase all pages in Bank2  
+ 233:stm_lib/src/stm32f10x_flash.c ****    |-----------------------------------------------------------------------------------------------
+ 234:stm_lib/src/stm32f10x_flash.c ****    | FLASH_GetBank2Status               |    Yes     |      No       | - Return the status of Bank2
+ 235:stm_lib/src/stm32f10x_flash.c ****    |-----------------------------------------------------------------------------------------------
+ 236:stm_lib/src/stm32f10x_flash.c ****    | FLASH_WaitForLastBank2Operation    |    Yes     |      No       | - Wait for Bank2 last operat
+ 237:stm_lib/src/stm32f10x_flash.c ****    |-----------------------------------------------------------------------------------------------
+ 238:stm_lib/src/stm32f10x_flash.c ****    | FLASH_BootConfig                   |    Yes     |      No       | - Configure to boot from Ban
+ 239:stm_lib/src/stm32f10x_flash.c ****    +-----------------------------------------------------------------------------------------------
+ 240:stm_lib/src/stm32f10x_flash.c **** @endcode
+ 241:stm_lib/src/stm32f10x_flash.c **** */
+ 242:stm_lib/src/stm32f10x_flash.c **** 
+ 243:stm_lib/src/stm32f10x_flash.c **** 
+ 244:stm_lib/src/stm32f10x_flash.c **** /**
+ 245:stm_lib/src/stm32f10x_flash.c ****   * @brief  Sets the code latency value.
+ 246:stm_lib/src/stm32f10x_flash.c ****   * @note   This function can be used for all STM32F10x devices.
+ 247:stm_lib/src/stm32f10x_flash.c ****   * @param  FLASH_Latency: specifies the FLASH Latency value.
+ 248:stm_lib/src/stm32f10x_flash.c ****   *   This parameter can be one of the following values:
+ 249:stm_lib/src/stm32f10x_flash.c ****   *     @arg FLASH_Latency_0: FLASH Zero Latency cycle
+ 250:stm_lib/src/stm32f10x_flash.c ****   *     @arg FLASH_Latency_1: FLASH One Latency cycle
+ 251:stm_lib/src/stm32f10x_flash.c ****   *     @arg FLASH_Latency_2: FLASH Two Latency cycles
+ 252:stm_lib/src/stm32f10x_flash.c ****   * @retval None
+ 253:stm_lib/src/stm32f10x_flash.c ****   */
+ 254:stm_lib/src/stm32f10x_flash.c **** void FLASH_SetLatency(uint32_t FLASH_Latency)
+ 255:stm_lib/src/stm32f10x_flash.c **** {
+  26              		.loc 1 255 0
+  27              		.cfi_startproc
+  28              		@ args = 0, pretend = 0, frame = 0
+  29              		@ frame_needed = 0, uses_anonymous_args = 0
+  30              		@ link register save eliminated.
+  31              	.LVL0:
+ARM GAS  /tmp/ccaWNXPb.s 			page 6
+
+
+ 256:stm_lib/src/stm32f10x_flash.c ****   uint32_t tmpreg = 0;
+ 257:stm_lib/src/stm32f10x_flash.c ****   
+ 258:stm_lib/src/stm32f10x_flash.c ****   /* Check the parameters */
+ 259:stm_lib/src/stm32f10x_flash.c ****   assert_param(IS_FLASH_LATENCY(FLASH_Latency));
+ 260:stm_lib/src/stm32f10x_flash.c ****   
+ 261:stm_lib/src/stm32f10x_flash.c ****   /* Read the ACR register */
+ 262:stm_lib/src/stm32f10x_flash.c ****   tmpreg = FLASH->ACR;  
+  32              		.loc 1 262 0
+  33 0000 034A     		ldr	r2, .L2
+  34 0002 1368     		ldr	r3, [r2]
+  35              	.LVL1:
+ 263:stm_lib/src/stm32f10x_flash.c ****   
+ 264:stm_lib/src/stm32f10x_flash.c ****   /* Sets the Latency value */
+ 265:stm_lib/src/stm32f10x_flash.c ****   tmpreg &= ACR_LATENCY_Mask;
+  36              		.loc 1 265 0
+  37 0004 03F03803 		and	r3, r3, #56
+  38              	.LVL2:
+ 266:stm_lib/src/stm32f10x_flash.c ****   tmpreg |= FLASH_Latency;
+  39              		.loc 1 266 0
+  40 0008 1843     		orrs	r0, r0, r3
+  41              	.LVL3:
+ 267:stm_lib/src/stm32f10x_flash.c ****   
+ 268:stm_lib/src/stm32f10x_flash.c ****   /* Write the ACR register */
+ 269:stm_lib/src/stm32f10x_flash.c ****   FLASH->ACR = tmpreg;
+  42              		.loc 1 269 0
+  43 000a 1060     		str	r0, [r2]
+  44 000c 7047     		bx	lr
+  45              	.L3:
+  46 000e 00BF     		.align	2
+  47              	.L2:
+  48 0010 00200240 		.word	1073881088
+  49              		.cfi_endproc
+  50              	.LFE56:
+  52              		.section	.text.FLASH_HalfCycleAccessCmd,"ax",%progbits
+  53              		.align	1
+  54              		.global	FLASH_HalfCycleAccessCmd
+  55              		.syntax unified
+  56              		.thumb
+  57              		.thumb_func
+  58              		.fpu softvfp
+  60              	FLASH_HalfCycleAccessCmd:
+  61              	.LFB57:
+ 270:stm_lib/src/stm32f10x_flash.c **** }
+ 271:stm_lib/src/stm32f10x_flash.c **** 
+ 272:stm_lib/src/stm32f10x_flash.c **** /**
+ 273:stm_lib/src/stm32f10x_flash.c ****   * @brief  Enables or disables the Half cycle flash access.
+ 274:stm_lib/src/stm32f10x_flash.c ****   * @note   This function can be used for all STM32F10x devices.
+ 275:stm_lib/src/stm32f10x_flash.c ****   * @param  FLASH_HalfCycleAccess: specifies the FLASH Half cycle Access mode.
+ 276:stm_lib/src/stm32f10x_flash.c ****   *   This parameter can be one of the following values:
+ 277:stm_lib/src/stm32f10x_flash.c ****   *     @arg FLASH_HalfCycleAccess_Enable: FLASH Half Cycle Enable
+ 278:stm_lib/src/stm32f10x_flash.c ****   *     @arg FLASH_HalfCycleAccess_Disable: FLASH Half Cycle Disable
+ 279:stm_lib/src/stm32f10x_flash.c ****   * @retval None
+ 280:stm_lib/src/stm32f10x_flash.c ****   */
+ 281:stm_lib/src/stm32f10x_flash.c **** void FLASH_HalfCycleAccessCmd(uint32_t FLASH_HalfCycleAccess)
+ 282:stm_lib/src/stm32f10x_flash.c **** {
+  62              		.loc 1 282 0
+  63              		.cfi_startproc
+ARM GAS  /tmp/ccaWNXPb.s 			page 7
+
+
+  64              		@ args = 0, pretend = 0, frame = 0
+  65              		@ frame_needed = 0, uses_anonymous_args = 0
+  66              		@ link register save eliminated.
+  67              	.LVL4:
+ 283:stm_lib/src/stm32f10x_flash.c ****   /* Check the parameters */
+ 284:stm_lib/src/stm32f10x_flash.c ****   assert_param(IS_FLASH_HALFCYCLEACCESS_STATE(FLASH_HalfCycleAccess));
+ 285:stm_lib/src/stm32f10x_flash.c ****   
+ 286:stm_lib/src/stm32f10x_flash.c ****   /* Enable or disable the Half cycle access */
+ 287:stm_lib/src/stm32f10x_flash.c ****   FLASH->ACR &= ACR_HLFCYA_Mask;
+  68              		.loc 1 287 0
+  69 0000 044B     		ldr	r3, .L5
+  70 0002 1A68     		ldr	r2, [r3]
+  71 0004 22F00802 		bic	r2, r2, #8
+  72 0008 1A60     		str	r2, [r3]
+ 288:stm_lib/src/stm32f10x_flash.c ****   FLASH->ACR |= FLASH_HalfCycleAccess;
+  73              		.loc 1 288 0
+  74 000a 1A68     		ldr	r2, [r3]
+  75 000c 1043     		orrs	r0, r0, r2
+  76              	.LVL5:
+  77 000e 1860     		str	r0, [r3]
+  78 0010 7047     		bx	lr
+  79              	.L6:
+  80 0012 00BF     		.align	2
+  81              	.L5:
+  82 0014 00200240 		.word	1073881088
+  83              		.cfi_endproc
+  84              	.LFE57:
+  86              		.section	.text.FLASH_PrefetchBufferCmd,"ax",%progbits
+  87              		.align	1
+  88              		.global	FLASH_PrefetchBufferCmd
+  89              		.syntax unified
+  90              		.thumb
+  91              		.thumb_func
+  92              		.fpu softvfp
+  94              	FLASH_PrefetchBufferCmd:
+  95              	.LFB58:
+ 289:stm_lib/src/stm32f10x_flash.c **** }
+ 290:stm_lib/src/stm32f10x_flash.c **** 
+ 291:stm_lib/src/stm32f10x_flash.c **** /**
+ 292:stm_lib/src/stm32f10x_flash.c ****   * @brief  Enables or disables the Prefetch Buffer.
+ 293:stm_lib/src/stm32f10x_flash.c ****   * @note   This function can be used for all STM32F10x devices.
+ 294:stm_lib/src/stm32f10x_flash.c ****   * @param  FLASH_PrefetchBuffer: specifies the Prefetch buffer status.
+ 295:stm_lib/src/stm32f10x_flash.c ****   *   This parameter can be one of the following values:
+ 296:stm_lib/src/stm32f10x_flash.c ****   *     @arg FLASH_PrefetchBuffer_Enable: FLASH Prefetch Buffer Enable
+ 297:stm_lib/src/stm32f10x_flash.c ****   *     @arg FLASH_PrefetchBuffer_Disable: FLASH Prefetch Buffer Disable
+ 298:stm_lib/src/stm32f10x_flash.c ****   * @retval None
+ 299:stm_lib/src/stm32f10x_flash.c ****   */
+ 300:stm_lib/src/stm32f10x_flash.c **** void FLASH_PrefetchBufferCmd(uint32_t FLASH_PrefetchBuffer)
+ 301:stm_lib/src/stm32f10x_flash.c **** {
+  96              		.loc 1 301 0
+  97              		.cfi_startproc
+  98              		@ args = 0, pretend = 0, frame = 0
+  99              		@ frame_needed = 0, uses_anonymous_args = 0
+ 100              		@ link register save eliminated.
+ 101              	.LVL6:
+ 302:stm_lib/src/stm32f10x_flash.c ****   /* Check the parameters */
+ 303:stm_lib/src/stm32f10x_flash.c ****   assert_param(IS_FLASH_PREFETCHBUFFER_STATE(FLASH_PrefetchBuffer));
+ARM GAS  /tmp/ccaWNXPb.s 			page 8
+
+
+ 304:stm_lib/src/stm32f10x_flash.c ****   
+ 305:stm_lib/src/stm32f10x_flash.c ****   /* Enable or disable the Prefetch Buffer */
+ 306:stm_lib/src/stm32f10x_flash.c ****   FLASH->ACR &= ACR_PRFTBE_Mask;
+ 102              		.loc 1 306 0
+ 103 0000 044B     		ldr	r3, .L8
+ 104 0002 1A68     		ldr	r2, [r3]
+ 105 0004 22F01002 		bic	r2, r2, #16
+ 106 0008 1A60     		str	r2, [r3]
+ 307:stm_lib/src/stm32f10x_flash.c ****   FLASH->ACR |= FLASH_PrefetchBuffer;
+ 107              		.loc 1 307 0
+ 108 000a 1A68     		ldr	r2, [r3]
+ 109 000c 1043     		orrs	r0, r0, r2
+ 110              	.LVL7:
+ 111 000e 1860     		str	r0, [r3]
+ 112 0010 7047     		bx	lr
+ 113              	.L9:
+ 114 0012 00BF     		.align	2
+ 115              	.L8:
+ 116 0014 00200240 		.word	1073881088
+ 117              		.cfi_endproc
+ 118              	.LFE58:
+ 120              		.section	.text.FLASH_Unlock,"ax",%progbits
+ 121              		.align	1
+ 122              		.global	FLASH_Unlock
+ 123              		.syntax unified
+ 124              		.thumb
+ 125              		.thumb_func
+ 126              		.fpu softvfp
+ 128              	FLASH_Unlock:
+ 129              	.LFB59:
+ 308:stm_lib/src/stm32f10x_flash.c **** }
+ 309:stm_lib/src/stm32f10x_flash.c **** 
+ 310:stm_lib/src/stm32f10x_flash.c **** /**
+ 311:stm_lib/src/stm32f10x_flash.c ****   * @brief  Unlocks the FLASH Program Erase Controller.
+ 312:stm_lib/src/stm32f10x_flash.c ****   * @note   This function can be used for all STM32F10x devices.
+ 313:stm_lib/src/stm32f10x_flash.c ****   *         - For STM32F10X_XL devices this function unlocks Bank1 and Bank2.
+ 314:stm_lib/src/stm32f10x_flash.c ****   *         - For all other devices it unlocks Bank1 and it is equivalent 
+ 315:stm_lib/src/stm32f10x_flash.c ****   *           to FLASH_UnlockBank1 function.. 
+ 316:stm_lib/src/stm32f10x_flash.c ****   * @param  None
+ 317:stm_lib/src/stm32f10x_flash.c ****   * @retval None
+ 318:stm_lib/src/stm32f10x_flash.c ****   */
+ 319:stm_lib/src/stm32f10x_flash.c **** void FLASH_Unlock(void)
+ 320:stm_lib/src/stm32f10x_flash.c **** {
+ 130              		.loc 1 320 0
+ 131              		.cfi_startproc
+ 132              		@ args = 0, pretend = 0, frame = 0
+ 133              		@ frame_needed = 0, uses_anonymous_args = 0
+ 134              		@ link register save eliminated.
+ 321:stm_lib/src/stm32f10x_flash.c ****   /* Authorize the FPEC of Bank1 Access */
+ 322:stm_lib/src/stm32f10x_flash.c ****   FLASH->KEYR = FLASH_KEY1;
+ 135              		.loc 1 322 0
+ 136 0000 034B     		ldr	r3, .L11
+ 137 0002 044A     		ldr	r2, .L11+4
+ 138 0004 5A60     		str	r2, [r3, #4]
+ 323:stm_lib/src/stm32f10x_flash.c ****   FLASH->KEYR = FLASH_KEY2;
+ 139              		.loc 1 323 0
+ 140 0006 02F18832 		add	r2, r2, #-2004318072
+ARM GAS  /tmp/ccaWNXPb.s 			page 9
+
+
+ 141 000a 5A60     		str	r2, [r3, #4]
+ 142 000c 7047     		bx	lr
+ 143              	.L12:
+ 144 000e 00BF     		.align	2
+ 145              	.L11:
+ 146 0010 00200240 		.word	1073881088
+ 147 0014 23016745 		.word	1164378403
+ 148              		.cfi_endproc
+ 149              	.LFE59:
+ 151              		.section	.text.FLASH_UnlockBank1,"ax",%progbits
+ 152              		.align	1
+ 153              		.global	FLASH_UnlockBank1
+ 154              		.syntax unified
+ 155              		.thumb
+ 156              		.thumb_func
+ 157              		.fpu softvfp
+ 159              	FLASH_UnlockBank1:
+ 160              	.LFB60:
+ 324:stm_lib/src/stm32f10x_flash.c **** 
+ 325:stm_lib/src/stm32f10x_flash.c **** #ifdef STM32F10X_XL
+ 326:stm_lib/src/stm32f10x_flash.c ****   /* Authorize the FPEC of Bank2 Access */
+ 327:stm_lib/src/stm32f10x_flash.c ****   FLASH->KEYR2 = FLASH_KEY1;
+ 328:stm_lib/src/stm32f10x_flash.c ****   FLASH->KEYR2 = FLASH_KEY2;
+ 329:stm_lib/src/stm32f10x_flash.c **** #endif /* STM32F10X_XL */
+ 330:stm_lib/src/stm32f10x_flash.c **** }
+ 331:stm_lib/src/stm32f10x_flash.c **** /**
+ 332:stm_lib/src/stm32f10x_flash.c ****   * @brief  Unlocks the FLASH Bank1 Program Erase Controller.
+ 333:stm_lib/src/stm32f10x_flash.c ****   * @note   This function can be used for all STM32F10x devices.
+ 334:stm_lib/src/stm32f10x_flash.c ****   *         - For STM32F10X_XL devices this function unlocks Bank1.
+ 335:stm_lib/src/stm32f10x_flash.c ****   *         - For all other devices it unlocks Bank1 and it is 
+ 336:stm_lib/src/stm32f10x_flash.c ****   *           equivalent to FLASH_Unlock function.
+ 337:stm_lib/src/stm32f10x_flash.c ****   * @param  None
+ 338:stm_lib/src/stm32f10x_flash.c ****   * @retval None
+ 339:stm_lib/src/stm32f10x_flash.c ****   */
+ 340:stm_lib/src/stm32f10x_flash.c **** void FLASH_UnlockBank1(void)
+ 341:stm_lib/src/stm32f10x_flash.c **** {
+ 161              		.loc 1 341 0
+ 162              		.cfi_startproc
+ 163              		@ args = 0, pretend = 0, frame = 0
+ 164              		@ frame_needed = 0, uses_anonymous_args = 0
+ 165              		@ link register save eliminated.
+ 342:stm_lib/src/stm32f10x_flash.c ****   /* Authorize the FPEC of Bank1 Access */
+ 343:stm_lib/src/stm32f10x_flash.c ****   FLASH->KEYR = FLASH_KEY1;
+ 166              		.loc 1 343 0
+ 167 0000 034B     		ldr	r3, .L14
+ 168 0002 044A     		ldr	r2, .L14+4
+ 169 0004 5A60     		str	r2, [r3, #4]
+ 344:stm_lib/src/stm32f10x_flash.c ****   FLASH->KEYR = FLASH_KEY2;
+ 170              		.loc 1 344 0
+ 171 0006 02F18832 		add	r2, r2, #-2004318072
+ 172 000a 5A60     		str	r2, [r3, #4]
+ 173 000c 7047     		bx	lr
+ 174              	.L15:
+ 175 000e 00BF     		.align	2
+ 176              	.L14:
+ 177 0010 00200240 		.word	1073881088
+ 178 0014 23016745 		.word	1164378403
+ARM GAS  /tmp/ccaWNXPb.s 			page 10
+
+
+ 179              		.cfi_endproc
+ 180              	.LFE60:
+ 182              		.section	.text.FLASH_Lock,"ax",%progbits
+ 183              		.align	1
+ 184              		.global	FLASH_Lock
+ 185              		.syntax unified
+ 186              		.thumb
+ 187              		.thumb_func
+ 188              		.fpu softvfp
+ 190              	FLASH_Lock:
+ 191              	.LFB61:
+ 345:stm_lib/src/stm32f10x_flash.c **** }
+ 346:stm_lib/src/stm32f10x_flash.c **** 
+ 347:stm_lib/src/stm32f10x_flash.c **** #ifdef STM32F10X_XL
+ 348:stm_lib/src/stm32f10x_flash.c **** /**
+ 349:stm_lib/src/stm32f10x_flash.c ****   * @brief  Unlocks the FLASH Bank2 Program Erase Controller.
+ 350:stm_lib/src/stm32f10x_flash.c ****   * @note   This function can be used only for STM32F10X_XL density devices.
+ 351:stm_lib/src/stm32f10x_flash.c ****   * @param  None
+ 352:stm_lib/src/stm32f10x_flash.c ****   * @retval None
+ 353:stm_lib/src/stm32f10x_flash.c ****   */
+ 354:stm_lib/src/stm32f10x_flash.c **** void FLASH_UnlockBank2(void)
+ 355:stm_lib/src/stm32f10x_flash.c **** {
+ 356:stm_lib/src/stm32f10x_flash.c ****   /* Authorize the FPEC of Bank2 Access */
+ 357:stm_lib/src/stm32f10x_flash.c ****   FLASH->KEYR2 = FLASH_KEY1;
+ 358:stm_lib/src/stm32f10x_flash.c ****   FLASH->KEYR2 = FLASH_KEY2;
+ 359:stm_lib/src/stm32f10x_flash.c **** 
+ 360:stm_lib/src/stm32f10x_flash.c **** }
+ 361:stm_lib/src/stm32f10x_flash.c **** #endif /* STM32F10X_XL */
+ 362:stm_lib/src/stm32f10x_flash.c **** 
+ 363:stm_lib/src/stm32f10x_flash.c **** /**
+ 364:stm_lib/src/stm32f10x_flash.c ****   * @brief  Locks the FLASH Program Erase Controller.
+ 365:stm_lib/src/stm32f10x_flash.c ****   * @note   This function can be used for all STM32F10x devices.
+ 366:stm_lib/src/stm32f10x_flash.c ****   *         - For STM32F10X_XL devices this function Locks Bank1 and Bank2.
+ 367:stm_lib/src/stm32f10x_flash.c ****   *         - For all other devices it Locks Bank1 and it is equivalent 
+ 368:stm_lib/src/stm32f10x_flash.c ****   *           to FLASH_LockBank1 function.
+ 369:stm_lib/src/stm32f10x_flash.c ****   * @param  None
+ 370:stm_lib/src/stm32f10x_flash.c ****   * @retval None
+ 371:stm_lib/src/stm32f10x_flash.c ****   */
+ 372:stm_lib/src/stm32f10x_flash.c **** void FLASH_Lock(void)
+ 373:stm_lib/src/stm32f10x_flash.c **** {
+ 192              		.loc 1 373 0
+ 193              		.cfi_startproc
+ 194              		@ args = 0, pretend = 0, frame = 0
+ 195              		@ frame_needed = 0, uses_anonymous_args = 0
+ 196              		@ link register save eliminated.
+ 374:stm_lib/src/stm32f10x_flash.c ****   /* Set the Lock Bit to lock the FPEC and the CR of  Bank1 */
+ 375:stm_lib/src/stm32f10x_flash.c ****   FLASH->CR |= CR_LOCK_Set;
+ 197              		.loc 1 375 0
+ 198 0000 024A     		ldr	r2, .L17
+ 199 0002 1369     		ldr	r3, [r2, #16]
+ 200 0004 43F08003 		orr	r3, r3, #128
+ 201 0008 1361     		str	r3, [r2, #16]
+ 202 000a 7047     		bx	lr
+ 203              	.L18:
+ 204              		.align	2
+ 205              	.L17:
+ 206 000c 00200240 		.word	1073881088
+ARM GAS  /tmp/ccaWNXPb.s 			page 11
+
+
+ 207              		.cfi_endproc
+ 208              	.LFE61:
+ 210              		.section	.text.FLASH_LockBank1,"ax",%progbits
+ 211              		.align	1
+ 212              		.global	FLASH_LockBank1
+ 213              		.syntax unified
+ 214              		.thumb
+ 215              		.thumb_func
+ 216              		.fpu softvfp
+ 218              	FLASH_LockBank1:
+ 219              	.LFB62:
+ 376:stm_lib/src/stm32f10x_flash.c **** 
+ 377:stm_lib/src/stm32f10x_flash.c **** #ifdef STM32F10X_XL
+ 378:stm_lib/src/stm32f10x_flash.c ****   /* Set the Lock Bit to lock the FPEC and the CR of  Bank2 */
+ 379:stm_lib/src/stm32f10x_flash.c ****   FLASH->CR2 |= CR_LOCK_Set;
+ 380:stm_lib/src/stm32f10x_flash.c **** #endif /* STM32F10X_XL */
+ 381:stm_lib/src/stm32f10x_flash.c **** }
+ 382:stm_lib/src/stm32f10x_flash.c **** 
+ 383:stm_lib/src/stm32f10x_flash.c **** /**
+ 384:stm_lib/src/stm32f10x_flash.c ****   * @brief  Locks the FLASH Bank1 Program Erase Controller.
+ 385:stm_lib/src/stm32f10x_flash.c ****   * @note   this function can be used for all STM32F10x devices.
+ 386:stm_lib/src/stm32f10x_flash.c ****   *         - For STM32F10X_XL devices this function Locks Bank1.
+ 387:stm_lib/src/stm32f10x_flash.c ****   *         - For all other devices it Locks Bank1 and it is equivalent 
+ 388:stm_lib/src/stm32f10x_flash.c ****   *           to FLASH_Lock function.
+ 389:stm_lib/src/stm32f10x_flash.c ****   * @param  None
+ 390:stm_lib/src/stm32f10x_flash.c ****   * @retval None
+ 391:stm_lib/src/stm32f10x_flash.c ****   */
+ 392:stm_lib/src/stm32f10x_flash.c **** void FLASH_LockBank1(void)
+ 393:stm_lib/src/stm32f10x_flash.c **** {
+ 220              		.loc 1 393 0
+ 221              		.cfi_startproc
+ 222              		@ args = 0, pretend = 0, frame = 0
+ 223              		@ frame_needed = 0, uses_anonymous_args = 0
+ 224              		@ link register save eliminated.
+ 394:stm_lib/src/stm32f10x_flash.c ****   /* Set the Lock Bit to lock the FPEC and the CR of  Bank1 */
+ 395:stm_lib/src/stm32f10x_flash.c ****   FLASH->CR |= CR_LOCK_Set;
+ 225              		.loc 1 395 0
+ 226 0000 024A     		ldr	r2, .L20
+ 227 0002 1369     		ldr	r3, [r2, #16]
+ 228 0004 43F08003 		orr	r3, r3, #128
+ 229 0008 1361     		str	r3, [r2, #16]
+ 230 000a 7047     		bx	lr
+ 231              	.L21:
+ 232              		.align	2
+ 233              	.L20:
+ 234 000c 00200240 		.word	1073881088
+ 235              		.cfi_endproc
+ 236              	.LFE62:
+ 238              		.section	.text.FLASH_GetUserOptionByte,"ax",%progbits
+ 239              		.align	1
+ 240              		.global	FLASH_GetUserOptionByte
+ 241              		.syntax unified
+ 242              		.thumb
+ 243              		.thumb_func
+ 244              		.fpu softvfp
+ 246              	FLASH_GetUserOptionByte:
+ 247              	.LFB73:
+ARM GAS  /tmp/ccaWNXPb.s 			page 12
+
+
+ 396:stm_lib/src/stm32f10x_flash.c **** }
+ 397:stm_lib/src/stm32f10x_flash.c **** 
+ 398:stm_lib/src/stm32f10x_flash.c **** #ifdef STM32F10X_XL
+ 399:stm_lib/src/stm32f10x_flash.c **** /**
+ 400:stm_lib/src/stm32f10x_flash.c ****   * @brief  Locks the FLASH Bank2 Program Erase Controller.
+ 401:stm_lib/src/stm32f10x_flash.c ****   * @note   This function can be used only for STM32F10X_XL density devices.
+ 402:stm_lib/src/stm32f10x_flash.c ****   * @param  None
+ 403:stm_lib/src/stm32f10x_flash.c ****   * @retval None
+ 404:stm_lib/src/stm32f10x_flash.c ****   */
+ 405:stm_lib/src/stm32f10x_flash.c **** void FLASH_LockBank2(void)
+ 406:stm_lib/src/stm32f10x_flash.c **** {
+ 407:stm_lib/src/stm32f10x_flash.c ****   /* Set the Lock Bit to lock the FPEC and the CR of  Bank2 */
+ 408:stm_lib/src/stm32f10x_flash.c ****   FLASH->CR2 |= CR_LOCK_Set;
+ 409:stm_lib/src/stm32f10x_flash.c **** }
+ 410:stm_lib/src/stm32f10x_flash.c **** #endif /* STM32F10X_XL */
+ 411:stm_lib/src/stm32f10x_flash.c **** 
+ 412:stm_lib/src/stm32f10x_flash.c **** /**
+ 413:stm_lib/src/stm32f10x_flash.c ****   * @brief  Erases a specified FLASH page.
+ 414:stm_lib/src/stm32f10x_flash.c ****   * @note   This function can be used for all STM32F10x devices.
+ 415:stm_lib/src/stm32f10x_flash.c ****   * @param  Page_Address: The page address to be erased.
+ 416:stm_lib/src/stm32f10x_flash.c ****   * @retval FLASH Status: The returned value can be: FLASH_BUSY, FLASH_ERROR_PG,
+ 417:stm_lib/src/stm32f10x_flash.c ****   *         FLASH_ERROR_WRP, FLASH_COMPLETE or FLASH_TIMEOUT.
+ 418:stm_lib/src/stm32f10x_flash.c ****   */
+ 419:stm_lib/src/stm32f10x_flash.c **** FLASH_Status FLASH_ErasePage(uint32_t Page_Address)
+ 420:stm_lib/src/stm32f10x_flash.c **** {
+ 421:stm_lib/src/stm32f10x_flash.c ****   FLASH_Status status = FLASH_COMPLETE;
+ 422:stm_lib/src/stm32f10x_flash.c ****   /* Check the parameters */
+ 423:stm_lib/src/stm32f10x_flash.c ****   assert_param(IS_FLASH_ADDRESS(Page_Address));
+ 424:stm_lib/src/stm32f10x_flash.c **** 
+ 425:stm_lib/src/stm32f10x_flash.c **** #ifdef STM32F10X_XL
+ 426:stm_lib/src/stm32f10x_flash.c ****   if(Page_Address < FLASH_BANK1_END_ADDRESS)  
+ 427:stm_lib/src/stm32f10x_flash.c ****   {
+ 428:stm_lib/src/stm32f10x_flash.c ****     /* Wait for last operation to be completed */
+ 429:stm_lib/src/stm32f10x_flash.c ****     status = FLASH_WaitForLastBank1Operation(EraseTimeout);
+ 430:stm_lib/src/stm32f10x_flash.c ****     if(status == FLASH_COMPLETE)
+ 431:stm_lib/src/stm32f10x_flash.c ****     { 
+ 432:stm_lib/src/stm32f10x_flash.c ****       /* if the previous operation is completed, proceed to erase the page */
+ 433:stm_lib/src/stm32f10x_flash.c ****       FLASH->CR|= CR_PER_Set;
+ 434:stm_lib/src/stm32f10x_flash.c ****       FLASH->AR = Page_Address; 
+ 435:stm_lib/src/stm32f10x_flash.c ****       FLASH->CR|= CR_STRT_Set;
+ 436:stm_lib/src/stm32f10x_flash.c ****     
+ 437:stm_lib/src/stm32f10x_flash.c ****       /* Wait for last operation to be completed */
+ 438:stm_lib/src/stm32f10x_flash.c ****       status = FLASH_WaitForLastBank1Operation(EraseTimeout);
+ 439:stm_lib/src/stm32f10x_flash.c **** 
+ 440:stm_lib/src/stm32f10x_flash.c ****       /* Disable the PER Bit */
+ 441:stm_lib/src/stm32f10x_flash.c ****       FLASH->CR &= CR_PER_Reset;
+ 442:stm_lib/src/stm32f10x_flash.c ****     }
+ 443:stm_lib/src/stm32f10x_flash.c ****   }
+ 444:stm_lib/src/stm32f10x_flash.c ****   else
+ 445:stm_lib/src/stm32f10x_flash.c ****   {
+ 446:stm_lib/src/stm32f10x_flash.c ****     /* Wait for last operation to be completed */
+ 447:stm_lib/src/stm32f10x_flash.c ****     status = FLASH_WaitForLastBank2Operation(EraseTimeout);
+ 448:stm_lib/src/stm32f10x_flash.c ****     if(status == FLASH_COMPLETE)
+ 449:stm_lib/src/stm32f10x_flash.c ****     { 
+ 450:stm_lib/src/stm32f10x_flash.c ****       /* if the previous operation is completed, proceed to erase the page */
+ 451:stm_lib/src/stm32f10x_flash.c ****       FLASH->CR2|= CR_PER_Set;
+ 452:stm_lib/src/stm32f10x_flash.c ****       FLASH->AR2 = Page_Address; 
+ARM GAS  /tmp/ccaWNXPb.s 			page 13
+
+
+ 453:stm_lib/src/stm32f10x_flash.c ****       FLASH->CR2|= CR_STRT_Set;
+ 454:stm_lib/src/stm32f10x_flash.c ****     
+ 455:stm_lib/src/stm32f10x_flash.c ****       /* Wait for last operation to be completed */
+ 456:stm_lib/src/stm32f10x_flash.c ****       status = FLASH_WaitForLastBank2Operation(EraseTimeout);
+ 457:stm_lib/src/stm32f10x_flash.c ****       
+ 458:stm_lib/src/stm32f10x_flash.c ****       /* Disable the PER Bit */
+ 459:stm_lib/src/stm32f10x_flash.c ****       FLASH->CR2 &= CR_PER_Reset;
+ 460:stm_lib/src/stm32f10x_flash.c ****     }
+ 461:stm_lib/src/stm32f10x_flash.c ****   }
+ 462:stm_lib/src/stm32f10x_flash.c **** #else
+ 463:stm_lib/src/stm32f10x_flash.c ****   /* Wait for last operation to be completed */
+ 464:stm_lib/src/stm32f10x_flash.c ****   status = FLASH_WaitForLastOperation(EraseTimeout);
+ 465:stm_lib/src/stm32f10x_flash.c ****   
+ 466:stm_lib/src/stm32f10x_flash.c ****   if(status == FLASH_COMPLETE)
+ 467:stm_lib/src/stm32f10x_flash.c ****   { 
+ 468:stm_lib/src/stm32f10x_flash.c ****     /* if the previous operation is completed, proceed to erase the page */
+ 469:stm_lib/src/stm32f10x_flash.c ****     FLASH->CR|= CR_PER_Set;
+ 470:stm_lib/src/stm32f10x_flash.c ****     FLASH->AR = Page_Address; 
+ 471:stm_lib/src/stm32f10x_flash.c ****     FLASH->CR|= CR_STRT_Set;
+ 472:stm_lib/src/stm32f10x_flash.c ****     
+ 473:stm_lib/src/stm32f10x_flash.c ****     /* Wait for last operation to be completed */
+ 474:stm_lib/src/stm32f10x_flash.c ****     status = FLASH_WaitForLastOperation(EraseTimeout);
+ 475:stm_lib/src/stm32f10x_flash.c ****     
+ 476:stm_lib/src/stm32f10x_flash.c ****     /* Disable the PER Bit */
+ 477:stm_lib/src/stm32f10x_flash.c ****     FLASH->CR &= CR_PER_Reset;
+ 478:stm_lib/src/stm32f10x_flash.c ****   }
+ 479:stm_lib/src/stm32f10x_flash.c **** #endif /* STM32F10X_XL */
+ 480:stm_lib/src/stm32f10x_flash.c **** 
+ 481:stm_lib/src/stm32f10x_flash.c ****   /* Return the Erase Status */
+ 482:stm_lib/src/stm32f10x_flash.c ****   return status;
+ 483:stm_lib/src/stm32f10x_flash.c **** }
+ 484:stm_lib/src/stm32f10x_flash.c **** 
+ 485:stm_lib/src/stm32f10x_flash.c **** /**
+ 486:stm_lib/src/stm32f10x_flash.c ****   * @brief  Erases all FLASH pages.
+ 487:stm_lib/src/stm32f10x_flash.c ****   * @note   This function can be used for all STM32F10x devices.
+ 488:stm_lib/src/stm32f10x_flash.c ****   * @param  None
+ 489:stm_lib/src/stm32f10x_flash.c ****   * @retval FLASH Status: The returned value can be: FLASH_ERROR_PG,
+ 490:stm_lib/src/stm32f10x_flash.c ****   *         FLASH_ERROR_WRP, FLASH_COMPLETE or FLASH_TIMEOUT.
+ 491:stm_lib/src/stm32f10x_flash.c ****   */
+ 492:stm_lib/src/stm32f10x_flash.c **** FLASH_Status FLASH_EraseAllPages(void)
+ 493:stm_lib/src/stm32f10x_flash.c **** {
+ 494:stm_lib/src/stm32f10x_flash.c ****   FLASH_Status status = FLASH_COMPLETE;
+ 495:stm_lib/src/stm32f10x_flash.c **** 
+ 496:stm_lib/src/stm32f10x_flash.c **** #ifdef STM32F10X_XL
+ 497:stm_lib/src/stm32f10x_flash.c ****   /* Wait for last operation to be completed */
+ 498:stm_lib/src/stm32f10x_flash.c ****   status = FLASH_WaitForLastBank1Operation(EraseTimeout);
+ 499:stm_lib/src/stm32f10x_flash.c ****   
+ 500:stm_lib/src/stm32f10x_flash.c ****   if(status == FLASH_COMPLETE)
+ 501:stm_lib/src/stm32f10x_flash.c ****   {
+ 502:stm_lib/src/stm32f10x_flash.c ****     /* if the previous operation is completed, proceed to erase all pages */
+ 503:stm_lib/src/stm32f10x_flash.c ****      FLASH->CR |= CR_MER_Set;
+ 504:stm_lib/src/stm32f10x_flash.c ****      FLASH->CR |= CR_STRT_Set;
+ 505:stm_lib/src/stm32f10x_flash.c ****     
+ 506:stm_lib/src/stm32f10x_flash.c ****     /* Wait for last operation to be completed */
+ 507:stm_lib/src/stm32f10x_flash.c ****     status = FLASH_WaitForLastBank1Operation(EraseTimeout);
+ 508:stm_lib/src/stm32f10x_flash.c ****     
+ 509:stm_lib/src/stm32f10x_flash.c ****     /* Disable the MER Bit */
+ARM GAS  /tmp/ccaWNXPb.s 			page 14
+
+
+ 510:stm_lib/src/stm32f10x_flash.c ****     FLASH->CR &= CR_MER_Reset;
+ 511:stm_lib/src/stm32f10x_flash.c ****   }    
+ 512:stm_lib/src/stm32f10x_flash.c ****   if(status == FLASH_COMPLETE)
+ 513:stm_lib/src/stm32f10x_flash.c ****   {
+ 514:stm_lib/src/stm32f10x_flash.c ****     /* if the previous operation is completed, proceed to erase all pages */
+ 515:stm_lib/src/stm32f10x_flash.c ****      FLASH->CR2 |= CR_MER_Set;
+ 516:stm_lib/src/stm32f10x_flash.c ****      FLASH->CR2 |= CR_STRT_Set;
+ 517:stm_lib/src/stm32f10x_flash.c ****     
+ 518:stm_lib/src/stm32f10x_flash.c ****     /* Wait for last operation to be completed */
+ 519:stm_lib/src/stm32f10x_flash.c ****     status = FLASH_WaitForLastBank2Operation(EraseTimeout);
+ 520:stm_lib/src/stm32f10x_flash.c ****     
+ 521:stm_lib/src/stm32f10x_flash.c ****     /* Disable the MER Bit */
+ 522:stm_lib/src/stm32f10x_flash.c ****     FLASH->CR2 &= CR_MER_Reset;
+ 523:stm_lib/src/stm32f10x_flash.c ****   }
+ 524:stm_lib/src/stm32f10x_flash.c **** #else
+ 525:stm_lib/src/stm32f10x_flash.c ****   /* Wait for last operation to be completed */
+ 526:stm_lib/src/stm32f10x_flash.c ****   status = FLASH_WaitForLastOperation(EraseTimeout);
+ 527:stm_lib/src/stm32f10x_flash.c ****   if(status == FLASH_COMPLETE)
+ 528:stm_lib/src/stm32f10x_flash.c ****   {
+ 529:stm_lib/src/stm32f10x_flash.c ****     /* if the previous operation is completed, proceed to erase all pages */
+ 530:stm_lib/src/stm32f10x_flash.c ****      FLASH->CR |= CR_MER_Set;
+ 531:stm_lib/src/stm32f10x_flash.c ****      FLASH->CR |= CR_STRT_Set;
+ 532:stm_lib/src/stm32f10x_flash.c ****     
+ 533:stm_lib/src/stm32f10x_flash.c ****     /* Wait for last operation to be completed */
+ 534:stm_lib/src/stm32f10x_flash.c ****     status = FLASH_WaitForLastOperation(EraseTimeout);
+ 535:stm_lib/src/stm32f10x_flash.c **** 
+ 536:stm_lib/src/stm32f10x_flash.c ****     /* Disable the MER Bit */
+ 537:stm_lib/src/stm32f10x_flash.c ****     FLASH->CR &= CR_MER_Reset;
+ 538:stm_lib/src/stm32f10x_flash.c ****   }
+ 539:stm_lib/src/stm32f10x_flash.c **** #endif /* STM32F10X_XL */
+ 540:stm_lib/src/stm32f10x_flash.c **** 
+ 541:stm_lib/src/stm32f10x_flash.c ****   /* Return the Erase Status */
+ 542:stm_lib/src/stm32f10x_flash.c ****   return status;
+ 543:stm_lib/src/stm32f10x_flash.c **** }
+ 544:stm_lib/src/stm32f10x_flash.c **** 
+ 545:stm_lib/src/stm32f10x_flash.c **** /**
+ 546:stm_lib/src/stm32f10x_flash.c ****   * @brief  Erases all Bank1 FLASH pages.
+ 547:stm_lib/src/stm32f10x_flash.c ****   * @note   This function can be used for all STM32F10x devices.
+ 548:stm_lib/src/stm32f10x_flash.c ****   *         - For STM32F10X_XL devices this function erases all Bank1 pages.
+ 549:stm_lib/src/stm32f10x_flash.c ****   *         - For all other devices it erases all Bank1 pages and it is equivalent 
+ 550:stm_lib/src/stm32f10x_flash.c ****   *           to FLASH_EraseAllPages function.
+ 551:stm_lib/src/stm32f10x_flash.c ****   * @param  None
+ 552:stm_lib/src/stm32f10x_flash.c ****   * @retval FLASH Status: The returned value can be: FLASH_ERROR_PG,
+ 553:stm_lib/src/stm32f10x_flash.c ****   *         FLASH_ERROR_WRP, FLASH_COMPLETE or FLASH_TIMEOUT.
+ 554:stm_lib/src/stm32f10x_flash.c ****   */
+ 555:stm_lib/src/stm32f10x_flash.c **** FLASH_Status FLASH_EraseAllBank1Pages(void)
+ 556:stm_lib/src/stm32f10x_flash.c **** {
+ 557:stm_lib/src/stm32f10x_flash.c ****   FLASH_Status status = FLASH_COMPLETE;
+ 558:stm_lib/src/stm32f10x_flash.c ****   /* Wait for last operation to be completed */
+ 559:stm_lib/src/stm32f10x_flash.c ****   status = FLASH_WaitForLastBank1Operation(EraseTimeout);
+ 560:stm_lib/src/stm32f10x_flash.c ****   
+ 561:stm_lib/src/stm32f10x_flash.c ****   if(status == FLASH_COMPLETE)
+ 562:stm_lib/src/stm32f10x_flash.c ****   {
+ 563:stm_lib/src/stm32f10x_flash.c ****     /* if the previous operation is completed, proceed to erase all pages */
+ 564:stm_lib/src/stm32f10x_flash.c ****      FLASH->CR |= CR_MER_Set;
+ 565:stm_lib/src/stm32f10x_flash.c ****      FLASH->CR |= CR_STRT_Set;
+ 566:stm_lib/src/stm32f10x_flash.c ****     
+ARM GAS  /tmp/ccaWNXPb.s 			page 15
+
+
+ 567:stm_lib/src/stm32f10x_flash.c ****     /* Wait for last operation to be completed */
+ 568:stm_lib/src/stm32f10x_flash.c ****     status = FLASH_WaitForLastBank1Operation(EraseTimeout);
+ 569:stm_lib/src/stm32f10x_flash.c ****     
+ 570:stm_lib/src/stm32f10x_flash.c ****     /* Disable the MER Bit */
+ 571:stm_lib/src/stm32f10x_flash.c ****     FLASH->CR &= CR_MER_Reset;
+ 572:stm_lib/src/stm32f10x_flash.c ****   }    
+ 573:stm_lib/src/stm32f10x_flash.c ****   /* Return the Erase Status */
+ 574:stm_lib/src/stm32f10x_flash.c ****   return status;
+ 575:stm_lib/src/stm32f10x_flash.c **** }
+ 576:stm_lib/src/stm32f10x_flash.c **** 
+ 577:stm_lib/src/stm32f10x_flash.c **** #ifdef STM32F10X_XL
+ 578:stm_lib/src/stm32f10x_flash.c **** /**
+ 579:stm_lib/src/stm32f10x_flash.c ****   * @brief  Erases all Bank2 FLASH pages.
+ 580:stm_lib/src/stm32f10x_flash.c ****   * @note   This function can be used only for STM32F10x_XL density devices.
+ 581:stm_lib/src/stm32f10x_flash.c ****   * @param  None
+ 582:stm_lib/src/stm32f10x_flash.c ****   * @retval FLASH Status: The returned value can be: FLASH_ERROR_PG,
+ 583:stm_lib/src/stm32f10x_flash.c ****   *         FLASH_ERROR_WRP, FLASH_COMPLETE or FLASH_TIMEOUT.
+ 584:stm_lib/src/stm32f10x_flash.c ****   */
+ 585:stm_lib/src/stm32f10x_flash.c **** FLASH_Status FLASH_EraseAllBank2Pages(void)
+ 586:stm_lib/src/stm32f10x_flash.c **** {
+ 587:stm_lib/src/stm32f10x_flash.c ****   FLASH_Status status = FLASH_COMPLETE;
+ 588:stm_lib/src/stm32f10x_flash.c ****   /* Wait for last operation to be completed */
+ 589:stm_lib/src/stm32f10x_flash.c ****   status = FLASH_WaitForLastBank2Operation(EraseTimeout);
+ 590:stm_lib/src/stm32f10x_flash.c ****   
+ 591:stm_lib/src/stm32f10x_flash.c ****   if(status == FLASH_COMPLETE)
+ 592:stm_lib/src/stm32f10x_flash.c ****   {
+ 593:stm_lib/src/stm32f10x_flash.c ****     /* if the previous operation is completed, proceed to erase all pages */
+ 594:stm_lib/src/stm32f10x_flash.c ****      FLASH->CR2 |= CR_MER_Set;
+ 595:stm_lib/src/stm32f10x_flash.c ****      FLASH->CR2 |= CR_STRT_Set;
+ 596:stm_lib/src/stm32f10x_flash.c ****     
+ 597:stm_lib/src/stm32f10x_flash.c ****     /* Wait for last operation to be completed */
+ 598:stm_lib/src/stm32f10x_flash.c ****     status = FLASH_WaitForLastBank2Operation(EraseTimeout);
+ 599:stm_lib/src/stm32f10x_flash.c **** 
+ 600:stm_lib/src/stm32f10x_flash.c ****     /* Disable the MER Bit */
+ 601:stm_lib/src/stm32f10x_flash.c ****     FLASH->CR2 &= CR_MER_Reset;
+ 602:stm_lib/src/stm32f10x_flash.c ****   }    
+ 603:stm_lib/src/stm32f10x_flash.c ****   /* Return the Erase Status */
+ 604:stm_lib/src/stm32f10x_flash.c ****   return status;
+ 605:stm_lib/src/stm32f10x_flash.c **** }
+ 606:stm_lib/src/stm32f10x_flash.c **** #endif /* STM32F10X_XL */
+ 607:stm_lib/src/stm32f10x_flash.c **** 
+ 608:stm_lib/src/stm32f10x_flash.c **** /**
+ 609:stm_lib/src/stm32f10x_flash.c ****   * @brief  Erases the FLASH option bytes.
+ 610:stm_lib/src/stm32f10x_flash.c ****   * @note   This functions erases all option bytes except the Read protection (RDP). 
+ 611:stm_lib/src/stm32f10x_flash.c ****   * @note   This function can be used for all STM32F10x devices.
+ 612:stm_lib/src/stm32f10x_flash.c ****   * @param  None
+ 613:stm_lib/src/stm32f10x_flash.c ****   * @retval FLASH Status: The returned value can be: FLASH_ERROR_PG,
+ 614:stm_lib/src/stm32f10x_flash.c ****   *         FLASH_ERROR_WRP, FLASH_COMPLETE or FLASH_TIMEOUT.
+ 615:stm_lib/src/stm32f10x_flash.c ****   */
+ 616:stm_lib/src/stm32f10x_flash.c **** FLASH_Status FLASH_EraseOptionBytes(void)
+ 617:stm_lib/src/stm32f10x_flash.c **** {
+ 618:stm_lib/src/stm32f10x_flash.c ****   uint16_t rdptmp = RDP_Key;
+ 619:stm_lib/src/stm32f10x_flash.c **** 
+ 620:stm_lib/src/stm32f10x_flash.c ****   FLASH_Status status = FLASH_COMPLETE;
+ 621:stm_lib/src/stm32f10x_flash.c **** 
+ 622:stm_lib/src/stm32f10x_flash.c ****   /* Get the actual read protection Option Byte value */ 
+ 623:stm_lib/src/stm32f10x_flash.c ****   if(FLASH_GetReadOutProtectionStatus() != RESET)
+ARM GAS  /tmp/ccaWNXPb.s 			page 16
+
+
+ 624:stm_lib/src/stm32f10x_flash.c ****   {
+ 625:stm_lib/src/stm32f10x_flash.c ****     rdptmp = 0x00;  
+ 626:stm_lib/src/stm32f10x_flash.c ****   }
+ 627:stm_lib/src/stm32f10x_flash.c **** 
+ 628:stm_lib/src/stm32f10x_flash.c ****   /* Wait for last operation to be completed */
+ 629:stm_lib/src/stm32f10x_flash.c ****   status = FLASH_WaitForLastOperation(EraseTimeout);
+ 630:stm_lib/src/stm32f10x_flash.c ****   if(status == FLASH_COMPLETE)
+ 631:stm_lib/src/stm32f10x_flash.c ****   {
+ 632:stm_lib/src/stm32f10x_flash.c ****     /* Authorize the small information block programming */
+ 633:stm_lib/src/stm32f10x_flash.c ****     FLASH->OPTKEYR = FLASH_KEY1;
+ 634:stm_lib/src/stm32f10x_flash.c ****     FLASH->OPTKEYR = FLASH_KEY2;
+ 635:stm_lib/src/stm32f10x_flash.c ****     
+ 636:stm_lib/src/stm32f10x_flash.c ****     /* if the previous operation is completed, proceed to erase the option bytes */
+ 637:stm_lib/src/stm32f10x_flash.c ****     FLASH->CR |= CR_OPTER_Set;
+ 638:stm_lib/src/stm32f10x_flash.c ****     FLASH->CR |= CR_STRT_Set;
+ 639:stm_lib/src/stm32f10x_flash.c ****     /* Wait for last operation to be completed */
+ 640:stm_lib/src/stm32f10x_flash.c ****     status = FLASH_WaitForLastOperation(EraseTimeout);
+ 641:stm_lib/src/stm32f10x_flash.c ****     
+ 642:stm_lib/src/stm32f10x_flash.c ****     if(status == FLASH_COMPLETE)
+ 643:stm_lib/src/stm32f10x_flash.c ****     {
+ 644:stm_lib/src/stm32f10x_flash.c ****       /* if the erase operation is completed, disable the OPTER Bit */
+ 645:stm_lib/src/stm32f10x_flash.c ****       FLASH->CR &= CR_OPTER_Reset;
+ 646:stm_lib/src/stm32f10x_flash.c ****        
+ 647:stm_lib/src/stm32f10x_flash.c ****       /* Enable the Option Bytes Programming operation */
+ 648:stm_lib/src/stm32f10x_flash.c ****       FLASH->CR |= CR_OPTPG_Set;
+ 649:stm_lib/src/stm32f10x_flash.c ****       /* Restore the last read protection Option Byte value */
+ 650:stm_lib/src/stm32f10x_flash.c ****       OB->RDP = (uint16_t)rdptmp; 
+ 651:stm_lib/src/stm32f10x_flash.c ****       /* Wait for last operation to be completed */
+ 652:stm_lib/src/stm32f10x_flash.c ****       status = FLASH_WaitForLastOperation(ProgramTimeout);
+ 653:stm_lib/src/stm32f10x_flash.c ****  
+ 654:stm_lib/src/stm32f10x_flash.c ****       if(status != FLASH_TIMEOUT)
+ 655:stm_lib/src/stm32f10x_flash.c ****       {
+ 656:stm_lib/src/stm32f10x_flash.c ****         /* if the program operation is completed, disable the OPTPG Bit */
+ 657:stm_lib/src/stm32f10x_flash.c ****         FLASH->CR &= CR_OPTPG_Reset;
+ 658:stm_lib/src/stm32f10x_flash.c ****       }
+ 659:stm_lib/src/stm32f10x_flash.c ****     }
+ 660:stm_lib/src/stm32f10x_flash.c ****     else
+ 661:stm_lib/src/stm32f10x_flash.c ****     {
+ 662:stm_lib/src/stm32f10x_flash.c ****       if (status != FLASH_TIMEOUT)
+ 663:stm_lib/src/stm32f10x_flash.c ****       {
+ 664:stm_lib/src/stm32f10x_flash.c ****         /* Disable the OPTPG Bit */
+ 665:stm_lib/src/stm32f10x_flash.c ****         FLASH->CR &= CR_OPTPG_Reset;
+ 666:stm_lib/src/stm32f10x_flash.c ****       }
+ 667:stm_lib/src/stm32f10x_flash.c ****     }  
+ 668:stm_lib/src/stm32f10x_flash.c ****   }
+ 669:stm_lib/src/stm32f10x_flash.c ****   /* Return the erase status */
+ 670:stm_lib/src/stm32f10x_flash.c ****   return status;
+ 671:stm_lib/src/stm32f10x_flash.c **** }
+ 672:stm_lib/src/stm32f10x_flash.c **** 
+ 673:stm_lib/src/stm32f10x_flash.c **** /**
+ 674:stm_lib/src/stm32f10x_flash.c ****   * @brief  Programs a word at a specified address.
+ 675:stm_lib/src/stm32f10x_flash.c ****   * @note   This function can be used for all STM32F10x devices.
+ 676:stm_lib/src/stm32f10x_flash.c ****   * @param  Address: specifies the address to be programmed.
+ 677:stm_lib/src/stm32f10x_flash.c ****   * @param  Data: specifies the data to be programmed.
+ 678:stm_lib/src/stm32f10x_flash.c ****   * @retval FLASH Status: The returned value can be: FLASH_ERROR_PG,
+ 679:stm_lib/src/stm32f10x_flash.c ****   *         FLASH_ERROR_WRP, FLASH_COMPLETE or FLASH_TIMEOUT. 
+ 680:stm_lib/src/stm32f10x_flash.c ****   */
+ARM GAS  /tmp/ccaWNXPb.s 			page 17
+
+
+ 681:stm_lib/src/stm32f10x_flash.c **** FLASH_Status FLASH_ProgramWord(uint32_t Address, uint32_t Data)
+ 682:stm_lib/src/stm32f10x_flash.c **** {
+ 683:stm_lib/src/stm32f10x_flash.c ****   FLASH_Status status = FLASH_COMPLETE;
+ 684:stm_lib/src/stm32f10x_flash.c ****   __IO uint32_t tmp = 0;
+ 685:stm_lib/src/stm32f10x_flash.c **** 
+ 686:stm_lib/src/stm32f10x_flash.c ****   /* Check the parameters */
+ 687:stm_lib/src/stm32f10x_flash.c ****   assert_param(IS_FLASH_ADDRESS(Address));
+ 688:stm_lib/src/stm32f10x_flash.c **** 
+ 689:stm_lib/src/stm32f10x_flash.c **** #ifdef STM32F10X_XL
+ 690:stm_lib/src/stm32f10x_flash.c ****   if(Address < FLASH_BANK1_END_ADDRESS - 2)
+ 691:stm_lib/src/stm32f10x_flash.c ****   { 
+ 692:stm_lib/src/stm32f10x_flash.c ****     /* Wait for last operation to be completed */
+ 693:stm_lib/src/stm32f10x_flash.c ****     status = FLASH_WaitForLastBank1Operation(ProgramTimeout); 
+ 694:stm_lib/src/stm32f10x_flash.c ****     if(status == FLASH_COMPLETE)
+ 695:stm_lib/src/stm32f10x_flash.c ****     {
+ 696:stm_lib/src/stm32f10x_flash.c ****       /* if the previous operation is completed, proceed to program the new first 
+ 697:stm_lib/src/stm32f10x_flash.c ****         half word */
+ 698:stm_lib/src/stm32f10x_flash.c ****       FLASH->CR |= CR_PG_Set;
+ 699:stm_lib/src/stm32f10x_flash.c ****   
+ 700:stm_lib/src/stm32f10x_flash.c ****       *(__IO uint16_t*)Address = (uint16_t)Data;
+ 701:stm_lib/src/stm32f10x_flash.c ****       /* Wait for last operation to be completed */
+ 702:stm_lib/src/stm32f10x_flash.c ****       status = FLASH_WaitForLastOperation(ProgramTimeout);
+ 703:stm_lib/src/stm32f10x_flash.c ****  
+ 704:stm_lib/src/stm32f10x_flash.c ****       if(status == FLASH_COMPLETE)
+ 705:stm_lib/src/stm32f10x_flash.c ****       {
+ 706:stm_lib/src/stm32f10x_flash.c ****         /* if the previous operation is completed, proceed to program the new second 
+ 707:stm_lib/src/stm32f10x_flash.c ****         half word */
+ 708:stm_lib/src/stm32f10x_flash.c ****         tmp = Address + 2;
+ 709:stm_lib/src/stm32f10x_flash.c **** 
+ 710:stm_lib/src/stm32f10x_flash.c ****         *(__IO uint16_t*) tmp = Data >> 16;
+ 711:stm_lib/src/stm32f10x_flash.c ****     
+ 712:stm_lib/src/stm32f10x_flash.c ****         /* Wait for last operation to be completed */
+ 713:stm_lib/src/stm32f10x_flash.c ****         status = FLASH_WaitForLastOperation(ProgramTimeout);
+ 714:stm_lib/src/stm32f10x_flash.c ****         
+ 715:stm_lib/src/stm32f10x_flash.c ****         /* Disable the PG Bit */
+ 716:stm_lib/src/stm32f10x_flash.c ****         FLASH->CR &= CR_PG_Reset;
+ 717:stm_lib/src/stm32f10x_flash.c ****       }
+ 718:stm_lib/src/stm32f10x_flash.c ****       else
+ 719:stm_lib/src/stm32f10x_flash.c ****       {
+ 720:stm_lib/src/stm32f10x_flash.c ****         /* Disable the PG Bit */
+ 721:stm_lib/src/stm32f10x_flash.c ****         FLASH->CR &= CR_PG_Reset;
+ 722:stm_lib/src/stm32f10x_flash.c ****        }
+ 723:stm_lib/src/stm32f10x_flash.c ****     }
+ 724:stm_lib/src/stm32f10x_flash.c ****   }
+ 725:stm_lib/src/stm32f10x_flash.c ****   else if(Address == (FLASH_BANK1_END_ADDRESS - 1))
+ 726:stm_lib/src/stm32f10x_flash.c ****   {
+ 727:stm_lib/src/stm32f10x_flash.c ****     /* Wait for last operation to be completed */
+ 728:stm_lib/src/stm32f10x_flash.c ****     status = FLASH_WaitForLastBank1Operation(ProgramTimeout);
+ 729:stm_lib/src/stm32f10x_flash.c **** 
+ 730:stm_lib/src/stm32f10x_flash.c ****     if(status == FLASH_COMPLETE)
+ 731:stm_lib/src/stm32f10x_flash.c ****     {
+ 732:stm_lib/src/stm32f10x_flash.c ****       /* if the previous operation is completed, proceed to program the new first 
+ 733:stm_lib/src/stm32f10x_flash.c ****         half word */
+ 734:stm_lib/src/stm32f10x_flash.c ****       FLASH->CR |= CR_PG_Set;
+ 735:stm_lib/src/stm32f10x_flash.c ****   
+ 736:stm_lib/src/stm32f10x_flash.c ****       *(__IO uint16_t*)Address = (uint16_t)Data;
+ 737:stm_lib/src/stm32f10x_flash.c **** 
+ARM GAS  /tmp/ccaWNXPb.s 			page 18
+
+
+ 738:stm_lib/src/stm32f10x_flash.c ****       /* Wait for last operation to be completed */
+ 739:stm_lib/src/stm32f10x_flash.c ****       status = FLASH_WaitForLastBank1Operation(ProgramTimeout);
+ 740:stm_lib/src/stm32f10x_flash.c ****       
+ 741:stm_lib/src/stm32f10x_flash.c **** 	  /* Disable the PG Bit */
+ 742:stm_lib/src/stm32f10x_flash.c ****       FLASH->CR &= CR_PG_Reset;
+ 743:stm_lib/src/stm32f10x_flash.c ****     }
+ 744:stm_lib/src/stm32f10x_flash.c ****     else
+ 745:stm_lib/src/stm32f10x_flash.c ****     {
+ 746:stm_lib/src/stm32f10x_flash.c ****       /* Disable the PG Bit */
+ 747:stm_lib/src/stm32f10x_flash.c ****       FLASH->CR &= CR_PG_Reset;
+ 748:stm_lib/src/stm32f10x_flash.c ****     }
+ 749:stm_lib/src/stm32f10x_flash.c **** 
+ 750:stm_lib/src/stm32f10x_flash.c ****     /* Wait for last operation to be completed */
+ 751:stm_lib/src/stm32f10x_flash.c ****     status = FLASH_WaitForLastBank2Operation(ProgramTimeout);
+ 752:stm_lib/src/stm32f10x_flash.c **** 
+ 753:stm_lib/src/stm32f10x_flash.c ****     if(status == FLASH_COMPLETE)
+ 754:stm_lib/src/stm32f10x_flash.c ****     {
+ 755:stm_lib/src/stm32f10x_flash.c ****       /* if the previous operation is completed, proceed to program the new second 
+ 756:stm_lib/src/stm32f10x_flash.c ****       half word */
+ 757:stm_lib/src/stm32f10x_flash.c ****       FLASH->CR2 |= CR_PG_Set;
+ 758:stm_lib/src/stm32f10x_flash.c ****       tmp = Address + 2;
+ 759:stm_lib/src/stm32f10x_flash.c **** 
+ 760:stm_lib/src/stm32f10x_flash.c ****       *(__IO uint16_t*) tmp = Data >> 16;
+ 761:stm_lib/src/stm32f10x_flash.c ****     
+ 762:stm_lib/src/stm32f10x_flash.c ****       /* Wait for last operation to be completed */
+ 763:stm_lib/src/stm32f10x_flash.c ****       status = FLASH_WaitForLastBank2Operation(ProgramTimeout);
+ 764:stm_lib/src/stm32f10x_flash.c ****         
+ 765:stm_lib/src/stm32f10x_flash.c ****       /* Disable the PG Bit */
+ 766:stm_lib/src/stm32f10x_flash.c ****       FLASH->CR2 &= CR_PG_Reset;
+ 767:stm_lib/src/stm32f10x_flash.c ****     }
+ 768:stm_lib/src/stm32f10x_flash.c ****     else
+ 769:stm_lib/src/stm32f10x_flash.c ****     {
+ 770:stm_lib/src/stm32f10x_flash.c ****       /* Disable the PG Bit */
+ 771:stm_lib/src/stm32f10x_flash.c ****       FLASH->CR2 &= CR_PG_Reset;
+ 772:stm_lib/src/stm32f10x_flash.c ****     }
+ 773:stm_lib/src/stm32f10x_flash.c ****   }
+ 774:stm_lib/src/stm32f10x_flash.c ****   else
+ 775:stm_lib/src/stm32f10x_flash.c ****   {
+ 776:stm_lib/src/stm32f10x_flash.c ****     /* Wait for last operation to be completed */
+ 777:stm_lib/src/stm32f10x_flash.c ****     status = FLASH_WaitForLastBank2Operation(ProgramTimeout);
+ 778:stm_lib/src/stm32f10x_flash.c **** 
+ 779:stm_lib/src/stm32f10x_flash.c ****     if(status == FLASH_COMPLETE)
+ 780:stm_lib/src/stm32f10x_flash.c ****     {
+ 781:stm_lib/src/stm32f10x_flash.c ****       /* if the previous operation is completed, proceed to program the new first 
+ 782:stm_lib/src/stm32f10x_flash.c ****         half word */
+ 783:stm_lib/src/stm32f10x_flash.c ****       FLASH->CR2 |= CR_PG_Set;
+ 784:stm_lib/src/stm32f10x_flash.c ****   
+ 785:stm_lib/src/stm32f10x_flash.c ****       *(__IO uint16_t*)Address = (uint16_t)Data;
+ 786:stm_lib/src/stm32f10x_flash.c ****       /* Wait for last operation to be completed */
+ 787:stm_lib/src/stm32f10x_flash.c ****       status = FLASH_WaitForLastBank2Operation(ProgramTimeout);
+ 788:stm_lib/src/stm32f10x_flash.c ****  
+ 789:stm_lib/src/stm32f10x_flash.c ****       if(status == FLASH_COMPLETE)
+ 790:stm_lib/src/stm32f10x_flash.c ****       {
+ 791:stm_lib/src/stm32f10x_flash.c ****         /* if the previous operation is completed, proceed to program the new second 
+ 792:stm_lib/src/stm32f10x_flash.c ****         half word */
+ 793:stm_lib/src/stm32f10x_flash.c ****         tmp = Address + 2;
+ 794:stm_lib/src/stm32f10x_flash.c **** 
+ARM GAS  /tmp/ccaWNXPb.s 			page 19
+
+
+ 795:stm_lib/src/stm32f10x_flash.c ****         *(__IO uint16_t*) tmp = Data >> 16;
+ 796:stm_lib/src/stm32f10x_flash.c ****     
+ 797:stm_lib/src/stm32f10x_flash.c ****         /* Wait for last operation to be completed */
+ 798:stm_lib/src/stm32f10x_flash.c ****         status = FLASH_WaitForLastBank2Operation(ProgramTimeout);
+ 799:stm_lib/src/stm32f10x_flash.c ****         
+ 800:stm_lib/src/stm32f10x_flash.c ****         /* Disable the PG Bit */
+ 801:stm_lib/src/stm32f10x_flash.c ****         FLASH->CR2 &= CR_PG_Reset;
+ 802:stm_lib/src/stm32f10x_flash.c ****       }
+ 803:stm_lib/src/stm32f10x_flash.c ****       else
+ 804:stm_lib/src/stm32f10x_flash.c ****       {
+ 805:stm_lib/src/stm32f10x_flash.c ****         /* Disable the PG Bit */
+ 806:stm_lib/src/stm32f10x_flash.c ****         FLASH->CR2 &= CR_PG_Reset;
+ 807:stm_lib/src/stm32f10x_flash.c ****       }
+ 808:stm_lib/src/stm32f10x_flash.c ****     }
+ 809:stm_lib/src/stm32f10x_flash.c ****   }
+ 810:stm_lib/src/stm32f10x_flash.c **** #else
+ 811:stm_lib/src/stm32f10x_flash.c ****   /* Wait for last operation to be completed */
+ 812:stm_lib/src/stm32f10x_flash.c ****   status = FLASH_WaitForLastOperation(ProgramTimeout);
+ 813:stm_lib/src/stm32f10x_flash.c ****   
+ 814:stm_lib/src/stm32f10x_flash.c ****   if(status == FLASH_COMPLETE)
+ 815:stm_lib/src/stm32f10x_flash.c ****   {
+ 816:stm_lib/src/stm32f10x_flash.c ****     /* if the previous operation is completed, proceed to program the new first 
+ 817:stm_lib/src/stm32f10x_flash.c ****     half word */
+ 818:stm_lib/src/stm32f10x_flash.c ****     FLASH->CR |= CR_PG_Set;
+ 819:stm_lib/src/stm32f10x_flash.c ****   
+ 820:stm_lib/src/stm32f10x_flash.c ****     *(__IO uint16_t*)Address = (uint16_t)Data;
+ 821:stm_lib/src/stm32f10x_flash.c ****     /* Wait for last operation to be completed */
+ 822:stm_lib/src/stm32f10x_flash.c ****     status = FLASH_WaitForLastOperation(ProgramTimeout);
+ 823:stm_lib/src/stm32f10x_flash.c ****  
+ 824:stm_lib/src/stm32f10x_flash.c ****     if(status == FLASH_COMPLETE)
+ 825:stm_lib/src/stm32f10x_flash.c ****     {
+ 826:stm_lib/src/stm32f10x_flash.c ****       /* if the previous operation is completed, proceed to program the new second 
+ 827:stm_lib/src/stm32f10x_flash.c ****       half word */
+ 828:stm_lib/src/stm32f10x_flash.c ****       tmp = Address + 2;
+ 829:stm_lib/src/stm32f10x_flash.c **** 
+ 830:stm_lib/src/stm32f10x_flash.c ****       *(__IO uint16_t*) tmp = Data >> 16;
+ 831:stm_lib/src/stm32f10x_flash.c ****     
+ 832:stm_lib/src/stm32f10x_flash.c ****       /* Wait for last operation to be completed */
+ 833:stm_lib/src/stm32f10x_flash.c ****       status = FLASH_WaitForLastOperation(ProgramTimeout);
+ 834:stm_lib/src/stm32f10x_flash.c ****         
+ 835:stm_lib/src/stm32f10x_flash.c ****       /* Disable the PG Bit */
+ 836:stm_lib/src/stm32f10x_flash.c ****       FLASH->CR &= CR_PG_Reset;
+ 837:stm_lib/src/stm32f10x_flash.c ****     }
+ 838:stm_lib/src/stm32f10x_flash.c ****     else
+ 839:stm_lib/src/stm32f10x_flash.c ****     {
+ 840:stm_lib/src/stm32f10x_flash.c ****       /* Disable the PG Bit */
+ 841:stm_lib/src/stm32f10x_flash.c ****       FLASH->CR &= CR_PG_Reset;
+ 842:stm_lib/src/stm32f10x_flash.c ****     }
+ 843:stm_lib/src/stm32f10x_flash.c ****   }         
+ 844:stm_lib/src/stm32f10x_flash.c **** #endif /* STM32F10X_XL */
+ 845:stm_lib/src/stm32f10x_flash.c ****    
+ 846:stm_lib/src/stm32f10x_flash.c ****   /* Return the Program Status */
+ 847:stm_lib/src/stm32f10x_flash.c ****   return status;
+ 848:stm_lib/src/stm32f10x_flash.c **** }
+ 849:stm_lib/src/stm32f10x_flash.c **** 
+ 850:stm_lib/src/stm32f10x_flash.c **** /**
+ 851:stm_lib/src/stm32f10x_flash.c ****   * @brief  Programs a half word at a specified address.
+ARM GAS  /tmp/ccaWNXPb.s 			page 20
+
+
+ 852:stm_lib/src/stm32f10x_flash.c ****   * @note   This function can be used for all STM32F10x devices.
+ 853:stm_lib/src/stm32f10x_flash.c ****   * @param  Address: specifies the address to be programmed.
+ 854:stm_lib/src/stm32f10x_flash.c ****   * @param  Data: specifies the data to be programmed.
+ 855:stm_lib/src/stm32f10x_flash.c ****   * @retval FLASH Status: The returned value can be: FLASH_ERROR_PG,
+ 856:stm_lib/src/stm32f10x_flash.c ****   *         FLASH_ERROR_WRP, FLASH_COMPLETE or FLASH_TIMEOUT. 
+ 857:stm_lib/src/stm32f10x_flash.c ****   */
+ 858:stm_lib/src/stm32f10x_flash.c **** FLASH_Status FLASH_ProgramHalfWord(uint32_t Address, uint16_t Data)
+ 859:stm_lib/src/stm32f10x_flash.c **** {
+ 860:stm_lib/src/stm32f10x_flash.c ****   FLASH_Status status = FLASH_COMPLETE;
+ 861:stm_lib/src/stm32f10x_flash.c ****   /* Check the parameters */
+ 862:stm_lib/src/stm32f10x_flash.c ****   assert_param(IS_FLASH_ADDRESS(Address));
+ 863:stm_lib/src/stm32f10x_flash.c **** 
+ 864:stm_lib/src/stm32f10x_flash.c **** #ifdef STM32F10X_XL
+ 865:stm_lib/src/stm32f10x_flash.c ****   /* Wait for last operation to be completed */
+ 866:stm_lib/src/stm32f10x_flash.c ****   status = FLASH_WaitForLastOperation(ProgramTimeout);
+ 867:stm_lib/src/stm32f10x_flash.c ****   
+ 868:stm_lib/src/stm32f10x_flash.c ****   if(Address < FLASH_BANK1_END_ADDRESS)
+ 869:stm_lib/src/stm32f10x_flash.c ****   {
+ 870:stm_lib/src/stm32f10x_flash.c ****     if(status == FLASH_COMPLETE)
+ 871:stm_lib/src/stm32f10x_flash.c ****     {
+ 872:stm_lib/src/stm32f10x_flash.c ****       /* if the previous operation is completed, proceed to program the new data */
+ 873:stm_lib/src/stm32f10x_flash.c ****       FLASH->CR |= CR_PG_Set;
+ 874:stm_lib/src/stm32f10x_flash.c ****   
+ 875:stm_lib/src/stm32f10x_flash.c ****       *(__IO uint16_t*)Address = Data;
+ 876:stm_lib/src/stm32f10x_flash.c ****       /* Wait for last operation to be completed */
+ 877:stm_lib/src/stm32f10x_flash.c ****       status = FLASH_WaitForLastBank1Operation(ProgramTimeout);
+ 878:stm_lib/src/stm32f10x_flash.c **** 
+ 879:stm_lib/src/stm32f10x_flash.c ****       /* Disable the PG Bit */
+ 880:stm_lib/src/stm32f10x_flash.c ****       FLASH->CR &= CR_PG_Reset;
+ 881:stm_lib/src/stm32f10x_flash.c ****     }
+ 882:stm_lib/src/stm32f10x_flash.c ****   }
+ 883:stm_lib/src/stm32f10x_flash.c ****   else
+ 884:stm_lib/src/stm32f10x_flash.c ****   {
+ 885:stm_lib/src/stm32f10x_flash.c ****     if(status == FLASH_COMPLETE)
+ 886:stm_lib/src/stm32f10x_flash.c ****     {
+ 887:stm_lib/src/stm32f10x_flash.c ****       /* if the previous operation is completed, proceed to program the new data */
+ 888:stm_lib/src/stm32f10x_flash.c ****       FLASH->CR2 |= CR_PG_Set;
+ 889:stm_lib/src/stm32f10x_flash.c ****   
+ 890:stm_lib/src/stm32f10x_flash.c ****       *(__IO uint16_t*)Address = Data;
+ 891:stm_lib/src/stm32f10x_flash.c ****       /* Wait for last operation to be completed */
+ 892:stm_lib/src/stm32f10x_flash.c ****       status = FLASH_WaitForLastBank2Operation(ProgramTimeout);
+ 893:stm_lib/src/stm32f10x_flash.c **** 
+ 894:stm_lib/src/stm32f10x_flash.c ****       /* Disable the PG Bit */
+ 895:stm_lib/src/stm32f10x_flash.c ****       FLASH->CR2 &= CR_PG_Reset;
+ 896:stm_lib/src/stm32f10x_flash.c ****     }
+ 897:stm_lib/src/stm32f10x_flash.c ****   }
+ 898:stm_lib/src/stm32f10x_flash.c **** #else
+ 899:stm_lib/src/stm32f10x_flash.c ****   /* Wait for last operation to be completed */
+ 900:stm_lib/src/stm32f10x_flash.c ****   status = FLASH_WaitForLastOperation(ProgramTimeout);
+ 901:stm_lib/src/stm32f10x_flash.c ****   
+ 902:stm_lib/src/stm32f10x_flash.c ****   if(status == FLASH_COMPLETE)
+ 903:stm_lib/src/stm32f10x_flash.c ****   {
+ 904:stm_lib/src/stm32f10x_flash.c ****     /* if the previous operation is completed, proceed to program the new data */
+ 905:stm_lib/src/stm32f10x_flash.c ****     FLASH->CR |= CR_PG_Set;
+ 906:stm_lib/src/stm32f10x_flash.c ****   
+ 907:stm_lib/src/stm32f10x_flash.c ****     *(__IO uint16_t*)Address = Data;
+ 908:stm_lib/src/stm32f10x_flash.c ****     /* Wait for last operation to be completed */
+ARM GAS  /tmp/ccaWNXPb.s 			page 21
+
+
+ 909:stm_lib/src/stm32f10x_flash.c ****     status = FLASH_WaitForLastOperation(ProgramTimeout);
+ 910:stm_lib/src/stm32f10x_flash.c ****     
+ 911:stm_lib/src/stm32f10x_flash.c ****     /* Disable the PG Bit */
+ 912:stm_lib/src/stm32f10x_flash.c ****     FLASH->CR &= CR_PG_Reset;
+ 913:stm_lib/src/stm32f10x_flash.c ****   } 
+ 914:stm_lib/src/stm32f10x_flash.c **** #endif  /* STM32F10X_XL */
+ 915:stm_lib/src/stm32f10x_flash.c ****   
+ 916:stm_lib/src/stm32f10x_flash.c ****   /* Return the Program Status */
+ 917:stm_lib/src/stm32f10x_flash.c ****   return status;
+ 918:stm_lib/src/stm32f10x_flash.c **** }
+ 919:stm_lib/src/stm32f10x_flash.c **** 
+ 920:stm_lib/src/stm32f10x_flash.c **** /**
+ 921:stm_lib/src/stm32f10x_flash.c ****   * @brief  Programs a half word at a specified Option Byte Data address.
+ 922:stm_lib/src/stm32f10x_flash.c ****   * @note   This function can be used for all STM32F10x devices.
+ 923:stm_lib/src/stm32f10x_flash.c ****   * @param  Address: specifies the address to be programmed.
+ 924:stm_lib/src/stm32f10x_flash.c ****   *   This parameter can be 0x1FFFF804 or 0x1FFFF806. 
+ 925:stm_lib/src/stm32f10x_flash.c ****   * @param  Data: specifies the data to be programmed.
+ 926:stm_lib/src/stm32f10x_flash.c ****   * @retval FLASH Status: The returned value can be: FLASH_ERROR_PG,
+ 927:stm_lib/src/stm32f10x_flash.c ****   *         FLASH_ERROR_WRP, FLASH_COMPLETE or FLASH_TIMEOUT. 
+ 928:stm_lib/src/stm32f10x_flash.c ****   */
+ 929:stm_lib/src/stm32f10x_flash.c **** FLASH_Status FLASH_ProgramOptionByteData(uint32_t Address, uint8_t Data)
+ 930:stm_lib/src/stm32f10x_flash.c **** {
+ 931:stm_lib/src/stm32f10x_flash.c ****   FLASH_Status status = FLASH_COMPLETE;
+ 932:stm_lib/src/stm32f10x_flash.c ****   /* Check the parameters */
+ 933:stm_lib/src/stm32f10x_flash.c ****   assert_param(IS_OB_DATA_ADDRESS(Address));
+ 934:stm_lib/src/stm32f10x_flash.c ****   status = FLASH_WaitForLastOperation(ProgramTimeout);
+ 935:stm_lib/src/stm32f10x_flash.c **** 
+ 936:stm_lib/src/stm32f10x_flash.c ****   if(status == FLASH_COMPLETE)
+ 937:stm_lib/src/stm32f10x_flash.c ****   {
+ 938:stm_lib/src/stm32f10x_flash.c ****     /* Authorize the small information block programming */
+ 939:stm_lib/src/stm32f10x_flash.c ****     FLASH->OPTKEYR = FLASH_KEY1;
+ 940:stm_lib/src/stm32f10x_flash.c ****     FLASH->OPTKEYR = FLASH_KEY2;
+ 941:stm_lib/src/stm32f10x_flash.c ****     /* Enables the Option Bytes Programming operation */
+ 942:stm_lib/src/stm32f10x_flash.c ****     FLASH->CR |= CR_OPTPG_Set; 
+ 943:stm_lib/src/stm32f10x_flash.c ****     *(__IO uint16_t*)Address = Data;
+ 944:stm_lib/src/stm32f10x_flash.c ****     
+ 945:stm_lib/src/stm32f10x_flash.c ****     /* Wait for last operation to be completed */
+ 946:stm_lib/src/stm32f10x_flash.c ****     status = FLASH_WaitForLastOperation(ProgramTimeout);
+ 947:stm_lib/src/stm32f10x_flash.c ****     if(status != FLASH_TIMEOUT)
+ 948:stm_lib/src/stm32f10x_flash.c ****     {
+ 949:stm_lib/src/stm32f10x_flash.c ****       /* if the program operation is completed, disable the OPTPG Bit */
+ 950:stm_lib/src/stm32f10x_flash.c ****       FLASH->CR &= CR_OPTPG_Reset;
+ 951:stm_lib/src/stm32f10x_flash.c ****     }
+ 952:stm_lib/src/stm32f10x_flash.c ****   }
+ 953:stm_lib/src/stm32f10x_flash.c ****   /* Return the Option Byte Data Program Status */
+ 954:stm_lib/src/stm32f10x_flash.c ****   return status;
+ 955:stm_lib/src/stm32f10x_flash.c **** }
+ 956:stm_lib/src/stm32f10x_flash.c **** 
+ 957:stm_lib/src/stm32f10x_flash.c **** /**
+ 958:stm_lib/src/stm32f10x_flash.c ****   * @brief  Write protects the desired pages
+ 959:stm_lib/src/stm32f10x_flash.c ****   * @note   This function can be used for all STM32F10x devices.
+ 960:stm_lib/src/stm32f10x_flash.c ****   * @param  FLASH_Pages: specifies the address of the pages to be write protected.
+ 961:stm_lib/src/stm32f10x_flash.c ****   *   This parameter can be:
+ 962:stm_lib/src/stm32f10x_flash.c ****   *     @arg For @b STM32_Low-density_devices: value between FLASH_WRProt_Pages0to3 and FLASH_WRPro
+ 963:stm_lib/src/stm32f10x_flash.c ****   *     @arg For @b STM32_Medium-density_devices: value between FLASH_WRProt_Pages0to3
+ 964:stm_lib/src/stm32f10x_flash.c ****   *       and FLASH_WRProt_Pages124to127
+ 965:stm_lib/src/stm32f10x_flash.c ****   *     @arg For @b STM32_High-density_devices: value between FLASH_WRProt_Pages0to1 and
+ARM GAS  /tmp/ccaWNXPb.s 			page 22
+
+
+ 966:stm_lib/src/stm32f10x_flash.c ****   *       FLASH_WRProt_Pages60to61 or FLASH_WRProt_Pages62to255
+ 967:stm_lib/src/stm32f10x_flash.c ****   *     @arg For @b STM32_Connectivity_line_devices: value between FLASH_WRProt_Pages0to1 and
+ 968:stm_lib/src/stm32f10x_flash.c ****   *       FLASH_WRProt_Pages60to61 or FLASH_WRProt_Pages62to127    
+ 969:stm_lib/src/stm32f10x_flash.c ****   *     @arg For @b STM32_XL-density_devices: value between FLASH_WRProt_Pages0to1 and
+ 970:stm_lib/src/stm32f10x_flash.c ****   *       FLASH_WRProt_Pages60to61 or FLASH_WRProt_Pages62to511
+ 971:stm_lib/src/stm32f10x_flash.c ****   *     @arg FLASH_WRProt_AllPages
+ 972:stm_lib/src/stm32f10x_flash.c ****   * @retval FLASH Status: The returned value can be: FLASH_ERROR_PG,
+ 973:stm_lib/src/stm32f10x_flash.c ****   *         FLASH_ERROR_WRP, FLASH_COMPLETE or FLASH_TIMEOUT.
+ 974:stm_lib/src/stm32f10x_flash.c ****   */
+ 975:stm_lib/src/stm32f10x_flash.c **** FLASH_Status FLASH_EnableWriteProtection(uint32_t FLASH_Pages)
+ 976:stm_lib/src/stm32f10x_flash.c **** {
+ 977:stm_lib/src/stm32f10x_flash.c ****   uint16_t WRP0_Data = 0xFFFF, WRP1_Data = 0xFFFF, WRP2_Data = 0xFFFF, WRP3_Data = 0xFFFF;
+ 978:stm_lib/src/stm32f10x_flash.c ****   
+ 979:stm_lib/src/stm32f10x_flash.c ****   FLASH_Status status = FLASH_COMPLETE;
+ 980:stm_lib/src/stm32f10x_flash.c ****   
+ 981:stm_lib/src/stm32f10x_flash.c ****   /* Check the parameters */
+ 982:stm_lib/src/stm32f10x_flash.c ****   assert_param(IS_FLASH_WRPROT_PAGE(FLASH_Pages));
+ 983:stm_lib/src/stm32f10x_flash.c ****   
+ 984:stm_lib/src/stm32f10x_flash.c ****   FLASH_Pages = (uint32_t)(~FLASH_Pages);
+ 985:stm_lib/src/stm32f10x_flash.c ****   WRP0_Data = (uint16_t)(FLASH_Pages & WRP0_Mask);
+ 986:stm_lib/src/stm32f10x_flash.c ****   WRP1_Data = (uint16_t)((FLASH_Pages & WRP1_Mask) >> 8);
+ 987:stm_lib/src/stm32f10x_flash.c ****   WRP2_Data = (uint16_t)((FLASH_Pages & WRP2_Mask) >> 16);
+ 988:stm_lib/src/stm32f10x_flash.c ****   WRP3_Data = (uint16_t)((FLASH_Pages & WRP3_Mask) >> 24);
+ 989:stm_lib/src/stm32f10x_flash.c ****   
+ 990:stm_lib/src/stm32f10x_flash.c ****   /* Wait for last operation to be completed */
+ 991:stm_lib/src/stm32f10x_flash.c ****   status = FLASH_WaitForLastOperation(ProgramTimeout);
+ 992:stm_lib/src/stm32f10x_flash.c ****   
+ 993:stm_lib/src/stm32f10x_flash.c ****   if(status == FLASH_COMPLETE)
+ 994:stm_lib/src/stm32f10x_flash.c ****   {
+ 995:stm_lib/src/stm32f10x_flash.c ****     /* Authorizes the small information block programming */
+ 996:stm_lib/src/stm32f10x_flash.c ****     FLASH->OPTKEYR = FLASH_KEY1;
+ 997:stm_lib/src/stm32f10x_flash.c ****     FLASH->OPTKEYR = FLASH_KEY2;
+ 998:stm_lib/src/stm32f10x_flash.c ****     FLASH->CR |= CR_OPTPG_Set;
+ 999:stm_lib/src/stm32f10x_flash.c ****     if(WRP0_Data != 0xFF)
+1000:stm_lib/src/stm32f10x_flash.c ****     {
+1001:stm_lib/src/stm32f10x_flash.c ****       OB->WRP0 = WRP0_Data;
+1002:stm_lib/src/stm32f10x_flash.c ****       
+1003:stm_lib/src/stm32f10x_flash.c ****       /* Wait for last operation to be completed */
+1004:stm_lib/src/stm32f10x_flash.c ****       status = FLASH_WaitForLastOperation(ProgramTimeout);
+1005:stm_lib/src/stm32f10x_flash.c ****     }
+1006:stm_lib/src/stm32f10x_flash.c ****     if((status == FLASH_COMPLETE) && (WRP1_Data != 0xFF))
+1007:stm_lib/src/stm32f10x_flash.c ****     {
+1008:stm_lib/src/stm32f10x_flash.c ****       OB->WRP1 = WRP1_Data;
+1009:stm_lib/src/stm32f10x_flash.c ****       
+1010:stm_lib/src/stm32f10x_flash.c ****       /* Wait for last operation to be completed */
+1011:stm_lib/src/stm32f10x_flash.c ****       status = FLASH_WaitForLastOperation(ProgramTimeout);
+1012:stm_lib/src/stm32f10x_flash.c ****     }
+1013:stm_lib/src/stm32f10x_flash.c ****     if((status == FLASH_COMPLETE) && (WRP2_Data != 0xFF))
+1014:stm_lib/src/stm32f10x_flash.c ****     {
+1015:stm_lib/src/stm32f10x_flash.c ****       OB->WRP2 = WRP2_Data;
+1016:stm_lib/src/stm32f10x_flash.c ****       
+1017:stm_lib/src/stm32f10x_flash.c ****       /* Wait for last operation to be completed */
+1018:stm_lib/src/stm32f10x_flash.c ****       status = FLASH_WaitForLastOperation(ProgramTimeout);
+1019:stm_lib/src/stm32f10x_flash.c ****     }
+1020:stm_lib/src/stm32f10x_flash.c ****     
+1021:stm_lib/src/stm32f10x_flash.c ****     if((status == FLASH_COMPLETE)&& (WRP3_Data != 0xFF))
+1022:stm_lib/src/stm32f10x_flash.c ****     {
+ARM GAS  /tmp/ccaWNXPb.s 			page 23
+
+
+1023:stm_lib/src/stm32f10x_flash.c ****       OB->WRP3 = WRP3_Data;
+1024:stm_lib/src/stm32f10x_flash.c ****      
+1025:stm_lib/src/stm32f10x_flash.c ****       /* Wait for last operation to be completed */
+1026:stm_lib/src/stm32f10x_flash.c ****       status = FLASH_WaitForLastOperation(ProgramTimeout);
+1027:stm_lib/src/stm32f10x_flash.c ****     }
+1028:stm_lib/src/stm32f10x_flash.c ****           
+1029:stm_lib/src/stm32f10x_flash.c ****     if(status != FLASH_TIMEOUT)
+1030:stm_lib/src/stm32f10x_flash.c ****     {
+1031:stm_lib/src/stm32f10x_flash.c ****       /* if the program operation is completed, disable the OPTPG Bit */
+1032:stm_lib/src/stm32f10x_flash.c ****       FLASH->CR &= CR_OPTPG_Reset;
+1033:stm_lib/src/stm32f10x_flash.c ****     }
+1034:stm_lib/src/stm32f10x_flash.c ****   } 
+1035:stm_lib/src/stm32f10x_flash.c ****   /* Return the write protection operation Status */
+1036:stm_lib/src/stm32f10x_flash.c ****   return status;       
+1037:stm_lib/src/stm32f10x_flash.c **** }
+1038:stm_lib/src/stm32f10x_flash.c **** 
+1039:stm_lib/src/stm32f10x_flash.c **** /**
+1040:stm_lib/src/stm32f10x_flash.c ****   * @brief  Enables or disables the read out protection.
+1041:stm_lib/src/stm32f10x_flash.c ****   * @note   If the user has already programmed the other option bytes before calling 
+1042:stm_lib/src/stm32f10x_flash.c ****   *   this function, he must re-program them since this function erases all option bytes.
+1043:stm_lib/src/stm32f10x_flash.c ****   * @note   This function can be used for all STM32F10x devices.
+1044:stm_lib/src/stm32f10x_flash.c ****   * @param  Newstate: new state of the ReadOut Protection.
+1045:stm_lib/src/stm32f10x_flash.c ****   *   This parameter can be: ENABLE or DISABLE.
+1046:stm_lib/src/stm32f10x_flash.c ****   * @retval FLASH Status: The returned value can be: FLASH_ERROR_PG,
+1047:stm_lib/src/stm32f10x_flash.c ****   *         FLASH_ERROR_WRP, FLASH_COMPLETE or FLASH_TIMEOUT.
+1048:stm_lib/src/stm32f10x_flash.c ****   */
+1049:stm_lib/src/stm32f10x_flash.c **** FLASH_Status FLASH_ReadOutProtection(FunctionalState NewState)
+1050:stm_lib/src/stm32f10x_flash.c **** {
+1051:stm_lib/src/stm32f10x_flash.c ****   FLASH_Status status = FLASH_COMPLETE;
+1052:stm_lib/src/stm32f10x_flash.c ****   /* Check the parameters */
+1053:stm_lib/src/stm32f10x_flash.c ****   assert_param(IS_FUNCTIONAL_STATE(NewState));
+1054:stm_lib/src/stm32f10x_flash.c ****   status = FLASH_WaitForLastOperation(EraseTimeout);
+1055:stm_lib/src/stm32f10x_flash.c ****   if(status == FLASH_COMPLETE)
+1056:stm_lib/src/stm32f10x_flash.c ****   {
+1057:stm_lib/src/stm32f10x_flash.c ****     /* Authorizes the small information block programming */
+1058:stm_lib/src/stm32f10x_flash.c ****     FLASH->OPTKEYR = FLASH_KEY1;
+1059:stm_lib/src/stm32f10x_flash.c ****     FLASH->OPTKEYR = FLASH_KEY2;
+1060:stm_lib/src/stm32f10x_flash.c ****     FLASH->CR |= CR_OPTER_Set;
+1061:stm_lib/src/stm32f10x_flash.c ****     FLASH->CR |= CR_STRT_Set;
+1062:stm_lib/src/stm32f10x_flash.c ****     /* Wait for last operation to be completed */
+1063:stm_lib/src/stm32f10x_flash.c ****     status = FLASH_WaitForLastOperation(EraseTimeout);
+1064:stm_lib/src/stm32f10x_flash.c ****     if(status == FLASH_COMPLETE)
+1065:stm_lib/src/stm32f10x_flash.c ****     {
+1066:stm_lib/src/stm32f10x_flash.c ****       /* if the erase operation is completed, disable the OPTER Bit */
+1067:stm_lib/src/stm32f10x_flash.c ****       FLASH->CR &= CR_OPTER_Reset;
+1068:stm_lib/src/stm32f10x_flash.c ****       /* Enable the Option Bytes Programming operation */
+1069:stm_lib/src/stm32f10x_flash.c ****       FLASH->CR |= CR_OPTPG_Set; 
+1070:stm_lib/src/stm32f10x_flash.c ****       if(NewState != DISABLE)
+1071:stm_lib/src/stm32f10x_flash.c ****       {
+1072:stm_lib/src/stm32f10x_flash.c ****         OB->RDP = 0x00;
+1073:stm_lib/src/stm32f10x_flash.c ****       }
+1074:stm_lib/src/stm32f10x_flash.c ****       else
+1075:stm_lib/src/stm32f10x_flash.c ****       {
+1076:stm_lib/src/stm32f10x_flash.c ****         OB->RDP = RDP_Key;  
+1077:stm_lib/src/stm32f10x_flash.c ****       }
+1078:stm_lib/src/stm32f10x_flash.c ****       /* Wait for last operation to be completed */
+1079:stm_lib/src/stm32f10x_flash.c ****       status = FLASH_WaitForLastOperation(EraseTimeout); 
+ARM GAS  /tmp/ccaWNXPb.s 			page 24
+
+
+1080:stm_lib/src/stm32f10x_flash.c ****     
+1081:stm_lib/src/stm32f10x_flash.c ****       if(status != FLASH_TIMEOUT)
+1082:stm_lib/src/stm32f10x_flash.c ****       {
+1083:stm_lib/src/stm32f10x_flash.c ****         /* if the program operation is completed, disable the OPTPG Bit */
+1084:stm_lib/src/stm32f10x_flash.c ****         FLASH->CR &= CR_OPTPG_Reset;
+1085:stm_lib/src/stm32f10x_flash.c ****       }
+1086:stm_lib/src/stm32f10x_flash.c ****     }
+1087:stm_lib/src/stm32f10x_flash.c ****     else 
+1088:stm_lib/src/stm32f10x_flash.c ****     {
+1089:stm_lib/src/stm32f10x_flash.c ****       if(status != FLASH_TIMEOUT)
+1090:stm_lib/src/stm32f10x_flash.c ****       {
+1091:stm_lib/src/stm32f10x_flash.c ****         /* Disable the OPTER Bit */
+1092:stm_lib/src/stm32f10x_flash.c ****         FLASH->CR &= CR_OPTER_Reset;
+1093:stm_lib/src/stm32f10x_flash.c ****       }
+1094:stm_lib/src/stm32f10x_flash.c ****     }
+1095:stm_lib/src/stm32f10x_flash.c ****   }
+1096:stm_lib/src/stm32f10x_flash.c ****   /* Return the protection operation Status */
+1097:stm_lib/src/stm32f10x_flash.c ****   return status;       
+1098:stm_lib/src/stm32f10x_flash.c **** }
+1099:stm_lib/src/stm32f10x_flash.c **** 
+1100:stm_lib/src/stm32f10x_flash.c **** /**
+1101:stm_lib/src/stm32f10x_flash.c ****   * @brief  Programs the FLASH User Option Byte: IWDG_SW / RST_STOP / RST_STDBY.
+1102:stm_lib/src/stm32f10x_flash.c ****   * @note   This function can be used for all STM32F10x devices.
+1103:stm_lib/src/stm32f10x_flash.c ****   * @param  OB_IWDG: Selects the IWDG mode
+1104:stm_lib/src/stm32f10x_flash.c ****   *   This parameter can be one of the following values:
+1105:stm_lib/src/stm32f10x_flash.c ****   *     @arg OB_IWDG_SW: Software IWDG selected
+1106:stm_lib/src/stm32f10x_flash.c ****   *     @arg OB_IWDG_HW: Hardware IWDG selected
+1107:stm_lib/src/stm32f10x_flash.c ****   * @param  OB_STOP: Reset event when entering STOP mode.
+1108:stm_lib/src/stm32f10x_flash.c ****   *   This parameter can be one of the following values:
+1109:stm_lib/src/stm32f10x_flash.c ****   *     @arg OB_STOP_NoRST: No reset generated when entering in STOP
+1110:stm_lib/src/stm32f10x_flash.c ****   *     @arg OB_STOP_RST: Reset generated when entering in STOP
+1111:stm_lib/src/stm32f10x_flash.c ****   * @param  OB_STDBY: Reset event when entering Standby mode.
+1112:stm_lib/src/stm32f10x_flash.c ****   *   This parameter can be one of the following values:
+1113:stm_lib/src/stm32f10x_flash.c ****   *     @arg OB_STDBY_NoRST: No reset generated when entering in STANDBY
+1114:stm_lib/src/stm32f10x_flash.c ****   *     @arg OB_STDBY_RST: Reset generated when entering in STANDBY
+1115:stm_lib/src/stm32f10x_flash.c ****   * @retval FLASH Status: The returned value can be: FLASH_ERROR_PG, 
+1116:stm_lib/src/stm32f10x_flash.c ****   *         FLASH_ERROR_WRP, FLASH_COMPLETE or FLASH_TIMEOUT.
+1117:stm_lib/src/stm32f10x_flash.c ****   */
+1118:stm_lib/src/stm32f10x_flash.c **** FLASH_Status FLASH_UserOptionByteConfig(uint16_t OB_IWDG, uint16_t OB_STOP, uint16_t OB_STDBY)
+1119:stm_lib/src/stm32f10x_flash.c **** {
+1120:stm_lib/src/stm32f10x_flash.c ****   FLASH_Status status = FLASH_COMPLETE; 
+1121:stm_lib/src/stm32f10x_flash.c **** 
+1122:stm_lib/src/stm32f10x_flash.c ****   /* Check the parameters */
+1123:stm_lib/src/stm32f10x_flash.c ****   assert_param(IS_OB_IWDG_SOURCE(OB_IWDG));
+1124:stm_lib/src/stm32f10x_flash.c ****   assert_param(IS_OB_STOP_SOURCE(OB_STOP));
+1125:stm_lib/src/stm32f10x_flash.c ****   assert_param(IS_OB_STDBY_SOURCE(OB_STDBY));
+1126:stm_lib/src/stm32f10x_flash.c **** 
+1127:stm_lib/src/stm32f10x_flash.c ****   /* Authorize the small information block programming */
+1128:stm_lib/src/stm32f10x_flash.c ****   FLASH->OPTKEYR = FLASH_KEY1;
+1129:stm_lib/src/stm32f10x_flash.c ****   FLASH->OPTKEYR = FLASH_KEY2;
+1130:stm_lib/src/stm32f10x_flash.c ****   
+1131:stm_lib/src/stm32f10x_flash.c ****   /* Wait for last operation to be completed */
+1132:stm_lib/src/stm32f10x_flash.c ****   status = FLASH_WaitForLastOperation(ProgramTimeout);
+1133:stm_lib/src/stm32f10x_flash.c ****   
+1134:stm_lib/src/stm32f10x_flash.c ****   if(status == FLASH_COMPLETE)
+1135:stm_lib/src/stm32f10x_flash.c ****   {  
+1136:stm_lib/src/stm32f10x_flash.c ****     /* Enable the Option Bytes Programming operation */
+ARM GAS  /tmp/ccaWNXPb.s 			page 25
+
+
+1137:stm_lib/src/stm32f10x_flash.c ****     FLASH->CR |= CR_OPTPG_Set; 
+1138:stm_lib/src/stm32f10x_flash.c ****            
+1139:stm_lib/src/stm32f10x_flash.c ****     OB->USER = OB_IWDG | (uint16_t)(OB_STOP | (uint16_t)(OB_STDBY | ((uint16_t)0xF8))); 
+1140:stm_lib/src/stm32f10x_flash.c ****   
+1141:stm_lib/src/stm32f10x_flash.c ****     /* Wait for last operation to be completed */
+1142:stm_lib/src/stm32f10x_flash.c ****     status = FLASH_WaitForLastOperation(ProgramTimeout);
+1143:stm_lib/src/stm32f10x_flash.c ****     if(status != FLASH_TIMEOUT)
+1144:stm_lib/src/stm32f10x_flash.c ****     {
+1145:stm_lib/src/stm32f10x_flash.c ****       /* if the program operation is completed, disable the OPTPG Bit */
+1146:stm_lib/src/stm32f10x_flash.c ****       FLASH->CR &= CR_OPTPG_Reset;
+1147:stm_lib/src/stm32f10x_flash.c ****     }
+1148:stm_lib/src/stm32f10x_flash.c ****   }    
+1149:stm_lib/src/stm32f10x_flash.c ****   /* Return the Option Byte program Status */
+1150:stm_lib/src/stm32f10x_flash.c ****   return status;
+1151:stm_lib/src/stm32f10x_flash.c **** }
+1152:stm_lib/src/stm32f10x_flash.c **** 
+1153:stm_lib/src/stm32f10x_flash.c **** #ifdef STM32F10X_XL
+1154:stm_lib/src/stm32f10x_flash.c **** /**
+1155:stm_lib/src/stm32f10x_flash.c ****   * @brief  Configures to boot from Bank1 or Bank2.  
+1156:stm_lib/src/stm32f10x_flash.c ****   * @note   This function can be used only for STM32F10x_XL density devices.
+1157:stm_lib/src/stm32f10x_flash.c ****   * @param  FLASH_BOOT: select the FLASH Bank to boot from.
+1158:stm_lib/src/stm32f10x_flash.c ****   *   This parameter can be one of the following values:
+1159:stm_lib/src/stm32f10x_flash.c ****   *     @arg FLASH_BOOT_Bank1: At startup, if boot pins are set in boot from user Flash
+1160:stm_lib/src/stm32f10x_flash.c ****   *        position and this parameter is selected the device will boot from Bank1(Default).
+1161:stm_lib/src/stm32f10x_flash.c ****   *     @arg FLASH_BOOT_Bank2: At startup, if boot pins are set in boot from user Flash
+1162:stm_lib/src/stm32f10x_flash.c ****   *        position and this parameter is selected the device will boot from Bank2 or Bank1,
+1163:stm_lib/src/stm32f10x_flash.c ****   *        depending on the activation of the bank. The active banks are checked in
+1164:stm_lib/src/stm32f10x_flash.c ****   *        the following order: Bank2, followed by Bank1.
+1165:stm_lib/src/stm32f10x_flash.c ****   *        The active bank is recognized by the value programmed at the base address
+1166:stm_lib/src/stm32f10x_flash.c ****   *        of the respective bank (corresponding to the initial stack pointer value
+1167:stm_lib/src/stm32f10x_flash.c ****   *        in the interrupt vector table).
+1168:stm_lib/src/stm32f10x_flash.c ****   *        For more information, please refer to AN2606 from www.st.com.    
+1169:stm_lib/src/stm32f10x_flash.c ****   * @retval FLASH Status: The returned value can be: FLASH_ERROR_PG, 
+1170:stm_lib/src/stm32f10x_flash.c ****   *         FLASH_ERROR_WRP, FLASH_COMPLETE or FLASH_TIMEOUT.
+1171:stm_lib/src/stm32f10x_flash.c ****   */
+1172:stm_lib/src/stm32f10x_flash.c **** FLASH_Status FLASH_BootConfig(uint16_t FLASH_BOOT)
+1173:stm_lib/src/stm32f10x_flash.c **** { 
+1174:stm_lib/src/stm32f10x_flash.c ****   FLASH_Status status = FLASH_COMPLETE; 
+1175:stm_lib/src/stm32f10x_flash.c ****   assert_param(IS_FLASH_BOOT(FLASH_BOOT));
+1176:stm_lib/src/stm32f10x_flash.c ****   /* Authorize the small information block programming */
+1177:stm_lib/src/stm32f10x_flash.c ****   FLASH->OPTKEYR = FLASH_KEY1;
+1178:stm_lib/src/stm32f10x_flash.c ****   FLASH->OPTKEYR = FLASH_KEY2;
+1179:stm_lib/src/stm32f10x_flash.c ****   
+1180:stm_lib/src/stm32f10x_flash.c ****   /* Wait for last operation to be completed */
+1181:stm_lib/src/stm32f10x_flash.c ****   status = FLASH_WaitForLastOperation(ProgramTimeout);
+1182:stm_lib/src/stm32f10x_flash.c ****   
+1183:stm_lib/src/stm32f10x_flash.c ****   if(status == FLASH_COMPLETE)
+1184:stm_lib/src/stm32f10x_flash.c ****   {  
+1185:stm_lib/src/stm32f10x_flash.c ****     /* Enable the Option Bytes Programming operation */
+1186:stm_lib/src/stm32f10x_flash.c ****     FLASH->CR |= CR_OPTPG_Set; 
+1187:stm_lib/src/stm32f10x_flash.c **** 
+1188:stm_lib/src/stm32f10x_flash.c ****     if(FLASH_BOOT == FLASH_BOOT_Bank1)
+1189:stm_lib/src/stm32f10x_flash.c ****     {
+1190:stm_lib/src/stm32f10x_flash.c ****       OB->USER |= OB_USER_BFB2;
+1191:stm_lib/src/stm32f10x_flash.c ****     }
+1192:stm_lib/src/stm32f10x_flash.c ****     else
+1193:stm_lib/src/stm32f10x_flash.c ****     {
+ARM GAS  /tmp/ccaWNXPb.s 			page 26
+
+
+1194:stm_lib/src/stm32f10x_flash.c ****       OB->USER &= (uint16_t)(~(uint16_t)(OB_USER_BFB2));
+1195:stm_lib/src/stm32f10x_flash.c ****     }
+1196:stm_lib/src/stm32f10x_flash.c ****     /* Wait for last operation to be completed */
+1197:stm_lib/src/stm32f10x_flash.c ****     status = FLASH_WaitForLastOperation(ProgramTimeout);
+1198:stm_lib/src/stm32f10x_flash.c ****     if(status != FLASH_TIMEOUT)
+1199:stm_lib/src/stm32f10x_flash.c ****     {
+1200:stm_lib/src/stm32f10x_flash.c ****       /* if the program operation is completed, disable the OPTPG Bit */
+1201:stm_lib/src/stm32f10x_flash.c ****       FLASH->CR &= CR_OPTPG_Reset;
+1202:stm_lib/src/stm32f10x_flash.c ****     }
+1203:stm_lib/src/stm32f10x_flash.c ****   }    
+1204:stm_lib/src/stm32f10x_flash.c ****   /* Return the Option Byte program Status */
+1205:stm_lib/src/stm32f10x_flash.c ****   return status;
+1206:stm_lib/src/stm32f10x_flash.c **** }
+1207:stm_lib/src/stm32f10x_flash.c **** #endif /* STM32F10X_XL */
+1208:stm_lib/src/stm32f10x_flash.c **** 
+1209:stm_lib/src/stm32f10x_flash.c **** /**
+1210:stm_lib/src/stm32f10x_flash.c ****   * @brief  Returns the FLASH User Option Bytes values.
+1211:stm_lib/src/stm32f10x_flash.c ****   * @note   This function can be used for all STM32F10x devices.
+1212:stm_lib/src/stm32f10x_flash.c ****   * @param  None
+1213:stm_lib/src/stm32f10x_flash.c ****   * @retval The FLASH User Option Bytes values:IWDG_SW(Bit0), RST_STOP(Bit1)
+1214:stm_lib/src/stm32f10x_flash.c ****   *         and RST_STDBY(Bit2).
+1215:stm_lib/src/stm32f10x_flash.c ****   */
+1216:stm_lib/src/stm32f10x_flash.c **** uint32_t FLASH_GetUserOptionByte(void)
+1217:stm_lib/src/stm32f10x_flash.c **** {
+ 248              		.loc 1 1217 0
+ 249              		.cfi_startproc
+ 250              		@ args = 0, pretend = 0, frame = 0
+ 251              		@ frame_needed = 0, uses_anonymous_args = 0
+ 252              		@ link register save eliminated.
+1218:stm_lib/src/stm32f10x_flash.c ****   /* Return the User Option Byte */
+1219:stm_lib/src/stm32f10x_flash.c ****   return (uint32_t)(FLASH->OBR >> 2);
+ 253              		.loc 1 1219 0
+ 254 0000 014B     		ldr	r3, .L23
+ 255 0002 D869     		ldr	r0, [r3, #28]
+1220:stm_lib/src/stm32f10x_flash.c **** }
+ 256              		.loc 1 1220 0
+ 257 0004 8008     		lsrs	r0, r0, #2
+ 258 0006 7047     		bx	lr
+ 259              	.L24:
+ 260              		.align	2
+ 261              	.L23:
+ 262 0008 00200240 		.word	1073881088
+ 263              		.cfi_endproc
+ 264              	.LFE73:
+ 266              		.section	.text.FLASH_GetWriteProtectionOptionByte,"ax",%progbits
+ 267              		.align	1
+ 268              		.global	FLASH_GetWriteProtectionOptionByte
+ 269              		.syntax unified
+ 270              		.thumb
+ 271              		.thumb_func
+ 272              		.fpu softvfp
+ 274              	FLASH_GetWriteProtectionOptionByte:
+ 275              	.LFB74:
+1221:stm_lib/src/stm32f10x_flash.c **** 
+1222:stm_lib/src/stm32f10x_flash.c **** /**
+1223:stm_lib/src/stm32f10x_flash.c ****   * @brief  Returns the FLASH Write Protection Option Bytes Register value.
+1224:stm_lib/src/stm32f10x_flash.c ****   * @note   This function can be used for all STM32F10x devices.
+ARM GAS  /tmp/ccaWNXPb.s 			page 27
+
+
+1225:stm_lib/src/stm32f10x_flash.c ****   * @param  None
+1226:stm_lib/src/stm32f10x_flash.c ****   * @retval The FLASH Write Protection  Option Bytes Register value
+1227:stm_lib/src/stm32f10x_flash.c ****   */
+1228:stm_lib/src/stm32f10x_flash.c **** uint32_t FLASH_GetWriteProtectionOptionByte(void)
+1229:stm_lib/src/stm32f10x_flash.c **** {
+ 276              		.loc 1 1229 0
+ 277              		.cfi_startproc
+ 278              		@ args = 0, pretend = 0, frame = 0
+ 279              		@ frame_needed = 0, uses_anonymous_args = 0
+ 280              		@ link register save eliminated.
+1230:stm_lib/src/stm32f10x_flash.c ****   /* Return the Flash write protection Register value */
+1231:stm_lib/src/stm32f10x_flash.c ****   return (uint32_t)(FLASH->WRPR);
+ 281              		.loc 1 1231 0
+ 282 0000 014B     		ldr	r3, .L26
+ 283 0002 186A     		ldr	r0, [r3, #32]
+1232:stm_lib/src/stm32f10x_flash.c **** }
+ 284              		.loc 1 1232 0
+ 285 0004 7047     		bx	lr
+ 286              	.L27:
+ 287 0006 00BF     		.align	2
+ 288              	.L26:
+ 289 0008 00200240 		.word	1073881088
+ 290              		.cfi_endproc
+ 291              	.LFE74:
+ 293              		.section	.text.FLASH_GetReadOutProtectionStatus,"ax",%progbits
+ 294              		.align	1
+ 295              		.global	FLASH_GetReadOutProtectionStatus
+ 296              		.syntax unified
+ 297              		.thumb
+ 298              		.thumb_func
+ 299              		.fpu softvfp
+ 301              	FLASH_GetReadOutProtectionStatus:
+ 302              	.LFB75:
+1233:stm_lib/src/stm32f10x_flash.c **** 
+1234:stm_lib/src/stm32f10x_flash.c **** /**
+1235:stm_lib/src/stm32f10x_flash.c ****   * @brief  Checks whether the FLASH Read Out Protection Status is set or not.
+1236:stm_lib/src/stm32f10x_flash.c ****   * @note   This function can be used for all STM32F10x devices.
+1237:stm_lib/src/stm32f10x_flash.c ****   * @param  None
+1238:stm_lib/src/stm32f10x_flash.c ****   * @retval FLASH ReadOut Protection Status(SET or RESET)
+1239:stm_lib/src/stm32f10x_flash.c ****   */
+1240:stm_lib/src/stm32f10x_flash.c **** FlagStatus FLASH_GetReadOutProtectionStatus(void)
+1241:stm_lib/src/stm32f10x_flash.c **** {
+ 303              		.loc 1 1241 0
+ 304              		.cfi_startproc
+ 305              		@ args = 0, pretend = 0, frame = 0
+ 306              		@ frame_needed = 0, uses_anonymous_args = 0
+ 307              		@ link register save eliminated.
+ 308              	.LVL8:
+1242:stm_lib/src/stm32f10x_flash.c ****   FlagStatus readoutstatus = RESET;
+1243:stm_lib/src/stm32f10x_flash.c ****   if ((FLASH->OBR & RDPRT_Mask) != (uint32_t)RESET)
+ 309              		.loc 1 1243 0
+ 310 0000 044B     		ldr	r3, .L32
+ 311 0002 DB69     		ldr	r3, [r3, #28]
+ 312 0004 13F0020F 		tst	r3, #2
+ 313 0008 01D1     		bne	.L31
+1244:stm_lib/src/stm32f10x_flash.c ****   {
+1245:stm_lib/src/stm32f10x_flash.c ****     readoutstatus = SET;
+ARM GAS  /tmp/ccaWNXPb.s 			page 28
+
+
+1246:stm_lib/src/stm32f10x_flash.c ****   }
+1247:stm_lib/src/stm32f10x_flash.c ****   else
+1248:stm_lib/src/stm32f10x_flash.c ****   {
+1249:stm_lib/src/stm32f10x_flash.c ****     readoutstatus = RESET;
+ 314              		.loc 1 1249 0
+ 315 000a 0020     		movs	r0, #0
+ 316              	.LVL9:
+1250:stm_lib/src/stm32f10x_flash.c ****   }
+1251:stm_lib/src/stm32f10x_flash.c ****   return readoutstatus;
+1252:stm_lib/src/stm32f10x_flash.c **** }
+ 317              		.loc 1 1252 0
+ 318 000c 7047     		bx	lr
+ 319              	.LVL10:
+ 320              	.L31:
+1245:stm_lib/src/stm32f10x_flash.c ****   }
+ 321              		.loc 1 1245 0
+ 322 000e 0120     		movs	r0, #1
+ 323 0010 7047     		bx	lr
+ 324              	.L33:
+ 325 0012 00BF     		.align	2
+ 326              	.L32:
+ 327 0014 00200240 		.word	1073881088
+ 328              		.cfi_endproc
+ 329              	.LFE75:
+ 331              		.section	.text.FLASH_GetPrefetchBufferStatus,"ax",%progbits
+ 332              		.align	1
+ 333              		.global	FLASH_GetPrefetchBufferStatus
+ 334              		.syntax unified
+ 335              		.thumb
+ 336              		.thumb_func
+ 337              		.fpu softvfp
+ 339              	FLASH_GetPrefetchBufferStatus:
+ 340              	.LFB76:
+1253:stm_lib/src/stm32f10x_flash.c **** 
+1254:stm_lib/src/stm32f10x_flash.c **** /**
+1255:stm_lib/src/stm32f10x_flash.c ****   * @brief  Checks whether the FLASH Prefetch Buffer status is set or not.
+1256:stm_lib/src/stm32f10x_flash.c ****   * @note   This function can be used for all STM32F10x devices.
+1257:stm_lib/src/stm32f10x_flash.c ****   * @param  None
+1258:stm_lib/src/stm32f10x_flash.c ****   * @retval FLASH Prefetch Buffer Status (SET or RESET).
+1259:stm_lib/src/stm32f10x_flash.c ****   */
+1260:stm_lib/src/stm32f10x_flash.c **** FlagStatus FLASH_GetPrefetchBufferStatus(void)
+1261:stm_lib/src/stm32f10x_flash.c **** {
+ 341              		.loc 1 1261 0
+ 342              		.cfi_startproc
+ 343              		@ args = 0, pretend = 0, frame = 0
+ 344              		@ frame_needed = 0, uses_anonymous_args = 0
+ 345              		@ link register save eliminated.
+ 346              	.LVL11:
+1262:stm_lib/src/stm32f10x_flash.c ****   FlagStatus bitstatus = RESET;
+1263:stm_lib/src/stm32f10x_flash.c ****   
+1264:stm_lib/src/stm32f10x_flash.c ****   if ((FLASH->ACR & ACR_PRFTBS_Mask) != (uint32_t)RESET)
+ 347              		.loc 1 1264 0
+ 348 0000 044B     		ldr	r3, .L38
+ 349 0002 1B68     		ldr	r3, [r3]
+ 350 0004 13F0200F 		tst	r3, #32
+ 351 0008 01D1     		bne	.L37
+1265:stm_lib/src/stm32f10x_flash.c ****   {
+ARM GAS  /tmp/ccaWNXPb.s 			page 29
+
+
+1266:stm_lib/src/stm32f10x_flash.c ****     bitstatus = SET;
+1267:stm_lib/src/stm32f10x_flash.c ****   }
+1268:stm_lib/src/stm32f10x_flash.c ****   else
+1269:stm_lib/src/stm32f10x_flash.c ****   {
+1270:stm_lib/src/stm32f10x_flash.c ****     bitstatus = RESET;
+ 352              		.loc 1 1270 0
+ 353 000a 0020     		movs	r0, #0
+ 354              	.LVL12:
+1271:stm_lib/src/stm32f10x_flash.c ****   }
+1272:stm_lib/src/stm32f10x_flash.c ****   /* Return the new state of FLASH Prefetch Buffer Status (SET or RESET) */
+1273:stm_lib/src/stm32f10x_flash.c ****   return bitstatus; 
+1274:stm_lib/src/stm32f10x_flash.c **** }
+ 355              		.loc 1 1274 0
+ 356 000c 7047     		bx	lr
+ 357              	.LVL13:
+ 358              	.L37:
+1266:stm_lib/src/stm32f10x_flash.c ****   }
+ 359              		.loc 1 1266 0
+ 360 000e 0120     		movs	r0, #1
+ 361 0010 7047     		bx	lr
+ 362              	.L39:
+ 363 0012 00BF     		.align	2
+ 364              	.L38:
+ 365 0014 00200240 		.word	1073881088
+ 366              		.cfi_endproc
+ 367              	.LFE76:
+ 369              		.section	.text.FLASH_ITConfig,"ax",%progbits
+ 370              		.align	1
+ 371              		.global	FLASH_ITConfig
+ 372              		.syntax unified
+ 373              		.thumb
+ 374              		.thumb_func
+ 375              		.fpu softvfp
+ 377              	FLASH_ITConfig:
+ 378              	.LFB77:
+1275:stm_lib/src/stm32f10x_flash.c **** 
+1276:stm_lib/src/stm32f10x_flash.c **** /**
+1277:stm_lib/src/stm32f10x_flash.c ****   * @brief  Enables or disables the specified FLASH interrupts.
+1278:stm_lib/src/stm32f10x_flash.c ****   * @note   This function can be used for all STM32F10x devices.
+1279:stm_lib/src/stm32f10x_flash.c ****   *         - For STM32F10X_XL devices, enables or disables the specified FLASH interrupts
+1280:stm_lib/src/stm32f10x_flash.c ****               for Bank1 and Bank2.
+1281:stm_lib/src/stm32f10x_flash.c ****   *         - For other devices it enables or disables the specified FLASH interrupts for Bank1.
+1282:stm_lib/src/stm32f10x_flash.c ****   * @param  FLASH_IT: specifies the FLASH interrupt sources to be enabled or disabled.
+1283:stm_lib/src/stm32f10x_flash.c ****   *   This parameter can be any combination of the following values:
+1284:stm_lib/src/stm32f10x_flash.c ****   *     @arg FLASH_IT_ERROR: FLASH Error Interrupt
+1285:stm_lib/src/stm32f10x_flash.c ****   *     @arg FLASH_IT_EOP: FLASH end of operation Interrupt
+1286:stm_lib/src/stm32f10x_flash.c ****   * @param  NewState: new state of the specified Flash interrupts.
+1287:stm_lib/src/stm32f10x_flash.c ****   *   This parameter can be: ENABLE or DISABLE.      
+1288:stm_lib/src/stm32f10x_flash.c ****   * @retval None 
+1289:stm_lib/src/stm32f10x_flash.c ****   */
+1290:stm_lib/src/stm32f10x_flash.c **** void FLASH_ITConfig(uint32_t FLASH_IT, FunctionalState NewState)
+1291:stm_lib/src/stm32f10x_flash.c **** {
+ 379              		.loc 1 1291 0
+ 380              		.cfi_startproc
+ 381              		@ args = 0, pretend = 0, frame = 0
+ 382              		@ frame_needed = 0, uses_anonymous_args = 0
+ 383              		@ link register save eliminated.
+ARM GAS  /tmp/ccaWNXPb.s 			page 30
+
+
+ 384              	.LVL14:
+1292:stm_lib/src/stm32f10x_flash.c **** #ifdef STM32F10X_XL
+1293:stm_lib/src/stm32f10x_flash.c ****   /* Check the parameters */
+1294:stm_lib/src/stm32f10x_flash.c ****   assert_param(IS_FLASH_IT(FLASH_IT)); 
+1295:stm_lib/src/stm32f10x_flash.c ****   assert_param(IS_FUNCTIONAL_STATE(NewState));
+1296:stm_lib/src/stm32f10x_flash.c **** 
+1297:stm_lib/src/stm32f10x_flash.c ****   if((FLASH_IT & 0x80000000) != 0x0)
+1298:stm_lib/src/stm32f10x_flash.c ****   {
+1299:stm_lib/src/stm32f10x_flash.c ****     if(NewState != DISABLE)
+1300:stm_lib/src/stm32f10x_flash.c ****     {
+1301:stm_lib/src/stm32f10x_flash.c ****       /* Enable the interrupt sources */
+1302:stm_lib/src/stm32f10x_flash.c ****       FLASH->CR2 |= (FLASH_IT & 0x7FFFFFFF);
+1303:stm_lib/src/stm32f10x_flash.c ****     }
+1304:stm_lib/src/stm32f10x_flash.c ****     else
+1305:stm_lib/src/stm32f10x_flash.c ****     {
+1306:stm_lib/src/stm32f10x_flash.c ****       /* Disable the interrupt sources */
+1307:stm_lib/src/stm32f10x_flash.c ****       FLASH->CR2 &= ~(uint32_t)(FLASH_IT & 0x7FFFFFFF);
+1308:stm_lib/src/stm32f10x_flash.c ****     }
+1309:stm_lib/src/stm32f10x_flash.c ****   }
+1310:stm_lib/src/stm32f10x_flash.c ****   else
+1311:stm_lib/src/stm32f10x_flash.c ****   {
+1312:stm_lib/src/stm32f10x_flash.c ****     if(NewState != DISABLE)
+1313:stm_lib/src/stm32f10x_flash.c ****     {
+1314:stm_lib/src/stm32f10x_flash.c ****       /* Enable the interrupt sources */
+1315:stm_lib/src/stm32f10x_flash.c ****       FLASH->CR |= FLASH_IT;
+1316:stm_lib/src/stm32f10x_flash.c ****     }
+1317:stm_lib/src/stm32f10x_flash.c ****     else
+1318:stm_lib/src/stm32f10x_flash.c ****     {
+1319:stm_lib/src/stm32f10x_flash.c ****       /* Disable the interrupt sources */
+1320:stm_lib/src/stm32f10x_flash.c ****       FLASH->CR &= ~(uint32_t)FLASH_IT;
+1321:stm_lib/src/stm32f10x_flash.c ****     }
+1322:stm_lib/src/stm32f10x_flash.c ****   }
+1323:stm_lib/src/stm32f10x_flash.c **** #else
+1324:stm_lib/src/stm32f10x_flash.c ****   /* Check the parameters */
+1325:stm_lib/src/stm32f10x_flash.c ****   assert_param(IS_FLASH_IT(FLASH_IT)); 
+1326:stm_lib/src/stm32f10x_flash.c ****   assert_param(IS_FUNCTIONAL_STATE(NewState));
+1327:stm_lib/src/stm32f10x_flash.c **** 
+1328:stm_lib/src/stm32f10x_flash.c ****   if(NewState != DISABLE)
+ 385              		.loc 1 1328 0
+ 386 0000 29B9     		cbnz	r1, .L43
+1329:stm_lib/src/stm32f10x_flash.c ****   {
+1330:stm_lib/src/stm32f10x_flash.c ****     /* Enable the interrupt sources */
+1331:stm_lib/src/stm32f10x_flash.c ****     FLASH->CR |= FLASH_IT;
+1332:stm_lib/src/stm32f10x_flash.c ****   }
+1333:stm_lib/src/stm32f10x_flash.c ****   else
+1334:stm_lib/src/stm32f10x_flash.c ****   {
+1335:stm_lib/src/stm32f10x_flash.c ****     /* Disable the interrupt sources */
+1336:stm_lib/src/stm32f10x_flash.c ****     FLASH->CR &= ~(uint32_t)FLASH_IT;
+ 387              		.loc 1 1336 0
+ 388 0002 054A     		ldr	r2, .L44
+ 389 0004 1369     		ldr	r3, [r2, #16]
+ 390 0006 23EA0000 		bic	r0, r3, r0
+ 391              	.LVL15:
+ 392 000a 1061     		str	r0, [r2, #16]
+ 393 000c 7047     		bx	lr
+ 394              	.LVL16:
+ 395              	.L43:
+ARM GAS  /tmp/ccaWNXPb.s 			page 31
+
+
+1331:stm_lib/src/stm32f10x_flash.c ****   }
+ 396              		.loc 1 1331 0
+ 397 000e 024A     		ldr	r2, .L44
+ 398 0010 1369     		ldr	r3, [r2, #16]
+ 399 0012 1843     		orrs	r0, r0, r3
+ 400              	.LVL17:
+ 401 0014 1061     		str	r0, [r2, #16]
+ 402 0016 7047     		bx	lr
+ 403              	.L45:
+ 404              		.align	2
+ 405              	.L44:
+ 406 0018 00200240 		.word	1073881088
+ 407              		.cfi_endproc
+ 408              	.LFE77:
+ 410              		.section	.text.FLASH_GetFlagStatus,"ax",%progbits
+ 411              		.align	1
+ 412              		.global	FLASH_GetFlagStatus
+ 413              		.syntax unified
+ 414              		.thumb
+ 415              		.thumb_func
+ 416              		.fpu softvfp
+ 418              	FLASH_GetFlagStatus:
+ 419              	.LFB78:
+1337:stm_lib/src/stm32f10x_flash.c ****   }
+1338:stm_lib/src/stm32f10x_flash.c **** #endif /* STM32F10X_XL */
+1339:stm_lib/src/stm32f10x_flash.c **** }
+1340:stm_lib/src/stm32f10x_flash.c **** 
+1341:stm_lib/src/stm32f10x_flash.c **** /**
+1342:stm_lib/src/stm32f10x_flash.c ****   * @brief  Checks whether the specified FLASH flag is set or not.
+1343:stm_lib/src/stm32f10x_flash.c ****   * @note   This function can be used for all STM32F10x devices.
+1344:stm_lib/src/stm32f10x_flash.c ****   *         - For STM32F10X_XL devices, this function checks whether the specified 
+1345:stm_lib/src/stm32f10x_flash.c ****   *           Bank1 or Bank2 flag is set or not.
+1346:stm_lib/src/stm32f10x_flash.c ****   *         - For other devices, it checks whether the specified Bank1 flag is 
+1347:stm_lib/src/stm32f10x_flash.c ****   *           set or not.
+1348:stm_lib/src/stm32f10x_flash.c ****   * @param  FLASH_FLAG: specifies the FLASH flag to check.
+1349:stm_lib/src/stm32f10x_flash.c ****   *   This parameter can be one of the following values:
+1350:stm_lib/src/stm32f10x_flash.c ****   *     @arg FLASH_FLAG_BSY: FLASH Busy flag           
+1351:stm_lib/src/stm32f10x_flash.c ****   *     @arg FLASH_FLAG_PGERR: FLASH Program error flag       
+1352:stm_lib/src/stm32f10x_flash.c ****   *     @arg FLASH_FLAG_WRPRTERR: FLASH Write protected error flag      
+1353:stm_lib/src/stm32f10x_flash.c ****   *     @arg FLASH_FLAG_EOP: FLASH End of Operation flag           
+1354:stm_lib/src/stm32f10x_flash.c ****   *     @arg FLASH_FLAG_OPTERR:  FLASH Option Byte error flag     
+1355:stm_lib/src/stm32f10x_flash.c ****   * @retval The new state of FLASH_FLAG (SET or RESET).
+1356:stm_lib/src/stm32f10x_flash.c ****   */
+1357:stm_lib/src/stm32f10x_flash.c **** FlagStatus FLASH_GetFlagStatus(uint32_t FLASH_FLAG)
+1358:stm_lib/src/stm32f10x_flash.c **** {
+ 420              		.loc 1 1358 0
+ 421              		.cfi_startproc
+ 422              		@ args = 0, pretend = 0, frame = 0
+ 423              		@ frame_needed = 0, uses_anonymous_args = 0
+ 424              		@ link register save eliminated.
+ 425              	.LVL18:
+1359:stm_lib/src/stm32f10x_flash.c ****   FlagStatus bitstatus = RESET;
+1360:stm_lib/src/stm32f10x_flash.c **** 
+1361:stm_lib/src/stm32f10x_flash.c **** #ifdef STM32F10X_XL
+1362:stm_lib/src/stm32f10x_flash.c ****   /* Check the parameters */
+1363:stm_lib/src/stm32f10x_flash.c ****   assert_param(IS_FLASH_GET_FLAG(FLASH_FLAG)) ;
+1364:stm_lib/src/stm32f10x_flash.c ****   if(FLASH_FLAG == FLASH_FLAG_OPTERR) 
+ARM GAS  /tmp/ccaWNXPb.s 			page 32
+
+
+1365:stm_lib/src/stm32f10x_flash.c ****   {
+1366:stm_lib/src/stm32f10x_flash.c ****     if((FLASH->OBR & FLASH_FLAG_OPTERR) != (uint32_t)RESET)
+1367:stm_lib/src/stm32f10x_flash.c ****     {
+1368:stm_lib/src/stm32f10x_flash.c ****       bitstatus = SET;
+1369:stm_lib/src/stm32f10x_flash.c ****     }
+1370:stm_lib/src/stm32f10x_flash.c ****     else
+1371:stm_lib/src/stm32f10x_flash.c ****     {
+1372:stm_lib/src/stm32f10x_flash.c ****       bitstatus = RESET;
+1373:stm_lib/src/stm32f10x_flash.c ****     }
+1374:stm_lib/src/stm32f10x_flash.c ****   }
+1375:stm_lib/src/stm32f10x_flash.c ****   else
+1376:stm_lib/src/stm32f10x_flash.c ****   {
+1377:stm_lib/src/stm32f10x_flash.c ****     if((FLASH_FLAG & 0x80000000) != 0x0)
+1378:stm_lib/src/stm32f10x_flash.c ****     {
+1379:stm_lib/src/stm32f10x_flash.c ****       if((FLASH->SR2 & FLASH_FLAG) != (uint32_t)RESET)
+1380:stm_lib/src/stm32f10x_flash.c ****       {
+1381:stm_lib/src/stm32f10x_flash.c ****         bitstatus = SET;
+1382:stm_lib/src/stm32f10x_flash.c ****       }
+1383:stm_lib/src/stm32f10x_flash.c ****       else
+1384:stm_lib/src/stm32f10x_flash.c ****       {
+1385:stm_lib/src/stm32f10x_flash.c ****         bitstatus = RESET;
+1386:stm_lib/src/stm32f10x_flash.c ****       }
+1387:stm_lib/src/stm32f10x_flash.c ****     }
+1388:stm_lib/src/stm32f10x_flash.c ****     else
+1389:stm_lib/src/stm32f10x_flash.c ****     {
+1390:stm_lib/src/stm32f10x_flash.c ****       if((FLASH->SR & FLASH_FLAG) != (uint32_t)RESET)
+1391:stm_lib/src/stm32f10x_flash.c ****       {
+1392:stm_lib/src/stm32f10x_flash.c ****         bitstatus = SET;
+1393:stm_lib/src/stm32f10x_flash.c ****       }
+1394:stm_lib/src/stm32f10x_flash.c ****       else
+1395:stm_lib/src/stm32f10x_flash.c ****       {
+1396:stm_lib/src/stm32f10x_flash.c ****         bitstatus = RESET;
+1397:stm_lib/src/stm32f10x_flash.c ****       }
+1398:stm_lib/src/stm32f10x_flash.c ****     }
+1399:stm_lib/src/stm32f10x_flash.c ****   }
+1400:stm_lib/src/stm32f10x_flash.c **** #else
+1401:stm_lib/src/stm32f10x_flash.c ****   /* Check the parameters */
+1402:stm_lib/src/stm32f10x_flash.c ****   assert_param(IS_FLASH_GET_FLAG(FLASH_FLAG)) ;
+1403:stm_lib/src/stm32f10x_flash.c ****   if(FLASH_FLAG == FLASH_FLAG_OPTERR) 
+ 426              		.loc 1 1403 0
+ 427 0000 0128     		cmp	r0, #1
+ 428 0002 05D0     		beq	.L51
+1404:stm_lib/src/stm32f10x_flash.c ****   {
+1405:stm_lib/src/stm32f10x_flash.c ****     if((FLASH->OBR & FLASH_FLAG_OPTERR) != (uint32_t)RESET)
+1406:stm_lib/src/stm32f10x_flash.c ****     {
+1407:stm_lib/src/stm32f10x_flash.c ****       bitstatus = SET;
+1408:stm_lib/src/stm32f10x_flash.c ****     }
+1409:stm_lib/src/stm32f10x_flash.c ****     else
+1410:stm_lib/src/stm32f10x_flash.c ****     {
+1411:stm_lib/src/stm32f10x_flash.c ****       bitstatus = RESET;
+1412:stm_lib/src/stm32f10x_flash.c ****     }
+1413:stm_lib/src/stm32f10x_flash.c ****   }
+1414:stm_lib/src/stm32f10x_flash.c ****   else
+1415:stm_lib/src/stm32f10x_flash.c ****   {
+1416:stm_lib/src/stm32f10x_flash.c ****    if((FLASH->SR & FLASH_FLAG) != (uint32_t)RESET)
+ 429              		.loc 1 1416 0
+ 430 0004 074B     		ldr	r3, .L53
+ARM GAS  /tmp/ccaWNXPb.s 			page 33
+
+
+ 431 0006 DB68     		ldr	r3, [r3, #12]
+ 432 0008 1842     		tst	r0, r3
+ 433 000a 07D1     		bne	.L52
+1417:stm_lib/src/stm32f10x_flash.c ****     {
+1418:stm_lib/src/stm32f10x_flash.c ****       bitstatus = SET;
+1419:stm_lib/src/stm32f10x_flash.c ****     }
+1420:stm_lib/src/stm32f10x_flash.c ****     else
+1421:stm_lib/src/stm32f10x_flash.c ****     {
+1422:stm_lib/src/stm32f10x_flash.c ****       bitstatus = RESET;
+ 434              		.loc 1 1422 0
+ 435 000c 0020     		movs	r0, #0
+ 436              	.LVL19:
+1423:stm_lib/src/stm32f10x_flash.c ****     }
+1424:stm_lib/src/stm32f10x_flash.c ****   }
+1425:stm_lib/src/stm32f10x_flash.c **** #endif /* STM32F10X_XL */
+1426:stm_lib/src/stm32f10x_flash.c **** 
+1427:stm_lib/src/stm32f10x_flash.c ****   /* Return the new state of FLASH_FLAG (SET or RESET) */
+1428:stm_lib/src/stm32f10x_flash.c ****   return bitstatus;
+1429:stm_lib/src/stm32f10x_flash.c **** }
+ 437              		.loc 1 1429 0
+ 438 000e 7047     		bx	lr
+ 439              	.LVL20:
+ 440              	.L51:
+1405:stm_lib/src/stm32f10x_flash.c ****     {
+ 441              		.loc 1 1405 0
+ 442 0010 044B     		ldr	r3, .L53
+ 443 0012 DB69     		ldr	r3, [r3, #28]
+ 444 0014 13F0010F 		tst	r3, #1
+ 445 0018 02D0     		beq	.L49
+ 446 001a 7047     		bx	lr
+ 447              	.L52:
+1418:stm_lib/src/stm32f10x_flash.c ****     }
+ 448              		.loc 1 1418 0
+ 449 001c 0120     		movs	r0, #1
+ 450              	.LVL21:
+ 451 001e 7047     		bx	lr
+ 452              	.LVL22:
+ 453              	.L49:
+1411:stm_lib/src/stm32f10x_flash.c ****     }
+ 454              		.loc 1 1411 0
+ 455 0020 0020     		movs	r0, #0
+ 456              	.LVL23:
+ 457 0022 7047     		bx	lr
+ 458              	.L54:
+ 459              		.align	2
+ 460              	.L53:
+ 461 0024 00200240 		.word	1073881088
+ 462              		.cfi_endproc
+ 463              	.LFE78:
+ 465              		.section	.text.FLASH_ClearFlag,"ax",%progbits
+ 466              		.align	1
+ 467              		.global	FLASH_ClearFlag
+ 468              		.syntax unified
+ 469              		.thumb
+ 470              		.thumb_func
+ 471              		.fpu softvfp
+ 473              	FLASH_ClearFlag:
+ARM GAS  /tmp/ccaWNXPb.s 			page 34
+
+
+ 474              	.LFB79:
+1430:stm_lib/src/stm32f10x_flash.c **** 
+1431:stm_lib/src/stm32f10x_flash.c **** /**
+1432:stm_lib/src/stm32f10x_flash.c ****   * @brief  Clears the FLASH's pending flags.
+1433:stm_lib/src/stm32f10x_flash.c ****   * @note   This function can be used for all STM32F10x devices.
+1434:stm_lib/src/stm32f10x_flash.c ****   *         - For STM32F10X_XL devices, this function clears Bank1 or Bank2’s pending flags
+1435:stm_lib/src/stm32f10x_flash.c ****   *         - For other devices, it clears Bank1’s pending flags.
+1436:stm_lib/src/stm32f10x_flash.c ****   * @param  FLASH_FLAG: specifies the FLASH flags to clear.
+1437:stm_lib/src/stm32f10x_flash.c ****   *   This parameter can be any combination of the following values:         
+1438:stm_lib/src/stm32f10x_flash.c ****   *     @arg FLASH_FLAG_PGERR: FLASH Program error flag       
+1439:stm_lib/src/stm32f10x_flash.c ****   *     @arg FLASH_FLAG_WRPRTERR: FLASH Write protected error flag      
+1440:stm_lib/src/stm32f10x_flash.c ****   *     @arg FLASH_FLAG_EOP: FLASH End of Operation flag           
+1441:stm_lib/src/stm32f10x_flash.c ****   * @retval None
+1442:stm_lib/src/stm32f10x_flash.c ****   */
+1443:stm_lib/src/stm32f10x_flash.c **** void FLASH_ClearFlag(uint32_t FLASH_FLAG)
+1444:stm_lib/src/stm32f10x_flash.c **** {
+ 475              		.loc 1 1444 0
+ 476              		.cfi_startproc
+ 477              		@ args = 0, pretend = 0, frame = 0
+ 478              		@ frame_needed = 0, uses_anonymous_args = 0
+ 479              		@ link register save eliminated.
+ 480              	.LVL24:
+1445:stm_lib/src/stm32f10x_flash.c **** #ifdef STM32F10X_XL
+1446:stm_lib/src/stm32f10x_flash.c ****   /* Check the parameters */
+1447:stm_lib/src/stm32f10x_flash.c ****   assert_param(IS_FLASH_CLEAR_FLAG(FLASH_FLAG)) ;
+1448:stm_lib/src/stm32f10x_flash.c **** 
+1449:stm_lib/src/stm32f10x_flash.c ****   if((FLASH_FLAG & 0x80000000) != 0x0)
+1450:stm_lib/src/stm32f10x_flash.c ****   {
+1451:stm_lib/src/stm32f10x_flash.c ****     /* Clear the flags */
+1452:stm_lib/src/stm32f10x_flash.c ****     FLASH->SR2 = FLASH_FLAG;
+1453:stm_lib/src/stm32f10x_flash.c ****   }
+1454:stm_lib/src/stm32f10x_flash.c ****   else
+1455:stm_lib/src/stm32f10x_flash.c ****   {
+1456:stm_lib/src/stm32f10x_flash.c ****     /* Clear the flags */
+1457:stm_lib/src/stm32f10x_flash.c ****     FLASH->SR = FLASH_FLAG;
+1458:stm_lib/src/stm32f10x_flash.c ****   }  
+1459:stm_lib/src/stm32f10x_flash.c **** 
+1460:stm_lib/src/stm32f10x_flash.c **** #else
+1461:stm_lib/src/stm32f10x_flash.c ****   /* Check the parameters */
+1462:stm_lib/src/stm32f10x_flash.c ****   assert_param(IS_FLASH_CLEAR_FLAG(FLASH_FLAG)) ;
+1463:stm_lib/src/stm32f10x_flash.c ****   
+1464:stm_lib/src/stm32f10x_flash.c ****   /* Clear the flags */
+1465:stm_lib/src/stm32f10x_flash.c ****   FLASH->SR = FLASH_FLAG;
+ 481              		.loc 1 1465 0
+ 482 0000 014B     		ldr	r3, .L56
+ 483 0002 D860     		str	r0, [r3, #12]
+ 484 0004 7047     		bx	lr
+ 485              	.L57:
+ 486 0006 00BF     		.align	2
+ 487              	.L56:
+ 488 0008 00200240 		.word	1073881088
+ 489              		.cfi_endproc
+ 490              	.LFE79:
+ 492              		.section	.text.FLASH_GetStatus,"ax",%progbits
+ 493              		.align	1
+ 494              		.global	FLASH_GetStatus
+ 495              		.syntax unified
+ARM GAS  /tmp/ccaWNXPb.s 			page 35
+
+
+ 496              		.thumb
+ 497              		.thumb_func
+ 498              		.fpu softvfp
+ 500              	FLASH_GetStatus:
+ 501              	.LFB80:
+1466:stm_lib/src/stm32f10x_flash.c **** #endif /* STM32F10X_XL */
+1467:stm_lib/src/stm32f10x_flash.c **** }
+1468:stm_lib/src/stm32f10x_flash.c **** 
+1469:stm_lib/src/stm32f10x_flash.c **** /**
+1470:stm_lib/src/stm32f10x_flash.c ****   * @brief  Returns the FLASH Status.
+1471:stm_lib/src/stm32f10x_flash.c ****   * @note   This function can be used for all STM32F10x devices, it is equivalent
+1472:stm_lib/src/stm32f10x_flash.c ****   *         to FLASH_GetBank1Status function.
+1473:stm_lib/src/stm32f10x_flash.c ****   * @param  None
+1474:stm_lib/src/stm32f10x_flash.c ****   * @retval FLASH Status: The returned value can be: FLASH_BUSY, FLASH_ERROR_PG,
+1475:stm_lib/src/stm32f10x_flash.c ****   *         FLASH_ERROR_WRP or FLASH_COMPLETE
+1476:stm_lib/src/stm32f10x_flash.c ****   */
+1477:stm_lib/src/stm32f10x_flash.c **** FLASH_Status FLASH_GetStatus(void)
+1478:stm_lib/src/stm32f10x_flash.c **** {
+ 502              		.loc 1 1478 0
+ 503              		.cfi_startproc
+ 504              		@ args = 0, pretend = 0, frame = 0
+ 505              		@ frame_needed = 0, uses_anonymous_args = 0
+ 506              		@ link register save eliminated.
+ 507              	.LVL25:
+1479:stm_lib/src/stm32f10x_flash.c ****   FLASH_Status flashstatus = FLASH_COMPLETE;
+1480:stm_lib/src/stm32f10x_flash.c ****   
+1481:stm_lib/src/stm32f10x_flash.c ****   if((FLASH->SR & FLASH_FLAG_BSY) == FLASH_FLAG_BSY) 
+ 508              		.loc 1 1481 0
+ 509 0000 0B4B     		ldr	r3, .L64
+ 510 0002 DB68     		ldr	r3, [r3, #12]
+ 511 0004 13F0010F 		tst	r3, #1
+ 512 0008 0DD1     		bne	.L60
+1482:stm_lib/src/stm32f10x_flash.c ****   {
+1483:stm_lib/src/stm32f10x_flash.c ****     flashstatus = FLASH_BUSY;
+1484:stm_lib/src/stm32f10x_flash.c ****   }
+1485:stm_lib/src/stm32f10x_flash.c ****   else 
+1486:stm_lib/src/stm32f10x_flash.c ****   {  
+1487:stm_lib/src/stm32f10x_flash.c ****     if((FLASH->SR & FLASH_FLAG_PGERR) != 0)
+ 513              		.loc 1 1487 0
+ 514 000a 094B     		ldr	r3, .L64
+ 515 000c DB68     		ldr	r3, [r3, #12]
+ 516 000e 13F0040F 		tst	r3, #4
+ 517 0012 01D0     		beq	.L63
+1488:stm_lib/src/stm32f10x_flash.c ****     { 
+1489:stm_lib/src/stm32f10x_flash.c ****       flashstatus = FLASH_ERROR_PG;
+ 518              		.loc 1 1489 0
+ 519 0014 0220     		movs	r0, #2
+ 520 0016 7047     		bx	lr
+ 521              	.L63:
+1490:stm_lib/src/stm32f10x_flash.c ****     }
+1491:stm_lib/src/stm32f10x_flash.c ****     else 
+1492:stm_lib/src/stm32f10x_flash.c ****     {
+1493:stm_lib/src/stm32f10x_flash.c ****       if((FLASH->SR & FLASH_FLAG_WRPRTERR) != 0 )
+ 522              		.loc 1 1493 0
+ 523 0018 054B     		ldr	r3, .L64
+ 524 001a DB68     		ldr	r3, [r3, #12]
+ 525 001c 13F0100F 		tst	r3, #16
+ARM GAS  /tmp/ccaWNXPb.s 			page 36
+
+
+ 526 0020 03D0     		beq	.L62
+1494:stm_lib/src/stm32f10x_flash.c ****       {
+1495:stm_lib/src/stm32f10x_flash.c ****         flashstatus = FLASH_ERROR_WRP;
+ 527              		.loc 1 1495 0
+ 528 0022 0320     		movs	r0, #3
+ 529 0024 7047     		bx	lr
+ 530              	.L60:
+1483:stm_lib/src/stm32f10x_flash.c ****   }
+ 531              		.loc 1 1483 0
+ 532 0026 0120     		movs	r0, #1
+ 533 0028 7047     		bx	lr
+ 534              	.L62:
+1496:stm_lib/src/stm32f10x_flash.c ****       }
+1497:stm_lib/src/stm32f10x_flash.c ****       else
+1498:stm_lib/src/stm32f10x_flash.c ****       {
+1499:stm_lib/src/stm32f10x_flash.c ****         flashstatus = FLASH_COMPLETE;
+ 535              		.loc 1 1499 0
+ 536 002a 0420     		movs	r0, #4
+ 537              	.LVL26:
+1500:stm_lib/src/stm32f10x_flash.c ****       }
+1501:stm_lib/src/stm32f10x_flash.c ****     }
+1502:stm_lib/src/stm32f10x_flash.c ****   }
+1503:stm_lib/src/stm32f10x_flash.c ****   /* Return the Flash Status */
+1504:stm_lib/src/stm32f10x_flash.c ****   return flashstatus;
+1505:stm_lib/src/stm32f10x_flash.c **** }
+ 538              		.loc 1 1505 0
+ 539 002c 7047     		bx	lr
+ 540              	.L65:
+ 541 002e 00BF     		.align	2
+ 542              	.L64:
+ 543 0030 00200240 		.word	1073881088
+ 544              		.cfi_endproc
+ 545              	.LFE80:
+ 547              		.section	.text.FLASH_GetBank1Status,"ax",%progbits
+ 548              		.align	1
+ 549              		.global	FLASH_GetBank1Status
+ 550              		.syntax unified
+ 551              		.thumb
+ 552              		.thumb_func
+ 553              		.fpu softvfp
+ 555              	FLASH_GetBank1Status:
+ 556              	.LFB81:
+1506:stm_lib/src/stm32f10x_flash.c **** 
+1507:stm_lib/src/stm32f10x_flash.c **** /**
+1508:stm_lib/src/stm32f10x_flash.c ****   * @brief  Returns the FLASH Bank1 Status.
+1509:stm_lib/src/stm32f10x_flash.c ****   * @note   This function can be used for all STM32F10x devices, it is equivalent
+1510:stm_lib/src/stm32f10x_flash.c ****   *         to FLASH_GetStatus function.
+1511:stm_lib/src/stm32f10x_flash.c ****   * @param  None
+1512:stm_lib/src/stm32f10x_flash.c ****   * @retval FLASH Status: The returned value can be: FLASH_BUSY, FLASH_ERROR_PG,
+1513:stm_lib/src/stm32f10x_flash.c ****   *         FLASH_ERROR_WRP or FLASH_COMPLETE
+1514:stm_lib/src/stm32f10x_flash.c ****   */
+1515:stm_lib/src/stm32f10x_flash.c **** FLASH_Status FLASH_GetBank1Status(void)
+1516:stm_lib/src/stm32f10x_flash.c **** {
+ 557              		.loc 1 1516 0
+ 558              		.cfi_startproc
+ 559              		@ args = 0, pretend = 0, frame = 0
+ 560              		@ frame_needed = 0, uses_anonymous_args = 0
+ARM GAS  /tmp/ccaWNXPb.s 			page 37
+
+
+ 561              		@ link register save eliminated.
+ 562              	.LVL27:
+1517:stm_lib/src/stm32f10x_flash.c ****   FLASH_Status flashstatus = FLASH_COMPLETE;
+1518:stm_lib/src/stm32f10x_flash.c ****   
+1519:stm_lib/src/stm32f10x_flash.c ****   if((FLASH->SR & FLASH_FLAG_BANK1_BSY) == FLASH_FLAG_BSY) 
+ 563              		.loc 1 1519 0
+ 564 0000 0B4B     		ldr	r3, .L72
+ 565 0002 DB68     		ldr	r3, [r3, #12]
+ 566 0004 13F0010F 		tst	r3, #1
+ 567 0008 0DD1     		bne	.L68
+1520:stm_lib/src/stm32f10x_flash.c ****   {
+1521:stm_lib/src/stm32f10x_flash.c ****     flashstatus = FLASH_BUSY;
+1522:stm_lib/src/stm32f10x_flash.c ****   }
+1523:stm_lib/src/stm32f10x_flash.c ****   else 
+1524:stm_lib/src/stm32f10x_flash.c ****   {  
+1525:stm_lib/src/stm32f10x_flash.c ****     if((FLASH->SR & FLASH_FLAG_BANK1_PGERR) != 0)
+ 568              		.loc 1 1525 0
+ 569 000a 094B     		ldr	r3, .L72
+ 570 000c DB68     		ldr	r3, [r3, #12]
+ 571 000e 13F0040F 		tst	r3, #4
+ 572 0012 01D0     		beq	.L71
+1526:stm_lib/src/stm32f10x_flash.c ****     { 
+1527:stm_lib/src/stm32f10x_flash.c ****       flashstatus = FLASH_ERROR_PG;
+ 573              		.loc 1 1527 0
+ 574 0014 0220     		movs	r0, #2
+ 575 0016 7047     		bx	lr
+ 576              	.L71:
+1528:stm_lib/src/stm32f10x_flash.c ****     }
+1529:stm_lib/src/stm32f10x_flash.c ****     else 
+1530:stm_lib/src/stm32f10x_flash.c ****     {
+1531:stm_lib/src/stm32f10x_flash.c ****       if((FLASH->SR & FLASH_FLAG_BANK1_WRPRTERR) != 0 )
+ 577              		.loc 1 1531 0
+ 578 0018 054B     		ldr	r3, .L72
+ 579 001a DB68     		ldr	r3, [r3, #12]
+ 580 001c 13F0100F 		tst	r3, #16
+ 581 0020 03D0     		beq	.L70
+1532:stm_lib/src/stm32f10x_flash.c ****       {
+1533:stm_lib/src/stm32f10x_flash.c ****         flashstatus = FLASH_ERROR_WRP;
+ 582              		.loc 1 1533 0
+ 583 0022 0320     		movs	r0, #3
+ 584 0024 7047     		bx	lr
+ 585              	.L68:
+1521:stm_lib/src/stm32f10x_flash.c ****   }
+ 586              		.loc 1 1521 0
+ 587 0026 0120     		movs	r0, #1
+ 588 0028 7047     		bx	lr
+ 589              	.L70:
+1534:stm_lib/src/stm32f10x_flash.c ****       }
+1535:stm_lib/src/stm32f10x_flash.c ****       else
+1536:stm_lib/src/stm32f10x_flash.c ****       {
+1537:stm_lib/src/stm32f10x_flash.c ****         flashstatus = FLASH_COMPLETE;
+ 590              		.loc 1 1537 0
+ 591 002a 0420     		movs	r0, #4
+ 592              	.LVL28:
+1538:stm_lib/src/stm32f10x_flash.c ****       }
+1539:stm_lib/src/stm32f10x_flash.c ****     }
+1540:stm_lib/src/stm32f10x_flash.c ****   }
+ARM GAS  /tmp/ccaWNXPb.s 			page 38
+
+
+1541:stm_lib/src/stm32f10x_flash.c ****   /* Return the Flash Status */
+1542:stm_lib/src/stm32f10x_flash.c ****   return flashstatus;
+1543:stm_lib/src/stm32f10x_flash.c **** }
+ 593              		.loc 1 1543 0
+ 594 002c 7047     		bx	lr
+ 595              	.L73:
+ 596 002e 00BF     		.align	2
+ 597              	.L72:
+ 598 0030 00200240 		.word	1073881088
+ 599              		.cfi_endproc
+ 600              	.LFE81:
+ 602              		.section	.text.FLASH_WaitForLastOperation,"ax",%progbits
+ 603              		.align	1
+ 604              		.global	FLASH_WaitForLastOperation
+ 605              		.syntax unified
+ 606              		.thumb
+ 607              		.thumb_func
+ 608              		.fpu softvfp
+ 610              	FLASH_WaitForLastOperation:
+ 611              	.LFB82:
+1544:stm_lib/src/stm32f10x_flash.c **** 
+1545:stm_lib/src/stm32f10x_flash.c **** #ifdef STM32F10X_XL
+1546:stm_lib/src/stm32f10x_flash.c **** /**
+1547:stm_lib/src/stm32f10x_flash.c ****   * @brief  Returns the FLASH Bank2 Status.
+1548:stm_lib/src/stm32f10x_flash.c ****   * @note   This function can be used for STM32F10x_XL density devices.
+1549:stm_lib/src/stm32f10x_flash.c ****   * @param  None
+1550:stm_lib/src/stm32f10x_flash.c ****   * @retval FLASH Status: The returned value can be: FLASH_BUSY, FLASH_ERROR_PG,
+1551:stm_lib/src/stm32f10x_flash.c ****   *        FLASH_ERROR_WRP or FLASH_COMPLETE
+1552:stm_lib/src/stm32f10x_flash.c ****   */
+1553:stm_lib/src/stm32f10x_flash.c **** FLASH_Status FLASH_GetBank2Status(void)
+1554:stm_lib/src/stm32f10x_flash.c **** {
+1555:stm_lib/src/stm32f10x_flash.c ****   FLASH_Status flashstatus = FLASH_COMPLETE;
+1556:stm_lib/src/stm32f10x_flash.c ****   
+1557:stm_lib/src/stm32f10x_flash.c ****   if((FLASH->SR2 & (FLASH_FLAG_BANK2_BSY & 0x7FFFFFFF)) == (FLASH_FLAG_BANK2_BSY & 0x7FFFFFFF)) 
+1558:stm_lib/src/stm32f10x_flash.c ****   {
+1559:stm_lib/src/stm32f10x_flash.c ****     flashstatus = FLASH_BUSY;
+1560:stm_lib/src/stm32f10x_flash.c ****   }
+1561:stm_lib/src/stm32f10x_flash.c ****   else 
+1562:stm_lib/src/stm32f10x_flash.c ****   {  
+1563:stm_lib/src/stm32f10x_flash.c ****     if((FLASH->SR2 & (FLASH_FLAG_BANK2_PGERR & 0x7FFFFFFF)) != 0)
+1564:stm_lib/src/stm32f10x_flash.c ****     { 
+1565:stm_lib/src/stm32f10x_flash.c ****       flashstatus = FLASH_ERROR_PG;
+1566:stm_lib/src/stm32f10x_flash.c ****     }
+1567:stm_lib/src/stm32f10x_flash.c ****     else 
+1568:stm_lib/src/stm32f10x_flash.c ****     {
+1569:stm_lib/src/stm32f10x_flash.c ****       if((FLASH->SR2 & (FLASH_FLAG_BANK2_WRPRTERR & 0x7FFFFFFF)) != 0 )
+1570:stm_lib/src/stm32f10x_flash.c ****       {
+1571:stm_lib/src/stm32f10x_flash.c ****         flashstatus = FLASH_ERROR_WRP;
+1572:stm_lib/src/stm32f10x_flash.c ****       }
+1573:stm_lib/src/stm32f10x_flash.c ****       else
+1574:stm_lib/src/stm32f10x_flash.c ****       {
+1575:stm_lib/src/stm32f10x_flash.c ****         flashstatus = FLASH_COMPLETE;
+1576:stm_lib/src/stm32f10x_flash.c ****       }
+1577:stm_lib/src/stm32f10x_flash.c ****     }
+1578:stm_lib/src/stm32f10x_flash.c ****   }
+1579:stm_lib/src/stm32f10x_flash.c ****   /* Return the Flash Status */
+1580:stm_lib/src/stm32f10x_flash.c ****   return flashstatus;
+ARM GAS  /tmp/ccaWNXPb.s 			page 39
+
+
+1581:stm_lib/src/stm32f10x_flash.c **** }
+1582:stm_lib/src/stm32f10x_flash.c **** #endif /* STM32F10X_XL */
+1583:stm_lib/src/stm32f10x_flash.c **** /**
+1584:stm_lib/src/stm32f10x_flash.c ****   * @brief  Waits for a Flash operation to complete or a TIMEOUT to occur.
+1585:stm_lib/src/stm32f10x_flash.c ****   * @note   This function can be used for all STM32F10x devices, 
+1586:stm_lib/src/stm32f10x_flash.c ****   *         it is equivalent to FLASH_WaitForLastBank1Operation.
+1587:stm_lib/src/stm32f10x_flash.c ****   *         - For STM32F10X_XL devices this function waits for a Bank1 Flash operation
+1588:stm_lib/src/stm32f10x_flash.c ****   *           to complete or a TIMEOUT to occur.
+1589:stm_lib/src/stm32f10x_flash.c ****   *         - For all other devices it waits for a Flash operation to complete 
+1590:stm_lib/src/stm32f10x_flash.c ****   *           or a TIMEOUT to occur.
+1591:stm_lib/src/stm32f10x_flash.c ****   * @param  Timeout: FLASH programming Timeout
+1592:stm_lib/src/stm32f10x_flash.c ****   * @retval FLASH Status: The returned value can be: FLASH_ERROR_PG,
+1593:stm_lib/src/stm32f10x_flash.c ****   *         FLASH_ERROR_WRP, FLASH_COMPLETE or FLASH_TIMEOUT.
+1594:stm_lib/src/stm32f10x_flash.c ****   */
+1595:stm_lib/src/stm32f10x_flash.c **** FLASH_Status FLASH_WaitForLastOperation(uint32_t Timeout)
+1596:stm_lib/src/stm32f10x_flash.c **** { 
+ 612              		.loc 1 1596 0
+ 613              		.cfi_startproc
+ 614              		@ args = 0, pretend = 0, frame = 0
+ 615              		@ frame_needed = 0, uses_anonymous_args = 0
+ 616              	.LVL29:
+ 617 0000 10B5     		push	{r4, lr}
+ 618              	.LCFI0:
+ 619              		.cfi_def_cfa_offset 8
+ 620              		.cfi_offset 4, -8
+ 621              		.cfi_offset 14, -4
+ 622 0002 0446     		mov	r4, r0
+ 623              	.LVL30:
+1597:stm_lib/src/stm32f10x_flash.c ****   FLASH_Status status = FLASH_COMPLETE;
+1598:stm_lib/src/stm32f10x_flash.c ****    
+1599:stm_lib/src/stm32f10x_flash.c ****   /* Check for the Flash Status */
+1600:stm_lib/src/stm32f10x_flash.c ****   status = FLASH_GetBank1Status();
+ 624              		.loc 1 1600 0
+ 625 0004 FFF7FEFF 		bl	FLASH_GetBank1Status
+ 626              	.LVL31:
+1601:stm_lib/src/stm32f10x_flash.c ****   /* Wait for a Flash operation to complete or a TIMEOUT to occur */
+1602:stm_lib/src/stm32f10x_flash.c ****   while((status == FLASH_BUSY) && (Timeout != 0x00))
+ 627              		.loc 1 1602 0
+ 628 0008 02E0     		b	.L75
+ 629              	.L77:
+1603:stm_lib/src/stm32f10x_flash.c ****   {
+1604:stm_lib/src/stm32f10x_flash.c ****     status = FLASH_GetBank1Status();
+ 630              		.loc 1 1604 0
+ 631 000a FFF7FEFF 		bl	FLASH_GetBank1Status
+ 632              	.LVL32:
+1605:stm_lib/src/stm32f10x_flash.c ****     Timeout--;
+ 633              		.loc 1 1605 0
+ 634 000e 013C     		subs	r4, r4, #1
+ 635              	.LVL33:
+ 636              	.L75:
+1602:stm_lib/src/stm32f10x_flash.c ****   {
+ 637              		.loc 1 1602 0
+ 638 0010 0128     		cmp	r0, #1
+ 639 0012 01D1     		bne	.L76
+1602:stm_lib/src/stm32f10x_flash.c ****   {
+ 640              		.loc 1 1602 0 is_stmt 0 discriminator 1
+ 641 0014 002C     		cmp	r4, #0
+ARM GAS  /tmp/ccaWNXPb.s 			page 40
+
+
+ 642 0016 F8D1     		bne	.L77
+ 643              	.L76:
+1606:stm_lib/src/stm32f10x_flash.c ****   }
+1607:stm_lib/src/stm32f10x_flash.c ****   if(Timeout == 0x00 )
+ 644              		.loc 1 1607 0 is_stmt 1
+ 645 0018 04B9     		cbnz	r4, .L78
+1608:stm_lib/src/stm32f10x_flash.c ****   {
+1609:stm_lib/src/stm32f10x_flash.c ****     status = FLASH_TIMEOUT;
+ 646              		.loc 1 1609 0
+ 647 001a 0520     		movs	r0, #5
+ 648              	.LVL34:
+ 649              	.L78:
+1610:stm_lib/src/stm32f10x_flash.c ****   }
+1611:stm_lib/src/stm32f10x_flash.c ****   /* Return the operation status */
+1612:stm_lib/src/stm32f10x_flash.c ****   return status;
+1613:stm_lib/src/stm32f10x_flash.c **** }
+ 650              		.loc 1 1613 0
+ 651 001c 10BD     		pop	{r4, pc}
+ 652              		.cfi_endproc
+ 653              	.LFE82:
+ 655              		.section	.text.FLASH_ErasePage,"ax",%progbits
+ 656              		.align	1
+ 657              		.global	FLASH_ErasePage
+ 658              		.syntax unified
+ 659              		.thumb
+ 660              		.thumb_func
+ 661              		.fpu softvfp
+ 663              	FLASH_ErasePage:
+ 664              	.LFB63:
+ 420:stm_lib/src/stm32f10x_flash.c ****   FLASH_Status status = FLASH_COMPLETE;
+ 665              		.loc 1 420 0
+ 666              		.cfi_startproc
+ 667              		@ args = 0, pretend = 0, frame = 0
+ 668              		@ frame_needed = 0, uses_anonymous_args = 0
+ 669              	.LVL35:
+ 670 0000 38B5     		push	{r3, r4, r5, lr}
+ 671              	.LCFI1:
+ 672              		.cfi_def_cfa_offset 16
+ 673              		.cfi_offset 3, -16
+ 674              		.cfi_offset 4, -12
+ 675              		.cfi_offset 5, -8
+ 676              		.cfi_offset 14, -4
+ 677 0002 0546     		mov	r5, r0
+ 678              	.LVL36:
+ 464:stm_lib/src/stm32f10x_flash.c ****   
+ 679              		.loc 1 464 0
+ 680 0004 4FF43020 		mov	r0, #720896
+ 681              	.LVL37:
+ 682 0008 FFF7FEFF 		bl	FLASH_WaitForLastOperation
+ 683              	.LVL38:
+ 466:stm_lib/src/stm32f10x_flash.c ****   { 
+ 684              		.loc 1 466 0
+ 685 000c 0428     		cmp	r0, #4
+ 686 000e 00D0     		beq	.L84
+ 687              	.L82:
+ 483:stm_lib/src/stm32f10x_flash.c **** 
+ 688              		.loc 1 483 0
+ARM GAS  /tmp/ccaWNXPb.s 			page 41
+
+
+ 689 0010 38BD     		pop	{r3, r4, r5, pc}
+ 690              	.LVL39:
+ 691              	.L84:
+ 469:stm_lib/src/stm32f10x_flash.c ****     FLASH->AR = Page_Address; 
+ 692              		.loc 1 469 0
+ 693 0012 0A4C     		ldr	r4, .L85
+ 694 0014 2369     		ldr	r3, [r4, #16]
+ 695 0016 43F00203 		orr	r3, r3, #2
+ 696 001a 2361     		str	r3, [r4, #16]
+ 470:stm_lib/src/stm32f10x_flash.c ****     FLASH->CR|= CR_STRT_Set;
+ 697              		.loc 1 470 0
+ 698 001c 6561     		str	r5, [r4, #20]
+ 471:stm_lib/src/stm32f10x_flash.c ****     
+ 699              		.loc 1 471 0
+ 700 001e 2369     		ldr	r3, [r4, #16]
+ 701 0020 43F04003 		orr	r3, r3, #64
+ 702 0024 2361     		str	r3, [r4, #16]
+ 474:stm_lib/src/stm32f10x_flash.c ****     
+ 703              		.loc 1 474 0
+ 704 0026 4FF43020 		mov	r0, #720896
+ 705              	.LVL40:
+ 706 002a FFF7FEFF 		bl	FLASH_WaitForLastOperation
+ 707              	.LVL41:
+ 477:stm_lib/src/stm32f10x_flash.c ****   }
+ 708              		.loc 1 477 0
+ 709 002e 2369     		ldr	r3, [r4, #16]
+ 710 0030 23F00203 		bic	r3, r3, #2
+ 711 0034 DB04     		lsls	r3, r3, #19
+ 712 0036 DB0C     		lsrs	r3, r3, #19
+ 713 0038 2361     		str	r3, [r4, #16]
+ 714 003a E9E7     		b	.L82
+ 715              	.L86:
+ 716              		.align	2
+ 717              	.L85:
+ 718 003c 00200240 		.word	1073881088
+ 719              		.cfi_endproc
+ 720              	.LFE63:
+ 722              		.section	.text.FLASH_EraseAllPages,"ax",%progbits
+ 723              		.align	1
+ 724              		.global	FLASH_EraseAllPages
+ 725              		.syntax unified
+ 726              		.thumb
+ 727              		.thumb_func
+ 728              		.fpu softvfp
+ 730              	FLASH_EraseAllPages:
+ 731              	.LFB64:
+ 493:stm_lib/src/stm32f10x_flash.c ****   FLASH_Status status = FLASH_COMPLETE;
+ 732              		.loc 1 493 0
+ 733              		.cfi_startproc
+ 734              		@ args = 0, pretend = 0, frame = 0
+ 735              		@ frame_needed = 0, uses_anonymous_args = 0
+ 736 0000 10B5     		push	{r4, lr}
+ 737              	.LCFI2:
+ 738              		.cfi_def_cfa_offset 8
+ 739              		.cfi_offset 4, -8
+ 740              		.cfi_offset 14, -4
+ 741              	.LVL42:
+ARM GAS  /tmp/ccaWNXPb.s 			page 42
+
+
+ 526:stm_lib/src/stm32f10x_flash.c ****   if(status == FLASH_COMPLETE)
+ 742              		.loc 1 526 0
+ 743 0002 4FF43020 		mov	r0, #720896
+ 744 0006 FFF7FEFF 		bl	FLASH_WaitForLastOperation
+ 745              	.LVL43:
+ 527:stm_lib/src/stm32f10x_flash.c ****   {
+ 746              		.loc 1 527 0
+ 747 000a 0428     		cmp	r0, #4
+ 748 000c 00D0     		beq	.L90
+ 749              	.L88:
+ 543:stm_lib/src/stm32f10x_flash.c **** 
+ 750              		.loc 1 543 0
+ 751 000e 10BD     		pop	{r4, pc}
+ 752              	.L90:
+ 530:stm_lib/src/stm32f10x_flash.c ****      FLASH->CR |= CR_STRT_Set;
+ 753              		.loc 1 530 0
+ 754 0010 094C     		ldr	r4, .L91
+ 755 0012 2369     		ldr	r3, [r4, #16]
+ 756 0014 43F00403 		orr	r3, r3, #4
+ 757 0018 2361     		str	r3, [r4, #16]
+ 531:stm_lib/src/stm32f10x_flash.c ****     
+ 758              		.loc 1 531 0
+ 759 001a 2369     		ldr	r3, [r4, #16]
+ 760 001c 43F04003 		orr	r3, r3, #64
+ 761 0020 2361     		str	r3, [r4, #16]
+ 534:stm_lib/src/stm32f10x_flash.c **** 
+ 762              		.loc 1 534 0
+ 763 0022 4FF43020 		mov	r0, #720896
+ 764              	.LVL44:
+ 765 0026 FFF7FEFF 		bl	FLASH_WaitForLastOperation
+ 766              	.LVL45:
+ 537:stm_lib/src/stm32f10x_flash.c ****   }
+ 767              		.loc 1 537 0
+ 768 002a 2369     		ldr	r3, [r4, #16]
+ 769 002c 23F00403 		bic	r3, r3, #4
+ 770 0030 DB04     		lsls	r3, r3, #19
+ 771 0032 DB0C     		lsrs	r3, r3, #19
+ 772 0034 2361     		str	r3, [r4, #16]
+ 773 0036 EAE7     		b	.L88
+ 774              	.L92:
+ 775              		.align	2
+ 776              	.L91:
+ 777 0038 00200240 		.word	1073881088
+ 778              		.cfi_endproc
+ 779              	.LFE64:
+ 781              		.section	.text.FLASH_EraseOptionBytes,"ax",%progbits
+ 782              		.align	1
+ 783              		.global	FLASH_EraseOptionBytes
+ 784              		.syntax unified
+ 785              		.thumb
+ 786              		.thumb_func
+ 787              		.fpu softvfp
+ 789              	FLASH_EraseOptionBytes:
+ 790              	.LFB66:
+ 617:stm_lib/src/stm32f10x_flash.c ****   uint16_t rdptmp = RDP_Key;
+ 791              		.loc 1 617 0
+ 792              		.cfi_startproc
+ARM GAS  /tmp/ccaWNXPb.s 			page 43
+
+
+ 793              		@ args = 0, pretend = 0, frame = 0
+ 794              		@ frame_needed = 0, uses_anonymous_args = 0
+ 795 0000 10B5     		push	{r4, lr}
+ 796              	.LCFI3:
+ 797              		.cfi_def_cfa_offset 8
+ 798              		.cfi_offset 4, -8
+ 799              		.cfi_offset 14, -4
+ 800              	.LVL46:
+ 623:stm_lib/src/stm32f10x_flash.c ****   {
+ 801              		.loc 1 623 0
+ 802 0002 FFF7FEFF 		bl	FLASH_GetReadOutProtectionStatus
+ 803              	.LVL47:
+ 804 0006 38B9     		cbnz	r0, .L97
+ 618:stm_lib/src/stm32f10x_flash.c **** 
+ 805              		.loc 1 618 0
+ 806 0008 A524     		movs	r4, #165
+ 807              	.L94:
+ 808              	.LVL48:
+ 629:stm_lib/src/stm32f10x_flash.c ****   if(status == FLASH_COMPLETE)
+ 809              		.loc 1 629 0
+ 810 000a 4FF43020 		mov	r0, #720896
+ 811 000e FFF7FEFF 		bl	FLASH_WaitForLastOperation
+ 812              	.LVL49:
+ 630:stm_lib/src/stm32f10x_flash.c ****   {
+ 813              		.loc 1 630 0
+ 814 0012 0428     		cmp	r0, #4
+ 815 0014 02D0     		beq	.L99
+ 816              	.L95:
+ 671:stm_lib/src/stm32f10x_flash.c **** 
+ 817              		.loc 1 671 0
+ 818 0016 10BD     		pop	{r4, pc}
+ 819              	.LVL50:
+ 820              	.L97:
+ 625:stm_lib/src/stm32f10x_flash.c ****   }
+ 821              		.loc 1 625 0
+ 822 0018 0024     		movs	r4, #0
+ 823 001a F6E7     		b	.L94
+ 824              	.LVL51:
+ 825              	.L99:
+ 633:stm_lib/src/stm32f10x_flash.c ****     FLASH->OPTKEYR = FLASH_KEY2;
+ 826              		.loc 1 633 0
+ 827 001c 1C4B     		ldr	r3, .L101
+ 828 001e 1D4A     		ldr	r2, .L101+4
+ 829 0020 9A60     		str	r2, [r3, #8]
+ 634:stm_lib/src/stm32f10x_flash.c ****     
+ 830              		.loc 1 634 0
+ 831 0022 02F18832 		add	r2, r2, #-2004318072
+ 832 0026 9A60     		str	r2, [r3, #8]
+ 637:stm_lib/src/stm32f10x_flash.c ****     FLASH->CR |= CR_STRT_Set;
+ 833              		.loc 1 637 0
+ 834 0028 1A69     		ldr	r2, [r3, #16]
+ 835 002a 42F02002 		orr	r2, r2, #32
+ 836 002e 1A61     		str	r2, [r3, #16]
+ 638:stm_lib/src/stm32f10x_flash.c ****     /* Wait for last operation to be completed */
+ 837              		.loc 1 638 0
+ 838 0030 1A69     		ldr	r2, [r3, #16]
+ 839 0032 42F04002 		orr	r2, r2, #64
+ARM GAS  /tmp/ccaWNXPb.s 			page 44
+
+
+ 840 0036 1A61     		str	r2, [r3, #16]
+ 640:stm_lib/src/stm32f10x_flash.c ****     
+ 841              		.loc 1 640 0
+ 842 0038 4FF43020 		mov	r0, #720896
+ 843              	.LVL52:
+ 844 003c FFF7FEFF 		bl	FLASH_WaitForLastOperation
+ 845              	.LVL53:
+ 642:stm_lib/src/stm32f10x_flash.c ****     {
+ 846              		.loc 1 642 0
+ 847 0040 0428     		cmp	r0, #4
+ 848 0042 09D0     		beq	.L100
+ 662:stm_lib/src/stm32f10x_flash.c ****       {
+ 849              		.loc 1 662 0
+ 850 0044 0528     		cmp	r0, #5
+ 851 0046 E6D0     		beq	.L95
+ 665:stm_lib/src/stm32f10x_flash.c ****       }
+ 852              		.loc 1 665 0
+ 853 0048 114A     		ldr	r2, .L101
+ 854 004a 1369     		ldr	r3, [r2, #16]
+ 855 004c 23F01003 		bic	r3, r3, #16
+ 856 0050 DB04     		lsls	r3, r3, #19
+ 857 0052 DB0C     		lsrs	r3, r3, #19
+ 858 0054 1361     		str	r3, [r2, #16]
+ 859 0056 DEE7     		b	.L95
+ 860              	.L100:
+ 645:stm_lib/src/stm32f10x_flash.c ****        
+ 861              		.loc 1 645 0
+ 862 0058 0D4B     		ldr	r3, .L101
+ 863 005a 1A69     		ldr	r2, [r3, #16]
+ 864 005c 22F02002 		bic	r2, r2, #32
+ 865 0060 D204     		lsls	r2, r2, #19
+ 866 0062 D20C     		lsrs	r2, r2, #19
+ 867 0064 1A61     		str	r2, [r3, #16]
+ 648:stm_lib/src/stm32f10x_flash.c ****       /* Restore the last read protection Option Byte value */
+ 868              		.loc 1 648 0
+ 869 0066 1A69     		ldr	r2, [r3, #16]
+ 870 0068 42F01002 		orr	r2, r2, #16
+ 871 006c 1A61     		str	r2, [r3, #16]
+ 650:stm_lib/src/stm32f10x_flash.c ****       /* Wait for last operation to be completed */
+ 872              		.loc 1 650 0
+ 873 006e 0A4B     		ldr	r3, .L101+8
+ 874 0070 1C80     		strh	r4, [r3]	@ movhi
+ 652:stm_lib/src/stm32f10x_flash.c ****  
+ 875              		.loc 1 652 0
+ 876 0072 4FF40050 		mov	r0, #8192
+ 877              	.LVL54:
+ 878 0076 FFF7FEFF 		bl	FLASH_WaitForLastOperation
+ 879              	.LVL55:
+ 654:stm_lib/src/stm32f10x_flash.c ****       {
+ 880              		.loc 1 654 0
+ 881 007a 0528     		cmp	r0, #5
+ 882 007c CBD0     		beq	.L95
+ 657:stm_lib/src/stm32f10x_flash.c ****       }
+ 883              		.loc 1 657 0
+ 884 007e 044A     		ldr	r2, .L101
+ 885 0080 1369     		ldr	r3, [r2, #16]
+ 886 0082 23F01003 		bic	r3, r3, #16
+ARM GAS  /tmp/ccaWNXPb.s 			page 45
+
+
+ 887 0086 DB04     		lsls	r3, r3, #19
+ 888 0088 DB0C     		lsrs	r3, r3, #19
+ 889 008a 1361     		str	r3, [r2, #16]
+ 890 008c 10BD     		pop	{r4, pc}
+ 891              	.LVL56:
+ 892              	.L102:
+ 893 008e 00BF     		.align	2
+ 894              	.L101:
+ 895 0090 00200240 		.word	1073881088
+ 896 0094 23016745 		.word	1164378403
+ 897 0098 00F8FF1F 		.word	536868864
+ 898              		.cfi_endproc
+ 899              	.LFE66:
+ 901              		.section	.text.FLASH_ProgramWord,"ax",%progbits
+ 902              		.align	1
+ 903              		.global	FLASH_ProgramWord
+ 904              		.syntax unified
+ 905              		.thumb
+ 906              		.thumb_func
+ 907              		.fpu softvfp
+ 909              	FLASH_ProgramWord:
+ 910              	.LFB67:
+ 682:stm_lib/src/stm32f10x_flash.c ****   FLASH_Status status = FLASH_COMPLETE;
+ 911              		.loc 1 682 0
+ 912              		.cfi_startproc
+ 913              		@ args = 0, pretend = 0, frame = 8
+ 914              		@ frame_needed = 0, uses_anonymous_args = 0
+ 915              	.LVL57:
+ 916 0000 30B5     		push	{r4, r5, lr}
+ 917              	.LCFI4:
+ 918              		.cfi_def_cfa_offset 12
+ 919              		.cfi_offset 4, -12
+ 920              		.cfi_offset 5, -8
+ 921              		.cfi_offset 14, -4
+ 922 0002 83B0     		sub	sp, sp, #12
+ 923              	.LCFI5:
+ 924              		.cfi_def_cfa_offset 24
+ 925 0004 0546     		mov	r5, r0
+ 926 0006 0C46     		mov	r4, r1
+ 927              	.LVL58:
+ 684:stm_lib/src/stm32f10x_flash.c **** 
+ 928              		.loc 1 684 0
+ 929 0008 0023     		movs	r3, #0
+ 930 000a 0193     		str	r3, [sp, #4]
+ 812:stm_lib/src/stm32f10x_flash.c ****   
+ 931              		.loc 1 812 0
+ 932 000c 4FF40050 		mov	r0, #8192
+ 933              	.LVL59:
+ 934 0010 FFF7FEFF 		bl	FLASH_WaitForLastOperation
+ 935              	.LVL60:
+ 814:stm_lib/src/stm32f10x_flash.c ****   {
+ 936              		.loc 1 814 0
+ 937 0014 0428     		cmp	r0, #4
+ 938 0016 01D0     		beq	.L107
+ 939              	.LVL61:
+ 940              	.L104:
+ 848:stm_lib/src/stm32f10x_flash.c **** 
+ARM GAS  /tmp/ccaWNXPb.s 			page 46
+
+
+ 941              		.loc 1 848 0
+ 942 0018 03B0     		add	sp, sp, #12
+ 943              	.LCFI6:
+ 944              		.cfi_remember_state
+ 945              		.cfi_def_cfa_offset 12
+ 946              		@ sp needed
+ 947 001a 30BD     		pop	{r4, r5, pc}
+ 948              	.LVL62:
+ 949              	.L107:
+ 950              	.LCFI7:
+ 951              		.cfi_restore_state
+ 818:stm_lib/src/stm32f10x_flash.c ****   
+ 952              		.loc 1 818 0
+ 953 001c 124A     		ldr	r2, .L109
+ 954 001e 1369     		ldr	r3, [r2, #16]
+ 955 0020 43F00103 		orr	r3, r3, #1
+ 956 0024 1361     		str	r3, [r2, #16]
+ 820:stm_lib/src/stm32f10x_flash.c ****     /* Wait for last operation to be completed */
+ 957              		.loc 1 820 0
+ 958 0026 A3B2     		uxth	r3, r4
+ 959 0028 2B80     		strh	r3, [r5]	@ movhi
+ 822:stm_lib/src/stm32f10x_flash.c ****  
+ 960              		.loc 1 822 0
+ 961 002a 4FF40050 		mov	r0, #8192
+ 962              	.LVL63:
+ 963 002e FFF7FEFF 		bl	FLASH_WaitForLastOperation
+ 964              	.LVL64:
+ 824:stm_lib/src/stm32f10x_flash.c ****     {
+ 965              		.loc 1 824 0
+ 966 0032 0428     		cmp	r0, #4
+ 967 0034 07D0     		beq	.L108
+ 841:stm_lib/src/stm32f10x_flash.c ****     }
+ 968              		.loc 1 841 0
+ 969 0036 0C4A     		ldr	r2, .L109
+ 970 0038 1369     		ldr	r3, [r2, #16]
+ 971 003a 23F00103 		bic	r3, r3, #1
+ 972 003e DB04     		lsls	r3, r3, #19
+ 973 0040 DB0C     		lsrs	r3, r3, #19
+ 974 0042 1361     		str	r3, [r2, #16]
+ 975 0044 E8E7     		b	.L104
+ 976              	.L108:
+ 828:stm_lib/src/stm32f10x_flash.c **** 
+ 977              		.loc 1 828 0
+ 978 0046 0235     		adds	r5, r5, #2
+ 979              	.LVL65:
+ 980 0048 0195     		str	r5, [sp, #4]
+ 830:stm_lib/src/stm32f10x_flash.c ****     
+ 981              		.loc 1 830 0
+ 982 004a 019B     		ldr	r3, [sp, #4]
+ 983 004c 240C     		lsrs	r4, r4, #16
+ 984              	.LVL66:
+ 985 004e 1C80     		strh	r4, [r3]	@ movhi
+ 833:stm_lib/src/stm32f10x_flash.c ****         
+ 986              		.loc 1 833 0
+ 987 0050 4FF40050 		mov	r0, #8192
+ 988              	.LVL67:
+ 989 0054 FFF7FEFF 		bl	FLASH_WaitForLastOperation
+ARM GAS  /tmp/ccaWNXPb.s 			page 47
+
+
+ 990              	.LVL68:
+ 836:stm_lib/src/stm32f10x_flash.c ****     }
+ 991              		.loc 1 836 0
+ 992 0058 034A     		ldr	r2, .L109
+ 993 005a 1369     		ldr	r3, [r2, #16]
+ 994 005c 23F00103 		bic	r3, r3, #1
+ 995 0060 DB04     		lsls	r3, r3, #19
+ 996 0062 DB0C     		lsrs	r3, r3, #19
+ 997 0064 1361     		str	r3, [r2, #16]
+ 998 0066 D7E7     		b	.L104
+ 999              	.L110:
+ 1000              		.align	2
+ 1001              	.L109:
+ 1002 0068 00200240 		.word	1073881088
+ 1003              		.cfi_endproc
+ 1004              	.LFE67:
+ 1006              		.section	.text.FLASH_ProgramHalfWord,"ax",%progbits
+ 1007              		.align	1
+ 1008              		.global	FLASH_ProgramHalfWord
+ 1009              		.syntax unified
+ 1010              		.thumb
+ 1011              		.thumb_func
+ 1012              		.fpu softvfp
+ 1014              	FLASH_ProgramHalfWord:
+ 1015              	.LFB68:
+ 859:stm_lib/src/stm32f10x_flash.c ****   FLASH_Status status = FLASH_COMPLETE;
+ 1016              		.loc 1 859 0
+ 1017              		.cfi_startproc
+ 1018              		@ args = 0, pretend = 0, frame = 0
+ 1019              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1020              	.LVL69:
+ 1021 0000 70B5     		push	{r4, r5, r6, lr}
+ 1022              	.LCFI8:
+ 1023              		.cfi_def_cfa_offset 16
+ 1024              		.cfi_offset 4, -16
+ 1025              		.cfi_offset 5, -12
+ 1026              		.cfi_offset 6, -8
+ 1027              		.cfi_offset 14, -4
+ 1028 0002 0446     		mov	r4, r0
+ 1029 0004 0D46     		mov	r5, r1
+ 1030              	.LVL70:
+ 900:stm_lib/src/stm32f10x_flash.c ****   
+ 1031              		.loc 1 900 0
+ 1032 0006 4FF40050 		mov	r0, #8192
+ 1033              	.LVL71:
+ 1034 000a FFF7FEFF 		bl	FLASH_WaitForLastOperation
+ 1035              	.LVL72:
+ 902:stm_lib/src/stm32f10x_flash.c ****   {
+ 1036              		.loc 1 902 0
+ 1037 000e 0428     		cmp	r0, #4
+ 1038 0010 00D0     		beq	.L114
+ 1039              	.L112:
+ 918:stm_lib/src/stm32f10x_flash.c **** 
+ 1040              		.loc 1 918 0
+ 1041 0012 70BD     		pop	{r4, r5, r6, pc}
+ 1042              	.LVL73:
+ 1043              	.L114:
+ARM GAS  /tmp/ccaWNXPb.s 			page 48
+
+
+ 905:stm_lib/src/stm32f10x_flash.c ****   
+ 1044              		.loc 1 905 0
+ 1045 0014 084E     		ldr	r6, .L115
+ 1046 0016 3369     		ldr	r3, [r6, #16]
+ 1047 0018 43F00103 		orr	r3, r3, #1
+ 1048 001c 3361     		str	r3, [r6, #16]
+ 907:stm_lib/src/stm32f10x_flash.c ****     /* Wait for last operation to be completed */
+ 1049              		.loc 1 907 0
+ 1050 001e 2580     		strh	r5, [r4]	@ movhi
+ 909:stm_lib/src/stm32f10x_flash.c ****     
+ 1051              		.loc 1 909 0
+ 1052 0020 4FF40050 		mov	r0, #8192
+ 1053              	.LVL74:
+ 1054 0024 FFF7FEFF 		bl	FLASH_WaitForLastOperation
+ 1055              	.LVL75:
+ 912:stm_lib/src/stm32f10x_flash.c ****   } 
+ 1056              		.loc 1 912 0
+ 1057 0028 3369     		ldr	r3, [r6, #16]
+ 1058 002a 23F00103 		bic	r3, r3, #1
+ 1059 002e DB04     		lsls	r3, r3, #19
+ 1060 0030 DB0C     		lsrs	r3, r3, #19
+ 1061 0032 3361     		str	r3, [r6, #16]
+ 1062 0034 EDE7     		b	.L112
+ 1063              	.L116:
+ 1064 0036 00BF     		.align	2
+ 1065              	.L115:
+ 1066 0038 00200240 		.word	1073881088
+ 1067              		.cfi_endproc
+ 1068              	.LFE68:
+ 1070              		.section	.text.FLASH_ProgramOptionByteData,"ax",%progbits
+ 1071              		.align	1
+ 1072              		.global	FLASH_ProgramOptionByteData
+ 1073              		.syntax unified
+ 1074              		.thumb
+ 1075              		.thumb_func
+ 1076              		.fpu softvfp
+ 1078              	FLASH_ProgramOptionByteData:
+ 1079              	.LFB69:
+ 930:stm_lib/src/stm32f10x_flash.c ****   FLASH_Status status = FLASH_COMPLETE;
+ 1080              		.loc 1 930 0
+ 1081              		.cfi_startproc
+ 1082              		@ args = 0, pretend = 0, frame = 0
+ 1083              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1084              	.LVL76:
+ 1085 0000 38B5     		push	{r3, r4, r5, lr}
+ 1086              	.LCFI9:
+ 1087              		.cfi_def_cfa_offset 16
+ 1088              		.cfi_offset 3, -16
+ 1089              		.cfi_offset 4, -12
+ 1090              		.cfi_offset 5, -8
+ 1091              		.cfi_offset 14, -4
+ 1092 0002 0546     		mov	r5, r0
+ 1093 0004 0C46     		mov	r4, r1
+ 1094              	.LVL77:
+ 934:stm_lib/src/stm32f10x_flash.c **** 
+ 1095              		.loc 1 934 0
+ 1096 0006 4FF40050 		mov	r0, #8192
+ARM GAS  /tmp/ccaWNXPb.s 			page 49
+
+
+ 1097              	.LVL78:
+ 1098 000a FFF7FEFF 		bl	FLASH_WaitForLastOperation
+ 1099              	.LVL79:
+ 936:stm_lib/src/stm32f10x_flash.c ****   {
+ 1100              		.loc 1 936 0
+ 1101 000e 0428     		cmp	r0, #4
+ 1102 0010 00D0     		beq	.L120
+ 1103              	.L118:
+ 955:stm_lib/src/stm32f10x_flash.c **** 
+ 1104              		.loc 1 955 0
+ 1105 0012 38BD     		pop	{r3, r4, r5, pc}
+ 1106              	.LVL80:
+ 1107              	.L120:
+ 939:stm_lib/src/stm32f10x_flash.c ****     FLASH->OPTKEYR = FLASH_KEY2;
+ 1108              		.loc 1 939 0
+ 1109 0014 0C4B     		ldr	r3, .L121
+ 1110 0016 0D4A     		ldr	r2, .L121+4
+ 1111 0018 9A60     		str	r2, [r3, #8]
+ 940:stm_lib/src/stm32f10x_flash.c ****     /* Enables the Option Bytes Programming operation */
+ 1112              		.loc 1 940 0
+ 1113 001a 02F18832 		add	r2, r2, #-2004318072
+ 1114 001e 9A60     		str	r2, [r3, #8]
+ 942:stm_lib/src/stm32f10x_flash.c ****     *(__IO uint16_t*)Address = Data;
+ 1115              		.loc 1 942 0
+ 1116 0020 1A69     		ldr	r2, [r3, #16]
+ 1117 0022 42F01002 		orr	r2, r2, #16
+ 1118 0026 1A61     		str	r2, [r3, #16]
+ 943:stm_lib/src/stm32f10x_flash.c ****     
+ 1119              		.loc 1 943 0
+ 1120 0028 A4B2     		uxth	r4, r4
+ 1121 002a 2C80     		strh	r4, [r5]	@ movhi
+ 946:stm_lib/src/stm32f10x_flash.c ****     if(status != FLASH_TIMEOUT)
+ 1122              		.loc 1 946 0
+ 1123 002c 4FF40050 		mov	r0, #8192
+ 1124              	.LVL81:
+ 1125 0030 FFF7FEFF 		bl	FLASH_WaitForLastOperation
+ 1126              	.LVL82:
+ 947:stm_lib/src/stm32f10x_flash.c ****     {
+ 1127              		.loc 1 947 0
+ 1128 0034 0528     		cmp	r0, #5
+ 1129 0036 ECD0     		beq	.L118
+ 950:stm_lib/src/stm32f10x_flash.c ****     }
+ 1130              		.loc 1 950 0
+ 1131 0038 034A     		ldr	r2, .L121
+ 1132 003a 1369     		ldr	r3, [r2, #16]
+ 1133 003c 23F01003 		bic	r3, r3, #16
+ 1134 0040 DB04     		lsls	r3, r3, #19
+ 1135 0042 DB0C     		lsrs	r3, r3, #19
+ 1136 0044 1361     		str	r3, [r2, #16]
+ 1137 0046 E4E7     		b	.L118
+ 1138              	.L122:
+ 1139              		.align	2
+ 1140              	.L121:
+ 1141 0048 00200240 		.word	1073881088
+ 1142 004c 23016745 		.word	1164378403
+ 1143              		.cfi_endproc
+ 1144              	.LFE69:
+ARM GAS  /tmp/ccaWNXPb.s 			page 50
+
+
+ 1146              		.section	.text.FLASH_EnableWriteProtection,"ax",%progbits
+ 1147              		.align	1
+ 1148              		.global	FLASH_EnableWriteProtection
+ 1149              		.syntax unified
+ 1150              		.thumb
+ 1151              		.thumb_func
+ 1152              		.fpu softvfp
+ 1154              	FLASH_EnableWriteProtection:
+ 1155              	.LFB70:
+ 976:stm_lib/src/stm32f10x_flash.c ****   uint16_t WRP0_Data = 0xFFFF, WRP1_Data = 0xFFFF, WRP2_Data = 0xFFFF, WRP3_Data = 0xFFFF;
+ 1156              		.loc 1 976 0
+ 1157              		.cfi_startproc
+ 1158              		@ args = 0, pretend = 0, frame = 0
+ 1159              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1160              	.LVL83:
+ 1161 0000 F8B5     		push	{r3, r4, r5, r6, r7, lr}
+ 1162              	.LCFI10:
+ 1163              		.cfi_def_cfa_offset 24
+ 1164              		.cfi_offset 3, -24
+ 1165              		.cfi_offset 4, -20
+ 1166              		.cfi_offset 5, -16
+ 1167              		.cfi_offset 6, -12
+ 1168              		.cfi_offset 7, -8
+ 1169              		.cfi_offset 14, -4
+ 1170              	.LVL84:
+ 984:stm_lib/src/stm32f10x_flash.c ****   WRP0_Data = (uint16_t)(FLASH_Pages & WRP0_Mask);
+ 1171              		.loc 1 984 0
+ 1172 0002 C043     		mvns	r0, r0
+ 1173              	.LVL85:
+ 985:stm_lib/src/stm32f10x_flash.c ****   WRP1_Data = (uint16_t)((FLASH_Pages & WRP1_Mask) >> 8);
+ 1174              		.loc 1 985 0
+ 1175 0004 C5B2     		uxtb	r5, r0
+ 1176              	.LVL86:
+ 986:stm_lib/src/stm32f10x_flash.c ****   WRP2_Data = (uint16_t)((FLASH_Pages & WRP2_Mask) >> 16);
+ 1177              		.loc 1 986 0
+ 1178 0006 C0F30727 		ubfx	r7, r0, #8, #8
+ 1179              	.LVL87:
+ 987:stm_lib/src/stm32f10x_flash.c ****   WRP3_Data = (uint16_t)((FLASH_Pages & WRP3_Mask) >> 24);
+ 1180              		.loc 1 987 0
+ 1181 000a C0F30746 		ubfx	r6, r0, #16, #8
+ 1182              	.LVL88:
+ 988:stm_lib/src/stm32f10x_flash.c ****   
+ 1183              		.loc 1 988 0
+ 1184 000e 040E     		lsrs	r4, r0, #24
+ 1185              	.LVL89:
+ 991:stm_lib/src/stm32f10x_flash.c ****   
+ 1186              		.loc 1 991 0
+ 1187 0010 4FF40050 		mov	r0, #8192
+ 1188              	.LVL90:
+ 1189 0014 FFF7FEFF 		bl	FLASH_WaitForLastOperation
+ 1190              	.LVL91:
+ 993:stm_lib/src/stm32f10x_flash.c ****   {
+ 1191              		.loc 1 993 0
+ 1192 0018 0428     		cmp	r0, #4
+ 1193 001a 00D0     		beq	.L130
+ 1194              	.L124:
+1037:stm_lib/src/stm32f10x_flash.c **** 
+ARM GAS  /tmp/ccaWNXPb.s 			page 51
+
+
+ 1195              		.loc 1 1037 0
+ 1196 001c F8BD     		pop	{r3, r4, r5, r6, r7, pc}
+ 1197              	.LVL92:
+ 1198              	.L130:
+ 996:stm_lib/src/stm32f10x_flash.c ****     FLASH->OPTKEYR = FLASH_KEY2;
+ 1199              		.loc 1 996 0
+ 1200 001e 1E4B     		ldr	r3, .L134
+ 1201 0020 1E4A     		ldr	r2, .L134+4
+ 1202 0022 9A60     		str	r2, [r3, #8]
+ 997:stm_lib/src/stm32f10x_flash.c ****     FLASH->CR |= CR_OPTPG_Set;
+ 1203              		.loc 1 997 0
+ 1204 0024 02F18832 		add	r2, r2, #-2004318072
+ 1205 0028 9A60     		str	r2, [r3, #8]
+ 998:stm_lib/src/stm32f10x_flash.c ****     if(WRP0_Data != 0xFF)
+ 1206              		.loc 1 998 0
+ 1207 002a 1A69     		ldr	r2, [r3, #16]
+ 1208 002c 42F01002 		orr	r2, r2, #16
+ 1209 0030 1A61     		str	r2, [r3, #16]
+ 999:stm_lib/src/stm32f10x_flash.c ****     {
+ 1210              		.loc 1 999 0
+ 1211 0032 FF2D     		cmp	r5, #255
+ 1212 0034 05D0     		beq	.L125
+1001:stm_lib/src/stm32f10x_flash.c ****       
+ 1213              		.loc 1 1001 0
+ 1214 0036 1A4B     		ldr	r3, .L134+8
+ 1215 0038 1D81     		strh	r5, [r3, #8]	@ movhi
+1004:stm_lib/src/stm32f10x_flash.c ****     }
+ 1216              		.loc 1 1004 0
+ 1217 003a 4FF40050 		mov	r0, #8192
+ 1218              	.LVL93:
+ 1219 003e FFF7FEFF 		bl	FLASH_WaitForLastOperation
+ 1220              	.LVL94:
+ 1221              	.L125:
+1006:stm_lib/src/stm32f10x_flash.c ****     {
+ 1222              		.loc 1 1006 0
+ 1223 0042 0428     		cmp	r0, #4
+ 1224 0044 0DD0     		beq	.L131
+ 1225              	.L126:
+1013:stm_lib/src/stm32f10x_flash.c ****     {
+ 1226              		.loc 1 1013 0
+ 1227 0046 0428     		cmp	r0, #4
+ 1228 0048 14D0     		beq	.L132
+ 1229              	.L127:
+1021:stm_lib/src/stm32f10x_flash.c ****     {
+ 1230              		.loc 1 1021 0
+ 1231 004a 0428     		cmp	r0, #4
+ 1232 004c 1BD0     		beq	.L133
+ 1233              	.L128:
+1029:stm_lib/src/stm32f10x_flash.c ****     {
+ 1234              		.loc 1 1029 0
+ 1235 004e 0528     		cmp	r0, #5
+ 1236 0050 E4D0     		beq	.L124
+1032:stm_lib/src/stm32f10x_flash.c ****     }
+ 1237              		.loc 1 1032 0
+ 1238 0052 114A     		ldr	r2, .L134
+ 1239 0054 1369     		ldr	r3, [r2, #16]
+ 1240 0056 23F01003 		bic	r3, r3, #16
+ARM GAS  /tmp/ccaWNXPb.s 			page 52
+
+
+ 1241 005a DB04     		lsls	r3, r3, #19
+ 1242 005c DB0C     		lsrs	r3, r3, #19
+ 1243 005e 1361     		str	r3, [r2, #16]
+ 1244 0060 DCE7     		b	.L124
+ 1245              	.L131:
+1006:stm_lib/src/stm32f10x_flash.c ****     {
+ 1246              		.loc 1 1006 0 discriminator 1
+ 1247 0062 FF2F     		cmp	r7, #255
+ 1248 0064 EFD0     		beq	.L126
+1008:stm_lib/src/stm32f10x_flash.c ****       
+ 1249              		.loc 1 1008 0
+ 1250 0066 0E4B     		ldr	r3, .L134+8
+ 1251 0068 5F81     		strh	r7, [r3, #10]	@ movhi
+1011:stm_lib/src/stm32f10x_flash.c ****     }
+ 1252              		.loc 1 1011 0
+ 1253 006a 4FF40050 		mov	r0, #8192
+ 1254              	.LVL95:
+ 1255 006e FFF7FEFF 		bl	FLASH_WaitForLastOperation
+ 1256              	.LVL96:
+ 1257 0072 E8E7     		b	.L126
+ 1258              	.L132:
+1013:stm_lib/src/stm32f10x_flash.c ****     {
+ 1259              		.loc 1 1013 0 discriminator 1
+ 1260 0074 FF2E     		cmp	r6, #255
+ 1261 0076 E8D0     		beq	.L127
+1015:stm_lib/src/stm32f10x_flash.c ****       
+ 1262              		.loc 1 1015 0
+ 1263 0078 094B     		ldr	r3, .L134+8
+ 1264 007a 9E81     		strh	r6, [r3, #12]	@ movhi
+1018:stm_lib/src/stm32f10x_flash.c ****     }
+ 1265              		.loc 1 1018 0
+ 1266 007c 4FF40050 		mov	r0, #8192
+ 1267              	.LVL97:
+ 1268 0080 FFF7FEFF 		bl	FLASH_WaitForLastOperation
+ 1269              	.LVL98:
+ 1270 0084 E1E7     		b	.L127
+ 1271              	.L133:
+1021:stm_lib/src/stm32f10x_flash.c ****     {
+ 1272              		.loc 1 1021 0 discriminator 1
+ 1273 0086 FF2C     		cmp	r4, #255
+ 1274 0088 E1D0     		beq	.L128
+1023:stm_lib/src/stm32f10x_flash.c ****      
+ 1275              		.loc 1 1023 0
+ 1276 008a 054B     		ldr	r3, .L134+8
+ 1277 008c DC81     		strh	r4, [r3, #14]	@ movhi
+1026:stm_lib/src/stm32f10x_flash.c ****     }
+ 1278              		.loc 1 1026 0
+ 1279 008e 4FF40050 		mov	r0, #8192
+ 1280              	.LVL99:
+ 1281 0092 FFF7FEFF 		bl	FLASH_WaitForLastOperation
+ 1282              	.LVL100:
+ 1283 0096 DAE7     		b	.L128
+ 1284              	.L135:
+ 1285              		.align	2
+ 1286              	.L134:
+ 1287 0098 00200240 		.word	1073881088
+ 1288 009c 23016745 		.word	1164378403
+ARM GAS  /tmp/ccaWNXPb.s 			page 53
+
+
+ 1289 00a0 00F8FF1F 		.word	536868864
+ 1290              		.cfi_endproc
+ 1291              	.LFE70:
+ 1293              		.section	.text.FLASH_ReadOutProtection,"ax",%progbits
+ 1294              		.align	1
+ 1295              		.global	FLASH_ReadOutProtection
+ 1296              		.syntax unified
+ 1297              		.thumb
+ 1298              		.thumb_func
+ 1299              		.fpu softvfp
+ 1301              	FLASH_ReadOutProtection:
+ 1302              	.LFB71:
+1050:stm_lib/src/stm32f10x_flash.c ****   FLASH_Status status = FLASH_COMPLETE;
+ 1303              		.loc 1 1050 0
+ 1304              		.cfi_startproc
+ 1305              		@ args = 0, pretend = 0, frame = 0
+ 1306              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1307              	.LVL101:
+ 1308 0000 10B5     		push	{r4, lr}
+ 1309              	.LCFI11:
+ 1310              		.cfi_def_cfa_offset 8
+ 1311              		.cfi_offset 4, -8
+ 1312              		.cfi_offset 14, -4
+ 1313 0002 0446     		mov	r4, r0
+ 1314              	.LVL102:
+1054:stm_lib/src/stm32f10x_flash.c ****   if(status == FLASH_COMPLETE)
+ 1315              		.loc 1 1054 0
+ 1316 0004 4FF43020 		mov	r0, #720896
+ 1317              	.LVL103:
+ 1318 0008 FFF7FEFF 		bl	FLASH_WaitForLastOperation
+ 1319              	.LVL104:
+1055:stm_lib/src/stm32f10x_flash.c ****   {
+ 1320              		.loc 1 1055 0
+ 1321 000c 0428     		cmp	r0, #4
+ 1322 000e 00D0     		beq	.L142
+ 1323              	.L137:
+1098:stm_lib/src/stm32f10x_flash.c **** 
+ 1324              		.loc 1 1098 0
+ 1325 0010 10BD     		pop	{r4, pc}
+ 1326              	.L142:
+1058:stm_lib/src/stm32f10x_flash.c ****     FLASH->OPTKEYR = FLASH_KEY2;
+ 1327              		.loc 1 1058 0
+ 1328 0012 1F4B     		ldr	r3, .L144
+ 1329 0014 1F4A     		ldr	r2, .L144+4
+ 1330 0016 9A60     		str	r2, [r3, #8]
+1059:stm_lib/src/stm32f10x_flash.c ****     FLASH->CR |= CR_OPTER_Set;
+ 1331              		.loc 1 1059 0
+ 1332 0018 02F18832 		add	r2, r2, #-2004318072
+ 1333 001c 9A60     		str	r2, [r3, #8]
+1060:stm_lib/src/stm32f10x_flash.c ****     FLASH->CR |= CR_STRT_Set;
+ 1334              		.loc 1 1060 0
+ 1335 001e 1A69     		ldr	r2, [r3, #16]
+ 1336 0020 42F02002 		orr	r2, r2, #32
+ 1337 0024 1A61     		str	r2, [r3, #16]
+1061:stm_lib/src/stm32f10x_flash.c ****     /* Wait for last operation to be completed */
+ 1338              		.loc 1 1061 0
+ 1339 0026 1A69     		ldr	r2, [r3, #16]
+ARM GAS  /tmp/ccaWNXPb.s 			page 54
+
+
+ 1340 0028 42F04002 		orr	r2, r2, #64
+ 1341 002c 1A61     		str	r2, [r3, #16]
+1063:stm_lib/src/stm32f10x_flash.c ****     if(status == FLASH_COMPLETE)
+ 1342              		.loc 1 1063 0
+ 1343 002e 4FF43020 		mov	r0, #720896
+ 1344              	.LVL105:
+ 1345 0032 FFF7FEFF 		bl	FLASH_WaitForLastOperation
+ 1346              	.LVL106:
+1064:stm_lib/src/stm32f10x_flash.c ****     {
+ 1347              		.loc 1 1064 0
+ 1348 0036 0428     		cmp	r0, #4
+ 1349 0038 09D0     		beq	.L143
+1089:stm_lib/src/stm32f10x_flash.c ****       {
+ 1350              		.loc 1 1089 0
+ 1351 003a 0528     		cmp	r0, #5
+ 1352 003c E8D0     		beq	.L137
+1092:stm_lib/src/stm32f10x_flash.c ****       }
+ 1353              		.loc 1 1092 0
+ 1354 003e 144A     		ldr	r2, .L144
+ 1355 0040 1369     		ldr	r3, [r2, #16]
+ 1356 0042 23F02003 		bic	r3, r3, #32
+ 1357 0046 DB04     		lsls	r3, r3, #19
+ 1358 0048 DB0C     		lsrs	r3, r3, #19
+ 1359 004a 1361     		str	r3, [r2, #16]
+ 1360 004c E0E7     		b	.L137
+ 1361              	.L143:
+1067:stm_lib/src/stm32f10x_flash.c ****       /* Enable the Option Bytes Programming operation */
+ 1362              		.loc 1 1067 0
+ 1363 004e 104B     		ldr	r3, .L144
+ 1364 0050 1A69     		ldr	r2, [r3, #16]
+ 1365 0052 22F02002 		bic	r2, r2, #32
+ 1366 0056 D204     		lsls	r2, r2, #19
+ 1367 0058 D20C     		lsrs	r2, r2, #19
+ 1368 005a 1A61     		str	r2, [r3, #16]
+1069:stm_lib/src/stm32f10x_flash.c ****       if(NewState != DISABLE)
+ 1369              		.loc 1 1069 0
+ 1370 005c 1A69     		ldr	r2, [r3, #16]
+ 1371 005e 42F01002 		orr	r2, r2, #16
+ 1372 0062 1A61     		str	r2, [r3, #16]
+1070:stm_lib/src/stm32f10x_flash.c ****       {
+ 1373              		.loc 1 1070 0
+ 1374 0064 84B1     		cbz	r4, .L139
+1072:stm_lib/src/stm32f10x_flash.c ****       }
+ 1375              		.loc 1 1072 0
+ 1376 0066 0022     		movs	r2, #0
+ 1377 0068 0B4B     		ldr	r3, .L144+8
+ 1378 006a 1A80     		strh	r2, [r3]	@ movhi
+ 1379              	.L140:
+1079:stm_lib/src/stm32f10x_flash.c ****     
+ 1380              		.loc 1 1079 0
+ 1381 006c 4FF43020 		mov	r0, #720896
+ 1382              	.LVL107:
+ 1383 0070 FFF7FEFF 		bl	FLASH_WaitForLastOperation
+ 1384              	.LVL108:
+1081:stm_lib/src/stm32f10x_flash.c ****       {
+ 1385              		.loc 1 1081 0
+ 1386 0074 0528     		cmp	r0, #5
+ARM GAS  /tmp/ccaWNXPb.s 			page 55
+
+
+ 1387 0076 CBD0     		beq	.L137
+1084:stm_lib/src/stm32f10x_flash.c ****       }
+ 1388              		.loc 1 1084 0
+ 1389 0078 054A     		ldr	r2, .L144
+ 1390 007a 1369     		ldr	r3, [r2, #16]
+ 1391 007c 23F01003 		bic	r3, r3, #16
+ 1392 0080 DB04     		lsls	r3, r3, #19
+ 1393 0082 DB0C     		lsrs	r3, r3, #19
+ 1394 0084 1361     		str	r3, [r2, #16]
+ 1395 0086 10BD     		pop	{r4, pc}
+ 1396              	.L139:
+1076:stm_lib/src/stm32f10x_flash.c ****       }
+ 1397              		.loc 1 1076 0
+ 1398 0088 A522     		movs	r2, #165
+ 1399 008a 034B     		ldr	r3, .L144+8
+ 1400 008c 1A80     		strh	r2, [r3]	@ movhi
+ 1401 008e EDE7     		b	.L140
+ 1402              	.L145:
+ 1403              		.align	2
+ 1404              	.L144:
+ 1405 0090 00200240 		.word	1073881088
+ 1406 0094 23016745 		.word	1164378403
+ 1407 0098 00F8FF1F 		.word	536868864
+ 1408              		.cfi_endproc
+ 1409              	.LFE71:
+ 1411              		.section	.text.FLASH_UserOptionByteConfig,"ax",%progbits
+ 1412              		.align	1
+ 1413              		.global	FLASH_UserOptionByteConfig
+ 1414              		.syntax unified
+ 1415              		.thumb
+ 1416              		.thumb_func
+ 1417              		.fpu softvfp
+ 1419              	FLASH_UserOptionByteConfig:
+ 1420              	.LFB72:
+1119:stm_lib/src/stm32f10x_flash.c ****   FLASH_Status status = FLASH_COMPLETE; 
+ 1421              		.loc 1 1119 0
+ 1422              		.cfi_startproc
+ 1423              		@ args = 0, pretend = 0, frame = 0
+ 1424              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1425              	.LVL109:
+ 1426 0000 70B5     		push	{r4, r5, r6, lr}
+ 1427              	.LCFI12:
+ 1428              		.cfi_def_cfa_offset 16
+ 1429              		.cfi_offset 4, -16
+ 1430              		.cfi_offset 5, -12
+ 1431              		.cfi_offset 6, -8
+ 1432              		.cfi_offset 14, -4
+ 1433 0002 0446     		mov	r4, r0
+ 1434 0004 0E46     		mov	r6, r1
+ 1435 0006 1546     		mov	r5, r2
+ 1436              	.LVL110:
+1128:stm_lib/src/stm32f10x_flash.c ****   FLASH->OPTKEYR = FLASH_KEY2;
+ 1437              		.loc 1 1128 0
+ 1438 0008 124B     		ldr	r3, .L150
+ 1439 000a 1349     		ldr	r1, .L150+4
+ 1440              	.LVL111:
+ 1441 000c 9960     		str	r1, [r3, #8]
+ARM GAS  /tmp/ccaWNXPb.s 			page 56
+
+
+1129:stm_lib/src/stm32f10x_flash.c ****   
+ 1442              		.loc 1 1129 0
+ 1443 000e 01F18831 		add	r1, r1, #-2004318072
+ 1444 0012 9960     		str	r1, [r3, #8]
+1132:stm_lib/src/stm32f10x_flash.c ****   
+ 1445              		.loc 1 1132 0
+ 1446 0014 4FF40050 		mov	r0, #8192
+ 1447              	.LVL112:
+ 1448 0018 FFF7FEFF 		bl	FLASH_WaitForLastOperation
+ 1449              	.LVL113:
+1134:stm_lib/src/stm32f10x_flash.c ****   {  
+ 1450              		.loc 1 1134 0
+ 1451 001c 0428     		cmp	r0, #4
+ 1452 001e 00D0     		beq	.L149
+ 1453              	.L147:
+1151:stm_lib/src/stm32f10x_flash.c **** 
+ 1454              		.loc 1 1151 0
+ 1455 0020 70BD     		pop	{r4, r5, r6, pc}
+ 1456              	.L149:
+1137:stm_lib/src/stm32f10x_flash.c ****            
+ 1457              		.loc 1 1137 0
+ 1458 0022 0C4A     		ldr	r2, .L150
+ 1459 0024 1369     		ldr	r3, [r2, #16]
+ 1460 0026 43F01003 		orr	r3, r3, #16
+ 1461 002a 1361     		str	r3, [r2, #16]
+1139:stm_lib/src/stm32f10x_flash.c ****   
+ 1462              		.loc 1 1139 0
+ 1463 002c 3543     		orrs	r5, r5, r6
+ 1464 002e 2C43     		orrs	r4, r4, r5
+ 1465 0030 44F0F804 		orr	r4, r4, #248
+ 1466 0034 094B     		ldr	r3, .L150+8
+ 1467 0036 5C80     		strh	r4, [r3, #2]	@ movhi
+1142:stm_lib/src/stm32f10x_flash.c ****     if(status != FLASH_TIMEOUT)
+ 1468              		.loc 1 1142 0
+ 1469 0038 4FF40050 		mov	r0, #8192
+ 1470              	.LVL114:
+ 1471 003c FFF7FEFF 		bl	FLASH_WaitForLastOperation
+ 1472              	.LVL115:
+1143:stm_lib/src/stm32f10x_flash.c ****     {
+ 1473              		.loc 1 1143 0
+ 1474 0040 0528     		cmp	r0, #5
+ 1475 0042 EDD0     		beq	.L147
+1146:stm_lib/src/stm32f10x_flash.c ****     }
+ 1476              		.loc 1 1146 0
+ 1477 0044 034A     		ldr	r2, .L150
+ 1478 0046 1369     		ldr	r3, [r2, #16]
+ 1479 0048 23F01003 		bic	r3, r3, #16
+ 1480 004c DB04     		lsls	r3, r3, #19
+ 1481 004e DB0C     		lsrs	r3, r3, #19
+ 1482 0050 1361     		str	r3, [r2, #16]
+ 1483 0052 E5E7     		b	.L147
+ 1484              	.L151:
+ 1485              		.align	2
+ 1486              	.L150:
+ 1487 0054 00200240 		.word	1073881088
+ 1488 0058 23016745 		.word	1164378403
+ 1489 005c 00F8FF1F 		.word	536868864
+ARM GAS  /tmp/ccaWNXPb.s 			page 57
+
+
+ 1490              		.cfi_endproc
+ 1491              	.LFE72:
+ 1493              		.section	.text.FLASH_WaitForLastBank1Operation,"ax",%progbits
+ 1494              		.align	1
+ 1495              		.global	FLASH_WaitForLastBank1Operation
+ 1496              		.syntax unified
+ 1497              		.thumb
+ 1498              		.thumb_func
+ 1499              		.fpu softvfp
+ 1501              	FLASH_WaitForLastBank1Operation:
+ 1502              	.LFB83:
+1614:stm_lib/src/stm32f10x_flash.c **** 
+1615:stm_lib/src/stm32f10x_flash.c **** /**
+1616:stm_lib/src/stm32f10x_flash.c ****   * @brief  Waits for a Flash operation on Bank1 to complete or a TIMEOUT to occur.
+1617:stm_lib/src/stm32f10x_flash.c ****   * @note   This function can be used for all STM32F10x devices, 
+1618:stm_lib/src/stm32f10x_flash.c ****   *         it is equivalent to FLASH_WaitForLastOperation.
+1619:stm_lib/src/stm32f10x_flash.c ****   * @param  Timeout: FLASH programming Timeout
+1620:stm_lib/src/stm32f10x_flash.c ****   * @retval FLASH Status: The returned value can be: FLASH_ERROR_PG,
+1621:stm_lib/src/stm32f10x_flash.c ****   *         FLASH_ERROR_WRP, FLASH_COMPLETE or FLASH_TIMEOUT.
+1622:stm_lib/src/stm32f10x_flash.c ****   */
+1623:stm_lib/src/stm32f10x_flash.c **** FLASH_Status FLASH_WaitForLastBank1Operation(uint32_t Timeout)
+1624:stm_lib/src/stm32f10x_flash.c **** { 
+ 1503              		.loc 1 1624 0
+ 1504              		.cfi_startproc
+ 1505              		@ args = 0, pretend = 0, frame = 0
+ 1506              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1507              	.LVL116:
+ 1508 0000 10B5     		push	{r4, lr}
+ 1509              	.LCFI13:
+ 1510              		.cfi_def_cfa_offset 8
+ 1511              		.cfi_offset 4, -8
+ 1512              		.cfi_offset 14, -4
+ 1513 0002 0446     		mov	r4, r0
+ 1514              	.LVL117:
+1625:stm_lib/src/stm32f10x_flash.c ****   FLASH_Status status = FLASH_COMPLETE;
+1626:stm_lib/src/stm32f10x_flash.c ****    
+1627:stm_lib/src/stm32f10x_flash.c ****   /* Check for the Flash Status */
+1628:stm_lib/src/stm32f10x_flash.c ****   status = FLASH_GetBank1Status();
+ 1515              		.loc 1 1628 0
+ 1516 0004 FFF7FEFF 		bl	FLASH_GetBank1Status
+ 1517              	.LVL118:
+1629:stm_lib/src/stm32f10x_flash.c ****   /* Wait for a Flash operation to complete or a TIMEOUT to occur */
+1630:stm_lib/src/stm32f10x_flash.c ****   while((status == FLASH_FLAG_BANK1_BSY) && (Timeout != 0x00))
+ 1518              		.loc 1 1630 0
+ 1519 0008 02E0     		b	.L153
+ 1520              	.L155:
+1631:stm_lib/src/stm32f10x_flash.c ****   {
+1632:stm_lib/src/stm32f10x_flash.c ****     status = FLASH_GetBank1Status();
+ 1521              		.loc 1 1632 0
+ 1522 000a FFF7FEFF 		bl	FLASH_GetBank1Status
+ 1523              	.LVL119:
+1633:stm_lib/src/stm32f10x_flash.c ****     Timeout--;
+ 1524              		.loc 1 1633 0
+ 1525 000e 013C     		subs	r4, r4, #1
+ 1526              	.LVL120:
+ 1527              	.L153:
+1630:stm_lib/src/stm32f10x_flash.c ****   {
+ARM GAS  /tmp/ccaWNXPb.s 			page 58
+
+
+ 1528              		.loc 1 1630 0
+ 1529 0010 0128     		cmp	r0, #1
+ 1530 0012 01D1     		bne	.L154
+1630:stm_lib/src/stm32f10x_flash.c ****   {
+ 1531              		.loc 1 1630 0 is_stmt 0 discriminator 1
+ 1532 0014 002C     		cmp	r4, #0
+ 1533 0016 F8D1     		bne	.L155
+ 1534              	.L154:
+1634:stm_lib/src/stm32f10x_flash.c ****   }
+1635:stm_lib/src/stm32f10x_flash.c ****   if(Timeout == 0x00 )
+ 1535              		.loc 1 1635 0 is_stmt 1
+ 1536 0018 04B9     		cbnz	r4, .L156
+1636:stm_lib/src/stm32f10x_flash.c ****   {
+1637:stm_lib/src/stm32f10x_flash.c ****     status = FLASH_TIMEOUT;
+ 1537              		.loc 1 1637 0
+ 1538 001a 0520     		movs	r0, #5
+ 1539              	.LVL121:
+ 1540              	.L156:
+1638:stm_lib/src/stm32f10x_flash.c ****   }
+1639:stm_lib/src/stm32f10x_flash.c ****   /* Return the operation status */
+1640:stm_lib/src/stm32f10x_flash.c ****   return status;
+1641:stm_lib/src/stm32f10x_flash.c **** }
+ 1541              		.loc 1 1641 0
+ 1542 001c 10BD     		pop	{r4, pc}
+ 1543              		.cfi_endproc
+ 1544              	.LFE83:
+ 1546              		.section	.text.FLASH_EraseAllBank1Pages,"ax",%progbits
+ 1547              		.align	1
+ 1548              		.global	FLASH_EraseAllBank1Pages
+ 1549              		.syntax unified
+ 1550              		.thumb
+ 1551              		.thumb_func
+ 1552              		.fpu softvfp
+ 1554              	FLASH_EraseAllBank1Pages:
+ 1555              	.LFB65:
+ 556:stm_lib/src/stm32f10x_flash.c ****   FLASH_Status status = FLASH_COMPLETE;
+ 1556              		.loc 1 556 0
+ 1557              		.cfi_startproc
+ 1558              		@ args = 0, pretend = 0, frame = 0
+ 1559              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1560 0000 10B5     		push	{r4, lr}
+ 1561              	.LCFI14:
+ 1562              		.cfi_def_cfa_offset 8
+ 1563              		.cfi_offset 4, -8
+ 1564              		.cfi_offset 14, -4
+ 1565              	.LVL122:
+ 559:stm_lib/src/stm32f10x_flash.c ****   
+ 1566              		.loc 1 559 0
+ 1567 0002 4FF43020 		mov	r0, #720896
+ 1568 0006 FFF7FEFF 		bl	FLASH_WaitForLastBank1Operation
+ 1569              	.LVL123:
+ 561:stm_lib/src/stm32f10x_flash.c ****   {
+ 1570              		.loc 1 561 0
+ 1571 000a 0428     		cmp	r0, #4
+ 1572 000c 00D0     		beq	.L162
+ 1573              	.L160:
+ 575:stm_lib/src/stm32f10x_flash.c **** 
+ARM GAS  /tmp/ccaWNXPb.s 			page 59
+
+
+ 1574              		.loc 1 575 0
+ 1575 000e 10BD     		pop	{r4, pc}
+ 1576              	.L162:
+ 564:stm_lib/src/stm32f10x_flash.c ****      FLASH->CR |= CR_STRT_Set;
+ 1577              		.loc 1 564 0
+ 1578 0010 094C     		ldr	r4, .L163
+ 1579 0012 2369     		ldr	r3, [r4, #16]
+ 1580 0014 43F00403 		orr	r3, r3, #4
+ 1581 0018 2361     		str	r3, [r4, #16]
+ 565:stm_lib/src/stm32f10x_flash.c ****     
+ 1582              		.loc 1 565 0
+ 1583 001a 2369     		ldr	r3, [r4, #16]
+ 1584 001c 43F04003 		orr	r3, r3, #64
+ 1585 0020 2361     		str	r3, [r4, #16]
+ 568:stm_lib/src/stm32f10x_flash.c ****     
+ 1586              		.loc 1 568 0
+ 1587 0022 4FF43020 		mov	r0, #720896
+ 1588              	.LVL124:
+ 1589 0026 FFF7FEFF 		bl	FLASH_WaitForLastBank1Operation
+ 1590              	.LVL125:
+ 571:stm_lib/src/stm32f10x_flash.c ****   }    
+ 1591              		.loc 1 571 0
+ 1592 002a 2369     		ldr	r3, [r4, #16]
+ 1593 002c 23F00403 		bic	r3, r3, #4
+ 1594 0030 DB04     		lsls	r3, r3, #19
+ 1595 0032 DB0C     		lsrs	r3, r3, #19
+ 1596 0034 2361     		str	r3, [r4, #16]
+ 1597 0036 EAE7     		b	.L160
+ 1598              	.L164:
+ 1599              		.align	2
+ 1600              	.L163:
+ 1601 0038 00200240 		.word	1073881088
+ 1602              		.cfi_endproc
+ 1603              	.LFE65:
+ 1605              		.text
+ 1606              	.Letext0:
+ 1607              		.file 2 "/usr/include/newlib/machine/_default_types.h"
+ 1608              		.file 3 "/usr/include/newlib/sys/_stdint.h"
+ 1609              		.file 4 "cmsis/core_cm3.h"
+ 1610              		.file 5 "cmsis_boot/system_stm32f10x.h"
+ 1611              		.file 6 "stm_lib/inc/stm32f10x.h"
+ 1612              		.file 7 "stm_lib/inc/stm32f10x_flash.h"
+ARM GAS  /tmp/ccaWNXPb.s 			page 60
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 stm32f10x_flash.c
+     /tmp/ccaWNXPb.s:16     .text.FLASH_SetLatency:0000000000000000 $t
+     /tmp/ccaWNXPb.s:23     .text.FLASH_SetLatency:0000000000000000 FLASH_SetLatency
+     /tmp/ccaWNXPb.s:48     .text.FLASH_SetLatency:0000000000000010 $d
+     /tmp/ccaWNXPb.s:53     .text.FLASH_HalfCycleAccessCmd:0000000000000000 $t
+     /tmp/ccaWNXPb.s:60     .text.FLASH_HalfCycleAccessCmd:0000000000000000 FLASH_HalfCycleAccessCmd
+     /tmp/ccaWNXPb.s:82     .text.FLASH_HalfCycleAccessCmd:0000000000000014 $d
+     /tmp/ccaWNXPb.s:87     .text.FLASH_PrefetchBufferCmd:0000000000000000 $t
+     /tmp/ccaWNXPb.s:94     .text.FLASH_PrefetchBufferCmd:0000000000000000 FLASH_PrefetchBufferCmd
+     /tmp/ccaWNXPb.s:116    .text.FLASH_PrefetchBufferCmd:0000000000000014 $d
+     /tmp/ccaWNXPb.s:121    .text.FLASH_Unlock:0000000000000000 $t
+     /tmp/ccaWNXPb.s:128    .text.FLASH_Unlock:0000000000000000 FLASH_Unlock
+     /tmp/ccaWNXPb.s:146    .text.FLASH_Unlock:0000000000000010 $d
+     /tmp/ccaWNXPb.s:152    .text.FLASH_UnlockBank1:0000000000000000 $t
+     /tmp/ccaWNXPb.s:159    .text.FLASH_UnlockBank1:0000000000000000 FLASH_UnlockBank1
+     /tmp/ccaWNXPb.s:177    .text.FLASH_UnlockBank1:0000000000000010 $d
+     /tmp/ccaWNXPb.s:183    .text.FLASH_Lock:0000000000000000 $t
+     /tmp/ccaWNXPb.s:190    .text.FLASH_Lock:0000000000000000 FLASH_Lock
+     /tmp/ccaWNXPb.s:206    .text.FLASH_Lock:000000000000000c $d
+     /tmp/ccaWNXPb.s:211    .text.FLASH_LockBank1:0000000000000000 $t
+     /tmp/ccaWNXPb.s:218    .text.FLASH_LockBank1:0000000000000000 FLASH_LockBank1
+     /tmp/ccaWNXPb.s:234    .text.FLASH_LockBank1:000000000000000c $d
+     /tmp/ccaWNXPb.s:239    .text.FLASH_GetUserOptionByte:0000000000000000 $t
+     /tmp/ccaWNXPb.s:246    .text.FLASH_GetUserOptionByte:0000000000000000 FLASH_GetUserOptionByte
+     /tmp/ccaWNXPb.s:262    .text.FLASH_GetUserOptionByte:0000000000000008 $d
+     /tmp/ccaWNXPb.s:267    .text.FLASH_GetWriteProtectionOptionByte:0000000000000000 $t
+     /tmp/ccaWNXPb.s:274    .text.FLASH_GetWriteProtectionOptionByte:0000000000000000 FLASH_GetWriteProtectionOptionByte
+     /tmp/ccaWNXPb.s:289    .text.FLASH_GetWriteProtectionOptionByte:0000000000000008 $d
+     /tmp/ccaWNXPb.s:294    .text.FLASH_GetReadOutProtectionStatus:0000000000000000 $t
+     /tmp/ccaWNXPb.s:301    .text.FLASH_GetReadOutProtectionStatus:0000000000000000 FLASH_GetReadOutProtectionStatus
+     /tmp/ccaWNXPb.s:327    .text.FLASH_GetReadOutProtectionStatus:0000000000000014 $d
+     /tmp/ccaWNXPb.s:332    .text.FLASH_GetPrefetchBufferStatus:0000000000000000 $t
+     /tmp/ccaWNXPb.s:339    .text.FLASH_GetPrefetchBufferStatus:0000000000000000 FLASH_GetPrefetchBufferStatus
+     /tmp/ccaWNXPb.s:365    .text.FLASH_GetPrefetchBufferStatus:0000000000000014 $d
+     /tmp/ccaWNXPb.s:370    .text.FLASH_ITConfig:0000000000000000 $t
+     /tmp/ccaWNXPb.s:377    .text.FLASH_ITConfig:0000000000000000 FLASH_ITConfig
+     /tmp/ccaWNXPb.s:406    .text.FLASH_ITConfig:0000000000000018 $d
+     /tmp/ccaWNXPb.s:411    .text.FLASH_GetFlagStatus:0000000000000000 $t
+     /tmp/ccaWNXPb.s:418    .text.FLASH_GetFlagStatus:0000000000000000 FLASH_GetFlagStatus
+     /tmp/ccaWNXPb.s:461    .text.FLASH_GetFlagStatus:0000000000000024 $d
+     /tmp/ccaWNXPb.s:466    .text.FLASH_ClearFlag:0000000000000000 $t
+     /tmp/ccaWNXPb.s:473    .text.FLASH_ClearFlag:0000000000000000 FLASH_ClearFlag
+     /tmp/ccaWNXPb.s:488    .text.FLASH_ClearFlag:0000000000000008 $d
+     /tmp/ccaWNXPb.s:493    .text.FLASH_GetStatus:0000000000000000 $t
+     /tmp/ccaWNXPb.s:500    .text.FLASH_GetStatus:0000000000000000 FLASH_GetStatus
+     /tmp/ccaWNXPb.s:543    .text.FLASH_GetStatus:0000000000000030 $d
+     /tmp/ccaWNXPb.s:548    .text.FLASH_GetBank1Status:0000000000000000 $t
+     /tmp/ccaWNXPb.s:555    .text.FLASH_GetBank1Status:0000000000000000 FLASH_GetBank1Status
+     /tmp/ccaWNXPb.s:598    .text.FLASH_GetBank1Status:0000000000000030 $d
+     /tmp/ccaWNXPb.s:603    .text.FLASH_WaitForLastOperation:0000000000000000 $t
+     /tmp/ccaWNXPb.s:610    .text.FLASH_WaitForLastOperation:0000000000000000 FLASH_WaitForLastOperation
+     /tmp/ccaWNXPb.s:656    .text.FLASH_ErasePage:0000000000000000 $t
+     /tmp/ccaWNXPb.s:663    .text.FLASH_ErasePage:0000000000000000 FLASH_ErasePage
+     /tmp/ccaWNXPb.s:718    .text.FLASH_ErasePage:000000000000003c $d
+     /tmp/ccaWNXPb.s:723    .text.FLASH_EraseAllPages:0000000000000000 $t
+     /tmp/ccaWNXPb.s:730    .text.FLASH_EraseAllPages:0000000000000000 FLASH_EraseAllPages
+ARM GAS  /tmp/ccaWNXPb.s 			page 61
+
+
+     /tmp/ccaWNXPb.s:777    .text.FLASH_EraseAllPages:0000000000000038 $d
+     /tmp/ccaWNXPb.s:782    .text.FLASH_EraseOptionBytes:0000000000000000 $t
+     /tmp/ccaWNXPb.s:789    .text.FLASH_EraseOptionBytes:0000000000000000 FLASH_EraseOptionBytes
+     /tmp/ccaWNXPb.s:895    .text.FLASH_EraseOptionBytes:0000000000000090 $d
+     /tmp/ccaWNXPb.s:902    .text.FLASH_ProgramWord:0000000000000000 $t
+     /tmp/ccaWNXPb.s:909    .text.FLASH_ProgramWord:0000000000000000 FLASH_ProgramWord
+     /tmp/ccaWNXPb.s:1002   .text.FLASH_ProgramWord:0000000000000068 $d
+     /tmp/ccaWNXPb.s:1007   .text.FLASH_ProgramHalfWord:0000000000000000 $t
+     /tmp/ccaWNXPb.s:1014   .text.FLASH_ProgramHalfWord:0000000000000000 FLASH_ProgramHalfWord
+     /tmp/ccaWNXPb.s:1066   .text.FLASH_ProgramHalfWord:0000000000000038 $d
+     /tmp/ccaWNXPb.s:1071   .text.FLASH_ProgramOptionByteData:0000000000000000 $t
+     /tmp/ccaWNXPb.s:1078   .text.FLASH_ProgramOptionByteData:0000000000000000 FLASH_ProgramOptionByteData
+     /tmp/ccaWNXPb.s:1141   .text.FLASH_ProgramOptionByteData:0000000000000048 $d
+     /tmp/ccaWNXPb.s:1147   .text.FLASH_EnableWriteProtection:0000000000000000 $t
+     /tmp/ccaWNXPb.s:1154   .text.FLASH_EnableWriteProtection:0000000000000000 FLASH_EnableWriteProtection
+     /tmp/ccaWNXPb.s:1287   .text.FLASH_EnableWriteProtection:0000000000000098 $d
+     /tmp/ccaWNXPb.s:1294   .text.FLASH_ReadOutProtection:0000000000000000 $t
+     /tmp/ccaWNXPb.s:1301   .text.FLASH_ReadOutProtection:0000000000000000 FLASH_ReadOutProtection
+     /tmp/ccaWNXPb.s:1405   .text.FLASH_ReadOutProtection:0000000000000090 $d
+     /tmp/ccaWNXPb.s:1412   .text.FLASH_UserOptionByteConfig:0000000000000000 $t
+     /tmp/ccaWNXPb.s:1419   .text.FLASH_UserOptionByteConfig:0000000000000000 FLASH_UserOptionByteConfig
+     /tmp/ccaWNXPb.s:1487   .text.FLASH_UserOptionByteConfig:0000000000000054 $d
+     /tmp/ccaWNXPb.s:1494   .text.FLASH_WaitForLastBank1Operation:0000000000000000 $t
+     /tmp/ccaWNXPb.s:1501   .text.FLASH_WaitForLastBank1Operation:0000000000000000 FLASH_WaitForLastBank1Operation
+     /tmp/ccaWNXPb.s:1547   .text.FLASH_EraseAllBank1Pages:0000000000000000 $t
+     /tmp/ccaWNXPb.s:1554   .text.FLASH_EraseAllBank1Pages:0000000000000000 FLASH_EraseAllBank1Pages
+     /tmp/ccaWNXPb.s:1601   .text.FLASH_EraseAllBank1Pages:0000000000000038 $d
+                     .debug_frame:0000000000000010 $d
+
+NO UNDEFINED SYMBOLS

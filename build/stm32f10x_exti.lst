@@ -1,0 +1,694 @@
+ARM GAS  /tmp/ccmyuTra.s 			page 1
+
+
+   1              		.cpu cortex-m3
+   2              		.eabi_attribute 20, 1
+   3              		.eabi_attribute 21, 1
+   4              		.eabi_attribute 23, 3
+   5              		.eabi_attribute 24, 1
+   6              		.eabi_attribute 25, 1
+   7              		.eabi_attribute 26, 1
+   8              		.eabi_attribute 30, 1
+   9              		.eabi_attribute 34, 1
+  10              		.eabi_attribute 18, 4
+  11              		.file	"stm32f10x_exti.c"
+  12              		.text
+  13              	.Ltext0:
+  14              		.cfi_sections	.debug_frame
+  15              		.section	.text.EXTI_DeInit,"ax",%progbits
+  16              		.align	1
+  17              		.global	EXTI_DeInit
+  18              		.syntax unified
+  19              		.thumb
+  20              		.thumb_func
+  21              		.fpu softvfp
+  23              	EXTI_DeInit:
+  24              	.LFB56:
+  25              		.file 1 "stm_lib/src/stm32f10x_exti.c"
+   1:stm_lib/src/stm32f10x_exti.c **** /**
+   2:stm_lib/src/stm32f10x_exti.c ****   ******************************************************************************
+   3:stm_lib/src/stm32f10x_exti.c ****   * @file    stm32f10x_exti.c
+   4:stm_lib/src/stm32f10x_exti.c ****   * @author  MCD Application Team
+   5:stm_lib/src/stm32f10x_exti.c ****   * @version V3.5.0
+   6:stm_lib/src/stm32f10x_exti.c ****   * @date    11-March-2011
+   7:stm_lib/src/stm32f10x_exti.c ****   * @brief   This file provides all the EXTI firmware functions.
+   8:stm_lib/src/stm32f10x_exti.c ****   ******************************************************************************
+   9:stm_lib/src/stm32f10x_exti.c ****   * @attention
+  10:stm_lib/src/stm32f10x_exti.c ****   *
+  11:stm_lib/src/stm32f10x_exti.c ****   * THE PRESENT FIRMWARE WHICH IS FOR GUIDANCE ONLY AIMS AT PROVIDING CUSTOMERS
+  12:stm_lib/src/stm32f10x_exti.c ****   * WITH CODING INFORMATION REGARDING THEIR PRODUCTS IN ORDER FOR THEM TO SAVE
+  13:stm_lib/src/stm32f10x_exti.c ****   * TIME. AS A RESULT, STMICROELECTRONICS SHALL NOT BE HELD LIABLE FOR ANY
+  14:stm_lib/src/stm32f10x_exti.c ****   * DIRECT, INDIRECT OR CONSEQUENTIAL DAMAGES WITH RESPECT TO ANY CLAIMS ARISING
+  15:stm_lib/src/stm32f10x_exti.c ****   * FROM THE CONTENT OF SUCH FIRMWARE AND/OR THE USE MADE BY CUSTOMERS OF THE
+  16:stm_lib/src/stm32f10x_exti.c ****   * CODING INFORMATION CONTAINED HEREIN IN CONNECTION WITH THEIR PRODUCTS.
+  17:stm_lib/src/stm32f10x_exti.c ****   *
+  18:stm_lib/src/stm32f10x_exti.c ****   * <h2><center>&copy; COPYRIGHT 2011 STMicroelectronics</center></h2>
+  19:stm_lib/src/stm32f10x_exti.c ****   ******************************************************************************
+  20:stm_lib/src/stm32f10x_exti.c ****   */
+  21:stm_lib/src/stm32f10x_exti.c **** 
+  22:stm_lib/src/stm32f10x_exti.c **** /* Includes ------------------------------------------------------------------*/
+  23:stm_lib/src/stm32f10x_exti.c **** #include "stm32f10x_exti.h"
+  24:stm_lib/src/stm32f10x_exti.c **** 
+  25:stm_lib/src/stm32f10x_exti.c **** /** @addtogroup STM32F10x_StdPeriph_Driver
+  26:stm_lib/src/stm32f10x_exti.c ****   * @{
+  27:stm_lib/src/stm32f10x_exti.c ****   */
+  28:stm_lib/src/stm32f10x_exti.c **** 
+  29:stm_lib/src/stm32f10x_exti.c **** /** @defgroup EXTI 
+  30:stm_lib/src/stm32f10x_exti.c ****   * @brief EXTI driver modules
+  31:stm_lib/src/stm32f10x_exti.c ****   * @{
+  32:stm_lib/src/stm32f10x_exti.c ****   */
+  33:stm_lib/src/stm32f10x_exti.c **** 
+ARM GAS  /tmp/ccmyuTra.s 			page 2
+
+
+  34:stm_lib/src/stm32f10x_exti.c **** /** @defgroup EXTI_Private_TypesDefinitions
+  35:stm_lib/src/stm32f10x_exti.c ****   * @{
+  36:stm_lib/src/stm32f10x_exti.c ****   */
+  37:stm_lib/src/stm32f10x_exti.c **** 
+  38:stm_lib/src/stm32f10x_exti.c **** /**
+  39:stm_lib/src/stm32f10x_exti.c ****   * @}
+  40:stm_lib/src/stm32f10x_exti.c ****   */
+  41:stm_lib/src/stm32f10x_exti.c **** 
+  42:stm_lib/src/stm32f10x_exti.c **** /** @defgroup EXTI_Private_Defines
+  43:stm_lib/src/stm32f10x_exti.c ****   * @{
+  44:stm_lib/src/stm32f10x_exti.c ****   */
+  45:stm_lib/src/stm32f10x_exti.c **** 
+  46:stm_lib/src/stm32f10x_exti.c **** #define EXTI_LINENONE    ((uint32_t)0x00000)  /* No interrupt selected */
+  47:stm_lib/src/stm32f10x_exti.c **** 
+  48:stm_lib/src/stm32f10x_exti.c **** /**
+  49:stm_lib/src/stm32f10x_exti.c ****   * @}
+  50:stm_lib/src/stm32f10x_exti.c ****   */
+  51:stm_lib/src/stm32f10x_exti.c **** 
+  52:stm_lib/src/stm32f10x_exti.c **** /** @defgroup EXTI_Private_Macros
+  53:stm_lib/src/stm32f10x_exti.c ****   * @{
+  54:stm_lib/src/stm32f10x_exti.c ****   */
+  55:stm_lib/src/stm32f10x_exti.c **** 
+  56:stm_lib/src/stm32f10x_exti.c **** /**
+  57:stm_lib/src/stm32f10x_exti.c ****   * @}
+  58:stm_lib/src/stm32f10x_exti.c ****   */
+  59:stm_lib/src/stm32f10x_exti.c **** 
+  60:stm_lib/src/stm32f10x_exti.c **** /** @defgroup EXTI_Private_Variables
+  61:stm_lib/src/stm32f10x_exti.c ****   * @{
+  62:stm_lib/src/stm32f10x_exti.c ****   */
+  63:stm_lib/src/stm32f10x_exti.c **** 
+  64:stm_lib/src/stm32f10x_exti.c **** /**
+  65:stm_lib/src/stm32f10x_exti.c ****   * @}
+  66:stm_lib/src/stm32f10x_exti.c ****   */
+  67:stm_lib/src/stm32f10x_exti.c **** 
+  68:stm_lib/src/stm32f10x_exti.c **** /** @defgroup EXTI_Private_FunctionPrototypes
+  69:stm_lib/src/stm32f10x_exti.c ****   * @{
+  70:stm_lib/src/stm32f10x_exti.c ****   */
+  71:stm_lib/src/stm32f10x_exti.c **** 
+  72:stm_lib/src/stm32f10x_exti.c **** /**
+  73:stm_lib/src/stm32f10x_exti.c ****   * @}
+  74:stm_lib/src/stm32f10x_exti.c ****   */
+  75:stm_lib/src/stm32f10x_exti.c **** 
+  76:stm_lib/src/stm32f10x_exti.c **** /** @defgroup EXTI_Private_Functions
+  77:stm_lib/src/stm32f10x_exti.c ****   * @{
+  78:stm_lib/src/stm32f10x_exti.c ****   */
+  79:stm_lib/src/stm32f10x_exti.c **** 
+  80:stm_lib/src/stm32f10x_exti.c **** /**
+  81:stm_lib/src/stm32f10x_exti.c ****   * @brief  Deinitializes the EXTI peripheral registers to their default reset values.
+  82:stm_lib/src/stm32f10x_exti.c ****   * @param  None
+  83:stm_lib/src/stm32f10x_exti.c ****   * @retval None
+  84:stm_lib/src/stm32f10x_exti.c ****   */
+  85:stm_lib/src/stm32f10x_exti.c **** void EXTI_DeInit(void)
+  86:stm_lib/src/stm32f10x_exti.c **** {
+  26              		.loc 1 86 0
+  27              		.cfi_startproc
+  28              		@ args = 0, pretend = 0, frame = 0
+  29              		@ frame_needed = 0, uses_anonymous_args = 0
+ARM GAS  /tmp/ccmyuTra.s 			page 3
+
+
+  30              		@ link register save eliminated.
+  87:stm_lib/src/stm32f10x_exti.c ****   EXTI->IMR = 0x00000000;
+  31              		.loc 1 87 0
+  32 0000 044B     		ldr	r3, .L2
+  33 0002 0022     		movs	r2, #0
+  34 0004 1A60     		str	r2, [r3]
+  88:stm_lib/src/stm32f10x_exti.c ****   EXTI->EMR = 0x00000000;
+  35              		.loc 1 88 0
+  36 0006 5A60     		str	r2, [r3, #4]
+  89:stm_lib/src/stm32f10x_exti.c ****   EXTI->RTSR = 0x00000000; 
+  37              		.loc 1 89 0
+  38 0008 9A60     		str	r2, [r3, #8]
+  90:stm_lib/src/stm32f10x_exti.c ****   EXTI->FTSR = 0x00000000; 
+  39              		.loc 1 90 0
+  40 000a DA60     		str	r2, [r3, #12]
+  91:stm_lib/src/stm32f10x_exti.c ****   EXTI->PR = 0x000FFFFF;
+  41              		.loc 1 91 0
+  42 000c 024A     		ldr	r2, .L2+4
+  43 000e 5A61     		str	r2, [r3, #20]
+  44 0010 7047     		bx	lr
+  45              	.L3:
+  46 0012 00BF     		.align	2
+  47              	.L2:
+  48 0014 00040140 		.word	1073808384
+  49 0018 FFFF0F00 		.word	1048575
+  50              		.cfi_endproc
+  51              	.LFE56:
+  53              		.section	.text.EXTI_Init,"ax",%progbits
+  54              		.align	1
+  55              		.global	EXTI_Init
+  56              		.syntax unified
+  57              		.thumb
+  58              		.thumb_func
+  59              		.fpu softvfp
+  61              	EXTI_Init:
+  62              	.LFB57:
+  92:stm_lib/src/stm32f10x_exti.c **** }
+  93:stm_lib/src/stm32f10x_exti.c **** 
+  94:stm_lib/src/stm32f10x_exti.c **** /**
+  95:stm_lib/src/stm32f10x_exti.c ****   * @brief  Initializes the EXTI peripheral according to the specified
+  96:stm_lib/src/stm32f10x_exti.c ****   *         parameters in the EXTI_InitStruct.
+  97:stm_lib/src/stm32f10x_exti.c ****   * @param  EXTI_InitStruct: pointer to a EXTI_InitTypeDef structure
+  98:stm_lib/src/stm32f10x_exti.c ****   *         that contains the configuration information for the EXTI peripheral.
+  99:stm_lib/src/stm32f10x_exti.c ****   * @retval None
+ 100:stm_lib/src/stm32f10x_exti.c ****   */
+ 101:stm_lib/src/stm32f10x_exti.c **** void EXTI_Init(EXTI_InitTypeDef* EXTI_InitStruct)
+ 102:stm_lib/src/stm32f10x_exti.c **** {
+  63              		.loc 1 102 0
+  64              		.cfi_startproc
+  65              		@ args = 0, pretend = 0, frame = 0
+  66              		@ frame_needed = 0, uses_anonymous_args = 0
+  67              		@ link register save eliminated.
+  68              	.LVL0:
+ 103:stm_lib/src/stm32f10x_exti.c ****   uint32_t tmp = 0;
+ 104:stm_lib/src/stm32f10x_exti.c **** 
+ 105:stm_lib/src/stm32f10x_exti.c ****   /* Check the parameters */
+ 106:stm_lib/src/stm32f10x_exti.c ****   assert_param(IS_EXTI_MODE(EXTI_InitStruct->EXTI_Mode));
+ARM GAS  /tmp/ccmyuTra.s 			page 4
+
+
+ 107:stm_lib/src/stm32f10x_exti.c ****   assert_param(IS_EXTI_TRIGGER(EXTI_InitStruct->EXTI_Trigger));
+ 108:stm_lib/src/stm32f10x_exti.c ****   assert_param(IS_EXTI_LINE(EXTI_InitStruct->EXTI_Line));  
+ 109:stm_lib/src/stm32f10x_exti.c ****   assert_param(IS_FUNCTIONAL_STATE(EXTI_InitStruct->EXTI_LineCmd));
+ 110:stm_lib/src/stm32f10x_exti.c **** 
+ 111:stm_lib/src/stm32f10x_exti.c ****   tmp = (uint32_t)EXTI_BASE;
+ 112:stm_lib/src/stm32f10x_exti.c ****      
+ 113:stm_lib/src/stm32f10x_exti.c ****   if (EXTI_InitStruct->EXTI_LineCmd != DISABLE)
+  69              		.loc 1 113 0
+  70 0000 8379     		ldrb	r3, [r0, #6]	@ zero_extendqisi2
+  71 0002 002B     		cmp	r3, #0
+  72 0004 35D0     		beq	.L5
+ 102:stm_lib/src/stm32f10x_exti.c ****   uint32_t tmp = 0;
+  73              		.loc 1 102 0
+  74 0006 10B4     		push	{r4}
+  75              	.LCFI0:
+  76              		.cfi_def_cfa_offset 4
+  77              		.cfi_offset 4, -4
+ 114:stm_lib/src/stm32f10x_exti.c ****   {
+ 115:stm_lib/src/stm32f10x_exti.c ****     /* Clear EXTI line configuration */
+ 116:stm_lib/src/stm32f10x_exti.c ****     EXTI->IMR &= ~EXTI_InitStruct->EXTI_Line;
+  78              		.loc 1 116 0
+  79 0008 1F4B     		ldr	r3, .L13
+  80 000a 1A68     		ldr	r2, [r3]
+  81 000c 0168     		ldr	r1, [r0]
+  82 000e 22EA0102 		bic	r2, r2, r1
+  83 0012 1A60     		str	r2, [r3]
+ 117:stm_lib/src/stm32f10x_exti.c ****     EXTI->EMR &= ~EXTI_InitStruct->EXTI_Line;
+  84              		.loc 1 117 0
+  85 0014 5A68     		ldr	r2, [r3, #4]
+  86 0016 0168     		ldr	r1, [r0]
+  87 0018 22EA0102 		bic	r2, r2, r1
+  88 001c 5A60     		str	r2, [r3, #4]
+ 118:stm_lib/src/stm32f10x_exti.c ****     
+ 119:stm_lib/src/stm32f10x_exti.c ****     tmp += EXTI_InitStruct->EXTI_Mode;
+  89              		.loc 1 119 0
+  90 001e 0279     		ldrb	r2, [r0, #4]	@ zero_extendqisi2
+  91 0020 02F18042 		add	r2, r2, #1073741824
+  92 0024 02F58232 		add	r2, r2, #66560
+  93              	.LVL1:
+ 120:stm_lib/src/stm32f10x_exti.c **** 
+ 121:stm_lib/src/stm32f10x_exti.c ****     *(__IO uint32_t *) tmp |= EXTI_InitStruct->EXTI_Line;
+  94              		.loc 1 121 0
+  95 0028 1168     		ldr	r1, [r2]
+  96 002a 0468     		ldr	r4, [r0]
+  97 002c 2143     		orrs	r1, r1, r4
+  98 002e 1160     		str	r1, [r2]
+ 122:stm_lib/src/stm32f10x_exti.c **** 
+ 123:stm_lib/src/stm32f10x_exti.c ****     /* Clear Rising Falling edge configuration */
+ 124:stm_lib/src/stm32f10x_exti.c ****     EXTI->RTSR &= ~EXTI_InitStruct->EXTI_Line;
+  99              		.loc 1 124 0
+ 100 0030 9A68     		ldr	r2, [r3, #8]
+ 101              	.LVL2:
+ 102 0032 0168     		ldr	r1, [r0]
+ 103 0034 22EA0102 		bic	r2, r2, r1
+ 104 0038 9A60     		str	r2, [r3, #8]
+ 125:stm_lib/src/stm32f10x_exti.c ****     EXTI->FTSR &= ~EXTI_InitStruct->EXTI_Line;
+ 105              		.loc 1 125 0
+ARM GAS  /tmp/ccmyuTra.s 			page 5
+
+
+ 106 003a DA68     		ldr	r2, [r3, #12]
+ 107 003c 0168     		ldr	r1, [r0]
+ 108 003e 22EA0102 		bic	r2, r2, r1
+ 109 0042 DA60     		str	r2, [r3, #12]
+ 126:stm_lib/src/stm32f10x_exti.c ****     
+ 127:stm_lib/src/stm32f10x_exti.c ****     /* Select the trigger for the selected external interrupts */
+ 128:stm_lib/src/stm32f10x_exti.c ****     if (EXTI_InitStruct->EXTI_Trigger == EXTI_Trigger_Rising_Falling)
+ 110              		.loc 1 128 0
+ 111 0044 4379     		ldrb	r3, [r0, #5]	@ zero_extendqisi2
+ 112 0046 102B     		cmp	r3, #16
+ 113 0048 09D0     		beq	.L12
+ 114              	.LVL3:
+ 129:stm_lib/src/stm32f10x_exti.c ****     {
+ 130:stm_lib/src/stm32f10x_exti.c ****       /* Rising Falling edge */
+ 131:stm_lib/src/stm32f10x_exti.c ****       EXTI->RTSR |= EXTI_InitStruct->EXTI_Line;
+ 132:stm_lib/src/stm32f10x_exti.c ****       EXTI->FTSR |= EXTI_InitStruct->EXTI_Line;
+ 133:stm_lib/src/stm32f10x_exti.c ****     }
+ 134:stm_lib/src/stm32f10x_exti.c ****     else
+ 135:stm_lib/src/stm32f10x_exti.c ****     {
+ 136:stm_lib/src/stm32f10x_exti.c ****       tmp = (uint32_t)EXTI_BASE;
+ 137:stm_lib/src/stm32f10x_exti.c ****       tmp += EXTI_InitStruct->EXTI_Trigger;
+ 115              		.loc 1 137 0
+ 116 004a 03F18043 		add	r3, r3, #1073741824
+ 117 004e 03F58233 		add	r3, r3, #66560
+ 118              	.LVL4:
+ 138:stm_lib/src/stm32f10x_exti.c **** 
+ 139:stm_lib/src/stm32f10x_exti.c ****       *(__IO uint32_t *) tmp |= EXTI_InitStruct->EXTI_Line;
+ 119              		.loc 1 139 0
+ 120 0052 1A68     		ldr	r2, [r3]
+ 121 0054 0168     		ldr	r1, [r0]
+ 122 0056 0A43     		orrs	r2, r2, r1
+ 123 0058 1A60     		str	r2, [r3]
+ 124              	.LVL5:
+ 125              	.L4:
+ 140:stm_lib/src/stm32f10x_exti.c ****     }
+ 141:stm_lib/src/stm32f10x_exti.c ****   }
+ 142:stm_lib/src/stm32f10x_exti.c ****   else
+ 143:stm_lib/src/stm32f10x_exti.c ****   {
+ 144:stm_lib/src/stm32f10x_exti.c ****     tmp += EXTI_InitStruct->EXTI_Mode;
+ 145:stm_lib/src/stm32f10x_exti.c **** 
+ 146:stm_lib/src/stm32f10x_exti.c ****     /* Disable the selected external lines */
+ 147:stm_lib/src/stm32f10x_exti.c ****     *(__IO uint32_t *) tmp &= ~EXTI_InitStruct->EXTI_Line;
+ 148:stm_lib/src/stm32f10x_exti.c ****   }
+ 149:stm_lib/src/stm32f10x_exti.c **** }
+ 126              		.loc 1 149 0
+ 127 005a 10BC     		pop	{r4}
+ 128              	.LCFI1:
+ 129              		.cfi_remember_state
+ 130              		.cfi_restore 4
+ 131              		.cfi_def_cfa_offset 0
+ 132 005c 7047     		bx	lr
+ 133              	.L12:
+ 134              	.LCFI2:
+ 135              		.cfi_restore_state
+ 131:stm_lib/src/stm32f10x_exti.c ****       EXTI->FTSR |= EXTI_InitStruct->EXTI_Line;
+ 136              		.loc 1 131 0
+ 137 005e 0A4B     		ldr	r3, .L13
+ARM GAS  /tmp/ccmyuTra.s 			page 6
+
+
+ 138 0060 9A68     		ldr	r2, [r3, #8]
+ 139 0062 0168     		ldr	r1, [r0]
+ 140 0064 0A43     		orrs	r2, r2, r1
+ 141 0066 9A60     		str	r2, [r3, #8]
+ 132:stm_lib/src/stm32f10x_exti.c ****     }
+ 142              		.loc 1 132 0
+ 143 0068 DA68     		ldr	r2, [r3, #12]
+ 144 006a 0168     		ldr	r1, [r0]
+ 145 006c 0A43     		orrs	r2, r2, r1
+ 146 006e DA60     		str	r2, [r3, #12]
+ 147 0070 F3E7     		b	.L4
+ 148              	.LVL6:
+ 149              	.L5:
+ 150              	.LCFI3:
+ 151              		.cfi_def_cfa_offset 0
+ 152              		.cfi_restore 4
+ 144:stm_lib/src/stm32f10x_exti.c **** 
+ 153              		.loc 1 144 0
+ 154 0072 0379     		ldrb	r3, [r0, #4]	@ zero_extendqisi2
+ 155 0074 03F18043 		add	r3, r3, #1073741824
+ 156 0078 03F58233 		add	r3, r3, #66560
+ 157              	.LVL7:
+ 147:stm_lib/src/stm32f10x_exti.c ****   }
+ 158              		.loc 1 147 0
+ 159 007c 1A68     		ldr	r2, [r3]
+ 160 007e 0168     		ldr	r1, [r0]
+ 161 0080 22EA0102 		bic	r2, r2, r1
+ 162 0084 1A60     		str	r2, [r3]
+ 163              		.loc 1 149 0
+ 164 0086 7047     		bx	lr
+ 165              	.L14:
+ 166              		.align	2
+ 167              	.L13:
+ 168 0088 00040140 		.word	1073808384
+ 169              		.cfi_endproc
+ 170              	.LFE57:
+ 172              		.section	.text.EXTI_StructInit,"ax",%progbits
+ 173              		.align	1
+ 174              		.global	EXTI_StructInit
+ 175              		.syntax unified
+ 176              		.thumb
+ 177              		.thumb_func
+ 178              		.fpu softvfp
+ 180              	EXTI_StructInit:
+ 181              	.LFB58:
+ 150:stm_lib/src/stm32f10x_exti.c **** 
+ 151:stm_lib/src/stm32f10x_exti.c **** /**
+ 152:stm_lib/src/stm32f10x_exti.c ****   * @brief  Fills each EXTI_InitStruct member with its reset value.
+ 153:stm_lib/src/stm32f10x_exti.c ****   * @param  EXTI_InitStruct: pointer to a EXTI_InitTypeDef structure which will
+ 154:stm_lib/src/stm32f10x_exti.c ****   *         be initialized.
+ 155:stm_lib/src/stm32f10x_exti.c ****   * @retval None
+ 156:stm_lib/src/stm32f10x_exti.c ****   */
+ 157:stm_lib/src/stm32f10x_exti.c **** void EXTI_StructInit(EXTI_InitTypeDef* EXTI_InitStruct)
+ 158:stm_lib/src/stm32f10x_exti.c **** {
+ 182              		.loc 1 158 0
+ 183              		.cfi_startproc
+ 184              		@ args = 0, pretend = 0, frame = 0
+ARM GAS  /tmp/ccmyuTra.s 			page 7
+
+
+ 185              		@ frame_needed = 0, uses_anonymous_args = 0
+ 186              		@ link register save eliminated.
+ 187              	.LVL8:
+ 159:stm_lib/src/stm32f10x_exti.c ****   EXTI_InitStruct->EXTI_Line = EXTI_LINENONE;
+ 188              		.loc 1 159 0
+ 189 0000 0023     		movs	r3, #0
+ 190 0002 0360     		str	r3, [r0]
+ 160:stm_lib/src/stm32f10x_exti.c ****   EXTI_InitStruct->EXTI_Mode = EXTI_Mode_Interrupt;
+ 191              		.loc 1 160 0
+ 192 0004 0371     		strb	r3, [r0, #4]
+ 161:stm_lib/src/stm32f10x_exti.c ****   EXTI_InitStruct->EXTI_Trigger = EXTI_Trigger_Falling;
+ 193              		.loc 1 161 0
+ 194 0006 0C22     		movs	r2, #12
+ 195 0008 4271     		strb	r2, [r0, #5]
+ 162:stm_lib/src/stm32f10x_exti.c ****   EXTI_InitStruct->EXTI_LineCmd = DISABLE;
+ 196              		.loc 1 162 0
+ 197 000a 8371     		strb	r3, [r0, #6]
+ 198 000c 7047     		bx	lr
+ 199              		.cfi_endproc
+ 200              	.LFE58:
+ 202              		.section	.text.EXTI_GenerateSWInterrupt,"ax",%progbits
+ 203              		.align	1
+ 204              		.global	EXTI_GenerateSWInterrupt
+ 205              		.syntax unified
+ 206              		.thumb
+ 207              		.thumb_func
+ 208              		.fpu softvfp
+ 210              	EXTI_GenerateSWInterrupt:
+ 211              	.LFB59:
+ 163:stm_lib/src/stm32f10x_exti.c **** }
+ 164:stm_lib/src/stm32f10x_exti.c **** 
+ 165:stm_lib/src/stm32f10x_exti.c **** /**
+ 166:stm_lib/src/stm32f10x_exti.c ****   * @brief  Generates a Software interrupt.
+ 167:stm_lib/src/stm32f10x_exti.c ****   * @param  EXTI_Line: specifies the EXTI lines to be enabled or disabled.
+ 168:stm_lib/src/stm32f10x_exti.c ****   *   This parameter can be any combination of EXTI_Linex where x can be (0..19).
+ 169:stm_lib/src/stm32f10x_exti.c ****   * @retval None
+ 170:stm_lib/src/stm32f10x_exti.c ****   */
+ 171:stm_lib/src/stm32f10x_exti.c **** void EXTI_GenerateSWInterrupt(uint32_t EXTI_Line)
+ 172:stm_lib/src/stm32f10x_exti.c **** {
+ 212              		.loc 1 172 0
+ 213              		.cfi_startproc
+ 214              		@ args = 0, pretend = 0, frame = 0
+ 215              		@ frame_needed = 0, uses_anonymous_args = 0
+ 216              		@ link register save eliminated.
+ 217              	.LVL9:
+ 173:stm_lib/src/stm32f10x_exti.c ****   /* Check the parameters */
+ 174:stm_lib/src/stm32f10x_exti.c ****   assert_param(IS_EXTI_LINE(EXTI_Line));
+ 175:stm_lib/src/stm32f10x_exti.c ****   
+ 176:stm_lib/src/stm32f10x_exti.c ****   EXTI->SWIER |= EXTI_Line;
+ 218              		.loc 1 176 0
+ 219 0000 024A     		ldr	r2, .L17
+ 220 0002 1369     		ldr	r3, [r2, #16]
+ 221 0004 1843     		orrs	r0, r0, r3
+ 222              	.LVL10:
+ 223 0006 1061     		str	r0, [r2, #16]
+ 224 0008 7047     		bx	lr
+ 225              	.L18:
+ARM GAS  /tmp/ccmyuTra.s 			page 8
+
+
+ 226 000a 00BF     		.align	2
+ 227              	.L17:
+ 228 000c 00040140 		.word	1073808384
+ 229              		.cfi_endproc
+ 230              	.LFE59:
+ 232              		.section	.text.EXTI_GetFlagStatus,"ax",%progbits
+ 233              		.align	1
+ 234              		.global	EXTI_GetFlagStatus
+ 235              		.syntax unified
+ 236              		.thumb
+ 237              		.thumb_func
+ 238              		.fpu softvfp
+ 240              	EXTI_GetFlagStatus:
+ 241              	.LFB60:
+ 177:stm_lib/src/stm32f10x_exti.c **** }
+ 178:stm_lib/src/stm32f10x_exti.c **** 
+ 179:stm_lib/src/stm32f10x_exti.c **** /**
+ 180:stm_lib/src/stm32f10x_exti.c ****   * @brief  Checks whether the specified EXTI line flag is set or not.
+ 181:stm_lib/src/stm32f10x_exti.c ****   * @param  EXTI_Line: specifies the EXTI line flag to check.
+ 182:stm_lib/src/stm32f10x_exti.c ****   *   This parameter can be:
+ 183:stm_lib/src/stm32f10x_exti.c ****   *     @arg EXTI_Linex: External interrupt line x where x(0..19)
+ 184:stm_lib/src/stm32f10x_exti.c ****   * @retval The new state of EXTI_Line (SET or RESET).
+ 185:stm_lib/src/stm32f10x_exti.c ****   */
+ 186:stm_lib/src/stm32f10x_exti.c **** FlagStatus EXTI_GetFlagStatus(uint32_t EXTI_Line)
+ 187:stm_lib/src/stm32f10x_exti.c **** {
+ 242              		.loc 1 187 0
+ 243              		.cfi_startproc
+ 244              		@ args = 0, pretend = 0, frame = 0
+ 245              		@ frame_needed = 0, uses_anonymous_args = 0
+ 246              		@ link register save eliminated.
+ 247              	.LVL11:
+ 188:stm_lib/src/stm32f10x_exti.c ****   FlagStatus bitstatus = RESET;
+ 189:stm_lib/src/stm32f10x_exti.c ****   /* Check the parameters */
+ 190:stm_lib/src/stm32f10x_exti.c ****   assert_param(IS_GET_EXTI_LINE(EXTI_Line));
+ 191:stm_lib/src/stm32f10x_exti.c ****   
+ 192:stm_lib/src/stm32f10x_exti.c ****   if ((EXTI->PR & EXTI_Line) != (uint32_t)RESET)
+ 248              		.loc 1 192 0
+ 249 0000 034B     		ldr	r3, .L23
+ 250 0002 5B69     		ldr	r3, [r3, #20]
+ 251 0004 0342     		tst	r3, r0
+ 252 0006 01D1     		bne	.L22
+ 193:stm_lib/src/stm32f10x_exti.c ****   {
+ 194:stm_lib/src/stm32f10x_exti.c ****     bitstatus = SET;
+ 195:stm_lib/src/stm32f10x_exti.c ****   }
+ 196:stm_lib/src/stm32f10x_exti.c ****   else
+ 197:stm_lib/src/stm32f10x_exti.c ****   {
+ 198:stm_lib/src/stm32f10x_exti.c ****     bitstatus = RESET;
+ 253              		.loc 1 198 0
+ 254 0008 0020     		movs	r0, #0
+ 255              	.LVL12:
+ 199:stm_lib/src/stm32f10x_exti.c ****   }
+ 200:stm_lib/src/stm32f10x_exti.c ****   return bitstatus;
+ 201:stm_lib/src/stm32f10x_exti.c **** }
+ 256              		.loc 1 201 0
+ 257 000a 7047     		bx	lr
+ 258              	.LVL13:
+ 259              	.L22:
+ARM GAS  /tmp/ccmyuTra.s 			page 9
+
+
+ 194:stm_lib/src/stm32f10x_exti.c ****   }
+ 260              		.loc 1 194 0
+ 261 000c 0120     		movs	r0, #1
+ 262              	.LVL14:
+ 263 000e 7047     		bx	lr
+ 264              	.L24:
+ 265              		.align	2
+ 266              	.L23:
+ 267 0010 00040140 		.word	1073808384
+ 268              		.cfi_endproc
+ 269              	.LFE60:
+ 271              		.section	.text.EXTI_ClearFlag,"ax",%progbits
+ 272              		.align	1
+ 273              		.global	EXTI_ClearFlag
+ 274              		.syntax unified
+ 275              		.thumb
+ 276              		.thumb_func
+ 277              		.fpu softvfp
+ 279              	EXTI_ClearFlag:
+ 280              	.LFB61:
+ 202:stm_lib/src/stm32f10x_exti.c **** 
+ 203:stm_lib/src/stm32f10x_exti.c **** /**
+ 204:stm_lib/src/stm32f10x_exti.c ****   * @brief  Clears the EXTI's line pending flags.
+ 205:stm_lib/src/stm32f10x_exti.c ****   * @param  EXTI_Line: specifies the EXTI lines flags to clear.
+ 206:stm_lib/src/stm32f10x_exti.c ****   *   This parameter can be any combination of EXTI_Linex where x can be (0..19).
+ 207:stm_lib/src/stm32f10x_exti.c ****   * @retval None
+ 208:stm_lib/src/stm32f10x_exti.c ****   */
+ 209:stm_lib/src/stm32f10x_exti.c **** void EXTI_ClearFlag(uint32_t EXTI_Line)
+ 210:stm_lib/src/stm32f10x_exti.c **** {
+ 281              		.loc 1 210 0
+ 282              		.cfi_startproc
+ 283              		@ args = 0, pretend = 0, frame = 0
+ 284              		@ frame_needed = 0, uses_anonymous_args = 0
+ 285              		@ link register save eliminated.
+ 286              	.LVL15:
+ 211:stm_lib/src/stm32f10x_exti.c ****   /* Check the parameters */
+ 212:stm_lib/src/stm32f10x_exti.c ****   assert_param(IS_EXTI_LINE(EXTI_Line));
+ 213:stm_lib/src/stm32f10x_exti.c ****   
+ 214:stm_lib/src/stm32f10x_exti.c ****   EXTI->PR = EXTI_Line;
+ 287              		.loc 1 214 0
+ 288 0000 014B     		ldr	r3, .L26
+ 289 0002 5861     		str	r0, [r3, #20]
+ 290 0004 7047     		bx	lr
+ 291              	.L27:
+ 292 0006 00BF     		.align	2
+ 293              	.L26:
+ 294 0008 00040140 		.word	1073808384
+ 295              		.cfi_endproc
+ 296              	.LFE61:
+ 298              		.section	.text.EXTI_GetITStatus,"ax",%progbits
+ 299              		.align	1
+ 300              		.global	EXTI_GetITStatus
+ 301              		.syntax unified
+ 302              		.thumb
+ 303              		.thumb_func
+ 304              		.fpu softvfp
+ 306              	EXTI_GetITStatus:
+ARM GAS  /tmp/ccmyuTra.s 			page 10
+
+
+ 307              	.LFB62:
+ 215:stm_lib/src/stm32f10x_exti.c **** }
+ 216:stm_lib/src/stm32f10x_exti.c **** 
+ 217:stm_lib/src/stm32f10x_exti.c **** /**
+ 218:stm_lib/src/stm32f10x_exti.c ****   * @brief  Checks whether the specified EXTI line is asserted or not.
+ 219:stm_lib/src/stm32f10x_exti.c ****   * @param  EXTI_Line: specifies the EXTI line to check.
+ 220:stm_lib/src/stm32f10x_exti.c ****   *   This parameter can be:
+ 221:stm_lib/src/stm32f10x_exti.c ****   *     @arg EXTI_Linex: External interrupt line x where x(0..19)
+ 222:stm_lib/src/stm32f10x_exti.c ****   * @retval The new state of EXTI_Line (SET or RESET).
+ 223:stm_lib/src/stm32f10x_exti.c ****   */
+ 224:stm_lib/src/stm32f10x_exti.c **** ITStatus EXTI_GetITStatus(uint32_t EXTI_Line)
+ 225:stm_lib/src/stm32f10x_exti.c **** {
+ 308              		.loc 1 225 0
+ 309              		.cfi_startproc
+ 310              		@ args = 0, pretend = 0, frame = 0
+ 311              		@ frame_needed = 0, uses_anonymous_args = 0
+ 312              		@ link register save eliminated.
+ 313              	.LVL16:
+ 226:stm_lib/src/stm32f10x_exti.c ****   ITStatus bitstatus = RESET;
+ 227:stm_lib/src/stm32f10x_exti.c ****   uint32_t enablestatus = 0;
+ 228:stm_lib/src/stm32f10x_exti.c ****   /* Check the parameters */
+ 229:stm_lib/src/stm32f10x_exti.c ****   assert_param(IS_GET_EXTI_LINE(EXTI_Line));
+ 230:stm_lib/src/stm32f10x_exti.c ****   
+ 231:stm_lib/src/stm32f10x_exti.c ****   enablestatus =  EXTI->IMR & EXTI_Line;
+ 314              		.loc 1 231 0
+ 315 0000 064A     		ldr	r2, .L32
+ 316 0002 1368     		ldr	r3, [r2]
+ 317 0004 0340     		ands	r3, r3, r0
+ 318              	.LVL17:
+ 232:stm_lib/src/stm32f10x_exti.c ****   if (((EXTI->PR & EXTI_Line) != (uint32_t)RESET) && (enablestatus != (uint32_t)RESET))
+ 319              		.loc 1 232 0
+ 320 0006 5269     		ldr	r2, [r2, #20]
+ 321 0008 1042     		tst	r0, r2
+ 322 000a 02D0     		beq	.L30
+ 323              		.loc 1 232 0 is_stmt 0 discriminator 1
+ 324 000c 1BB9     		cbnz	r3, .L31
+ 233:stm_lib/src/stm32f10x_exti.c ****   {
+ 234:stm_lib/src/stm32f10x_exti.c ****     bitstatus = SET;
+ 235:stm_lib/src/stm32f10x_exti.c ****   }
+ 236:stm_lib/src/stm32f10x_exti.c ****   else
+ 237:stm_lib/src/stm32f10x_exti.c ****   {
+ 238:stm_lib/src/stm32f10x_exti.c ****     bitstatus = RESET;
+ 325              		.loc 1 238 0 is_stmt 1
+ 326 000e 0020     		movs	r0, #0
+ 327              	.LVL18:
+ 328 0010 7047     		bx	lr
+ 329              	.LVL19:
+ 330              	.L30:
+ 331 0012 0020     		movs	r0, #0
+ 332              	.LVL20:
+ 333 0014 7047     		bx	lr
+ 334              	.LVL21:
+ 335              	.L31:
+ 234:stm_lib/src/stm32f10x_exti.c ****   }
+ 336              		.loc 1 234 0
+ 337 0016 0120     		movs	r0, #1
+ 338              	.LVL22:
+ARM GAS  /tmp/ccmyuTra.s 			page 11
+
+
+ 239:stm_lib/src/stm32f10x_exti.c ****   }
+ 240:stm_lib/src/stm32f10x_exti.c ****   return bitstatus;
+ 241:stm_lib/src/stm32f10x_exti.c **** }
+ 339              		.loc 1 241 0
+ 340 0018 7047     		bx	lr
+ 341              	.L33:
+ 342 001a 00BF     		.align	2
+ 343              	.L32:
+ 344 001c 00040140 		.word	1073808384
+ 345              		.cfi_endproc
+ 346              	.LFE62:
+ 348              		.section	.text.EXTI_ClearITPendingBit,"ax",%progbits
+ 349              		.align	1
+ 350              		.global	EXTI_ClearITPendingBit
+ 351              		.syntax unified
+ 352              		.thumb
+ 353              		.thumb_func
+ 354              		.fpu softvfp
+ 356              	EXTI_ClearITPendingBit:
+ 357              	.LFB63:
+ 242:stm_lib/src/stm32f10x_exti.c **** 
+ 243:stm_lib/src/stm32f10x_exti.c **** /**
+ 244:stm_lib/src/stm32f10x_exti.c ****   * @brief  Clears the EXTI's line pending bits.
+ 245:stm_lib/src/stm32f10x_exti.c ****   * @param  EXTI_Line: specifies the EXTI lines to clear.
+ 246:stm_lib/src/stm32f10x_exti.c ****   *   This parameter can be any combination of EXTI_Linex where x can be (0..19).
+ 247:stm_lib/src/stm32f10x_exti.c ****   * @retval None
+ 248:stm_lib/src/stm32f10x_exti.c ****   */
+ 249:stm_lib/src/stm32f10x_exti.c **** void EXTI_ClearITPendingBit(uint32_t EXTI_Line)
+ 250:stm_lib/src/stm32f10x_exti.c **** {
+ 358              		.loc 1 250 0
+ 359              		.cfi_startproc
+ 360              		@ args = 0, pretend = 0, frame = 0
+ 361              		@ frame_needed = 0, uses_anonymous_args = 0
+ 362              		@ link register save eliminated.
+ 363              	.LVL23:
+ 251:stm_lib/src/stm32f10x_exti.c ****   /* Check the parameters */
+ 252:stm_lib/src/stm32f10x_exti.c ****   assert_param(IS_EXTI_LINE(EXTI_Line));
+ 253:stm_lib/src/stm32f10x_exti.c ****   
+ 254:stm_lib/src/stm32f10x_exti.c ****   EXTI->PR = EXTI_Line;
+ 364              		.loc 1 254 0
+ 365 0000 014B     		ldr	r3, .L35
+ 366 0002 5861     		str	r0, [r3, #20]
+ 367 0004 7047     		bx	lr
+ 368              	.L36:
+ 369 0006 00BF     		.align	2
+ 370              	.L35:
+ 371 0008 00040140 		.word	1073808384
+ 372              		.cfi_endproc
+ 373              	.LFE63:
+ 375              		.text
+ 376              	.Letext0:
+ 377              		.file 2 "/usr/include/newlib/machine/_default_types.h"
+ 378              		.file 3 "/usr/include/newlib/sys/_stdint.h"
+ 379              		.file 4 "cmsis/core_cm3.h"
+ 380              		.file 5 "cmsis_boot/system_stm32f10x.h"
+ 381              		.file 6 "stm_lib/inc/stm32f10x.h"
+ 382              		.file 7 "stm_lib/inc/stm32f10x_exti.h"
+ARM GAS  /tmp/ccmyuTra.s 			page 12
+
+
+ARM GAS  /tmp/ccmyuTra.s 			page 13
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 stm32f10x_exti.c
+     /tmp/ccmyuTra.s:16     .text.EXTI_DeInit:0000000000000000 $t
+     /tmp/ccmyuTra.s:23     .text.EXTI_DeInit:0000000000000000 EXTI_DeInit
+     /tmp/ccmyuTra.s:48     .text.EXTI_DeInit:0000000000000014 $d
+     /tmp/ccmyuTra.s:54     .text.EXTI_Init:0000000000000000 $t
+     /tmp/ccmyuTra.s:61     .text.EXTI_Init:0000000000000000 EXTI_Init
+     /tmp/ccmyuTra.s:168    .text.EXTI_Init:0000000000000088 $d
+     /tmp/ccmyuTra.s:173    .text.EXTI_StructInit:0000000000000000 $t
+     /tmp/ccmyuTra.s:180    .text.EXTI_StructInit:0000000000000000 EXTI_StructInit
+     /tmp/ccmyuTra.s:203    .text.EXTI_GenerateSWInterrupt:0000000000000000 $t
+     /tmp/ccmyuTra.s:210    .text.EXTI_GenerateSWInterrupt:0000000000000000 EXTI_GenerateSWInterrupt
+     /tmp/ccmyuTra.s:228    .text.EXTI_GenerateSWInterrupt:000000000000000c $d
+     /tmp/ccmyuTra.s:233    .text.EXTI_GetFlagStatus:0000000000000000 $t
+     /tmp/ccmyuTra.s:240    .text.EXTI_GetFlagStatus:0000000000000000 EXTI_GetFlagStatus
+     /tmp/ccmyuTra.s:267    .text.EXTI_GetFlagStatus:0000000000000010 $d
+     /tmp/ccmyuTra.s:272    .text.EXTI_ClearFlag:0000000000000000 $t
+     /tmp/ccmyuTra.s:279    .text.EXTI_ClearFlag:0000000000000000 EXTI_ClearFlag
+     /tmp/ccmyuTra.s:294    .text.EXTI_ClearFlag:0000000000000008 $d
+     /tmp/ccmyuTra.s:299    .text.EXTI_GetITStatus:0000000000000000 $t
+     /tmp/ccmyuTra.s:306    .text.EXTI_GetITStatus:0000000000000000 EXTI_GetITStatus
+     /tmp/ccmyuTra.s:344    .text.EXTI_GetITStatus:000000000000001c $d
+     /tmp/ccmyuTra.s:349    .text.EXTI_ClearITPendingBit:0000000000000000 $t
+     /tmp/ccmyuTra.s:356    .text.EXTI_ClearITPendingBit:0000000000000000 EXTI_ClearITPendingBit
+     /tmp/ccmyuTra.s:371    .text.EXTI_ClearITPendingBit:0000000000000008 $d
+                     .debug_frame:0000000000000010 $d
+
+NO UNDEFINED SYMBOLS
