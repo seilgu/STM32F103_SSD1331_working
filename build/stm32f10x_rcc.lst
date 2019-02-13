@@ -1,4 +1,4 @@
-ARM GAS  /tmp/ccNrDCVF.s 			page 1
+ARM GAS  /tmp/ccX1nHUr.s 			page 1
 
 
    1              		.cpu cortex-m3
@@ -58,7 +58,7 @@ ARM GAS  /tmp/ccNrDCVF.s 			page 1
   31:stm_lib/src/stm32f10x_rcc.c ****   * @{
   32:stm_lib/src/stm32f10x_rcc.c ****   */ 
   33:stm_lib/src/stm32f10x_rcc.c **** 
-ARM GAS  /tmp/ccNrDCVF.s 			page 2
+ARM GAS  /tmp/ccX1nHUr.s 			page 2
 
 
   34:stm_lib/src/stm32f10x_rcc.c **** /** @defgroup RCC_Private_TypesDefinitions
@@ -118,7 +118,7 @@ ARM GAS  /tmp/ccNrDCVF.s 			page 1
   88:stm_lib/src/stm32f10x_rcc.c **** 
   89:stm_lib/src/stm32f10x_rcc.c **** /* Alias word address of RTCEN bit */
   90:stm_lib/src/stm32f10x_rcc.c **** #define BDCR_OFFSET               (RCC_OFFSET + 0x20)
-ARM GAS  /tmp/ccNrDCVF.s 			page 3
+ARM GAS  /tmp/ccX1nHUr.s 			page 3
 
 
   91:stm_lib/src/stm32f10x_rcc.c **** #define RTCEN_BitNumber           0x0F
@@ -178,7 +178,7 @@ ARM GAS  /tmp/ccNrDCVF.s 			page 1
  145:stm_lib/src/stm32f10x_rcc.c **** #define CFGR_ADCPRE_Reset_Mask    ((uint32_t)0xFFFF3FFF)
  146:stm_lib/src/stm32f10x_rcc.c **** #define CFGR_ADCPRE_Set_Mask      ((uint32_t)0x0000C000)
  147:stm_lib/src/stm32f10x_rcc.c **** 
-ARM GAS  /tmp/ccNrDCVF.s 			page 4
+ARM GAS  /tmp/ccX1nHUr.s 			page 4
 
 
  148:stm_lib/src/stm32f10x_rcc.c **** /* CSR register bit mask */
@@ -238,7 +238,7 @@ ARM GAS  /tmp/ccNrDCVF.s 			page 1
  202:stm_lib/src/stm32f10x_rcc.c ****   */
  203:stm_lib/src/stm32f10x_rcc.c **** 
  204:stm_lib/src/stm32f10x_rcc.c **** /**
-ARM GAS  /tmp/ccNrDCVF.s 			page 5
+ARM GAS  /tmp/ccX1nHUr.s 			page 5
 
 
  205:stm_lib/src/stm32f10x_rcc.c ****   * @}
@@ -298,7 +298,7 @@ ARM GAS  /tmp/ccNrDCVF.s 			page 1
  235:stm_lib/src/stm32f10x_rcc.c ****   /* Reset PLLSRC, PLLXTPRE, PLLMUL and USBPRE/OTGFSPRE bits */
  236:stm_lib/src/stm32f10x_rcc.c ****   RCC->CFGR &= (uint32_t)0xFF80FFFF;
   50              		.loc 1 236 0
-ARM GAS  /tmp/ccNrDCVF.s 			page 6
+ARM GAS  /tmp/ccX1nHUr.s 			page 6
 
 
   51 0026 5A68     		ldr	r2, [r3, #4]
@@ -358,7 +358,7 @@ ARM GAS  /tmp/ccNrDCVF.s 			page 1
  268:stm_lib/src/stm32f10x_rcc.c ****   * @retval None
  269:stm_lib/src/stm32f10x_rcc.c ****   */
  270:stm_lib/src/stm32f10x_rcc.c **** void RCC_HSEConfig(uint32_t RCC_HSE)
-ARM GAS  /tmp/ccNrDCVF.s 			page 7
+ARM GAS  /tmp/ccX1nHUr.s 			page 7
 
 
  271:stm_lib/src/stm32f10x_rcc.c **** {
@@ -418,7 +418,7 @@ ARM GAS  /tmp/ccNrDCVF.s 			page 1
  111 0036 7047     		bx	lr
  112              	.L9:
  113              		.align	2
-ARM GAS  /tmp/ccNrDCVF.s 			page 8
+ARM GAS  /tmp/ccX1nHUr.s 			page 8
 
 
  114              	.L8:
@@ -478,7 +478,7 @@ ARM GAS  /tmp/ccNrDCVF.s 			page 1
  331:stm_lib/src/stm32f10x_rcc.c ****   *   This parameter must be a number between 0 and 0x1F.
  332:stm_lib/src/stm32f10x_rcc.c ****   * @retval None
  333:stm_lib/src/stm32f10x_rcc.c ****   */
-ARM GAS  /tmp/ccNrDCVF.s 			page 9
+ARM GAS  /tmp/ccX1nHUr.s 			page 9
 
 
  334:stm_lib/src/stm32f10x_rcc.c **** void RCC_AdjustHSICalibrationValue(uint8_t HSICalibrationValue)
@@ -538,7 +538,7 @@ ARM GAS  /tmp/ccNrDCVF.s 			page 1
  354:stm_lib/src/stm32f10x_rcc.c **** void RCC_HSICmd(FunctionalState NewState)
  355:stm_lib/src/stm32f10x_rcc.c **** {
  165              		.loc 1 355 0
-ARM GAS  /tmp/ccNrDCVF.s 			page 10
+ARM GAS  /tmp/ccX1nHUr.s 			page 10
 
 
  166              		.cfi_startproc
@@ -598,7 +598,7 @@ ARM GAS  /tmp/ccNrDCVF.s 			page 1
  380:stm_lib/src/stm32f10x_rcc.c ****   uint32_t tmpreg = 0;
  381:stm_lib/src/stm32f10x_rcc.c **** 
  382:stm_lib/src/stm32f10x_rcc.c ****   /* Check the parameters */
-ARM GAS  /tmp/ccNrDCVF.s 			page 11
+ARM GAS  /tmp/ccX1nHUr.s 			page 11
 
 
  383:stm_lib/src/stm32f10x_rcc.c ****   assert_param(IS_RCC_PLL_SOURCE(RCC_PLLSource));
@@ -658,7 +658,7 @@ ARM GAS  /tmp/ccNrDCVF.s 			page 1
  234              		@ link register save eliminated.
  235              	.LVL11:
  403:stm_lib/src/stm32f10x_rcc.c ****   /* Check the parameters */
-ARM GAS  /tmp/ccNrDCVF.s 			page 12
+ARM GAS  /tmp/ccX1nHUr.s 			page 12
 
 
  404:stm_lib/src/stm32f10x_rcc.c ****   assert_param(IS_FUNCTIONAL_STATE(NewState));
@@ -718,7 +718,7 @@ ARM GAS  /tmp/ccNrDCVF.s 			page 1
  439:stm_lib/src/stm32f10x_rcc.c ****   /* Store the new value */
  440:stm_lib/src/stm32f10x_rcc.c ****   RCC->CFGR2 = tmpreg;
  441:stm_lib/src/stm32f10x_rcc.c **** }
-ARM GAS  /tmp/ccNrDCVF.s 			page 13
+ARM GAS  /tmp/ccX1nHUr.s 			page 13
 
 
  442:stm_lib/src/stm32f10x_rcc.c **** #endif
@@ -778,7 +778,7 @@ ARM GAS  /tmp/ccNrDCVF.s 			page 1
  496:stm_lib/src/stm32f10x_rcc.c **** /**
  497:stm_lib/src/stm32f10x_rcc.c ****   * @brief  Enables or disables the PLL2.
  498:stm_lib/src/stm32f10x_rcc.c ****   * @note 
-ARM GAS  /tmp/ccNrDCVF.s 			page 14
+ARM GAS  /tmp/ccX1nHUr.s 			page 14
 
 
  499:stm_lib/src/stm32f10x_rcc.c ****   *   - The PLL2 can not be disabled if it is used indirectly as system clock
@@ -838,7 +838,7 @@ ARM GAS  /tmp/ccNrDCVF.s 			page 1
  553:stm_lib/src/stm32f10x_rcc.c **** #endif /* STM32F10X_CL */
  554:stm_lib/src/stm32f10x_rcc.c **** 
  555:stm_lib/src/stm32f10x_rcc.c **** /**
-ARM GAS  /tmp/ccNrDCVF.s 			page 15
+ARM GAS  /tmp/ccX1nHUr.s 			page 15
 
 
  556:stm_lib/src/stm32f10x_rcc.c ****   * @brief  Configures the system clock (SYSCLK).
@@ -898,7 +898,7 @@ ARM GAS  /tmp/ccNrDCVF.s 			page 1
  576:stm_lib/src/stm32f10x_rcc.c **** }
  577:stm_lib/src/stm32f10x_rcc.c **** 
  578:stm_lib/src/stm32f10x_rcc.c **** /**
-ARM GAS  /tmp/ccNrDCVF.s 			page 16
+ARM GAS  /tmp/ccX1nHUr.s 			page 16
 
 
  579:stm_lib/src/stm32f10x_rcc.c ****   * @brief  Returns the clock source used as system clock.
@@ -958,7 +958,7 @@ ARM GAS  /tmp/ccNrDCVF.s 			page 1
  607:stm_lib/src/stm32f10x_rcc.c ****   */
  608:stm_lib/src/stm32f10x_rcc.c **** void RCC_HCLKConfig(uint32_t RCC_SYSCLK)
  609:stm_lib/src/stm32f10x_rcc.c **** {
-ARM GAS  /tmp/ccNrDCVF.s 			page 17
+ARM GAS  /tmp/ccX1nHUr.s 			page 17
 
 
  321              		.loc 1 609 0
@@ -1018,7 +1018,7 @@ ARM GAS  /tmp/ccNrDCVF.s 			page 1
  630:stm_lib/src/stm32f10x_rcc.c ****   *     @arg RCC_HCLK_Div8: APB1 clock = HCLK/8
  631:stm_lib/src/stm32f10x_rcc.c ****   *     @arg RCC_HCLK_Div16: APB1 clock = HCLK/16
  632:stm_lib/src/stm32f10x_rcc.c ****   * @retval None
-ARM GAS  /tmp/ccNrDCVF.s 			page 18
+ARM GAS  /tmp/ccX1nHUr.s 			page 18
 
 
  633:stm_lib/src/stm32f10x_rcc.c ****   */
@@ -1078,7 +1078,7 @@ ARM GAS  /tmp/ccNrDCVF.s 			page 1
  653:stm_lib/src/stm32f10x_rcc.c ****   *     @arg RCC_HCLK_Div1: APB2 clock = HCLK
  654:stm_lib/src/stm32f10x_rcc.c ****   *     @arg RCC_HCLK_Div2: APB2 clock = HCLK/2
  655:stm_lib/src/stm32f10x_rcc.c ****   *     @arg RCC_HCLK_Div4: APB2 clock = HCLK/4
-ARM GAS  /tmp/ccNrDCVF.s 			page 19
+ARM GAS  /tmp/ccX1nHUr.s 			page 19
 
 
  656:stm_lib/src/stm32f10x_rcc.c ****   *     @arg RCC_HCLK_Div8: APB2 clock = HCLK/8
@@ -1138,7 +1138,7 @@ ARM GAS  /tmp/ccNrDCVF.s 			page 1
  676:stm_lib/src/stm32f10x_rcc.c ****   * @param  RCC_IT: specifies the RCC interrupt sources to be enabled or disabled.
  677:stm_lib/src/stm32f10x_rcc.c ****   * 
  678:stm_lib/src/stm32f10x_rcc.c ****   *   For @b STM32_Connectivity_line_devices, this parameter can be any combination
-ARM GAS  /tmp/ccNrDCVF.s 			page 20
+ARM GAS  /tmp/ccX1nHUr.s 			page 20
 
 
  679:stm_lib/src/stm32f10x_rcc.c ****   *   of the following values        
@@ -1198,7 +1198,7 @@ ARM GAS  /tmp/ccNrDCVF.s 			page 1
  447 000e 024A     		ldr	r2, .L41
  448 0010 1378     		ldrb	r3, [r2]	@ zero_extendqisi2
  449 0012 1843     		orrs	r0, r0, r3
-ARM GAS  /tmp/ccNrDCVF.s 			page 21
+ARM GAS  /tmp/ccX1nHUr.s 			page 21
 
 
  450              	.LVL31:
@@ -1258,7 +1258,7 @@ ARM GAS  /tmp/ccNrDCVF.s 			page 1
  487              		.section	.text.RCC_ADCCLKConfig,"ax",%progbits
  488              		.align	1
  489              		.global	RCC_ADCCLKConfig
-ARM GAS  /tmp/ccNrDCVF.s 			page 22
+ARM GAS  /tmp/ccX1nHUr.s 			page 22
 
 
  490              		.syntax unified
@@ -1318,7 +1318,7 @@ ARM GAS  /tmp/ccNrDCVF.s 			page 1
  772:stm_lib/src/stm32f10x_rcc.c ****   /* Clear ADCPRE[1:0] bits */
  773:stm_lib/src/stm32f10x_rcc.c ****   tmpreg &= CFGR_ADCPRE_Reset_Mask;
  507              		.loc 1 773 0
-ARM GAS  /tmp/ccNrDCVF.s 			page 23
+ARM GAS  /tmp/ccX1nHUr.s 			page 23
 
 
  508 0004 23F44043 		bic	r3, r3, #49152
@@ -1378,7 +1378,7 @@ ARM GAS  /tmp/ccNrDCVF.s 			page 1
  805:stm_lib/src/stm32f10x_rcc.c ****   * @param  RCC_I2S3CLKSource: specifies the I2S3 clock source.
  806:stm_lib/src/stm32f10x_rcc.c ****   *   This parameter can be one of the following values:
  807:stm_lib/src/stm32f10x_rcc.c ****   *     @arg RCC_I2S3CLKSource_SYSCLK: system clock selected as I2S3 clock entry
-ARM GAS  /tmp/ccNrDCVF.s 			page 24
+ARM GAS  /tmp/ccX1nHUr.s 			page 24
 
 
  808:stm_lib/src/stm32f10x_rcc.c ****   *     @arg RCC_I2S3CLKSource_PLL3_VCO: PLL3 VCO clock selected as I2S3 clock entry
@@ -1438,7 +1438,7 @@ ARM GAS  /tmp/ccNrDCVF.s 			page 1
  843:stm_lib/src/stm32f10x_rcc.c ****       *(__IO uint8_t *) BDCR_ADDRESS = RCC_LSE_ON;
  552              		.loc 1 843 0
  553 0012 0122     		movs	r2, #1
-ARM GAS  /tmp/ccNrDCVF.s 			page 25
+ARM GAS  /tmp/ccX1nHUr.s 			page 25
 
 
  554 0014 034B     		ldr	r3, .L53
@@ -1498,7 +1498,7 @@ ARM GAS  /tmp/ccNrDCVF.s 			page 1
  587              		.loc 1 866 0
  588 0000 014B     		ldr	r3, .L56
  589 0002 1860     		str	r0, [r3]
-ARM GAS  /tmp/ccNrDCVF.s 			page 26
+ARM GAS  /tmp/ccX1nHUr.s 			page 26
 
 
  590 0004 7047     		bx	lr
@@ -1558,7 +1558,7 @@ ARM GAS  /tmp/ccNrDCVF.s 			page 1
  629              		.align	1
  630              		.global	RCC_RTCCLKCmd
  631              		.syntax unified
-ARM GAS  /tmp/ccNrDCVF.s 			page 27
+ARM GAS  /tmp/ccX1nHUr.s 			page 27
 
 
  632              		.thumb
@@ -1618,7 +1618,7 @@ ARM GAS  /tmp/ccNrDCVF.s 			page 1
  909:stm_lib/src/stm32f10x_rcc.c **** {
  665              		.loc 1 909 0
  666              		.cfi_startproc
-ARM GAS  /tmp/ccNrDCVF.s 			page 28
+ARM GAS  /tmp/ccX1nHUr.s 			page 28
 
 
  667              		@ args = 0, pretend = 0, frame = 0
@@ -1678,7 +1678,7 @@ ARM GAS  /tmp/ccNrDCVF.s 			page 1
  944:stm_lib/src/stm32f10x_rcc.c ****       else
  945:stm_lib/src/stm32f10x_rcc.c ****       {
  946:stm_lib/src/stm32f10x_rcc.c ****  #if defined (STM32F10X_LD_VL) || defined (STM32F10X_MD_VL) || defined (STM32F10X_HD_VL)
-ARM GAS  /tmp/ccNrDCVF.s 			page 29
+ARM GAS  /tmp/ccX1nHUr.s 			page 29
 
 
  947:stm_lib/src/stm32f10x_rcc.c ****        prediv1factor = (RCC->CFGR2 & CFGR2_PREDIV1) + 1;
@@ -1738,7 +1738,7 @@ ARM GAS  /tmp/ccNrDCVF.s 			page 1
 1001:stm_lib/src/stm32f10x_rcc.c ****     default:
 1002:stm_lib/src/stm32f10x_rcc.c ****       RCC_Clocks->SYSCLK_Frequency = HSI_VALUE;
  687              		.loc 1 1002 0
-ARM GAS  /tmp/ccNrDCVF.s 			page 30
+ARM GAS  /tmp/ccX1nHUr.s 			page 30
 
 
  688 0014 254B     		ldr	r3, .L76+4
@@ -1798,7 +1798,7 @@ ARM GAS  /tmp/ccNrDCVF.s 			page 1
  727 003a D2B2     		uxtb	r2, r2
  728              	.LVL56:
 1017:stm_lib/src/stm32f10x_rcc.c ****   /* PCLK1 clock frequency */
-ARM GAS  /tmp/ccNrDCVF.s 			page 31
+ARM GAS  /tmp/ccX1nHUr.s 			page 31
 
 
 1018:stm_lib/src/stm32f10x_rcc.c ****   RCC_Clocks->PCLK1_Frequency = RCC_Clocks->HCLK_Frequency >> presc;
@@ -1858,7 +1858,7 @@ ARM GAS  /tmp/ccNrDCVF.s 			page 1
  769              	.LVL66:
  770              	.L66:
  771              	.LCFI2:
-ARM GAS  /tmp/ccNrDCVF.s 			page 32
+ARM GAS  /tmp/ccX1nHUr.s 			page 32
 
 
  772              		.cfi_restore_state
@@ -1918,7 +1918,7 @@ ARM GAS  /tmp/ccNrDCVF.s 			page 1
  817              	.LVL78:
  818              	.L71:
  958:stm_lib/src/stm32f10x_rcc.c ****         }
-ARM GAS  /tmp/ccNrDCVF.s 			page 33
+ARM GAS  /tmp/ccX1nHUr.s 			page 33
 
 
  819              		.loc 1 958 0
@@ -1978,7 +1978,7 @@ ARM GAS  /tmp/ccNrDCVF.s 			page 1
 1061:stm_lib/src/stm32f10x_rcc.c ****   *   This parameter can be: ENABLE or DISABLE.
 1062:stm_lib/src/stm32f10x_rcc.c ****   * @retval None
 1063:stm_lib/src/stm32f10x_rcc.c ****   */
-ARM GAS  /tmp/ccNrDCVF.s 			page 34
+ARM GAS  /tmp/ccX1nHUr.s 			page 34
 
 
 1064:stm_lib/src/stm32f10x_rcc.c **** void RCC_AHBPeriphClockCmd(uint32_t RCC_AHBPeriph, FunctionalState NewState)
@@ -2038,7 +2038,7 @@ ARM GAS  /tmp/ccNrDCVF.s 			page 1
 1078:stm_lib/src/stm32f10x_rcc.c **** }
 1079:stm_lib/src/stm32f10x_rcc.c **** 
 1080:stm_lib/src/stm32f10x_rcc.c **** /**
-ARM GAS  /tmp/ccNrDCVF.s 			page 35
+ARM GAS  /tmp/ccX1nHUr.s 			page 35
 
 
 1081:stm_lib/src/stm32f10x_rcc.c ****   * @brief  Enables or disables the High Speed APB (APB2) peripheral clock.
@@ -2098,7 +2098,7 @@ ARM GAS  /tmp/ccNrDCVF.s 			page 1
  914 0018 00100240 		.word	1073876992
  915              		.cfi_endproc
  916              	.LFE77:
-ARM GAS  /tmp/ccNrDCVF.s 			page 36
+ARM GAS  /tmp/ccX1nHUr.s 			page 36
 
 
  918              		.section	.text.RCC_APB1PeriphClockCmd,"ax",%progbits
@@ -2158,7 +2158,7 @@ ARM GAS  /tmp/ccNrDCVF.s 			page 1
  942 000c 7047     		bx	lr
  943              	.LVL90:
  944              	.L93:
-ARM GAS  /tmp/ccNrDCVF.s 			page 37
+ARM GAS  /tmp/ccX1nHUr.s 			page 37
 
 
 1133:stm_lib/src/stm32f10x_rcc.c ****   }
@@ -2218,7 +2218,7 @@ ARM GAS  /tmp/ccNrDCVF.s 			page 1
 1169:stm_lib/src/stm32f10x_rcc.c **** 
 1170:stm_lib/src/stm32f10x_rcc.c **** /**
 1171:stm_lib/src/stm32f10x_rcc.c ****   * @brief  Forces or releases High Speed APB (APB2) peripheral reset.
-ARM GAS  /tmp/ccNrDCVF.s 			page 38
+ARM GAS  /tmp/ccX1nHUr.s 			page 38
 
 
 1172:stm_lib/src/stm32f10x_rcc.c ****   * @param  RCC_APB2Periph: specifies the APB2 peripheral to reset.
@@ -2278,7 +2278,7 @@ ARM GAS  /tmp/ccNrDCVF.s 			page 1
  997              		.cfi_endproc
  998              	.LFE79:
  1000              		.section	.text.RCC_APB1PeriphResetCmd,"ax",%progbits
-ARM GAS  /tmp/ccNrDCVF.s 			page 39
+ARM GAS  /tmp/ccX1nHUr.s 			page 39
 
 
  1001              		.align	1
@@ -2338,7 +2338,7 @@ ARM GAS  /tmp/ccNrDCVF.s 			page 1
  1025              	.LVL98:
  1026              	.L105:
 1223:stm_lib/src/stm32f10x_rcc.c ****   }
-ARM GAS  /tmp/ccNrDCVF.s 			page 40
+ARM GAS  /tmp/ccX1nHUr.s 			page 40
 
 
  1027              		.loc 1 1223 0
@@ -2398,7 +2398,7 @@ ARM GAS  /tmp/ccNrDCVF.s 			page 1
  1070              		.global	RCC_ClockSecuritySystemCmd
  1071              		.syntax unified
  1072              		.thumb
-ARM GAS  /tmp/ccNrDCVF.s 			page 41
+ARM GAS  /tmp/ccX1nHUr.s 			page 41
 
 
  1073              		.thumb_func
@@ -2458,7 +2458,7 @@ ARM GAS  /tmp/ccNrDCVF.s 			page 1
 1267:stm_lib/src/stm32f10x_rcc.c ****   *     @arg RCC_MCO_PLLCLK_Div2: PLL clock divided by 2 selected
 1268:stm_lib/src/stm32f10x_rcc.c ****   *     @arg RCC_MCO_PLL2CLK: PLL2 clock selected                     
 1269:stm_lib/src/stm32f10x_rcc.c ****   *     @arg RCC_MCO_PLL3CLK_Div2: PLL3 clock divided by 2 selected   
-ARM GAS  /tmp/ccNrDCVF.s 			page 42
+ARM GAS  /tmp/ccX1nHUr.s 			page 42
 
 
 1270:stm_lib/src/stm32f10x_rcc.c ****   *     @arg RCC_MCO_XT1: External 3-25 MHz oscillator clock selected  
@@ -2518,7 +2518,7 @@ ARM GAS  /tmp/ccNrDCVF.s 			page 1
 1299:stm_lib/src/stm32f10x_rcc.c ****   *     @arg RCC_FLAG_PLLRDY: PLL clock ready
 1300:stm_lib/src/stm32f10x_rcc.c ****   *     @arg RCC_FLAG_PLL2RDY: PLL2 clock ready      
 1301:stm_lib/src/stm32f10x_rcc.c ****   *     @arg RCC_FLAG_PLL3RDY: PLL3 clock ready                           
-ARM GAS  /tmp/ccNrDCVF.s 			page 43
+ARM GAS  /tmp/ccX1nHUr.s 			page 43
 
 
 1302:stm_lib/src/stm32f10x_rcc.c ****   *     @arg RCC_FLAG_LSERDY: LSE oscillator clock ready
@@ -2578,7 +2578,7 @@ ARM GAS  /tmp/ccNrDCVF.s 			page 1
 1341:stm_lib/src/stm32f10x_rcc.c ****   {
 1342:stm_lib/src/stm32f10x_rcc.c ****     statusreg = RCC->BDCR;
 1343:stm_lib/src/stm32f10x_rcc.c ****   }
-ARM GAS  /tmp/ccNrDCVF.s 			page 44
+ARM GAS  /tmp/ccX1nHUr.s 			page 44
 
 
 1344:stm_lib/src/stm32f10x_rcc.c ****   else                       /* The flag to check is in CSR register */
@@ -2638,7 +2638,7 @@ ARM GAS  /tmp/ccNrDCVF.s 			page 1
  1180              	.LVL115:
  1181 002a F0E7     		b	.L119
  1182              	.LVL116:
-ARM GAS  /tmp/ccNrDCVF.s 			page 45
+ARM GAS  /tmp/ccX1nHUr.s 			page 45
 
 
  1183              	.L125:
@@ -2698,7 +2698,7 @@ ARM GAS  /tmp/ccNrDCVF.s 			page 1
  1232              		.loc 1 315 0 is_stmt 0 discriminator 1
  1233 001c 0028     		cmp	r0, #0
  1234 001e F3D0     		beq	.L130
-ARM GAS  /tmp/ccNrDCVF.s 			page 46
+ARM GAS  /tmp/ccX1nHUr.s 			page 46
 
 
  1235              	.L129:
@@ -2758,7 +2758,7 @@ ARM GAS  /tmp/ccNrDCVF.s 			page 1
  1277              		@ link register save eliminated.
 1373:stm_lib/src/stm32f10x_rcc.c ****   /* Set RMVF bit to clear the reset flags */
 1374:stm_lib/src/stm32f10x_rcc.c ****   RCC->CSR |= CSR_RMVF_Set;
-ARM GAS  /tmp/ccNrDCVF.s 			page 47
+ARM GAS  /tmp/ccX1nHUr.s 			page 47
 
 
  1278              		.loc 1 1374 0
@@ -2818,7 +2818,7 @@ ARM GAS  /tmp/ccNrDCVF.s 			page 1
  1305              		@ link register save eliminated.
  1306              	.LVL123:
 1404:stm_lib/src/stm32f10x_rcc.c ****   ITStatus bitstatus = RESET;
-ARM GAS  /tmp/ccNrDCVF.s 			page 48
+ARM GAS  /tmp/ccX1nHUr.s 			page 48
 
 
 1405:stm_lib/src/stm32f10x_rcc.c ****   /* Check the parameters */
@@ -2878,7 +2878,7 @@ ARM GAS  /tmp/ccNrDCVF.s 			page 1
 1427:stm_lib/src/stm32f10x_rcc.c ****   *   of the following values:
 1428:stm_lib/src/stm32f10x_rcc.c ****   *     @arg RCC_IT_LSIRDY: LSI ready interrupt
 1429:stm_lib/src/stm32f10x_rcc.c ****   *     @arg RCC_IT_LSERDY: LSE ready interrupt
-ARM GAS  /tmp/ccNrDCVF.s 			page 49
+ARM GAS  /tmp/ccX1nHUr.s 			page 49
 
 
 1430:stm_lib/src/stm32f10x_rcc.c ****   *     @arg RCC_IT_HSIRDY: HSI ready interrupt
@@ -2938,7 +2938,7 @@ ARM GAS  /tmp/ccNrDCVF.s 			page 1
  1373 0000 00       		.byte	0
  1374 0001 00       		.byte	0
  1375 0002 00       		.byte	0
-ARM GAS  /tmp/ccNrDCVF.s 			page 50
+ARM GAS  /tmp/ccX1nHUr.s 			page 50
 
 
  1376 0003 00       		.byte	0
@@ -2962,113 +2962,113 @@ ARM GAS  /tmp/ccNrDCVF.s 			page 1
  1394              		.file 5 "cmsis_boot/system_stm32f10x.h"
  1395              		.file 6 "stm_lib/inc/stm32f10x.h"
  1396              		.file 7 "stm_lib/inc/stm32f10x_rcc.h"
-ARM GAS  /tmp/ccNrDCVF.s 			page 51
+ARM GAS  /tmp/ccX1nHUr.s 			page 51
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 stm32f10x_rcc.c
-     /tmp/ccNrDCVF.s:16     .text.RCC_DeInit:0000000000000000 $t
-     /tmp/ccNrDCVF.s:23     .text.RCC_DeInit:0000000000000000 RCC_DeInit
-     /tmp/ccNrDCVF.s:61     .text.RCC_DeInit:0000000000000038 $d
-     /tmp/ccNrDCVF.s:67     .text.RCC_HSEConfig:0000000000000000 $t
-     /tmp/ccNrDCVF.s:74     .text.RCC_HSEConfig:0000000000000000 RCC_HSEConfig
-     /tmp/ccNrDCVF.s:115    .text.RCC_HSEConfig:0000000000000038 $d
-     /tmp/ccNrDCVF.s:120    .text.RCC_AdjustHSICalibrationValue:0000000000000000 $t
-     /tmp/ccNrDCVF.s:127    .text.RCC_AdjustHSICalibrationValue:0000000000000000 RCC_AdjustHSICalibrationValue
-     /tmp/ccNrDCVF.s:151    .text.RCC_AdjustHSICalibrationValue:0000000000000010 $d
-     /tmp/ccNrDCVF.s:156    .text.RCC_HSICmd:0000000000000000 $t
-     /tmp/ccNrDCVF.s:163    .text.RCC_HSICmd:0000000000000000 RCC_HSICmd
-     /tmp/ccNrDCVF.s:178    .text.RCC_HSICmd:0000000000000008 $d
-     /tmp/ccNrDCVF.s:183    .text.RCC_PLLConfig:0000000000000000 $t
-     /tmp/ccNrDCVF.s:190    .text.RCC_PLLConfig:0000000000000000 RCC_PLLConfig
-     /tmp/ccNrDCVF.s:216    .text.RCC_PLLConfig:0000000000000010 $d
-     /tmp/ccNrDCVF.s:221    .text.RCC_PLLCmd:0000000000000000 $t
-     /tmp/ccNrDCVF.s:228    .text.RCC_PLLCmd:0000000000000000 RCC_PLLCmd
-     /tmp/ccNrDCVF.s:243    .text.RCC_PLLCmd:0000000000000008 $d
-     /tmp/ccNrDCVF.s:248    .text.RCC_SYSCLKConfig:0000000000000000 $t
-     /tmp/ccNrDCVF.s:255    .text.RCC_SYSCLKConfig:0000000000000000 RCC_SYSCLKConfig
-     /tmp/ccNrDCVF.s:279    .text.RCC_SYSCLKConfig:0000000000000010 $d
-     /tmp/ccNrDCVF.s:284    .text.RCC_GetSYSCLKSource:0000000000000000 $t
-     /tmp/ccNrDCVF.s:291    .text.RCC_GetSYSCLKSource:0000000000000000 RCC_GetSYSCLKSource
-     /tmp/ccNrDCVF.s:307    .text.RCC_GetSYSCLKSource:000000000000000c $d
-     /tmp/ccNrDCVF.s:312    .text.RCC_HCLKConfig:0000000000000000 $t
-     /tmp/ccNrDCVF.s:319    .text.RCC_HCLKConfig:0000000000000000 RCC_HCLKConfig
-     /tmp/ccNrDCVF.s:343    .text.RCC_HCLKConfig:0000000000000010 $d
-     /tmp/ccNrDCVF.s:348    .text.RCC_PCLK1Config:0000000000000000 $t
-     /tmp/ccNrDCVF.s:355    .text.RCC_PCLK1Config:0000000000000000 RCC_PCLK1Config
-     /tmp/ccNrDCVF.s:379    .text.RCC_PCLK1Config:0000000000000010 $d
-     /tmp/ccNrDCVF.s:384    .text.RCC_PCLK2Config:0000000000000000 $t
-     /tmp/ccNrDCVF.s:391    .text.RCC_PCLK2Config:0000000000000000 RCC_PCLK2Config
-     /tmp/ccNrDCVF.s:415    .text.RCC_PCLK2Config:0000000000000010 $d
-     /tmp/ccNrDCVF.s:420    .text.RCC_ITConfig:0000000000000000 $t
-     /tmp/ccNrDCVF.s:427    .text.RCC_ITConfig:0000000000000000 RCC_ITConfig
-     /tmp/ccNrDCVF.s:456    .text.RCC_ITConfig:0000000000000018 $d
-     /tmp/ccNrDCVF.s:461    .text.RCC_USBCLKConfig:0000000000000000 $t
-     /tmp/ccNrDCVF.s:468    .text.RCC_USBCLKConfig:0000000000000000 RCC_USBCLKConfig
-     /tmp/ccNrDCVF.s:483    .text.RCC_USBCLKConfig:0000000000000008 $d
-     /tmp/ccNrDCVF.s:488    .text.RCC_ADCCLKConfig:0000000000000000 $t
-     /tmp/ccNrDCVF.s:495    .text.RCC_ADCCLKConfig:0000000000000000 RCC_ADCCLKConfig
-     /tmp/ccNrDCVF.s:519    .text.RCC_ADCCLKConfig:0000000000000010 $d
-     /tmp/ccNrDCVF.s:524    .text.RCC_LSEConfig:0000000000000000 $t
-     /tmp/ccNrDCVF.s:531    .text.RCC_LSEConfig:0000000000000000 RCC_LSEConfig
-     /tmp/ccNrDCVF.s:567    .text.RCC_LSEConfig:0000000000000024 $d
-     /tmp/ccNrDCVF.s:572    .text.RCC_LSICmd:0000000000000000 $t
-     /tmp/ccNrDCVF.s:579    .text.RCC_LSICmd:0000000000000000 RCC_LSICmd
-     /tmp/ccNrDCVF.s:594    .text.RCC_LSICmd:0000000000000008 $d
-     /tmp/ccNrDCVF.s:599    .text.RCC_RTCCLKConfig:0000000000000000 $t
-     /tmp/ccNrDCVF.s:606    .text.RCC_RTCCLKConfig:0000000000000000 RCC_RTCCLKConfig
-     /tmp/ccNrDCVF.s:624    .text.RCC_RTCCLKConfig:000000000000000c $d
-     /tmp/ccNrDCVF.s:629    .text.RCC_RTCCLKCmd:0000000000000000 $t
-     /tmp/ccNrDCVF.s:636    .text.RCC_RTCCLKCmd:0000000000000000 RCC_RTCCLKCmd
-     /tmp/ccNrDCVF.s:651    .text.RCC_RTCCLKCmd:0000000000000008 $d
-     /tmp/ccNrDCVF.s:656    .text.RCC_GetClocksFreq:0000000000000000 $t
-ARM GAS  /tmp/ccNrDCVF.s 			page 52
+     /tmp/ccX1nHUr.s:16     .text.RCC_DeInit:0000000000000000 $t
+     /tmp/ccX1nHUr.s:23     .text.RCC_DeInit:0000000000000000 RCC_DeInit
+     /tmp/ccX1nHUr.s:61     .text.RCC_DeInit:0000000000000038 $d
+     /tmp/ccX1nHUr.s:67     .text.RCC_HSEConfig:0000000000000000 $t
+     /tmp/ccX1nHUr.s:74     .text.RCC_HSEConfig:0000000000000000 RCC_HSEConfig
+     /tmp/ccX1nHUr.s:115    .text.RCC_HSEConfig:0000000000000038 $d
+     /tmp/ccX1nHUr.s:120    .text.RCC_AdjustHSICalibrationValue:0000000000000000 $t
+     /tmp/ccX1nHUr.s:127    .text.RCC_AdjustHSICalibrationValue:0000000000000000 RCC_AdjustHSICalibrationValue
+     /tmp/ccX1nHUr.s:151    .text.RCC_AdjustHSICalibrationValue:0000000000000010 $d
+     /tmp/ccX1nHUr.s:156    .text.RCC_HSICmd:0000000000000000 $t
+     /tmp/ccX1nHUr.s:163    .text.RCC_HSICmd:0000000000000000 RCC_HSICmd
+     /tmp/ccX1nHUr.s:178    .text.RCC_HSICmd:0000000000000008 $d
+     /tmp/ccX1nHUr.s:183    .text.RCC_PLLConfig:0000000000000000 $t
+     /tmp/ccX1nHUr.s:190    .text.RCC_PLLConfig:0000000000000000 RCC_PLLConfig
+     /tmp/ccX1nHUr.s:216    .text.RCC_PLLConfig:0000000000000010 $d
+     /tmp/ccX1nHUr.s:221    .text.RCC_PLLCmd:0000000000000000 $t
+     /tmp/ccX1nHUr.s:228    .text.RCC_PLLCmd:0000000000000000 RCC_PLLCmd
+     /tmp/ccX1nHUr.s:243    .text.RCC_PLLCmd:0000000000000008 $d
+     /tmp/ccX1nHUr.s:248    .text.RCC_SYSCLKConfig:0000000000000000 $t
+     /tmp/ccX1nHUr.s:255    .text.RCC_SYSCLKConfig:0000000000000000 RCC_SYSCLKConfig
+     /tmp/ccX1nHUr.s:279    .text.RCC_SYSCLKConfig:0000000000000010 $d
+     /tmp/ccX1nHUr.s:284    .text.RCC_GetSYSCLKSource:0000000000000000 $t
+     /tmp/ccX1nHUr.s:291    .text.RCC_GetSYSCLKSource:0000000000000000 RCC_GetSYSCLKSource
+     /tmp/ccX1nHUr.s:307    .text.RCC_GetSYSCLKSource:000000000000000c $d
+     /tmp/ccX1nHUr.s:312    .text.RCC_HCLKConfig:0000000000000000 $t
+     /tmp/ccX1nHUr.s:319    .text.RCC_HCLKConfig:0000000000000000 RCC_HCLKConfig
+     /tmp/ccX1nHUr.s:343    .text.RCC_HCLKConfig:0000000000000010 $d
+     /tmp/ccX1nHUr.s:348    .text.RCC_PCLK1Config:0000000000000000 $t
+     /tmp/ccX1nHUr.s:355    .text.RCC_PCLK1Config:0000000000000000 RCC_PCLK1Config
+     /tmp/ccX1nHUr.s:379    .text.RCC_PCLK1Config:0000000000000010 $d
+     /tmp/ccX1nHUr.s:384    .text.RCC_PCLK2Config:0000000000000000 $t
+     /tmp/ccX1nHUr.s:391    .text.RCC_PCLK2Config:0000000000000000 RCC_PCLK2Config
+     /tmp/ccX1nHUr.s:415    .text.RCC_PCLK2Config:0000000000000010 $d
+     /tmp/ccX1nHUr.s:420    .text.RCC_ITConfig:0000000000000000 $t
+     /tmp/ccX1nHUr.s:427    .text.RCC_ITConfig:0000000000000000 RCC_ITConfig
+     /tmp/ccX1nHUr.s:456    .text.RCC_ITConfig:0000000000000018 $d
+     /tmp/ccX1nHUr.s:461    .text.RCC_USBCLKConfig:0000000000000000 $t
+     /tmp/ccX1nHUr.s:468    .text.RCC_USBCLKConfig:0000000000000000 RCC_USBCLKConfig
+     /tmp/ccX1nHUr.s:483    .text.RCC_USBCLKConfig:0000000000000008 $d
+     /tmp/ccX1nHUr.s:488    .text.RCC_ADCCLKConfig:0000000000000000 $t
+     /tmp/ccX1nHUr.s:495    .text.RCC_ADCCLKConfig:0000000000000000 RCC_ADCCLKConfig
+     /tmp/ccX1nHUr.s:519    .text.RCC_ADCCLKConfig:0000000000000010 $d
+     /tmp/ccX1nHUr.s:524    .text.RCC_LSEConfig:0000000000000000 $t
+     /tmp/ccX1nHUr.s:531    .text.RCC_LSEConfig:0000000000000000 RCC_LSEConfig
+     /tmp/ccX1nHUr.s:567    .text.RCC_LSEConfig:0000000000000024 $d
+     /tmp/ccX1nHUr.s:572    .text.RCC_LSICmd:0000000000000000 $t
+     /tmp/ccX1nHUr.s:579    .text.RCC_LSICmd:0000000000000000 RCC_LSICmd
+     /tmp/ccX1nHUr.s:594    .text.RCC_LSICmd:0000000000000008 $d
+     /tmp/ccX1nHUr.s:599    .text.RCC_RTCCLKConfig:0000000000000000 $t
+     /tmp/ccX1nHUr.s:606    .text.RCC_RTCCLKConfig:0000000000000000 RCC_RTCCLKConfig
+     /tmp/ccX1nHUr.s:624    .text.RCC_RTCCLKConfig:000000000000000c $d
+     /tmp/ccX1nHUr.s:629    .text.RCC_RTCCLKCmd:0000000000000000 $t
+     /tmp/ccX1nHUr.s:636    .text.RCC_RTCCLKCmd:0000000000000000 RCC_RTCCLKCmd
+     /tmp/ccX1nHUr.s:651    .text.RCC_RTCCLKCmd:0000000000000008 $d
+     /tmp/ccX1nHUr.s:656    .text.RCC_GetClocksFreq:0000000000000000 $t
+ARM GAS  /tmp/ccX1nHUr.s 			page 52
 
 
-     /tmp/ccNrDCVF.s:663    .text.RCC_GetClocksFreq:0000000000000000 RCC_GetClocksFreq
-     /tmp/ccNrDCVF.s:828    .text.RCC_GetClocksFreq:00000000000000a8 $d
-     /tmp/ccNrDCVF.s:837    .text.RCC_AHBPeriphClockCmd:0000000000000000 $t
-     /tmp/ccNrDCVF.s:844    .text.RCC_AHBPeriphClockCmd:0000000000000000 RCC_AHBPeriphClockCmd
-     /tmp/ccNrDCVF.s:873    .text.RCC_AHBPeriphClockCmd:0000000000000018 $d
-     /tmp/ccNrDCVF.s:878    .text.RCC_APB2PeriphClockCmd:0000000000000000 $t
-     /tmp/ccNrDCVF.s:885    .text.RCC_APB2PeriphClockCmd:0000000000000000 RCC_APB2PeriphClockCmd
-     /tmp/ccNrDCVF.s:914    .text.RCC_APB2PeriphClockCmd:0000000000000018 $d
-     /tmp/ccNrDCVF.s:919    .text.RCC_APB1PeriphClockCmd:0000000000000000 $t
-     /tmp/ccNrDCVF.s:926    .text.RCC_APB1PeriphClockCmd:0000000000000000 RCC_APB1PeriphClockCmd
-     /tmp/ccNrDCVF.s:955    .text.RCC_APB1PeriphClockCmd:0000000000000018 $d
-     /tmp/ccNrDCVF.s:960    .text.RCC_APB2PeriphResetCmd:0000000000000000 $t
-     /tmp/ccNrDCVF.s:967    .text.RCC_APB2PeriphResetCmd:0000000000000000 RCC_APB2PeriphResetCmd
-     /tmp/ccNrDCVF.s:996    .text.RCC_APB2PeriphResetCmd:0000000000000018 $d
-     /tmp/ccNrDCVF.s:1001   .text.RCC_APB1PeriphResetCmd:0000000000000000 $t
-     /tmp/ccNrDCVF.s:1008   .text.RCC_APB1PeriphResetCmd:0000000000000000 RCC_APB1PeriphResetCmd
-     /tmp/ccNrDCVF.s:1037   .text.RCC_APB1PeriphResetCmd:0000000000000018 $d
-     /tmp/ccNrDCVF.s:1042   .text.RCC_BackupResetCmd:0000000000000000 $t
-     /tmp/ccNrDCVF.s:1049   .text.RCC_BackupResetCmd:0000000000000000 RCC_BackupResetCmd
-     /tmp/ccNrDCVF.s:1064   .text.RCC_BackupResetCmd:0000000000000008 $d
-     /tmp/ccNrDCVF.s:1069   .text.RCC_ClockSecuritySystemCmd:0000000000000000 $t
-     /tmp/ccNrDCVF.s:1076   .text.RCC_ClockSecuritySystemCmd:0000000000000000 RCC_ClockSecuritySystemCmd
-     /tmp/ccNrDCVF.s:1091   .text.RCC_ClockSecuritySystemCmd:0000000000000008 $d
-     /tmp/ccNrDCVF.s:1096   .text.RCC_MCOConfig:0000000000000000 $t
-     /tmp/ccNrDCVF.s:1103   .text.RCC_MCOConfig:0000000000000000 RCC_MCOConfig
-     /tmp/ccNrDCVF.s:1118   .text.RCC_MCOConfig:0000000000000008 $d
-     /tmp/ccNrDCVF.s:1123   .text.RCC_GetFlagStatus:0000000000000000 $t
-     /tmp/ccNrDCVF.s:1130   .text.RCC_GetFlagStatus:0000000000000000 RCC_GetFlagStatus
-     /tmp/ccNrDCVF.s:1190   .text.RCC_GetFlagStatus:0000000000000030 $d
-     /tmp/ccNrDCVF.s:1195   .text.RCC_WaitForHSEStartUp:0000000000000000 $t
-     /tmp/ccNrDCVF.s:1202   .text.RCC_WaitForHSEStartUp:0000000000000000 RCC_WaitForHSEStartUp
-     /tmp/ccNrDCVF.s:1264   .text.RCC_ClearFlag:0000000000000000 $t
-     /tmp/ccNrDCVF.s:1271   .text.RCC_ClearFlag:0000000000000000 RCC_ClearFlag
-     /tmp/ccNrDCVF.s:1287   .text.RCC_ClearFlag:000000000000000c $d
-     /tmp/ccNrDCVF.s:1292   .text.RCC_GetITStatus:0000000000000000 $t
-     /tmp/ccNrDCVF.s:1299   .text.RCC_GetITStatus:0000000000000000 RCC_GetITStatus
-     /tmp/ccNrDCVF.s:1326   .text.RCC_GetITStatus:0000000000000010 $d
-     /tmp/ccNrDCVF.s:1331   .text.RCC_ClearITPendingBit:0000000000000000 $t
-     /tmp/ccNrDCVF.s:1338   .text.RCC_ClearITPendingBit:0000000000000000 RCC_ClearITPendingBit
-     /tmp/ccNrDCVF.s:1353   .text.RCC_ClearITPendingBit:0000000000000008 $d
-     /tmp/ccNrDCVF.s:1358   .data.ADCPrescTable:0000000000000000 $d
-     /tmp/ccNrDCVF.s:1362   .data.ADCPrescTable:0000000000000000 ADCPrescTable
-     /tmp/ccNrDCVF.s:1368   .data.APBAHBPrescTable:0000000000000000 $d
-     /tmp/ccNrDCVF.s:1372   .data.APBAHBPrescTable:0000000000000000 APBAHBPrescTable
+     /tmp/ccX1nHUr.s:663    .text.RCC_GetClocksFreq:0000000000000000 RCC_GetClocksFreq
+     /tmp/ccX1nHUr.s:828    .text.RCC_GetClocksFreq:00000000000000a8 $d
+     /tmp/ccX1nHUr.s:837    .text.RCC_AHBPeriphClockCmd:0000000000000000 $t
+     /tmp/ccX1nHUr.s:844    .text.RCC_AHBPeriphClockCmd:0000000000000000 RCC_AHBPeriphClockCmd
+     /tmp/ccX1nHUr.s:873    .text.RCC_AHBPeriphClockCmd:0000000000000018 $d
+     /tmp/ccX1nHUr.s:878    .text.RCC_APB2PeriphClockCmd:0000000000000000 $t
+     /tmp/ccX1nHUr.s:885    .text.RCC_APB2PeriphClockCmd:0000000000000000 RCC_APB2PeriphClockCmd
+     /tmp/ccX1nHUr.s:914    .text.RCC_APB2PeriphClockCmd:0000000000000018 $d
+     /tmp/ccX1nHUr.s:919    .text.RCC_APB1PeriphClockCmd:0000000000000000 $t
+     /tmp/ccX1nHUr.s:926    .text.RCC_APB1PeriphClockCmd:0000000000000000 RCC_APB1PeriphClockCmd
+     /tmp/ccX1nHUr.s:955    .text.RCC_APB1PeriphClockCmd:0000000000000018 $d
+     /tmp/ccX1nHUr.s:960    .text.RCC_APB2PeriphResetCmd:0000000000000000 $t
+     /tmp/ccX1nHUr.s:967    .text.RCC_APB2PeriphResetCmd:0000000000000000 RCC_APB2PeriphResetCmd
+     /tmp/ccX1nHUr.s:996    .text.RCC_APB2PeriphResetCmd:0000000000000018 $d
+     /tmp/ccX1nHUr.s:1001   .text.RCC_APB1PeriphResetCmd:0000000000000000 $t
+     /tmp/ccX1nHUr.s:1008   .text.RCC_APB1PeriphResetCmd:0000000000000000 RCC_APB1PeriphResetCmd
+     /tmp/ccX1nHUr.s:1037   .text.RCC_APB1PeriphResetCmd:0000000000000018 $d
+     /tmp/ccX1nHUr.s:1042   .text.RCC_BackupResetCmd:0000000000000000 $t
+     /tmp/ccX1nHUr.s:1049   .text.RCC_BackupResetCmd:0000000000000000 RCC_BackupResetCmd
+     /tmp/ccX1nHUr.s:1064   .text.RCC_BackupResetCmd:0000000000000008 $d
+     /tmp/ccX1nHUr.s:1069   .text.RCC_ClockSecuritySystemCmd:0000000000000000 $t
+     /tmp/ccX1nHUr.s:1076   .text.RCC_ClockSecuritySystemCmd:0000000000000000 RCC_ClockSecuritySystemCmd
+     /tmp/ccX1nHUr.s:1091   .text.RCC_ClockSecuritySystemCmd:0000000000000008 $d
+     /tmp/ccX1nHUr.s:1096   .text.RCC_MCOConfig:0000000000000000 $t
+     /tmp/ccX1nHUr.s:1103   .text.RCC_MCOConfig:0000000000000000 RCC_MCOConfig
+     /tmp/ccX1nHUr.s:1118   .text.RCC_MCOConfig:0000000000000008 $d
+     /tmp/ccX1nHUr.s:1123   .text.RCC_GetFlagStatus:0000000000000000 $t
+     /tmp/ccX1nHUr.s:1130   .text.RCC_GetFlagStatus:0000000000000000 RCC_GetFlagStatus
+     /tmp/ccX1nHUr.s:1190   .text.RCC_GetFlagStatus:0000000000000030 $d
+     /tmp/ccX1nHUr.s:1195   .text.RCC_WaitForHSEStartUp:0000000000000000 $t
+     /tmp/ccX1nHUr.s:1202   .text.RCC_WaitForHSEStartUp:0000000000000000 RCC_WaitForHSEStartUp
+     /tmp/ccX1nHUr.s:1264   .text.RCC_ClearFlag:0000000000000000 $t
+     /tmp/ccX1nHUr.s:1271   .text.RCC_ClearFlag:0000000000000000 RCC_ClearFlag
+     /tmp/ccX1nHUr.s:1287   .text.RCC_ClearFlag:000000000000000c $d
+     /tmp/ccX1nHUr.s:1292   .text.RCC_GetITStatus:0000000000000000 $t
+     /tmp/ccX1nHUr.s:1299   .text.RCC_GetITStatus:0000000000000000 RCC_GetITStatus
+     /tmp/ccX1nHUr.s:1326   .text.RCC_GetITStatus:0000000000000010 $d
+     /tmp/ccX1nHUr.s:1331   .text.RCC_ClearITPendingBit:0000000000000000 $t
+     /tmp/ccX1nHUr.s:1338   .text.RCC_ClearITPendingBit:0000000000000000 RCC_ClearITPendingBit
+     /tmp/ccX1nHUr.s:1353   .text.RCC_ClearITPendingBit:0000000000000008 $d
+     /tmp/ccX1nHUr.s:1358   .data.ADCPrescTable:0000000000000000 $d
+     /tmp/ccX1nHUr.s:1362   .data.ADCPrescTable:0000000000000000 ADCPrescTable
+     /tmp/ccX1nHUr.s:1368   .data.APBAHBPrescTable:0000000000000000 $d
+     /tmp/ccX1nHUr.s:1372   .data.APBAHBPrescTable:0000000000000000 APBAHBPrescTable
                      .debug_frame:0000000000000010 $d
 
 NO UNDEFINED SYMBOLS

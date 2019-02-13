@@ -54,9 +54,9 @@ C_SOURCES += $(TARGET_STDPERIPH_SRC_PATH)/stm32f10x_dma.c
 C_SOURCES += $(TARGET_STDPERIPH_SRC_PATH)/stm32f10x_exti.c
 C_SOURCES += $(TARGET_STDPERIPH_SRC_PATH)/stm32f10x_flash.c
 C_SOURCES += $(TARGET_STDPERIPH_SRC_PATH)/stm32f10x_gpio.c
-C_SOURCES += $(TARGET_STDPERIPH_SRC_PATH)/stm32f10x_i2c.c
-C_SOURCES += $(TARGET_STDPERIPH_SRC_PATH)/stm32f10x_iwdg.c
-C_SOURCES += $(TARGET_STDPERIPH_SRC_PATH)/stm32f10x_pwr.c
+#C_SOURCES += $(TARGET_STDPERIPH_SRC_PATH)/stm32f10x_i2c.c
+#C_SOURCES += $(TARGET_STDPERIPH_SRC_PATH)/stm32f10x_iwdg.c
+#C_SOURCES += $(TARGET_STDPERIPH_SRC_PATH)/stm32f10x_pwr.c
 C_SOURCES += $(TARGET_STDPERIPH_SRC_PATH)/stm32f10x_rcc.c
 C_SOURCES += $(TARGET_STDPERIPH_SRC_PATH)/stm32f10x_rtc.c
 C_SOURCES += $(TARGET_STDPERIPH_SRC_PATH)/stm32f10x_spi.c
@@ -113,7 +113,7 @@ MCU = $(CPU) -mthumb $(FPU) $(FLOAT-ABI)
 C_DEFS =  \
 -DSTM32F10X_MD
 #-DUSE_HAL_DRIVER \
-#-DSTM32F103xB \
+#-DSTM32F103xB
 #-DSSD1306_USE_I2C \
 #-DSTM32F1 # for ssd1306 library
 
@@ -177,16 +177,14 @@ $(BUILD_DIR)/%.o: %.c Makefile | $(BUILD_DIR)
 $(BUILD_DIR)/%.o: %.s Makefile | $(BUILD_DIR)
 	$(AS) -c $(CFLAGS) $< -o $@
 
-$(BUILD_DIR)/$(TARGET).elf: $(OBJECTS) ./src/startup.S
+$(BUILD_DIR)/$(TARGET).elf: $(OBJECTS) ./src/startup.o
 	$(CC) -mcpu=cortex-m3 -mthumb -Wl,$(LDFLAGS),-o$(BUILD_DIR)/$(TARGET).elf,-Map,$(TARGET).map ./src/startup.o $(OBJECTS)
 	#$(CC) -mcpu=cortex-m3 -mthumb -Wl,$(LDFLAGS),-o$(TARGET).elf,-Map,$(TARGET).map ./build/startup_stm32f10x_md.o $(OBJECTS)
 	$(SZ) $@
 
-
-
-#%.o: %.S
-#	@echo "  CC $<"
-#	@$(CC) $(INCLUDE) $(CFLAGS)  $< -o $*.o
+%.o: %.S
+	@echo "  CC $<"
+	@$(CC) $(INCLUDE) $(CFLAGS)  $< -o $*.o
 
 $(BUILD_DIR)/%.hex: $(BUILD_DIR)/%.elf | $(BUILD_DIR)
 	$(HEX) $< $@

@@ -1,4 +1,4 @@
-ARM GAS  /tmp/cct95BO2.s 			page 1
+ARM GAS  /tmp/ccBex5ic.s 			page 1
 
 
    1              		.cpu cortex-m3
@@ -58,7 +58,7 @@ ARM GAS  /tmp/cct95BO2.s 			page 1
   31:stm_lib/src/stm32f10x_crc.c ****   * @{
   32:stm_lib/src/stm32f10x_crc.c ****   */
   33:stm_lib/src/stm32f10x_crc.c **** 
-ARM GAS  /tmp/cct95BO2.s 			page 2
+ARM GAS  /tmp/ccBex5ic.s 			page 2
 
 
   34:stm_lib/src/stm32f10x_crc.c **** /** @defgroup CRC_Private_TypesDefinitions
@@ -118,7 +118,7 @@ ARM GAS  /tmp/cct95BO2.s 			page 1
   29              		@ frame_needed = 0, uses_anonymous_args = 0
   30              		@ link register save eliminated.
   85:stm_lib/src/stm32f10x_crc.c ****   /* Reset CRC generator */
-ARM GAS  /tmp/cct95BO2.s 			page 3
+ARM GAS  /tmp/ccBex5ic.s 			page 3
 
 
   86:stm_lib/src/stm32f10x_crc.c ****   CRC->CR = CRC_CR_RESET;
@@ -178,7 +178,7 @@ ARM GAS  /tmp/cct95BO2.s 			page 1
   74              		.section	.text.CRC_CalcBlockCRC,"ax",%progbits
   75              		.align	1
   76              		.global	CRC_CalcBlockCRC
-ARM GAS  /tmp/cct95BO2.s 			page 4
+ARM GAS  /tmp/ccBex5ic.s 			page 4
 
 
   77              		.syntax unified
@@ -238,7 +238,7 @@ ARM GAS  /tmp/cct95BO2.s 			page 1
  114              	.LVL6:
  116:stm_lib/src/stm32f10x_crc.c **** }
  115              		.loc 1 116 0
-ARM GAS  /tmp/cct95BO2.s 			page 5
+ARM GAS  /tmp/ccBex5ic.s 			page 5
 
 
  116 001a 10BC     		pop	{r4}
@@ -298,7 +298,7 @@ ARM GAS  /tmp/cct95BO2.s 			page 1
  161              		.cfi_endproc
  162              	.LFE59:
  164              		.section	.text.CRC_SetIDRegister,"ax",%progbits
-ARM GAS  /tmp/cct95BO2.s 			page 6
+ARM GAS  /tmp/ccBex5ic.s 			page 6
 
 
  165              		.align	1
@@ -358,7 +358,7 @@ ARM GAS  /tmp/cct95BO2.s 			page 1
  204              		@ frame_needed = 0, uses_anonymous_args = 0
  205              		@ link register save eliminated.
  145:stm_lib/src/stm32f10x_crc.c ****   return (CRC->IDR);
-ARM GAS  /tmp/cct95BO2.s 			page 7
+ARM GAS  /tmp/ccBex5ic.s 			page 7
 
 
  206              		.loc 1 145 0
@@ -380,29 +380,29 @@ ARM GAS  /tmp/cct95BO2.s 			page 1
  222              		.file 4 "cmsis/core_cm3.h"
  223              		.file 5 "cmsis_boot/system_stm32f10x.h"
  224              		.file 6 "stm_lib/inc/stm32f10x.h"
-ARM GAS  /tmp/cct95BO2.s 			page 8
+ARM GAS  /tmp/ccBex5ic.s 			page 8
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 stm32f10x_crc.c
-     /tmp/cct95BO2.s:16     .text.CRC_ResetDR:0000000000000000 $t
-     /tmp/cct95BO2.s:23     .text.CRC_ResetDR:0000000000000000 CRC_ResetDR
-     /tmp/cct95BO2.s:39     .text.CRC_ResetDR:0000000000000008 $d
-     /tmp/cct95BO2.s:44     .text.CRC_CalcCRC:0000000000000000 $t
-     /tmp/cct95BO2.s:51     .text.CRC_CalcCRC:0000000000000000 CRC_CalcCRC
-     /tmp/cct95BO2.s:70     .text.CRC_CalcCRC:0000000000000008 $d
-     /tmp/cct95BO2.s:75     .text.CRC_CalcBlockCRC:0000000000000000 $t
-     /tmp/cct95BO2.s:82     .text.CRC_CalcBlockCRC:0000000000000000 CRC_CalcBlockCRC
-     /tmp/cct95BO2.s:133    .text.CRC_CalcBlockCRC:0000000000000024 $d
-     /tmp/cct95BO2.s:138    .text.CRC_GetCRC:0000000000000000 $t
-     /tmp/cct95BO2.s:145    .text.CRC_GetCRC:0000000000000000 CRC_GetCRC
-     /tmp/cct95BO2.s:160    .text.CRC_GetCRC:0000000000000008 $d
-     /tmp/cct95BO2.s:165    .text.CRC_SetIDRegister:0000000000000000 $t
-     /tmp/cct95BO2.s:172    .text.CRC_SetIDRegister:0000000000000000 CRC_SetIDRegister
-     /tmp/cct95BO2.s:187    .text.CRC_SetIDRegister:0000000000000008 $d
-     /tmp/cct95BO2.s:192    .text.CRC_GetIDRegister:0000000000000000 $t
-     /tmp/cct95BO2.s:199    .text.CRC_GetIDRegister:0000000000000000 CRC_GetIDRegister
-     /tmp/cct95BO2.s:214    .text.CRC_GetIDRegister:0000000000000008 $d
+     /tmp/ccBex5ic.s:16     .text.CRC_ResetDR:0000000000000000 $t
+     /tmp/ccBex5ic.s:23     .text.CRC_ResetDR:0000000000000000 CRC_ResetDR
+     /tmp/ccBex5ic.s:39     .text.CRC_ResetDR:0000000000000008 $d
+     /tmp/ccBex5ic.s:44     .text.CRC_CalcCRC:0000000000000000 $t
+     /tmp/ccBex5ic.s:51     .text.CRC_CalcCRC:0000000000000000 CRC_CalcCRC
+     /tmp/ccBex5ic.s:70     .text.CRC_CalcCRC:0000000000000008 $d
+     /tmp/ccBex5ic.s:75     .text.CRC_CalcBlockCRC:0000000000000000 $t
+     /tmp/ccBex5ic.s:82     .text.CRC_CalcBlockCRC:0000000000000000 CRC_CalcBlockCRC
+     /tmp/ccBex5ic.s:133    .text.CRC_CalcBlockCRC:0000000000000024 $d
+     /tmp/ccBex5ic.s:138    .text.CRC_GetCRC:0000000000000000 $t
+     /tmp/ccBex5ic.s:145    .text.CRC_GetCRC:0000000000000000 CRC_GetCRC
+     /tmp/ccBex5ic.s:160    .text.CRC_GetCRC:0000000000000008 $d
+     /tmp/ccBex5ic.s:165    .text.CRC_SetIDRegister:0000000000000000 $t
+     /tmp/ccBex5ic.s:172    .text.CRC_SetIDRegister:0000000000000000 CRC_SetIDRegister
+     /tmp/ccBex5ic.s:187    .text.CRC_SetIDRegister:0000000000000008 $d
+     /tmp/ccBex5ic.s:192    .text.CRC_GetIDRegister:0000000000000000 $t
+     /tmp/ccBex5ic.s:199    .text.CRC_GetIDRegister:0000000000000000 CRC_GetIDRegister
+     /tmp/ccBex5ic.s:214    .text.CRC_GetIDRegister:0000000000000008 $d
                      .debug_frame:0000000000000010 $d
 
 NO UNDEFINED SYMBOLS

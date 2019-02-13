@@ -1,4 +1,4 @@
-ARM GAS  /tmp/ccVorSIQ.s 			page 1
+ARM GAS  /tmp/ccJ3sCx0.s 			page 1
 
 
    1              		.cpu cortex-m3
@@ -58,7 +58,7 @@ ARM GAS  /tmp/ccVorSIQ.s 			page 1
   31:stm_lib/src/stm32f10x_adc.c ****   * @brief ADC driver modules
   32:stm_lib/src/stm32f10x_adc.c ****   * @{
   33:stm_lib/src/stm32f10x_adc.c ****   */
-ARM GAS  /tmp/ccVorSIQ.s 			page 2
+ARM GAS  /tmp/ccJ3sCx0.s 			page 2
 
 
   34:stm_lib/src/stm32f10x_adc.c **** 
@@ -118,7 +118,7 @@ ARM GAS  /tmp/ccVorSIQ.s 			page 1
   88:stm_lib/src/stm32f10x_adc.c **** /* ADC EXTTRIG mask */
   89:stm_lib/src/stm32f10x_adc.c **** #define CR2_EXTTRIG_Set             ((uint32_t)0x00100000)
   90:stm_lib/src/stm32f10x_adc.c **** #define CR2_EXTTRIG_Reset           ((uint32_t)0xFFEFFFFF)
-ARM GAS  /tmp/ccVorSIQ.s 			page 3
+ARM GAS  /tmp/ccJ3sCx0.s 			page 3
 
 
   91:stm_lib/src/stm32f10x_adc.c **** 
@@ -178,7 +178,7 @@ ARM GAS  /tmp/ccVorSIQ.s 			page 1
  145:stm_lib/src/stm32f10x_adc.c **** 
  146:stm_lib/src/stm32f10x_adc.c **** /** @defgroup ADC_Private_Macros
  147:stm_lib/src/stm32f10x_adc.c ****   * @{
-ARM GAS  /tmp/ccVorSIQ.s 			page 4
+ARM GAS  /tmp/ccJ3sCx0.s 			page 4
 
 
  148:stm_lib/src/stm32f10x_adc.c ****   */
@@ -238,7 +238,7 @@ ARM GAS  /tmp/ccVorSIQ.s 			page 1
  188:stm_lib/src/stm32f10x_adc.c ****     /* Release ADC1 from reset state */
  189:stm_lib/src/stm32f10x_adc.c ****     RCC_APB2PeriphResetCmd(RCC_APB2Periph_ADC1, DISABLE);
  190:stm_lib/src/stm32f10x_adc.c ****   }
-ARM GAS  /tmp/ccVorSIQ.s 			page 5
+ARM GAS  /tmp/ccJ3sCx0.s 			page 5
 
 
  191:stm_lib/src/stm32f10x_adc.c ****   else if (ADCx == ADC2)
@@ -298,7 +298,7 @@ ARM GAS  /tmp/ccVorSIQ.s 			page 1
   80              	.L8:
  201:stm_lib/src/stm32f10x_adc.c ****     {
  202:stm_lib/src/stm32f10x_adc.c ****       /* Enable ADC3 reset state */
-ARM GAS  /tmp/ccVorSIQ.s 			page 6
+ARM GAS  /tmp/ccJ3sCx0.s 			page 6
 
 
  203:stm_lib/src/stm32f10x_adc.c ****       RCC_APB2PeriphResetCmd(RCC_APB2Periph_ADC3, ENABLE);
@@ -358,7 +358,7 @@ ARM GAS  /tmp/ccVorSIQ.s 			page 1
  120              	.LCFI1:
  121              		.cfi_def_cfa_offset 4
  122              		.cfi_offset 4, -4
-ARM GAS  /tmp/ccVorSIQ.s 			page 7
+ARM GAS  /tmp/ccJ3sCx0.s 			page 7
 
 
  123              	.LVL15:
@@ -418,7 +418,7 @@ ARM GAS  /tmp/ccVorSIQ.s 			page 1
  250:stm_lib/src/stm32f10x_adc.c ****   /* Set EXTSEL bits according to ADC_ExternalTrigConv value */
  251:stm_lib/src/stm32f10x_adc.c ****   /* Set CONT bit according to ADC_ContinuousConvMode value */
  252:stm_lib/src/stm32f10x_adc.c ****   tmpreg1 |= (uint32_t)(ADC_InitStruct->ADC_DataAlign | ADC_InitStruct->ADC_ExternalTrigConv |
-ARM GAS  /tmp/ccVorSIQ.s 			page 8
+ARM GAS  /tmp/ccJ3sCx0.s 			page 8
 
 
  147              		.loc 1 252 0
@@ -478,7 +478,7 @@ ARM GAS  /tmp/ccVorSIQ.s 			page 1
  184 0044 FDF7F1FF 		.word	-919555
  185              		.cfi_endproc
  186              	.LFE57:
-ARM GAS  /tmp/ccVorSIQ.s 			page 9
+ARM GAS  /tmp/ccJ3sCx0.s 			page 9
 
 
  188              		.section	.text.ADC_StructInit,"ax",%progbits
@@ -538,7 +538,7 @@ ARM GAS  /tmp/ccVorSIQ.s 			page 1
  223              		.align	1
  224              		.global	ADC_Cmd
  225              		.syntax unified
-ARM GAS  /tmp/ccVorSIQ.s 			page 10
+ARM GAS  /tmp/ccJ3sCx0.s 			page 10
 
 
  226              		.thumb
@@ -598,7 +598,7 @@ ARM GAS  /tmp/ccVorSIQ.s 			page 1
  258              		.thumb
  259              		.thumb_func
  260              		.fpu softvfp
-ARM GAS  /tmp/ccVorSIQ.s 			page 11
+ARM GAS  /tmp/ccJ3sCx0.s 			page 11
 
 
  262              	ADC_DMACmd:
@@ -658,7 +658,7 @@ ARM GAS  /tmp/ccVorSIQ.s 			page 1
  291              		.thumb_func
  292              		.fpu softvfp
  294              	ADC_ITConfig:
-ARM GAS  /tmp/ccVorSIQ.s 			page 12
+ARM GAS  /tmp/ccJ3sCx0.s 			page 12
 
 
  295              	.LFB61:
@@ -718,7 +718,7 @@ ARM GAS  /tmp/ccVorSIQ.s 			page 1
  315              		.loc 1 365 0
  316 000e 4368     		ldr	r3, [r0, #4]
  317 0010 1943     		orrs	r1, r1, r3
-ARM GAS  /tmp/ccVorSIQ.s 			page 13
+ARM GAS  /tmp/ccJ3sCx0.s 			page 13
 
 
  318              	.LVL34:
@@ -778,7 +778,7 @@ ARM GAS  /tmp/ccVorSIQ.s 			page 1
  389:stm_lib/src/stm32f10x_adc.c ****   * @param  ADCx: where x can be 1, 2 or 3 to select the ADC peripheral.
  390:stm_lib/src/stm32f10x_adc.c ****   * @retval The new state of ADC reset calibration registers (SET or RESET).
  391:stm_lib/src/stm32f10x_adc.c ****   */
-ARM GAS  /tmp/ccVorSIQ.s 			page 14
+ARM GAS  /tmp/ccJ3sCx0.s 			page 14
 
 
  392:stm_lib/src/stm32f10x_adc.c **** FlagStatus ADC_GetResetCalibrationStatus(ADC_TypeDef* ADCx)
@@ -838,7 +838,7 @@ ARM GAS  /tmp/ccVorSIQ.s 			page 1
  413:stm_lib/src/stm32f10x_adc.c ****   * @brief  Starts the selected ADC calibration process.
  414:stm_lib/src/stm32f10x_adc.c ****   * @param  ADCx: where x can be 1, 2 or 3 to select the ADC peripheral.
  415:stm_lib/src/stm32f10x_adc.c ****   * @retval None
-ARM GAS  /tmp/ccVorSIQ.s 			page 15
+ARM GAS  /tmp/ccJ3sCx0.s 			page 15
 
 
  416:stm_lib/src/stm32f10x_adc.c ****   */
@@ -898,7 +898,7 @@ ARM GAS  /tmp/ccVorSIQ.s 			page 1
  438:stm_lib/src/stm32f10x_adc.c ****     /* CAL bit is set: calibration on going */
  439:stm_lib/src/stm32f10x_adc.c ****     bitstatus = SET;
  440:stm_lib/src/stm32f10x_adc.c ****   }
-ARM GAS  /tmp/ccVorSIQ.s 			page 16
+ARM GAS  /tmp/ccJ3sCx0.s 			page 16
 
 
  441:stm_lib/src/stm32f10x_adc.c ****   else
@@ -958,7 +958,7 @@ ARM GAS  /tmp/ccVorSIQ.s 			page 1
  464:stm_lib/src/stm32f10x_adc.c ****     /* Enable the selected ADC conversion on external event and start the selected
  465:stm_lib/src/stm32f10x_adc.c ****        ADC conversion */
  466:stm_lib/src/stm32f10x_adc.c ****     ADCx->CR2 |= CR2_EXTTRIG_SWSTART_Set;
-ARM GAS  /tmp/ccVorSIQ.s 			page 17
+ARM GAS  /tmp/ccJ3sCx0.s 			page 17
 
 
  467:stm_lib/src/stm32f10x_adc.c ****   }
@@ -1018,7 +1018,7 @@ ARM GAS  /tmp/ccVorSIQ.s 			page 1
  488:stm_lib/src/stm32f10x_adc.c ****   {
  489:stm_lib/src/stm32f10x_adc.c ****     /* SWSTART bit is set */
  490:stm_lib/src/stm32f10x_adc.c ****     bitstatus = SET;
-ARM GAS  /tmp/ccVorSIQ.s 			page 18
+ARM GAS  /tmp/ccJ3sCx0.s 			page 18
 
 
  491:stm_lib/src/stm32f10x_adc.c ****   }
@@ -1078,7 +1078,7 @@ ARM GAS  /tmp/ccVorSIQ.s 			page 1
  516:stm_lib/src/stm32f10x_adc.c ****   /* Get the old register value */
  517:stm_lib/src/stm32f10x_adc.c ****   tmpreg1 = ADCx->CR1;
  522              		.loc 1 517 0
-ARM GAS  /tmp/ccVorSIQ.s 			page 19
+ARM GAS  /tmp/ccJ3sCx0.s 			page 19
 
 
  523 0000 4368     		ldr	r3, [r0, #4]
@@ -1138,7 +1138,7 @@ ARM GAS  /tmp/ccVorSIQ.s 			page 1
  541:stm_lib/src/stm32f10x_adc.c ****   if (NewState != DISABLE)
  556              		.loc 1 541 0
  557 0000 21B9     		cbnz	r1, .L50
-ARM GAS  /tmp/ccVorSIQ.s 			page 20
+ARM GAS  /tmp/ccJ3sCx0.s 			page 20
 
 
  542:stm_lib/src/stm32f10x_adc.c ****   {
@@ -1198,7 +1198,7 @@ ARM GAS  /tmp/ccVorSIQ.s 			page 1
  573:stm_lib/src/stm32f10x_adc.c ****   *     @arg ADC_Channel_14: ADC Channel14 selected
  574:stm_lib/src/stm32f10x_adc.c ****   *     @arg ADC_Channel_15: ADC Channel15 selected
  575:stm_lib/src/stm32f10x_adc.c ****   *     @arg ADC_Channel_16: ADC Channel16 selected
-ARM GAS  /tmp/ccVorSIQ.s 			page 21
+ARM GAS  /tmp/ccJ3sCx0.s 			page 21
 
 
  576:stm_lib/src/stm32f10x_adc.c ****   *     @arg ADC_Channel_17: ADC Channel17 selected
@@ -1258,7 +1258,7 @@ ARM GAS  /tmp/ccVorSIQ.s 			page 1
  605:stm_lib/src/stm32f10x_adc.c ****     /* Clear the old channel sample time */
  606:stm_lib/src/stm32f10x_adc.c ****     tmpreg1 &= ~tmpreg2;
  607              		.loc 1 606 0
-ARM GAS  /tmp/ccVorSIQ.s 			page 22
+ARM GAS  /tmp/ccJ3sCx0.s 			page 22
 
 
  608 0014 25EA0605 		bic	r5, r5, r6
@@ -1318,7 +1318,7 @@ ARM GAS  /tmp/ccVorSIQ.s 			page 1
  646:stm_lib/src/stm32f10x_adc.c ****   else if (Rank < 13)
  623              		.loc 1 646 0
  624 0024 0C2A     		cmp	r2, #12
-ARM GAS  /tmp/ccVorSIQ.s 			page 23
+ARM GAS  /tmp/ccJ3sCx0.s 			page 23
 
 
  625 0026 26D9     		bls	.L59
@@ -1378,7 +1378,7 @@ ARM GAS  /tmp/ccVorSIQ.s 			page 1
  648 0040 17E0     		b	.L51
  649              	.LVL70:
  650              	.L52:
-ARM GAS  /tmp/ccVorSIQ.s 			page 24
+ARM GAS  /tmp/ccJ3sCx0.s 			page 24
 
 
  617:stm_lib/src/stm32f10x_adc.c ****     /* Calculate the mask to clear */
@@ -1438,7 +1438,7 @@ ARM GAS  /tmp/ccVorSIQ.s 			page 1
  693 0070 4263     		str	r2, [r0, #52]
  694              	.L51:
  695              		.loc 1 677 0
-ARM GAS  /tmp/ccVorSIQ.s 			page 25
+ARM GAS  /tmp/ccJ3sCx0.s 			page 25
 
 
  696 0072 70BC     		pop	{r4, r5, r6}
@@ -1498,7 +1498,7 @@ ARM GAS  /tmp/ccVorSIQ.s 			page 1
  681:stm_lib/src/stm32f10x_adc.c ****   * @param  ADCx: where x can be 1, 2 or 3 to select the ADC peripheral.
  682:stm_lib/src/stm32f10x_adc.c ****   * @param  NewState: new state of the selected ADC external trigger start of conversion.
  683:stm_lib/src/stm32f10x_adc.c ****   *   This parameter can be: ENABLE or DISABLE.
-ARM GAS  /tmp/ccVorSIQ.s 			page 26
+ARM GAS  /tmp/ccJ3sCx0.s 			page 26
 
 
  684:stm_lib/src/stm32f10x_adc.c ****   * @retval None
@@ -1558,7 +1558,7 @@ ARM GAS  /tmp/ccVorSIQ.s 			page 1
  707:stm_lib/src/stm32f10x_adc.c ****   */
  708:stm_lib/src/stm32f10x_adc.c **** uint16_t ADC_GetConversionValue(ADC_TypeDef* ADCx)
  709:stm_lib/src/stm32f10x_adc.c **** {
-ARM GAS  /tmp/ccVorSIQ.s 			page 27
+ARM GAS  /tmp/ccJ3sCx0.s 			page 27
 
 
  775              		.loc 1 709 0
@@ -1618,7 +1618,7 @@ ARM GAS  /tmp/ccVorSIQ.s 			page 1
  817              		.section	.text.ADC_AutoInjectedConvCmd,"ax",%progbits
  818              		.align	1
  819              		.global	ADC_AutoInjectedConvCmd
-ARM GAS  /tmp/ccVorSIQ.s 			page 28
+ARM GAS  /tmp/ccJ3sCx0.s 			page 28
 
 
  820              		.syntax unified
@@ -1678,7 +1678,7 @@ ARM GAS  /tmp/ccVorSIQ.s 			page 1
  852              		.syntax unified
  853              		.thumb
  854              		.thumb_func
-ARM GAS  /tmp/ccVorSIQ.s 			page 29
+ARM GAS  /tmp/ccJ3sCx0.s 			page 29
 
 
  855              		.fpu softvfp
@@ -1738,7 +1738,7 @@ ARM GAS  /tmp/ccVorSIQ.s 			page 1
  884              		.syntax unified
  885              		.thumb
  886              		.thumb_func
-ARM GAS  /tmp/ccVorSIQ.s 			page 30
+ARM GAS  /tmp/ccJ3sCx0.s 			page 30
 
 
  887              		.fpu softvfp
@@ -1798,7 +1798,7 @@ ARM GAS  /tmp/ccVorSIQ.s 			page 1
  905              	.LVL98:
  811:stm_lib/src/stm32f10x_adc.c ****   /* Store the new register value */
  812:stm_lib/src/stm32f10x_adc.c ****   ADCx->CR2 = tmpreg;
-ARM GAS  /tmp/ccVorSIQ.s 			page 31
+ARM GAS  /tmp/ccJ3sCx0.s 			page 31
 
 
  906              		.loc 1 812 0
@@ -1858,7 +1858,7 @@ ARM GAS  /tmp/ccVorSIQ.s 			page 1
  936              		.loc 1 832 0
  937 000c 8368     		ldr	r3, [r0, #8]
  938 000e 43F40043 		orr	r3, r3, #32768
-ARM GAS  /tmp/ccVorSIQ.s 			page 32
+ARM GAS  /tmp/ccJ3sCx0.s 			page 32
 
 
  939 0012 8360     		str	r3, [r0, #8]
@@ -1918,7 +1918,7 @@ ARM GAS  /tmp/ccVorSIQ.s 			page 1
  858:stm_lib/src/stm32f10x_adc.c ****   }
  968              		.loc 1 858 0
  969 000c 8368     		ldr	r3, [r0, #8]
-ARM GAS  /tmp/ccVorSIQ.s 			page 33
+ARM GAS  /tmp/ccJ3sCx0.s 			page 33
 
 
  970 000e 43F40213 		orr	r3, r3, #2129920
@@ -1978,7 +1978,7 @@ ARM GAS  /tmp/ccVorSIQ.s 			page 1
  999              		.loc 1 891 0
  1000 000a 7047     		bx	lr
  1001              	.LVL103:
-ARM GAS  /tmp/ccVorSIQ.s 			page 34
+ARM GAS  /tmp/ccJ3sCx0.s 			page 34
 
 
  1002              	.L88:
@@ -2038,7 +2038,7 @@ ARM GAS  /tmp/ccVorSIQ.s 			page 1
  929:stm_lib/src/stm32f10x_adc.c ****   */
  930:stm_lib/src/stm32f10x_adc.c **** void ADC_InjectedChannelConfig(ADC_TypeDef* ADCx, uint8_t ADC_Channel, uint8_t Rank, uint8_t ADC_Sa
  931:stm_lib/src/stm32f10x_adc.c **** {
-ARM GAS  /tmp/ccVorSIQ.s 			page 35
+ARM GAS  /tmp/ccJ3sCx0.s 			page 35
 
 
  1020              		.loc 1 931 0
@@ -2098,7 +2098,7 @@ ARM GAS  /tmp/ccVorSIQ.s 			page 1
  1044              		.loc 1 961 0
  1045 0010 24EA0504 		bic	r4, r4, r5
  1046              	.LVL109:
-ARM GAS  /tmp/ccVorSIQ.s 			page 36
+ARM GAS  /tmp/ccJ3sCx0.s 			page 36
 
 
  962:stm_lib/src/stm32f10x_adc.c ****     /* Calculate the mask to set */
@@ -2158,7 +2158,7 @@ ARM GAS  /tmp/ccVorSIQ.s 			page 1
  1081              	.LVL119:
  982:stm_lib/src/stm32f10x_adc.c ****   /* Store the new register value */
  983:stm_lib/src/stm32f10x_adc.c ****   ADCx->JSQR = tmpreg1;
-ARM GAS  /tmp/ccVorSIQ.s 			page 37
+ARM GAS  /tmp/ccJ3sCx0.s 			page 37
 
 
  1082              		.loc 1 983 0
@@ -2218,7 +2218,7 @@ ARM GAS  /tmp/ccVorSIQ.s 			page 1
  1131              	.LFB81:
  985:stm_lib/src/stm32f10x_adc.c **** 
  986:stm_lib/src/stm32f10x_adc.c **** /**
-ARM GAS  /tmp/ccVorSIQ.s 			page 38
+ARM GAS  /tmp/ccJ3sCx0.s 			page 38
 
 
  987:stm_lib/src/stm32f10x_adc.c ****   * @brief  Configures the sequencer length for injected channels
@@ -2278,7 +2278,7 @@ ARM GAS  /tmp/ccVorSIQ.s 			page 1
  1165              	.LFB82:
 1010:stm_lib/src/stm32f10x_adc.c **** }
 1011:stm_lib/src/stm32f10x_adc.c **** 
-ARM GAS  /tmp/ccVorSIQ.s 			page 39
+ARM GAS  /tmp/ccJ3sCx0.s 			page 39
 
 
 1012:stm_lib/src/stm32f10x_adc.c **** /**
@@ -2338,7 +2338,7 @@ ARM GAS  /tmp/ccVorSIQ.s 			page 1
  1192              		@ sp needed
  1193 0014 7047     		bx	lr
  1194              		.cfi_endproc
-ARM GAS  /tmp/ccVorSIQ.s 			page 40
+ARM GAS  /tmp/ccJ3sCx0.s 			page 40
 
 
  1195              	.LFE82:
@@ -2398,7 +2398,7 @@ ARM GAS  /tmp/ccVorSIQ.s 			page 1
 1064:stm_lib/src/stm32f10x_adc.c ****   return (uint16_t) (*(__IO uint32_t*)  tmp);   
  1227              		.loc 1 1064 0
  1228 0010 019B     		ldr	r3, [sp, #4]
-ARM GAS  /tmp/ccVorSIQ.s 			page 41
+ARM GAS  /tmp/ccJ3sCx0.s 			page 41
 
 
  1229 0012 1868     		ldr	r0, [r3]
@@ -2458,7 +2458,7 @@ ARM GAS  /tmp/ccVorSIQ.s 			page 1
 1090:stm_lib/src/stm32f10x_adc.c ****   /* Clear AWDEN, AWDENJ and AWDSGL bits */
 1091:stm_lib/src/stm32f10x_adc.c ****   tmpreg &= CR1_AWDMode_Reset;
  1260              		.loc 1 1091 0
-ARM GAS  /tmp/ccVorSIQ.s 			page 42
+ARM GAS  /tmp/ccJ3sCx0.s 			page 42
 
 
  1261 0002 23F44003 		bic	r3, r3, #12582912
@@ -2518,7 +2518,7 @@ ARM GAS  /tmp/ccVorSIQ.s 			page 1
 1117:stm_lib/src/stm32f10x_adc.c ****   ADCx->LTR = LowThreshold;
  1292              		.loc 1 1117 0
  1293 0002 8262     		str	r2, [r0, #40]
-ARM GAS  /tmp/ccVorSIQ.s 			page 43
+ARM GAS  /tmp/ccJ3sCx0.s 			page 43
 
 
  1294 0004 7047     		bx	lr
@@ -2578,7 +2578,7 @@ ARM GAS  /tmp/ccVorSIQ.s 			page 1
  1315 0000 4368     		ldr	r3, [r0, #4]
  1316              	.LVL144:
 1153:stm_lib/src/stm32f10x_adc.c ****   /* Clear the Analog watchdog channel select bits */
-ARM GAS  /tmp/ccVorSIQ.s 			page 44
+ARM GAS  /tmp/ccJ3sCx0.s 			page 44
 
 
 1154:stm_lib/src/stm32f10x_adc.c ****   tmpreg &= CR1_AWDCH_Reset;
@@ -2638,7 +2638,7 @@ ARM GAS  /tmp/ccVorSIQ.s 			page 1
  1347              		.loc 1 1179 0
  1348 0002 064A     		ldr	r2, .L106
  1349 0004 9368     		ldr	r3, [r2, #8]
-ARM GAS  /tmp/ccVorSIQ.s 			page 45
+ARM GAS  /tmp/ccJ3sCx0.s 			page 45
 
 
  1350 0006 23F40003 		bic	r3, r3, #8388608
@@ -2698,7 +2698,7 @@ ARM GAS  /tmp/ccVorSIQ.s 			page 1
 1202:stm_lib/src/stm32f10x_adc.c ****   if ((ADCx->SR & ADC_FLAG) != (uint8_t)RESET)
  1383              		.loc 1 1202 0
  1384 0000 0368     		ldr	r3, [r0]
-ARM GAS  /tmp/ccVorSIQ.s 			page 46
+ARM GAS  /tmp/ccJ3sCx0.s 			page 46
 
 
  1385 0002 1942     		tst	r1, r3
@@ -2758,7 +2758,7 @@ ARM GAS  /tmp/ccVorSIQ.s 			page 1
  1413              		@ args = 0, pretend = 0, frame = 0
  1414              		@ frame_needed = 0, uses_anonymous_args = 0
  1415              		@ link register save eliminated.
-ARM GAS  /tmp/ccVorSIQ.s 			page 47
+ARM GAS  /tmp/ccJ3sCx0.s 			page 47
 
 
  1416              	.LVL152:
@@ -2818,7 +2818,7 @@ ARM GAS  /tmp/ccVorSIQ.s 			page 1
  1444 0004 1340     		ands	r3, r3, r2
  1445              	.LVL155:
 1258:stm_lib/src/stm32f10x_adc.c ****   /* Check the status of the specified ADC interrupt */
-ARM GAS  /tmp/ccVorSIQ.s 			page 48
+ARM GAS  /tmp/ccJ3sCx0.s 			page 48
 
 
 1259:stm_lib/src/stm32f10x_adc.c ****   if (((ADCx->SR & itmask) != (uint32_t)RESET) && enablestatus)
@@ -2878,7 +2878,7 @@ ARM GAS  /tmp/ccVorSIQ.s 			page 1
 1279:stm_lib/src/stm32f10x_adc.c ****   *     @arg ADC_IT_AWD: Analog watchdog interrupt mask
 1280:stm_lib/src/stm32f10x_adc.c ****   *     @arg ADC_IT_JEOC: End of injected conversion interrupt mask
 1281:stm_lib/src/stm32f10x_adc.c ****   * @retval None
-ARM GAS  /tmp/ccVorSIQ.s 			page 49
+ARM GAS  /tmp/ccJ3sCx0.s 			page 49
 
 
 1282:stm_lib/src/stm32f10x_adc.c ****   */
@@ -2914,90 +2914,90 @@ ARM GAS  /tmp/ccVorSIQ.s 			page 1
  1501              		.file 6 "stm_lib/inc/stm32f10x.h"
  1502              		.file 7 "stm_lib/inc/stm32f10x_adc.h"
  1503              		.file 8 "stm_lib/inc/stm32f10x_rcc.h"
-ARM GAS  /tmp/ccVorSIQ.s 			page 50
+ARM GAS  /tmp/ccJ3sCx0.s 			page 50
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 stm32f10x_adc.c
-     /tmp/ccVorSIQ.s:16     .text.ADC_DeInit:0000000000000000 $t
-     /tmp/ccVorSIQ.s:23     .text.ADC_DeInit:0000000000000000 ADC_DeInit
-     /tmp/ccVorSIQ.s:97     .text.ADC_DeInit:0000000000000058 $d
-     /tmp/ccVorSIQ.s:104    .text.ADC_Init:0000000000000000 $t
-     /tmp/ccVorSIQ.s:111    .text.ADC_Init:0000000000000000 ADC_Init
-     /tmp/ccVorSIQ.s:184    .text.ADC_Init:0000000000000044 $d
-     /tmp/ccVorSIQ.s:189    .text.ADC_StructInit:0000000000000000 $t
-     /tmp/ccVorSIQ.s:196    .text.ADC_StructInit:0000000000000000 ADC_StructInit
-     /tmp/ccVorSIQ.s:223    .text.ADC_Cmd:0000000000000000 $t
-     /tmp/ccVorSIQ.s:230    .text.ADC_Cmd:0000000000000000 ADC_Cmd
-     /tmp/ccVorSIQ.s:255    .text.ADC_DMACmd:0000000000000000 $t
-     /tmp/ccVorSIQ.s:262    .text.ADC_DMACmd:0000000000000000 ADC_DMACmd
-     /tmp/ccVorSIQ.s:287    .text.ADC_ITConfig:0000000000000000 $t
-     /tmp/ccVorSIQ.s:294    .text.ADC_ITConfig:0000000000000000 ADC_ITConfig
-     /tmp/ccVorSIQ.s:325    .text.ADC_ResetCalibration:0000000000000000 $t
-     /tmp/ccVorSIQ.s:332    .text.ADC_ResetCalibration:0000000000000000 ADC_ResetCalibration
-     /tmp/ccVorSIQ.s:349    .text.ADC_GetResetCalibrationStatus:0000000000000000 $t
-     /tmp/ccVorSIQ.s:356    .text.ADC_GetResetCalibrationStatus:0000000000000000 ADC_GetResetCalibrationStatus
-     /tmp/ccVorSIQ.s:383    .text.ADC_StartCalibration:0000000000000000 $t
-     /tmp/ccVorSIQ.s:390    .text.ADC_StartCalibration:0000000000000000 ADC_StartCalibration
-     /tmp/ccVorSIQ.s:407    .text.ADC_GetCalibrationStatus:0000000000000000 $t
-     /tmp/ccVorSIQ.s:414    .text.ADC_GetCalibrationStatus:0000000000000000 ADC_GetCalibrationStatus
-     /tmp/ccVorSIQ.s:441    .text.ADC_SoftwareStartConvCmd:0000000000000000 $t
-     /tmp/ccVorSIQ.s:448    .text.ADC_SoftwareStartConvCmd:0000000000000000 ADC_SoftwareStartConvCmd
-     /tmp/ccVorSIQ.s:473    .text.ADC_GetSoftwareStartConvStatus:0000000000000000 $t
-     /tmp/ccVorSIQ.s:480    .text.ADC_GetSoftwareStartConvStatus:0000000000000000 ADC_GetSoftwareStartConvStatus
-     /tmp/ccVorSIQ.s:507    .text.ADC_DiscModeChannelCountConfig:0000000000000000 $t
-     /tmp/ccVorSIQ.s:514    .text.ADC_DiscModeChannelCountConfig:0000000000000000 ADC_DiscModeChannelCountConfig
-     /tmp/ccVorSIQ.s:541    .text.ADC_DiscModeCmd:0000000000000000 $t
-     /tmp/ccVorSIQ.s:548    .text.ADC_DiscModeCmd:0000000000000000 ADC_DiscModeCmd
-     /tmp/ccVorSIQ.s:573    .text.ADC_RegularChannelConfig:0000000000000000 $t
-     /tmp/ccVorSIQ.s:580    .text.ADC_RegularChannelConfig:0000000000000000 ADC_RegularChannelConfig
-     /tmp/ccVorSIQ.s:734    .text.ADC_ExternalTrigConvCmd:0000000000000000 $t
-     /tmp/ccVorSIQ.s:741    .text.ADC_ExternalTrigConvCmd:0000000000000000 ADC_ExternalTrigConvCmd
-     /tmp/ccVorSIQ.s:766    .text.ADC_GetConversionValue:0000000000000000 $t
-     /tmp/ccVorSIQ.s:773    .text.ADC_GetConversionValue:0000000000000000 ADC_GetConversionValue
-     /tmp/ccVorSIQ.s:791    .text.ADC_GetDualModeConversionValue:0000000000000000 $t
-     /tmp/ccVorSIQ.s:798    .text.ADC_GetDualModeConversionValue:0000000000000000 ADC_GetDualModeConversionValue
-     /tmp/ccVorSIQ.s:813    .text.ADC_GetDualModeConversionValue:0000000000000008 $d
-     /tmp/ccVorSIQ.s:818    .text.ADC_AutoInjectedConvCmd:0000000000000000 $t
-     /tmp/ccVorSIQ.s:825    .text.ADC_AutoInjectedConvCmd:0000000000000000 ADC_AutoInjectedConvCmd
-     /tmp/ccVorSIQ.s:850    .text.ADC_InjectedDiscModeCmd:0000000000000000 $t
-     /tmp/ccVorSIQ.s:857    .text.ADC_InjectedDiscModeCmd:0000000000000000 ADC_InjectedDiscModeCmd
-     /tmp/ccVorSIQ.s:882    .text.ADC_ExternalTrigInjectedConvConfig:0000000000000000 $t
-     /tmp/ccVorSIQ.s:889    .text.ADC_ExternalTrigInjectedConvConfig:0000000000000000 ADC_ExternalTrigInjectedConvConfig
-     /tmp/ccVorSIQ.s:913    .text.ADC_ExternalTrigInjectedConvCmd:0000000000000000 $t
-     /tmp/ccVorSIQ.s:920    .text.ADC_ExternalTrigInjectedConvCmd:0000000000000000 ADC_ExternalTrigInjectedConvCmd
-     /tmp/ccVorSIQ.s:945    .text.ADC_SoftwareStartInjectedConvCmd:0000000000000000 $t
-     /tmp/ccVorSIQ.s:952    .text.ADC_SoftwareStartInjectedConvCmd:0000000000000000 ADC_SoftwareStartInjectedConvCmd
-     /tmp/ccVorSIQ.s:977    .text.ADC_GetSoftwareStartInjectedConvCmdStatus:0000000000000000 $t
-     /tmp/ccVorSIQ.s:984    .text.ADC_GetSoftwareStartInjectedConvCmdStatus:0000000000000000 ADC_GetSoftwareStartInjectedConvCmdStatus
-     /tmp/ccVorSIQ.s:1011   .text.ADC_InjectedChannelConfig:0000000000000000 $t
-     /tmp/ccVorSIQ.s:1018   .text.ADC_InjectedChannelConfig:0000000000000000 ADC_InjectedChannelConfig
-     /tmp/ccVorSIQ.s:1123   .text.ADC_InjectedSequencerLengthConfig:0000000000000000 $t
-     /tmp/ccVorSIQ.s:1130   .text.ADC_InjectedSequencerLengthConfig:0000000000000000 ADC_InjectedSequencerLengthConfig
-ARM GAS  /tmp/ccVorSIQ.s 			page 51
+     /tmp/ccJ3sCx0.s:16     .text.ADC_DeInit:0000000000000000 $t
+     /tmp/ccJ3sCx0.s:23     .text.ADC_DeInit:0000000000000000 ADC_DeInit
+     /tmp/ccJ3sCx0.s:97     .text.ADC_DeInit:0000000000000058 $d
+     /tmp/ccJ3sCx0.s:104    .text.ADC_Init:0000000000000000 $t
+     /tmp/ccJ3sCx0.s:111    .text.ADC_Init:0000000000000000 ADC_Init
+     /tmp/ccJ3sCx0.s:184    .text.ADC_Init:0000000000000044 $d
+     /tmp/ccJ3sCx0.s:189    .text.ADC_StructInit:0000000000000000 $t
+     /tmp/ccJ3sCx0.s:196    .text.ADC_StructInit:0000000000000000 ADC_StructInit
+     /tmp/ccJ3sCx0.s:223    .text.ADC_Cmd:0000000000000000 $t
+     /tmp/ccJ3sCx0.s:230    .text.ADC_Cmd:0000000000000000 ADC_Cmd
+     /tmp/ccJ3sCx0.s:255    .text.ADC_DMACmd:0000000000000000 $t
+     /tmp/ccJ3sCx0.s:262    .text.ADC_DMACmd:0000000000000000 ADC_DMACmd
+     /tmp/ccJ3sCx0.s:287    .text.ADC_ITConfig:0000000000000000 $t
+     /tmp/ccJ3sCx0.s:294    .text.ADC_ITConfig:0000000000000000 ADC_ITConfig
+     /tmp/ccJ3sCx0.s:325    .text.ADC_ResetCalibration:0000000000000000 $t
+     /tmp/ccJ3sCx0.s:332    .text.ADC_ResetCalibration:0000000000000000 ADC_ResetCalibration
+     /tmp/ccJ3sCx0.s:349    .text.ADC_GetResetCalibrationStatus:0000000000000000 $t
+     /tmp/ccJ3sCx0.s:356    .text.ADC_GetResetCalibrationStatus:0000000000000000 ADC_GetResetCalibrationStatus
+     /tmp/ccJ3sCx0.s:383    .text.ADC_StartCalibration:0000000000000000 $t
+     /tmp/ccJ3sCx0.s:390    .text.ADC_StartCalibration:0000000000000000 ADC_StartCalibration
+     /tmp/ccJ3sCx0.s:407    .text.ADC_GetCalibrationStatus:0000000000000000 $t
+     /tmp/ccJ3sCx0.s:414    .text.ADC_GetCalibrationStatus:0000000000000000 ADC_GetCalibrationStatus
+     /tmp/ccJ3sCx0.s:441    .text.ADC_SoftwareStartConvCmd:0000000000000000 $t
+     /tmp/ccJ3sCx0.s:448    .text.ADC_SoftwareStartConvCmd:0000000000000000 ADC_SoftwareStartConvCmd
+     /tmp/ccJ3sCx0.s:473    .text.ADC_GetSoftwareStartConvStatus:0000000000000000 $t
+     /tmp/ccJ3sCx0.s:480    .text.ADC_GetSoftwareStartConvStatus:0000000000000000 ADC_GetSoftwareStartConvStatus
+     /tmp/ccJ3sCx0.s:507    .text.ADC_DiscModeChannelCountConfig:0000000000000000 $t
+     /tmp/ccJ3sCx0.s:514    .text.ADC_DiscModeChannelCountConfig:0000000000000000 ADC_DiscModeChannelCountConfig
+     /tmp/ccJ3sCx0.s:541    .text.ADC_DiscModeCmd:0000000000000000 $t
+     /tmp/ccJ3sCx0.s:548    .text.ADC_DiscModeCmd:0000000000000000 ADC_DiscModeCmd
+     /tmp/ccJ3sCx0.s:573    .text.ADC_RegularChannelConfig:0000000000000000 $t
+     /tmp/ccJ3sCx0.s:580    .text.ADC_RegularChannelConfig:0000000000000000 ADC_RegularChannelConfig
+     /tmp/ccJ3sCx0.s:734    .text.ADC_ExternalTrigConvCmd:0000000000000000 $t
+     /tmp/ccJ3sCx0.s:741    .text.ADC_ExternalTrigConvCmd:0000000000000000 ADC_ExternalTrigConvCmd
+     /tmp/ccJ3sCx0.s:766    .text.ADC_GetConversionValue:0000000000000000 $t
+     /tmp/ccJ3sCx0.s:773    .text.ADC_GetConversionValue:0000000000000000 ADC_GetConversionValue
+     /tmp/ccJ3sCx0.s:791    .text.ADC_GetDualModeConversionValue:0000000000000000 $t
+     /tmp/ccJ3sCx0.s:798    .text.ADC_GetDualModeConversionValue:0000000000000000 ADC_GetDualModeConversionValue
+     /tmp/ccJ3sCx0.s:813    .text.ADC_GetDualModeConversionValue:0000000000000008 $d
+     /tmp/ccJ3sCx0.s:818    .text.ADC_AutoInjectedConvCmd:0000000000000000 $t
+     /tmp/ccJ3sCx0.s:825    .text.ADC_AutoInjectedConvCmd:0000000000000000 ADC_AutoInjectedConvCmd
+     /tmp/ccJ3sCx0.s:850    .text.ADC_InjectedDiscModeCmd:0000000000000000 $t
+     /tmp/ccJ3sCx0.s:857    .text.ADC_InjectedDiscModeCmd:0000000000000000 ADC_InjectedDiscModeCmd
+     /tmp/ccJ3sCx0.s:882    .text.ADC_ExternalTrigInjectedConvConfig:0000000000000000 $t
+     /tmp/ccJ3sCx0.s:889    .text.ADC_ExternalTrigInjectedConvConfig:0000000000000000 ADC_ExternalTrigInjectedConvConfig
+     /tmp/ccJ3sCx0.s:913    .text.ADC_ExternalTrigInjectedConvCmd:0000000000000000 $t
+     /tmp/ccJ3sCx0.s:920    .text.ADC_ExternalTrigInjectedConvCmd:0000000000000000 ADC_ExternalTrigInjectedConvCmd
+     /tmp/ccJ3sCx0.s:945    .text.ADC_SoftwareStartInjectedConvCmd:0000000000000000 $t
+     /tmp/ccJ3sCx0.s:952    .text.ADC_SoftwareStartInjectedConvCmd:0000000000000000 ADC_SoftwareStartInjectedConvCmd
+     /tmp/ccJ3sCx0.s:977    .text.ADC_GetSoftwareStartInjectedConvCmdStatus:0000000000000000 $t
+     /tmp/ccJ3sCx0.s:984    .text.ADC_GetSoftwareStartInjectedConvCmdStatus:0000000000000000 ADC_GetSoftwareStartInjectedConvCmdStatus
+     /tmp/ccJ3sCx0.s:1011   .text.ADC_InjectedChannelConfig:0000000000000000 $t
+     /tmp/ccJ3sCx0.s:1018   .text.ADC_InjectedChannelConfig:0000000000000000 ADC_InjectedChannelConfig
+     /tmp/ccJ3sCx0.s:1123   .text.ADC_InjectedSequencerLengthConfig:0000000000000000 $t
+     /tmp/ccJ3sCx0.s:1130   .text.ADC_InjectedSequencerLengthConfig:0000000000000000 ADC_InjectedSequencerLengthConfig
+ARM GAS  /tmp/ccJ3sCx0.s 			page 51
 
 
-     /tmp/ccVorSIQ.s:1157   .text.ADC_SetInjectedOffset:0000000000000000 $t
-     /tmp/ccVorSIQ.s:1164   .text.ADC_SetInjectedOffset:0000000000000000 ADC_SetInjectedOffset
-     /tmp/ccVorSIQ.s:1198   .text.ADC_GetInjectedConversionValue:0000000000000000 $t
-     /tmp/ccVorSIQ.s:1205   .text.ADC_GetInjectedConversionValue:0000000000000000 ADC_GetInjectedConversionValue
-     /tmp/ccVorSIQ.s:1242   .text.ADC_AnalogWatchdogCmd:0000000000000000 $t
-     /tmp/ccVorSIQ.s:1249   .text.ADC_AnalogWatchdogCmd:0000000000000000 ADC_AnalogWatchdogCmd
-     /tmp/ccVorSIQ.s:1275   .text.ADC_AnalogWatchdogThresholdsConfig:0000000000000000 $t
-     /tmp/ccVorSIQ.s:1282   .text.ADC_AnalogWatchdogThresholdsConfig:0000000000000000 ADC_AnalogWatchdogThresholdsConfig
-     /tmp/ccVorSIQ.s:1299   .text.ADC_AnalogWatchdogSingleChannelConfig:0000000000000000 $t
-     /tmp/ccVorSIQ.s:1306   .text.ADC_AnalogWatchdogSingleChannelConfig:0000000000000000 ADC_AnalogWatchdogSingleChannelConfig
-     /tmp/ccVorSIQ.s:1330   .text.ADC_TempSensorVrefintCmd:0000000000000000 $t
-     /tmp/ccVorSIQ.s:1337   .text.ADC_TempSensorVrefintCmd:0000000000000000 ADC_TempSensorVrefintCmd
-     /tmp/ccVorSIQ.s:1363   .text.ADC_TempSensorVrefintCmd:000000000000001c $d
-     /tmp/ccVorSIQ.s:1368   .text.ADC_GetFlagStatus:0000000000000000 $t
-     /tmp/ccVorSIQ.s:1375   .text.ADC_GetFlagStatus:0000000000000000 ADC_GetFlagStatus
-     /tmp/ccVorSIQ.s:1402   .text.ADC_ClearFlag:0000000000000000 $t
-     /tmp/ccVorSIQ.s:1409   .text.ADC_ClearFlag:0000000000000000 ADC_ClearFlag
-     /tmp/ccVorSIQ.s:1426   .text.ADC_GetITStatus:0000000000000000 $t
-     /tmp/ccVorSIQ.s:1433   .text.ADC_GetITStatus:0000000000000000 ADC_GetITStatus
-     /tmp/ccVorSIQ.s:1472   .text.ADC_ClearITPendingBit:0000000000000000 $t
-     /tmp/ccVorSIQ.s:1479   .text.ADC_ClearITPendingBit:0000000000000000 ADC_ClearITPendingBit
+     /tmp/ccJ3sCx0.s:1157   .text.ADC_SetInjectedOffset:0000000000000000 $t
+     /tmp/ccJ3sCx0.s:1164   .text.ADC_SetInjectedOffset:0000000000000000 ADC_SetInjectedOffset
+     /tmp/ccJ3sCx0.s:1198   .text.ADC_GetInjectedConversionValue:0000000000000000 $t
+     /tmp/ccJ3sCx0.s:1205   .text.ADC_GetInjectedConversionValue:0000000000000000 ADC_GetInjectedConversionValue
+     /tmp/ccJ3sCx0.s:1242   .text.ADC_AnalogWatchdogCmd:0000000000000000 $t
+     /tmp/ccJ3sCx0.s:1249   .text.ADC_AnalogWatchdogCmd:0000000000000000 ADC_AnalogWatchdogCmd
+     /tmp/ccJ3sCx0.s:1275   .text.ADC_AnalogWatchdogThresholdsConfig:0000000000000000 $t
+     /tmp/ccJ3sCx0.s:1282   .text.ADC_AnalogWatchdogThresholdsConfig:0000000000000000 ADC_AnalogWatchdogThresholdsConfig
+     /tmp/ccJ3sCx0.s:1299   .text.ADC_AnalogWatchdogSingleChannelConfig:0000000000000000 $t
+     /tmp/ccJ3sCx0.s:1306   .text.ADC_AnalogWatchdogSingleChannelConfig:0000000000000000 ADC_AnalogWatchdogSingleChannelConfig
+     /tmp/ccJ3sCx0.s:1330   .text.ADC_TempSensorVrefintCmd:0000000000000000 $t
+     /tmp/ccJ3sCx0.s:1337   .text.ADC_TempSensorVrefintCmd:0000000000000000 ADC_TempSensorVrefintCmd
+     /tmp/ccJ3sCx0.s:1363   .text.ADC_TempSensorVrefintCmd:000000000000001c $d
+     /tmp/ccJ3sCx0.s:1368   .text.ADC_GetFlagStatus:0000000000000000 $t
+     /tmp/ccJ3sCx0.s:1375   .text.ADC_GetFlagStatus:0000000000000000 ADC_GetFlagStatus
+     /tmp/ccJ3sCx0.s:1402   .text.ADC_ClearFlag:0000000000000000 $t
+     /tmp/ccJ3sCx0.s:1409   .text.ADC_ClearFlag:0000000000000000 ADC_ClearFlag
+     /tmp/ccJ3sCx0.s:1426   .text.ADC_GetITStatus:0000000000000000 $t
+     /tmp/ccJ3sCx0.s:1433   .text.ADC_GetITStatus:0000000000000000 ADC_GetITStatus
+     /tmp/ccJ3sCx0.s:1472   .text.ADC_ClearITPendingBit:0000000000000000 $t
+     /tmp/ccJ3sCx0.s:1479   .text.ADC_ClearITPendingBit:0000000000000000 ADC_ClearITPendingBit
                      .debug_frame:0000000000000010 $d
 
 UNDEFINED SYMBOLS

@@ -1,4 +1,4 @@
-ARM GAS  /tmp/ccnrnvGN.s 			page 1
+ARM GAS  /tmp/ccUOptry.s 			page 1
 
 
    1              		.cpu cortex-m3
@@ -58,7 +58,7 @@ ARM GAS  /tmp/ccnrnvGN.s 			page 1
   31:stm_lib/src/stm32f10x_rtc.c ****   * @{
   32:stm_lib/src/stm32f10x_rtc.c ****   */
   33:stm_lib/src/stm32f10x_rtc.c **** 
-ARM GAS  /tmp/ccnrnvGN.s 			page 2
+ARM GAS  /tmp/ccUOptry.s 			page 2
 
 
   34:stm_lib/src/stm32f10x_rtc.c **** /** @defgroup RTC_Private_TypesDefinitions
@@ -118,7 +118,7 @@ ARM GAS  /tmp/ccnrnvGN.s 			page 1
   88:stm_lib/src/stm32f10x_rtc.c ****   * @retval None
   89:stm_lib/src/stm32f10x_rtc.c ****   */
   90:stm_lib/src/stm32f10x_rtc.c **** void RTC_ITConfig(uint16_t RTC_IT, FunctionalState NewState)
-ARM GAS  /tmp/ccnrnvGN.s 			page 3
+ARM GAS  /tmp/ccUOptry.s 			page 3
 
 
   91:stm_lib/src/stm32f10x_rtc.c **** {
@@ -178,7 +178,7 @@ ARM GAS  /tmp/ccnrnvGN.s 			page 1
   69              	.LFB57:
  103:stm_lib/src/stm32f10x_rtc.c ****   }
  104:stm_lib/src/stm32f10x_rtc.c **** }
-ARM GAS  /tmp/ccnrnvGN.s 			page 4
+ARM GAS  /tmp/ccUOptry.s 			page 4
 
 
  105:stm_lib/src/stm32f10x_rtc.c **** 
@@ -238,7 +238,7 @@ ARM GAS  /tmp/ccnrnvGN.s 			page 1
  105 0000 034A     		ldr	r2, .L11
  106 0002 9388     		ldrh	r3, [r2, #4]
  107 0004 9BB2     		uxth	r3, r3
-ARM GAS  /tmp/ccnrnvGN.s 			page 5
+ARM GAS  /tmp/ccUOptry.s 			page 5
 
 
  108 0006 23F01003 		bic	r3, r3, #16
@@ -298,7 +298,7 @@ ARM GAS  /tmp/ccnrnvGN.s 			page 1
  152              		.section	.text.RTC_SetCounter,"ax",%progbits
  153              		.align	1
  154              		.global	RTC_SetCounter
-ARM GAS  /tmp/ccnrnvGN.s 			page 6
+ARM GAS  /tmp/ccUOptry.s 			page 6
 
 
  155              		.syntax unified
@@ -358,7 +358,7 @@ ARM GAS  /tmp/ccnrnvGN.s 			page 1
  197              		.global	RTC_SetPrescaler
  198              		.syntax unified
  199              		.thumb
-ARM GAS  /tmp/ccnrnvGN.s 			page 7
+ARM GAS  /tmp/ccUOptry.s 			page 7
 
 
  200              		.thumb_func
@@ -418,7 +418,7 @@ ARM GAS  /tmp/ccnrnvGN.s 			page 1
  238              		.section	.text.RTC_SetAlarm,"ax",%progbits
  239              		.align	1
  240              		.global	RTC_SetAlarm
-ARM GAS  /tmp/ccnrnvGN.s 			page 8
+ARM GAS  /tmp/ccUOptry.s 			page 8
 
 
  241              		.syntax unified
@@ -478,7 +478,7 @@ ARM GAS  /tmp/ccnrnvGN.s 			page 1
  282              		.align	1
  283              		.global	RTC_GetDivider
  284              		.syntax unified
-ARM GAS  /tmp/ccnrnvGN.s 			page 9
+ARM GAS  /tmp/ccUOptry.s 			page 9
 
 
  285              		.thumb
@@ -538,7 +538,7 @@ ARM GAS  /tmp/ccnrnvGN.s 			page 1
  200:stm_lib/src/stm32f10x_rtc.c **** 
  201:stm_lib/src/stm32f10x_rtc.c **** /**
  202:stm_lib/src/stm32f10x_rtc.c ****   * @brief  Waits until last write operation on RTC registers has finished.
-ARM GAS  /tmp/ccnrnvGN.s 			page 10
+ARM GAS  /tmp/ccUOptry.s 			page 10
 
 
  203:stm_lib/src/stm32f10x_rtc.c ****   * @note   This function must be called before any write to RTC registers.
@@ -598,7 +598,7 @@ ARM GAS  /tmp/ccnrnvGN.s 			page 1
  362              		@ link register save eliminated.
  225:stm_lib/src/stm32f10x_rtc.c ****   /* Clear RSF flag */
  226:stm_lib/src/stm32f10x_rtc.c ****   RTC->CRL &= (uint16_t)~RTC_FLAG_RSF;
-ARM GAS  /tmp/ccnrnvGN.s 			page 11
+ARM GAS  /tmp/ccUOptry.s 			page 11
 
 
  363              		.loc 1 226 0
@@ -658,7 +658,7 @@ ARM GAS  /tmp/ccnrnvGN.s 			page 1
  400              	.LVL22:
  246:stm_lib/src/stm32f10x_rtc.c ****   FlagStatus bitstatus = RESET;
  247:stm_lib/src/stm32f10x_rtc.c ****   
-ARM GAS  /tmp/ccnrnvGN.s 			page 12
+ARM GAS  /tmp/ccUOptry.s 			page 12
 
 
  248:stm_lib/src/stm32f10x_rtc.c ****   /* Check the parameters */
@@ -718,7 +718,7 @@ ARM GAS  /tmp/ccnrnvGN.s 			page 1
  270:stm_lib/src/stm32f10x_rtc.c ****   *     @arg RTC_FLAG_SEC: Second flag
  271:stm_lib/src/stm32f10x_rtc.c ****   * @retval None
  272:stm_lib/src/stm32f10x_rtc.c ****   */
-ARM GAS  /tmp/ccnrnvGN.s 			page 13
+ARM GAS  /tmp/ccUOptry.s 			page 13
 
 
  273:stm_lib/src/stm32f10x_rtc.c **** void RTC_ClearFlag(uint16_t RTC_FLAG)
@@ -778,7 +778,7 @@ ARM GAS  /tmp/ccnrnvGN.s 			page 1
  470              		@ link register save eliminated.
  471              	.LVL28:
  293:stm_lib/src/stm32f10x_rtc.c ****   ITStatus bitstatus = RESET;
-ARM GAS  /tmp/ccnrnvGN.s 			page 14
+ARM GAS  /tmp/ccUOptry.s 			page 14
 
 
  294:stm_lib/src/stm32f10x_rtc.c ****   /* Check the parameters */
@@ -838,7 +838,7 @@ ARM GAS  /tmp/ccnrnvGN.s 			page 1
  512              		.thumb_func
  513              		.fpu softvfp
  515              	RTC_ClearITPendingBit:
-ARM GAS  /tmp/ccnrnvGN.s 			page 15
+ARM GAS  /tmp/ccUOptry.s 			page 15
 
 
  516              	.LFB69:
@@ -887,53 +887,53 @@ ARM GAS  /tmp/ccnrnvGN.s 			page 1
  543              		.file 4 "cmsis/core_cm3.h"
  544              		.file 5 "cmsis_boot/system_stm32f10x.h"
  545              		.file 6 "stm_lib/inc/stm32f10x.h"
-ARM GAS  /tmp/ccnrnvGN.s 			page 16
+ARM GAS  /tmp/ccUOptry.s 			page 16
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 stm32f10x_rtc.c
-     /tmp/ccnrnvGN.s:16     .text.RTC_ITConfig:0000000000000000 $t
-     /tmp/ccnrnvGN.s:23     .text.RTC_ITConfig:0000000000000000 RTC_ITConfig
-     /tmp/ccnrnvGN.s:56     .text.RTC_ITConfig:000000000000001c $d
-     /tmp/ccnrnvGN.s:61     .text.RTC_EnterConfigMode:0000000000000000 $t
-     /tmp/ccnrnvGN.s:68     .text.RTC_EnterConfigMode:0000000000000000 RTC_EnterConfigMode
-     /tmp/ccnrnvGN.s:85     .text.RTC_EnterConfigMode:0000000000000010 $d
-     /tmp/ccnrnvGN.s:90     .text.RTC_ExitConfigMode:0000000000000000 $t
-     /tmp/ccnrnvGN.s:97     .text.RTC_ExitConfigMode:0000000000000000 RTC_ExitConfigMode
-     /tmp/ccnrnvGN.s:115    .text.RTC_ExitConfigMode:0000000000000010 $d
-     /tmp/ccnrnvGN.s:120    .text.RTC_GetCounter:0000000000000000 $t
-     /tmp/ccnrnvGN.s:127    .text.RTC_GetCounter:0000000000000000 RTC_GetCounter
-     /tmp/ccnrnvGN.s:148    .text.RTC_GetCounter:0000000000000010 $d
-     /tmp/ccnrnvGN.s:153    .text.RTC_SetCounter:0000000000000000 $t
-     /tmp/ccnrnvGN.s:160    .text.RTC_SetCounter:0000000000000000 RTC_SetCounter
-     /tmp/ccnrnvGN.s:191    .text.RTC_SetCounter:0000000000000018 $d
-     /tmp/ccnrnvGN.s:196    .text.RTC_SetPrescaler:0000000000000000 $t
-     /tmp/ccnrnvGN.s:203    .text.RTC_SetPrescaler:0000000000000000 RTC_SetPrescaler
-     /tmp/ccnrnvGN.s:234    .text.RTC_SetPrescaler:000000000000001c $d
-     /tmp/ccnrnvGN.s:239    .text.RTC_SetAlarm:0000000000000000 $t
-     /tmp/ccnrnvGN.s:246    .text.RTC_SetAlarm:0000000000000000 RTC_SetAlarm
-     /tmp/ccnrnvGN.s:277    .text.RTC_SetAlarm:0000000000000018 $d
-     /tmp/ccnrnvGN.s:282    .text.RTC_GetDivider:0000000000000000 $t
-     /tmp/ccnrnvGN.s:289    .text.RTC_GetDivider:0000000000000000 RTC_GetDivider
-     /tmp/ccnrnvGN.s:314    .text.RTC_GetDivider:0000000000000014 $d
-     /tmp/ccnrnvGN.s:319    .text.RTC_WaitForLastTask:0000000000000000 $t
-     /tmp/ccnrnvGN.s:326    .text.RTC_WaitForLastTask:0000000000000000 RTC_WaitForLastTask
-     /tmp/ccnrnvGN.s:344    .text.RTC_WaitForLastTask:000000000000000c $d
-     /tmp/ccnrnvGN.s:349    .text.RTC_WaitForSynchro:0000000000000000 $t
-     /tmp/ccnrnvGN.s:356    .text.RTC_WaitForSynchro:0000000000000000 RTC_WaitForSynchro
-     /tmp/ccnrnvGN.s:381    .text.RTC_WaitForSynchro:000000000000001c $d
-     /tmp/ccnrnvGN.s:386    .text.RTC_GetFlagStatus:0000000000000000 $t
-     /tmp/ccnrnvGN.s:393    .text.RTC_GetFlagStatus:0000000000000000 RTC_GetFlagStatus
-     /tmp/ccnrnvGN.s:420    .text.RTC_GetFlagStatus:0000000000000010 $d
-     /tmp/ccnrnvGN.s:425    .text.RTC_ClearFlag:0000000000000000 $t
-     /tmp/ccnrnvGN.s:432    .text.RTC_ClearFlag:0000000000000000 RTC_ClearFlag
-     /tmp/ccnrnvGN.s:452    .text.RTC_ClearFlag:0000000000000010 $d
-     /tmp/ccnrnvGN.s:457    .text.RTC_GetITStatus:0000000000000000 $t
-     /tmp/ccnrnvGN.s:464    .text.RTC_GetITStatus:0000000000000000 RTC_GetITStatus
-     /tmp/ccnrnvGN.s:503    .text.RTC_GetITStatus:000000000000001c $d
-     /tmp/ccnrnvGN.s:508    .text.RTC_ClearITPendingBit:0000000000000000 $t
-     /tmp/ccnrnvGN.s:515    .text.RTC_ClearITPendingBit:0000000000000000 RTC_ClearITPendingBit
-     /tmp/ccnrnvGN.s:535    .text.RTC_ClearITPendingBit:0000000000000010 $d
+     /tmp/ccUOptry.s:16     .text.RTC_ITConfig:0000000000000000 $t
+     /tmp/ccUOptry.s:23     .text.RTC_ITConfig:0000000000000000 RTC_ITConfig
+     /tmp/ccUOptry.s:56     .text.RTC_ITConfig:000000000000001c $d
+     /tmp/ccUOptry.s:61     .text.RTC_EnterConfigMode:0000000000000000 $t
+     /tmp/ccUOptry.s:68     .text.RTC_EnterConfigMode:0000000000000000 RTC_EnterConfigMode
+     /tmp/ccUOptry.s:85     .text.RTC_EnterConfigMode:0000000000000010 $d
+     /tmp/ccUOptry.s:90     .text.RTC_ExitConfigMode:0000000000000000 $t
+     /tmp/ccUOptry.s:97     .text.RTC_ExitConfigMode:0000000000000000 RTC_ExitConfigMode
+     /tmp/ccUOptry.s:115    .text.RTC_ExitConfigMode:0000000000000010 $d
+     /tmp/ccUOptry.s:120    .text.RTC_GetCounter:0000000000000000 $t
+     /tmp/ccUOptry.s:127    .text.RTC_GetCounter:0000000000000000 RTC_GetCounter
+     /tmp/ccUOptry.s:148    .text.RTC_GetCounter:0000000000000010 $d
+     /tmp/ccUOptry.s:153    .text.RTC_SetCounter:0000000000000000 $t
+     /tmp/ccUOptry.s:160    .text.RTC_SetCounter:0000000000000000 RTC_SetCounter
+     /tmp/ccUOptry.s:191    .text.RTC_SetCounter:0000000000000018 $d
+     /tmp/ccUOptry.s:196    .text.RTC_SetPrescaler:0000000000000000 $t
+     /tmp/ccUOptry.s:203    .text.RTC_SetPrescaler:0000000000000000 RTC_SetPrescaler
+     /tmp/ccUOptry.s:234    .text.RTC_SetPrescaler:000000000000001c $d
+     /tmp/ccUOptry.s:239    .text.RTC_SetAlarm:0000000000000000 $t
+     /tmp/ccUOptry.s:246    .text.RTC_SetAlarm:0000000000000000 RTC_SetAlarm
+     /tmp/ccUOptry.s:277    .text.RTC_SetAlarm:0000000000000018 $d
+     /tmp/ccUOptry.s:282    .text.RTC_GetDivider:0000000000000000 $t
+     /tmp/ccUOptry.s:289    .text.RTC_GetDivider:0000000000000000 RTC_GetDivider
+     /tmp/ccUOptry.s:314    .text.RTC_GetDivider:0000000000000014 $d
+     /tmp/ccUOptry.s:319    .text.RTC_WaitForLastTask:0000000000000000 $t
+     /tmp/ccUOptry.s:326    .text.RTC_WaitForLastTask:0000000000000000 RTC_WaitForLastTask
+     /tmp/ccUOptry.s:344    .text.RTC_WaitForLastTask:000000000000000c $d
+     /tmp/ccUOptry.s:349    .text.RTC_WaitForSynchro:0000000000000000 $t
+     /tmp/ccUOptry.s:356    .text.RTC_WaitForSynchro:0000000000000000 RTC_WaitForSynchro
+     /tmp/ccUOptry.s:381    .text.RTC_WaitForSynchro:000000000000001c $d
+     /tmp/ccUOptry.s:386    .text.RTC_GetFlagStatus:0000000000000000 $t
+     /tmp/ccUOptry.s:393    .text.RTC_GetFlagStatus:0000000000000000 RTC_GetFlagStatus
+     /tmp/ccUOptry.s:420    .text.RTC_GetFlagStatus:0000000000000010 $d
+     /tmp/ccUOptry.s:425    .text.RTC_ClearFlag:0000000000000000 $t
+     /tmp/ccUOptry.s:432    .text.RTC_ClearFlag:0000000000000000 RTC_ClearFlag
+     /tmp/ccUOptry.s:452    .text.RTC_ClearFlag:0000000000000010 $d
+     /tmp/ccUOptry.s:457    .text.RTC_GetITStatus:0000000000000000 $t
+     /tmp/ccUOptry.s:464    .text.RTC_GetITStatus:0000000000000000 RTC_GetITStatus
+     /tmp/ccUOptry.s:503    .text.RTC_GetITStatus:000000000000001c $d
+     /tmp/ccUOptry.s:508    .text.RTC_ClearITPendingBit:0000000000000000 $t
+     /tmp/ccUOptry.s:515    .text.RTC_ClearITPendingBit:0000000000000000 RTC_ClearITPendingBit
+     /tmp/ccUOptry.s:535    .text.RTC_ClearITPendingBit:0000000000000010 $d
                      .debug_frame:0000000000000010 $d
 
 NO UNDEFINED SYMBOLS

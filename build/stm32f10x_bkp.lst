@@ -1,4 +1,4 @@
-ARM GAS  /tmp/ccdOMvQW.s 			page 1
+ARM GAS  /tmp/ccbfLKV7.s 			page 1
 
 
    1              		.cpu cortex-m3
@@ -58,7 +58,7 @@ ARM GAS  /tmp/ccdOMvQW.s 			page 1
   31:stm_lib/src/stm32f10x_bkp.c ****   * @brief BKP driver modules
   32:stm_lib/src/stm32f10x_bkp.c ****   * @{
   33:stm_lib/src/stm32f10x_bkp.c ****   */
-ARM GAS  /tmp/ccdOMvQW.s 			page 2
+ARM GAS  /tmp/ccbfLKV7.s 			page 2
 
 
   34:stm_lib/src/stm32f10x_bkp.c **** 
@@ -118,7 +118,7 @@ ARM GAS  /tmp/ccdOMvQW.s 			page 1
   88:stm_lib/src/stm32f10x_bkp.c ****   * @{
   89:stm_lib/src/stm32f10x_bkp.c ****   */
   90:stm_lib/src/stm32f10x_bkp.c **** 
-ARM GAS  /tmp/ccdOMvQW.s 			page 3
+ARM GAS  /tmp/ccbfLKV7.s 			page 3
 
 
   91:stm_lib/src/stm32f10x_bkp.c **** /**
@@ -178,7 +178,7 @@ ARM GAS  /tmp/ccdOMvQW.s 			page 1
   48              		.align	1
   49              		.global	BKP_TamperPinLevelConfig
   50              		.syntax unified
-ARM GAS  /tmp/ccdOMvQW.s 			page 4
+ARM GAS  /tmp/ccbfLKV7.s 			page 4
 
 
   51              		.thumb
@@ -238,7 +238,7 @@ ARM GAS  /tmp/ccdOMvQW.s 			page 1
  148:stm_lib/src/stm32f10x_bkp.c **** {
   84              		.loc 1 148 0
   85              		.cfi_startproc
-ARM GAS  /tmp/ccdOMvQW.s 			page 5
+ARM GAS  /tmp/ccbfLKV7.s 			page 5
 
 
   86              		@ args = 0, pretend = 0, frame = 0
@@ -298,7 +298,7 @@ ARM GAS  /tmp/ccdOMvQW.s 			page 1
  126              	.LFE59:
  128              		.section	.text.BKP_RTCOutputConfig,"ax",%progbits
  129              		.align	1
-ARM GAS  /tmp/ccdOMvQW.s 			page 6
+ARM GAS  /tmp/ccbfLKV7.s 			page 6
 
 
  130              		.global	BKP_RTCOutputConfig
@@ -358,7 +358,7 @@ ARM GAS  /tmp/ccdOMvQW.s 			page 1
  157 000e 7047     		bx	lr
  158              	.L14:
  159              		.align	2
-ARM GAS  /tmp/ccdOMvQW.s 			page 7
+ARM GAS  /tmp/ccbfLKV7.s 			page 7
 
 
  160              	.L13:
@@ -418,7 +418,7 @@ ARM GAS  /tmp/ccdOMvQW.s 			page 1
  196              		.align	2
  197              	.L16:
  198 0010 006C0040 		.word	1073769472
-ARM GAS  /tmp/ccdOMvQW.s 			page 8
+ARM GAS  /tmp/ccbfLKV7.s 			page 8
 
 
  199              		.cfi_endproc
@@ -478,7 +478,7 @@ ARM GAS  /tmp/ccdOMvQW.s 			page 1
  233:stm_lib/src/stm32f10x_bkp.c **** }
  235              		.loc 1 233 0
  236 0014 02B0     		add	sp, sp, #8
-ARM GAS  /tmp/ccdOMvQW.s 			page 9
+ARM GAS  /tmp/ccbfLKV7.s 			page 9
 
 
  237              	.LCFI2:
@@ -538,7 +538,7 @@ ARM GAS  /tmp/ccdOMvQW.s 			page 1
  277 000e 0190     		str	r0, [sp, #4]
  250:stm_lib/src/stm32f10x_bkp.c **** 
  251:stm_lib/src/stm32f10x_bkp.c ****   return (*(__IO uint16_t *) tmp);
-ARM GAS  /tmp/ccdOMvQW.s 			page 10
+ARM GAS  /tmp/ccbfLKV7.s 			page 10
 
 
  278              		.loc 1 251 0
@@ -598,7 +598,7 @@ ARM GAS  /tmp/ccdOMvQW.s 			page 1
  324              		.align	1
  325              		.global	BKP_ClearFlag
  326              		.syntax unified
-ARM GAS  /tmp/ccdOMvQW.s 			page 11
+ARM GAS  /tmp/ccbfLKV7.s 			page 11
 
 
  327              		.thumb
@@ -658,7 +658,7 @@ ARM GAS  /tmp/ccdOMvQW.s 			page 1
  365              		@ frame_needed = 0, uses_anonymous_args = 0
  366              		@ link register save eliminated.
  282:stm_lib/src/stm32f10x_bkp.c ****   return (ITStatus)(*(__IO uint32_t *) CSR_TIF_BB);
-ARM GAS  /tmp/ccdOMvQW.s 			page 12
+ARM GAS  /tmp/ccbfLKV7.s 			page 12
 
 
  367              		.loc 1 282 0
@@ -718,50 +718,50 @@ ARM GAS  /tmp/ccdOMvQW.s 			page 1
  413              		.file 4 "cmsis/core_cm3.h"
  414              		.file 5 "cmsis_boot/system_stm32f10x.h"
  415              		.file 6 "stm_lib/inc/stm32f10x.h"
-ARM GAS  /tmp/ccdOMvQW.s 			page 13
+ARM GAS  /tmp/ccbfLKV7.s 			page 13
 
 
  416              		.file 7 "stm_lib/inc/stm32f10x_rcc.h"
-ARM GAS  /tmp/ccdOMvQW.s 			page 14
+ARM GAS  /tmp/ccbfLKV7.s 			page 14
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 stm32f10x_bkp.c
-     /tmp/ccdOMvQW.s:16     .text.BKP_DeInit:0000000000000000 $t
-     /tmp/ccdOMvQW.s:23     .text.BKP_DeInit:0000000000000000 BKP_DeInit
-     /tmp/ccdOMvQW.s:48     .text.BKP_TamperPinLevelConfig:0000000000000000 $t
-     /tmp/ccdOMvQW.s:55     .text.BKP_TamperPinLevelConfig:0000000000000000 BKP_TamperPinLevelConfig
-     /tmp/ccdOMvQW.s:70     .text.BKP_TamperPinLevelConfig:0000000000000008 $d
-     /tmp/ccdOMvQW.s:75     .text.BKP_TamperPinCmd:0000000000000000 $t
-     /tmp/ccdOMvQW.s:82     .text.BKP_TamperPinCmd:0000000000000000 BKP_TamperPinCmd
-     /tmp/ccdOMvQW.s:97     .text.BKP_TamperPinCmd:0000000000000008 $d
-     /tmp/ccdOMvQW.s:102    .text.BKP_ITConfig:0000000000000000 $t
-     /tmp/ccdOMvQW.s:109    .text.BKP_ITConfig:0000000000000000 BKP_ITConfig
-     /tmp/ccdOMvQW.s:124    .text.BKP_ITConfig:0000000000000008 $d
-     /tmp/ccdOMvQW.s:129    .text.BKP_RTCOutputConfig:0000000000000000 $t
-     /tmp/ccdOMvQW.s:136    .text.BKP_RTCOutputConfig:0000000000000000 BKP_RTCOutputConfig
-     /tmp/ccdOMvQW.s:161    .text.BKP_RTCOutputConfig:0000000000000010 $d
-     /tmp/ccdOMvQW.s:166    .text.BKP_SetRTCCalibrationValue:0000000000000000 $t
-     /tmp/ccdOMvQW.s:173    .text.BKP_SetRTCCalibrationValue:0000000000000000 BKP_SetRTCCalibrationValue
-     /tmp/ccdOMvQW.s:198    .text.BKP_SetRTCCalibrationValue:0000000000000010 $d
-     /tmp/ccdOMvQW.s:203    .text.BKP_WriteBackupRegister:0000000000000000 $t
-     /tmp/ccdOMvQW.s:210    .text.BKP_WriteBackupRegister:0000000000000000 BKP_WriteBackupRegister
-     /tmp/ccdOMvQW.s:244    .text.BKP_WriteBackupRegister:0000000000000018 $d
-     /tmp/ccdOMvQW.s:249    .text.BKP_ReadBackupRegister:0000000000000000 $t
-     /tmp/ccdOMvQW.s:256    .text.BKP_ReadBackupRegister:0000000000000000 BKP_ReadBackupRegister
-     /tmp/ccdOMvQW.s:291    .text.BKP_ReadBackupRegister:000000000000001c $d
-     /tmp/ccdOMvQW.s:296    .text.BKP_GetFlagStatus:0000000000000000 $t
-     /tmp/ccdOMvQW.s:303    .text.BKP_GetFlagStatus:0000000000000000 BKP_GetFlagStatus
-     /tmp/ccdOMvQW.s:319    .text.BKP_GetFlagStatus:0000000000000008 $d
-     /tmp/ccdOMvQW.s:324    .text.BKP_ClearFlag:0000000000000000 $t
-     /tmp/ccdOMvQW.s:331    .text.BKP_ClearFlag:0000000000000000 BKP_ClearFlag
-     /tmp/ccdOMvQW.s:348    .text.BKP_ClearFlag:0000000000000010 $d
-     /tmp/ccdOMvQW.s:353    .text.BKP_GetITStatus:0000000000000000 $t
-     /tmp/ccdOMvQW.s:360    .text.BKP_GetITStatus:0000000000000000 BKP_GetITStatus
-     /tmp/ccdOMvQW.s:376    .text.BKP_GetITStatus:0000000000000008 $d
-     /tmp/ccdOMvQW.s:381    .text.BKP_ClearITPendingBit:0000000000000000 $t
-     /tmp/ccdOMvQW.s:388    .text.BKP_ClearITPendingBit:0000000000000000 BKP_ClearITPendingBit
-     /tmp/ccdOMvQW.s:405    .text.BKP_ClearITPendingBit:0000000000000010 $d
+     /tmp/ccbfLKV7.s:16     .text.BKP_DeInit:0000000000000000 $t
+     /tmp/ccbfLKV7.s:23     .text.BKP_DeInit:0000000000000000 BKP_DeInit
+     /tmp/ccbfLKV7.s:48     .text.BKP_TamperPinLevelConfig:0000000000000000 $t
+     /tmp/ccbfLKV7.s:55     .text.BKP_TamperPinLevelConfig:0000000000000000 BKP_TamperPinLevelConfig
+     /tmp/ccbfLKV7.s:70     .text.BKP_TamperPinLevelConfig:0000000000000008 $d
+     /tmp/ccbfLKV7.s:75     .text.BKP_TamperPinCmd:0000000000000000 $t
+     /tmp/ccbfLKV7.s:82     .text.BKP_TamperPinCmd:0000000000000000 BKP_TamperPinCmd
+     /tmp/ccbfLKV7.s:97     .text.BKP_TamperPinCmd:0000000000000008 $d
+     /tmp/ccbfLKV7.s:102    .text.BKP_ITConfig:0000000000000000 $t
+     /tmp/ccbfLKV7.s:109    .text.BKP_ITConfig:0000000000000000 BKP_ITConfig
+     /tmp/ccbfLKV7.s:124    .text.BKP_ITConfig:0000000000000008 $d
+     /tmp/ccbfLKV7.s:129    .text.BKP_RTCOutputConfig:0000000000000000 $t
+     /tmp/ccbfLKV7.s:136    .text.BKP_RTCOutputConfig:0000000000000000 BKP_RTCOutputConfig
+     /tmp/ccbfLKV7.s:161    .text.BKP_RTCOutputConfig:0000000000000010 $d
+     /tmp/ccbfLKV7.s:166    .text.BKP_SetRTCCalibrationValue:0000000000000000 $t
+     /tmp/ccbfLKV7.s:173    .text.BKP_SetRTCCalibrationValue:0000000000000000 BKP_SetRTCCalibrationValue
+     /tmp/ccbfLKV7.s:198    .text.BKP_SetRTCCalibrationValue:0000000000000010 $d
+     /tmp/ccbfLKV7.s:203    .text.BKP_WriteBackupRegister:0000000000000000 $t
+     /tmp/ccbfLKV7.s:210    .text.BKP_WriteBackupRegister:0000000000000000 BKP_WriteBackupRegister
+     /tmp/ccbfLKV7.s:244    .text.BKP_WriteBackupRegister:0000000000000018 $d
+     /tmp/ccbfLKV7.s:249    .text.BKP_ReadBackupRegister:0000000000000000 $t
+     /tmp/ccbfLKV7.s:256    .text.BKP_ReadBackupRegister:0000000000000000 BKP_ReadBackupRegister
+     /tmp/ccbfLKV7.s:291    .text.BKP_ReadBackupRegister:000000000000001c $d
+     /tmp/ccbfLKV7.s:296    .text.BKP_GetFlagStatus:0000000000000000 $t
+     /tmp/ccbfLKV7.s:303    .text.BKP_GetFlagStatus:0000000000000000 BKP_GetFlagStatus
+     /tmp/ccbfLKV7.s:319    .text.BKP_GetFlagStatus:0000000000000008 $d
+     /tmp/ccbfLKV7.s:324    .text.BKP_ClearFlag:0000000000000000 $t
+     /tmp/ccbfLKV7.s:331    .text.BKP_ClearFlag:0000000000000000 BKP_ClearFlag
+     /tmp/ccbfLKV7.s:348    .text.BKP_ClearFlag:0000000000000010 $d
+     /tmp/ccbfLKV7.s:353    .text.BKP_GetITStatus:0000000000000000 $t
+     /tmp/ccbfLKV7.s:360    .text.BKP_GetITStatus:0000000000000000 BKP_GetITStatus
+     /tmp/ccbfLKV7.s:376    .text.BKP_GetITStatus:0000000000000008 $d
+     /tmp/ccbfLKV7.s:381    .text.BKP_ClearITPendingBit:0000000000000000 $t
+     /tmp/ccbfLKV7.s:388    .text.BKP_ClearITPendingBit:0000000000000000 BKP_ClearITPendingBit
+     /tmp/ccbfLKV7.s:405    .text.BKP_ClearITPendingBit:0000000000000010 $d
                      .debug_frame:0000000000000010 $d
 
 UNDEFINED SYMBOLS

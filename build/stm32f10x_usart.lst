@@ -1,4 +1,4 @@
-ARM GAS  /tmp/cchH4OKd.s 			page 1
+ARM GAS  /tmp/ccwOHStc.s 			page 1
 
 
    1              		.cpu cortex-m3
@@ -58,7 +58,7 @@ ARM GAS  /tmp/cchH4OKd.s 			page 1
   31:stm_lib/src/stm32f10x_usart.c ****   * @brief USART driver modules
   32:stm_lib/src/stm32f10x_usart.c ****   * @{
   33:stm_lib/src/stm32f10x_usart.c ****   */
-ARM GAS  /tmp/cchH4OKd.s 			page 2
+ARM GAS  /tmp/ccwOHStc.s 			page 2
 
 
   34:stm_lib/src/stm32f10x_usart.c **** 
@@ -118,7 +118,7 @@ ARM GAS  /tmp/cchH4OKd.s 			page 1
   88:stm_lib/src/stm32f10x_usart.c **** #define CR3_ONEBITE_Set           ((u16)0x0800)  /* USART ONEBITE mode Enable Mask */
   89:stm_lib/src/stm32f10x_usart.c **** #define CR3_ONEBITE_Reset         ((u16)0xF7FF)  /* USART ONEBITE mode Disable Mask */
   90:stm_lib/src/stm32f10x_usart.c **** 
-ARM GAS  /tmp/cchH4OKd.s 			page 3
+ARM GAS  /tmp/ccwOHStc.s 			page 3
 
 
   91:stm_lib/src/stm32f10x_usart.c **** /**
@@ -178,7 +178,7 @@ ARM GAS  /tmp/cchH4OKd.s 			page 1
  135:stm_lib/src/stm32f10x_usart.c ****   if (USARTx == USART1)
   36              		.loc 1 135 0
   37 0002 234B     		ldr	r3, .L13
-ARM GAS  /tmp/cchH4OKd.s 			page 4
+ARM GAS  /tmp/ccwOHStc.s 			page 4
 
 
   38 0004 9842     		cmp	r0, r3
@@ -238,7 +238,7 @@ ARM GAS  /tmp/cchH4OKd.s 			page 1
   68 002c 0021     		movs	r1, #0
   69 002e 4FF48040 		mov	r0, #16384
   70 0032 FFF7FEFF 		bl	RCC_APB2PeriphResetCmd
-ARM GAS  /tmp/cchH4OKd.s 			page 5
+ARM GAS  /tmp/ccwOHStc.s 			page 5
 
 
   71              	.LVL5:
@@ -298,7 +298,7 @@ ARM GAS  /tmp/cchH4OKd.s 			page 1
  117              		.loc 1 159 0
  118 007a 0121     		movs	r1, #1
  119 007c 4FF48010 		mov	r0, #1048576
-ARM GAS  /tmp/cchH4OKd.s 			page 6
+ARM GAS  /tmp/ccwOHStc.s 			page 6
 
 
  120              	.LVL19:
@@ -358,7 +358,7 @@ ARM GAS  /tmp/cchH4OKd.s 			page 1
  158              		.cfi_def_cfa_offset 12
  159              		.cfi_offset 4, -12
  160              		.cfi_offset 5, -8
-ARM GAS  /tmp/cchH4OKd.s 			page 7
+ARM GAS  /tmp/ccwOHStc.s 			page 7
 
 
  161              		.cfi_offset 14, -4
@@ -418,7 +418,7 @@ ARM GAS  /tmp/cchH4OKd.s 			page 1
  181 0016 8389     		ldrh	r3, [r0, #12]
  182              	.LVL27:
  183 0018 9BB2     		uxth	r3, r3
-ARM GAS  /tmp/cchH4OKd.s 			page 8
+ARM GAS  /tmp/ccwOHStc.s 			page 8
 
 
  184              	.LVL28:
@@ -478,7 +478,7 @@ ARM GAS  /tmp/cchH4OKd.s 			page 1
  234:stm_lib/src/stm32f10x_usart.c ****   /* Configure the USART Baud Rate -------------------------------------------*/
  235:stm_lib/src/stm32f10x_usart.c ****   RCC_GetClocksFreq(&RCC_ClocksStatus);
  215              		.loc 1 235 0
-ARM GAS  /tmp/cchH4OKd.s 			page 9
+ARM GAS  /tmp/ccwOHStc.s 			page 9
 
 
  216 003e 01A8     		add	r0, sp, #4
@@ -538,7 +538,7 @@ ARM GAS  /tmp/cchH4OKd.s 			page 1
  246              		.loc 1 259 0
  247 006e 6423     		movs	r3, #100
  248 0070 00FB1313 		mls	r3, r0, r3, r1
-ARM GAS  /tmp/cchH4OKd.s 			page 10
+ARM GAS  /tmp/ccwOHStc.s 			page 10
 
 
  249              	.LVL42:
@@ -598,7 +598,7 @@ ARM GAS  /tmp/cchH4OKd.s 			page 1
  287 009c 03EB8303 		add	r3, r3, r3, lsl #2
  288 00a0 2968     		ldr	r1, [r5]
  289 00a2 4900     		lsls	r1, r1, #1
-ARM GAS  /tmp/cchH4OKd.s 			page 11
+ARM GAS  /tmp/ccwOHStc.s 			page 11
 
 
  290 00a4 B3FBF1F1 		udiv	r1, r3, r1
@@ -658,7 +658,7 @@ ARM GAS  /tmp/cchH4OKd.s 			page 1
  333              		.loc 1 285 0
  334 0006 0023     		movs	r3, #0
  335 0008 8380     		strh	r3, [r0, #4]	@ movhi
-ARM GAS  /tmp/cchH4OKd.s 			page 12
+ARM GAS  /tmp/ccwOHStc.s 			page 12
 
 
  286:stm_lib/src/stm32f10x_usart.c ****   USART_InitStruct->USART_StopBits = USART_StopBits_1;
@@ -718,7 +718,7 @@ ARM GAS  /tmp/cchH4OKd.s 			page 1
  306:stm_lib/src/stm32f10x_usart.c ****   assert_param(IS_USART_123_PERIPH(USARTx));
  307:stm_lib/src/stm32f10x_usart.c ****   assert_param(IS_USART_CLOCK(USART_ClockInitStruct->USART_Clock));
  308:stm_lib/src/stm32f10x_usart.c ****   assert_param(IS_USART_CPOL(USART_ClockInitStruct->USART_CPOL));
-ARM GAS  /tmp/cchH4OKd.s 			page 13
+ARM GAS  /tmp/ccwOHStc.s 			page 13
 
 
  309:stm_lib/src/stm32f10x_usart.c ****   assert_param(IS_USART_CPHA(USART_ClockInitStruct->USART_CPHA));
@@ -778,7 +778,7 @@ ARM GAS  /tmp/cchH4OKd.s 			page 1
  411              	USART_ClockStructInit:
  412              	.LFB60:
  326:stm_lib/src/stm32f10x_usart.c **** 
-ARM GAS  /tmp/cchH4OKd.s 			page 14
+ARM GAS  /tmp/ccwOHStc.s 			page 14
 
 
  327:stm_lib/src/stm32f10x_usart.c **** /**
@@ -838,7 +838,7 @@ ARM GAS  /tmp/cchH4OKd.s 			page 1
  443              		.cfi_startproc
  444              		@ args = 0, pretend = 0, frame = 0
  445              		@ frame_needed = 0, uses_anonymous_args = 0
-ARM GAS  /tmp/cchH4OKd.s 			page 15
+ARM GAS  /tmp/ccwOHStc.s 			page 15
 
 
  446              		@ link register save eliminated.
@@ -898,7 +898,7 @@ ARM GAS  /tmp/cchH4OKd.s 			page 1
  377:stm_lib/src/stm32f10x_usart.c ****   *     @arg USART_IT_LBD:  LIN Break detection interrupt
  378:stm_lib/src/stm32f10x_usart.c ****   *     @arg USART_IT_TXE:  Transmit Data Register empty interrupt
  379:stm_lib/src/stm32f10x_usart.c ****   *     @arg USART_IT_TC:   Transmission complete interrupt
-ARM GAS  /tmp/cchH4OKd.s 			page 16
+ARM GAS  /tmp/ccwOHStc.s 			page 16
 
 
  380:stm_lib/src/stm32f10x_usart.c ****   *     @arg USART_IT_RXNE: Receive Data register not empty interrupt
@@ -958,7 +958,7 @@ ARM GAS  /tmp/cchH4OKd.s 			page 1
  499 0010 9C42     		cmp	r4, r3
  500 0012 09D0     		beq	.L43
  412:stm_lib/src/stm32f10x_usart.c ****   {
-ARM GAS  /tmp/cchH4OKd.s 			page 17
+ARM GAS  /tmp/ccwOHStc.s 			page 17
 
 
  413:stm_lib/src/stm32f10x_usart.c ****     usartxbase += 0x0C;
@@ -1018,7 +1018,7 @@ ARM GAS  /tmp/cchH4OKd.s 			page 1
  534              		.loc 1 417 0
  535 002c 1030     		adds	r0, r0, #16
  536              	.LVL74:
-ARM GAS  /tmp/cchH4OKd.s 			page 18
+ARM GAS  /tmp/ccwOHStc.s 			page 18
 
 
  537 002e F4E7     		b	.L38
@@ -1078,7 +1078,7 @@ ARM GAS  /tmp/cchH4OKd.s 			page 1
  457:stm_lib/src/stm32f10x_usart.c ****        DMAR bits in the USART CR3 register */
  458:stm_lib/src/stm32f10x_usart.c ****     USARTx->CR3 |= USART_DMAReq;
  459:stm_lib/src/stm32f10x_usart.c ****   }
-ARM GAS  /tmp/cchH4OKd.s 			page 19
+ARM GAS  /tmp/ccwOHStc.s 			page 19
 
 
  460:stm_lib/src/stm32f10x_usart.c ****   else
@@ -1138,7 +1138,7 @@ ARM GAS  /tmp/cchH4OKd.s 			page 1
  479:stm_lib/src/stm32f10x_usart.c ****   assert_param(IS_USART_ALL_PERIPH(USARTx));
  480:stm_lib/src/stm32f10x_usart.c ****   assert_param(IS_USART_ADDRESS(USART_Address)); 
  481:stm_lib/src/stm32f10x_usart.c ****     
-ARM GAS  /tmp/cchH4OKd.s 			page 20
+ARM GAS  /tmp/ccwOHStc.s 			page 20
 
 
  482:stm_lib/src/stm32f10x_usart.c ****   /* Clear the USART address */
@@ -1198,7 +1198,7 @@ ARM GAS  /tmp/cchH4OKd.s 			page 1
  635              		.loc 1 505 0
  636 0000 8389     		ldrh	r3, [r0, #12]
  637 0002 9BB2     		uxth	r3, r3
-ARM GAS  /tmp/cchH4OKd.s 			page 21
+ARM GAS  /tmp/ccwOHStc.s 			page 21
 
 
  638 0004 23F40063 		bic	r3, r3, #2048
@@ -1258,7 +1258,7 @@ ARM GAS  /tmp/cchH4OKd.s 			page 1
  531:stm_lib/src/stm32f10x_usart.c ****     /* Disable the USART mute mode by clearing the RWU bit in the CR1 register */
  532:stm_lib/src/stm32f10x_usart.c ****     USARTx->CR1 &= CR1_RWU_Reset;
  669              		.loc 1 532 0
-ARM GAS  /tmp/cchH4OKd.s 			page 22
+ARM GAS  /tmp/ccwOHStc.s 			page 22
 
 
  670 0002 8389     		ldrh	r3, [r0, #12]
@@ -1318,7 +1318,7 @@ ARM GAS  /tmp/cchH4OKd.s 			page 1
  704 0002 9BB2     		uxth	r3, r3
  705 0004 23F02003 		bic	r3, r3, #32
  706 0008 9BB2     		uxth	r3, r3
-ARM GAS  /tmp/cchH4OKd.s 			page 23
+ARM GAS  /tmp/ccwOHStc.s 			page 23
 
 
  707 000a 0382     		strh	r3, [r0, #16]	@ movhi
@@ -1378,7 +1378,7 @@ ARM GAS  /tmp/cchH4OKd.s 			page 1
  736              		.loc 1 580 0
  737 0002 038A     		ldrh	r3, [r0, #16]
  738 0004 9BB2     		uxth	r3, r3
-ARM GAS  /tmp/cchH4OKd.s 			page 24
+ARM GAS  /tmp/ccwOHStc.s 			page 24
 
 
  739 0006 23F48043 		bic	r3, r3, #16384
@@ -1438,7 +1438,7 @@ ARM GAS  /tmp/cchH4OKd.s 			page 1
  775              	.LFE69:
  777              		.section	.text.USART_ReceiveData,"ax",%progbits
  778              		.align	1
-ARM GAS  /tmp/cchH4OKd.s 			page 25
+ARM GAS  /tmp/ccwOHStc.s 			page 25
 
 
  779              		.global	USART_ReceiveData
@@ -1498,7 +1498,7 @@ ARM GAS  /tmp/cchH4OKd.s 			page 1
  624:stm_lib/src/stm32f10x_usart.c ****   */
  625:stm_lib/src/stm32f10x_usart.c **** void USART_SendBreak(USART_TypeDef* USARTx)
  626:stm_lib/src/stm32f10x_usart.c **** {
-ARM GAS  /tmp/cchH4OKd.s 			page 26
+ARM GAS  /tmp/ccwOHStc.s 			page 26
 
 
  812              		.loc 1 626 0
@@ -1558,7 +1558,7 @@ ARM GAS  /tmp/cchH4OKd.s 			page 1
  648:stm_lib/src/stm32f10x_usart.c ****   /* Set the USART guard time */
  649:stm_lib/src/stm32f10x_usart.c ****   USARTx->GTPR |= (uint16_t)((uint16_t)USART_GuardTime << 0x08);
  847              		.loc 1 649 0
-ARM GAS  /tmp/cchH4OKd.s 			page 27
+ARM GAS  /tmp/ccwOHStc.s 			page 27
 
 
  848 0006 038B     		ldrh	r3, [r0, #24]
@@ -1618,7 +1618,7 @@ ARM GAS  /tmp/cchH4OKd.s 			page 1
  884              		.cfi_endproc
  885              	.LFE73:
  887              		.section	.text.USART_SmartCardCmd,"ax",%progbits
-ARM GAS  /tmp/cchH4OKd.s 			page 28
+ARM GAS  /tmp/ccwOHStc.s 			page 28
 
 
  888              		.align	1
@@ -1678,7 +1678,7 @@ ARM GAS  /tmp/cchH4OKd.s 			page 1
  918 001a 7047     		bx	lr
  919              		.cfi_endproc
  920              	.LFE74:
-ARM GAS  /tmp/cchH4OKd.s 			page 29
+ARM GAS  /tmp/ccwOHStc.s 			page 29
 
 
  922              		.section	.text.USART_SmartCardNACKCmd,"ax",%progbits
@@ -1738,7 +1738,7 @@ ARM GAS  /tmp/cchH4OKd.s 			page 1
  951 0014 43F01003 		orr	r3, r3, #16
  952 0018 8382     		strh	r3, [r0, #20]	@ movhi
  953 001a 7047     		bx	lr
-ARM GAS  /tmp/cchH4OKd.s 			page 30
+ARM GAS  /tmp/ccwOHStc.s 			page 30
 
 
  954              		.cfi_endproc
@@ -1798,7 +1798,7 @@ ARM GAS  /tmp/cchH4OKd.s 			page 1
  740:stm_lib/src/stm32f10x_usart.c ****   }
  983              		.loc 1 740 0
  984 0010 838A     		ldrh	r3, [r0, #20]
-ARM GAS  /tmp/cchH4OKd.s 			page 31
+ARM GAS  /tmp/ccwOHStc.s 			page 31
 
 
  985 0012 9BB2     		uxth	r3, r3
@@ -1858,7 +1858,7 @@ ARM GAS  /tmp/cchH4OKd.s 			page 1
  1010              		.loc 1 776 0
  1011 0002 8389     		ldrh	r3, [r0, #12]
  1012 0004 C3F30E03 		ubfx	r3, r3, #0, #15
-ARM GAS  /tmp/cchH4OKd.s 			page 32
+ARM GAS  /tmp/ccwOHStc.s 			page 32
 
 
  1013 0008 8381     		strh	r3, [r0, #12]	@ movhi
@@ -1918,7 +1918,7 @@ ARM GAS  /tmp/cchH4OKd.s 			page 1
  801:stm_lib/src/stm32f10x_usart.c ****   {
  802:stm_lib/src/stm32f10x_usart.c ****     /* Disable tthe one bit method by clearing the ONEBITE bit in the CR3 register */
  803:stm_lib/src/stm32f10x_usart.c ****     USARTx->CR3 &= CR3_ONEBITE_Reset;
-ARM GAS  /tmp/cchH4OKd.s 			page 33
+ARM GAS  /tmp/ccwOHStc.s 			page 33
 
 
  1044              		.loc 1 803 0
@@ -1978,7 +1978,7 @@ ARM GAS  /tmp/cchH4OKd.s 			page 1
  1078 0000 838A     		ldrh	r3, [r0, #20]
  1079 0002 9BB2     		uxth	r3, r3
  1080 0004 23F00403 		bic	r3, r3, #4
-ARM GAS  /tmp/cchH4OKd.s 			page 34
+ARM GAS  /tmp/ccwOHStc.s 			page 34
 
 
  1081 0008 9BB2     		uxth	r3, r3
@@ -2038,7 +2038,7 @@ ARM GAS  /tmp/cchH4OKd.s 			page 1
  851:stm_lib/src/stm32f10x_usart.c ****     USARTx->CR3 &= CR3_IREN_Reset;
  1111              		.loc 1 851 0
  1112 0002 838A     		ldrh	r3, [r0, #20]
-ARM GAS  /tmp/cchH4OKd.s 			page 35
+ARM GAS  /tmp/ccwOHStc.s 			page 35
 
 
  1113 0004 9BB2     		uxth	r3, r3
@@ -2098,7 +2098,7 @@ ARM GAS  /tmp/cchH4OKd.s 			page 1
  876:stm_lib/src/stm32f10x_usart.c ****   FlagStatus bitstatus = RESET;
  877:stm_lib/src/stm32f10x_usart.c ****   /* Check the parameters */
  878:stm_lib/src/stm32f10x_usart.c ****   assert_param(IS_USART_ALL_PERIPH(USARTx));
-ARM GAS  /tmp/cchH4OKd.s 			page 36
+ARM GAS  /tmp/ccwOHStc.s 			page 36
 
 
  879:stm_lib/src/stm32f10x_usart.c ****   assert_param(IS_USART_FLAG(USART_FLAG));
@@ -2158,7 +2158,7 @@ ARM GAS  /tmp/cchH4OKd.s 			page 1
  906:stm_lib/src/stm32f10x_usart.c ****   *     @arg USART_FLAG_TC:   Transmission Complete flag.
  907:stm_lib/src/stm32f10x_usart.c ****   *     @arg USART_FLAG_RXNE: Receive data register not empty flag.
  908:stm_lib/src/stm32f10x_usart.c ****   *   
-ARM GAS  /tmp/cchH4OKd.s 			page 37
+ARM GAS  /tmp/ccwOHStc.s 			page 37
 
 
  909:stm_lib/src/stm32f10x_usart.c ****   * @note
@@ -2218,7 +2218,7 @@ ARM GAS  /tmp/cchH4OKd.s 			page 1
  940:stm_lib/src/stm32f10x_usart.c ****   *   This parameter can be one of the following values:
  941:stm_lib/src/stm32f10x_usart.c ****   *   USART1, USART2, USART3, UART4 or UART5.
  942:stm_lib/src/stm32f10x_usart.c ****   * @param  USART_IT: specifies the USART interrupt source to check.
-ARM GAS  /tmp/cchH4OKd.s 			page 38
+ARM GAS  /tmp/ccwOHStc.s 			page 38
 
 
  943:stm_lib/src/stm32f10x_usart.c ****   *   This parameter can be one of the following values:
@@ -2278,7 +2278,7 @@ ARM GAS  /tmp/cchH4OKd.s 			page 1
  1218              		.loc 1 975 0
  1219 000e 012A     		cmp	r2, #1
  1220 0010 0FD0     		beq	.L104
-ARM GAS  /tmp/cchH4OKd.s 			page 39
+ARM GAS  /tmp/ccwOHStc.s 			page 39
 
 
  976:stm_lib/src/stm32f10x_usart.c ****   {
@@ -2338,7 +2338,7 @@ ARM GAS  /tmp/cchH4OKd.s 			page 1
  977:stm_lib/src/stm32f10x_usart.c ****   }
  1253              		.loc 1 977 0
  1254 0032 8289     		ldrh	r2, [r0, #12]
-ARM GAS  /tmp/cchH4OKd.s 			page 40
+ARM GAS  /tmp/ccwOHStc.s 			page 40
 
 
  1255              	.LVL124:
@@ -2398,7 +2398,7 @@ ARM GAS  /tmp/cchH4OKd.s 			page 1
 1004:stm_lib/src/stm32f10x_usart.c ****   * @brief  Clears the USARTx's interrupt pending bits.
 1005:stm_lib/src/stm32f10x_usart.c ****   * @param  USARTx: Select the USART or the UART peripheral. 
 1006:stm_lib/src/stm32f10x_usart.c ****   *   This parameter can be one of the following values:
-ARM GAS  /tmp/cchH4OKd.s 			page 41
+ARM GAS  /tmp/ccwOHStc.s 			page 41
 
 
 1007:stm_lib/src/stm32f10x_usart.c ****   *   USART1, USART2, USART3, UART4 or UART5.
@@ -2458,7 +2458,7 @@ ARM GAS  /tmp/cchH4OKd.s 			page 1
  1319              	.LVL136:
  1320 000a 9BB2     		uxth	r3, r3
  1321              	.LVL137:
-ARM GAS  /tmp/cchH4OKd.s 			page 42
+ARM GAS  /tmp/ccwOHStc.s 			page 42
 
 
  1322 000c 0380     		strh	r3, [r0]	@ movhi
@@ -2474,74 +2474,74 @@ ARM GAS  /tmp/cchH4OKd.s 			page 1
  1333              		.file 6 "stm_lib/inc/stm32f10x.h"
  1334              		.file 7 "stm_lib/inc/stm32f10x_usart.h"
  1335              		.file 8 "stm_lib/inc/stm32f10x_rcc.h"
-ARM GAS  /tmp/cchH4OKd.s 			page 43
+ARM GAS  /tmp/ccwOHStc.s 			page 43
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 stm32f10x_usart.c
-     /tmp/cchH4OKd.s:16     .text.USART_DeInit:0000000000000000 $t
-     /tmp/cchH4OKd.s:23     .text.USART_DeInit:0000000000000000 USART_DeInit
-     /tmp/cchH4OKd.s:133    .text.USART_DeInit:0000000000000090 $d
-     /tmp/cchH4OKd.s:142    .text.USART_Init:0000000000000000 $t
-     /tmp/cchH4OKd.s:149    .text.USART_Init:0000000000000000 USART_Init
-     /tmp/cchH4OKd.s:309    .text.USART_Init:00000000000000c0 $d
-     /tmp/cchH4OKd.s:315    .text.USART_StructInit:0000000000000000 $t
-     /tmp/cchH4OKd.s:322    .text.USART_StructInit:0000000000000000 USART_StructInit
-     /tmp/cchH4OKd.s:350    .text.USART_ClockInit:0000000000000000 $t
-     /tmp/cchH4OKd.s:357    .text.USART_ClockInit:0000000000000000 USART_ClockInit
-     /tmp/cchH4OKd.s:404    .text.USART_ClockStructInit:0000000000000000 $t
-     /tmp/cchH4OKd.s:411    .text.USART_ClockStructInit:0000000000000000 USART_ClockStructInit
-     /tmp/cchH4OKd.s:433    .text.USART_Cmd:0000000000000000 $t
-     /tmp/cchH4OKd.s:440    .text.USART_Cmd:0000000000000000 USART_Cmd
-     /tmp/cchH4OKd.s:468    .text.USART_ITConfig:0000000000000000 $t
-     /tmp/cchH4OKd.s:475    .text.USART_ITConfig:0000000000000000 USART_ITConfig
-     /tmp/cchH4OKd.s:550    .text.USART_DMACmd:0000000000000000 $t
-     /tmp/cchH4OKd.s:557    .text.USART_DMACmd:0000000000000000 USART_DMACmd
-     /tmp/cchH4OKd.s:588    .text.USART_SetAddress:0000000000000000 $t
-     /tmp/cchH4OKd.s:595    .text.USART_SetAddress:0000000000000000 USART_SetAddress
-     /tmp/cchH4OKd.s:620    .text.USART_WakeUpConfig:0000000000000000 $t
-     /tmp/cchH4OKd.s:627    .text.USART_WakeUpConfig:0000000000000000 USART_WakeUpConfig
-     /tmp/cchH4OKd.s:652    .text.USART_ReceiverWakeUpCmd:0000000000000000 $t
-     /tmp/cchH4OKd.s:659    .text.USART_ReceiverWakeUpCmd:0000000000000000 USART_ReceiverWakeUpCmd
-     /tmp/cchH4OKd.s:687    .text.USART_LINBreakDetectLengthConfig:0000000000000000 $t
-     /tmp/cchH4OKd.s:694    .text.USART_LINBreakDetectLengthConfig:0000000000000000 USART_LINBreakDetectLengthConfig
-     /tmp/cchH4OKd.s:719    .text.USART_LINCmd:0000000000000000 $t
-     /tmp/cchH4OKd.s:726    .text.USART_LINCmd:0000000000000000 USART_LINCmd
-     /tmp/cchH4OKd.s:754    .text.USART_SendData:0000000000000000 $t
-     /tmp/cchH4OKd.s:761    .text.USART_SendData:0000000000000000 USART_SendData
-     /tmp/cchH4OKd.s:778    .text.USART_ReceiveData:0000000000000000 $t
-     /tmp/cchH4OKd.s:785    .text.USART_ReceiveData:0000000000000000 USART_ReceiveData
-     /tmp/cchH4OKd.s:803    .text.USART_SendBreak:0000000000000000 $t
-     /tmp/cchH4OKd.s:810    .text.USART_SendBreak:0000000000000000 USART_SendBreak
-     /tmp/cchH4OKd.s:828    .text.USART_SetGuardTime:0000000000000000 $t
-     /tmp/cchH4OKd.s:835    .text.USART_SetGuardTime:0000000000000000 USART_SetGuardTime
-     /tmp/cchH4OKd.s:858    .text.USART_SetPrescaler:0000000000000000 $t
-     /tmp/cchH4OKd.s:865    .text.USART_SetPrescaler:0000000000000000 USART_SetPrescaler
-     /tmp/cchH4OKd.s:888    .text.USART_SmartCardCmd:0000000000000000 $t
-     /tmp/cchH4OKd.s:895    .text.USART_SmartCardCmd:0000000000000000 USART_SmartCardCmd
-     /tmp/cchH4OKd.s:923    .text.USART_SmartCardNACKCmd:0000000000000000 $t
-     /tmp/cchH4OKd.s:930    .text.USART_SmartCardNACKCmd:0000000000000000 USART_SmartCardNACKCmd
-     /tmp/cchH4OKd.s:958    .text.USART_HalfDuplexCmd:0000000000000000 $t
-     /tmp/cchH4OKd.s:965    .text.USART_HalfDuplexCmd:0000000000000000 USART_HalfDuplexCmd
-     /tmp/cchH4OKd.s:993    .text.USART_OverSampling8Cmd:0000000000000000 $t
-     /tmp/cchH4OKd.s:1000   .text.USART_OverSampling8Cmd:0000000000000000 USART_OverSampling8Cmd
-     /tmp/cchH4OKd.s:1027   .text.USART_OneBitMethodCmd:0000000000000000 $t
-     /tmp/cchH4OKd.s:1034   .text.USART_OneBitMethodCmd:0000000000000000 USART_OneBitMethodCmd
-     /tmp/cchH4OKd.s:1062   .text.USART_IrDAConfig:0000000000000000 $t
-     /tmp/cchH4OKd.s:1069   .text.USART_IrDAConfig:0000000000000000 USART_IrDAConfig
-     /tmp/cchH4OKd.s:1094   .text.USART_IrDACmd:0000000000000000 $t
-     /tmp/cchH4OKd.s:1101   .text.USART_IrDACmd:0000000000000000 USART_IrDACmd
-     /tmp/cchH4OKd.s:1129   .text.USART_GetFlagStatus:0000000000000000 $t
-     /tmp/cchH4OKd.s:1136   .text.USART_GetFlagStatus:0000000000000000 USART_GetFlagStatus
-     /tmp/cchH4OKd.s:1163   .text.USART_ClearFlag:0000000000000000 $t
-ARM GAS  /tmp/cchH4OKd.s 			page 44
+     /tmp/ccwOHStc.s:16     .text.USART_DeInit:0000000000000000 $t
+     /tmp/ccwOHStc.s:23     .text.USART_DeInit:0000000000000000 USART_DeInit
+     /tmp/ccwOHStc.s:133    .text.USART_DeInit:0000000000000090 $d
+     /tmp/ccwOHStc.s:142    .text.USART_Init:0000000000000000 $t
+     /tmp/ccwOHStc.s:149    .text.USART_Init:0000000000000000 USART_Init
+     /tmp/ccwOHStc.s:309    .text.USART_Init:00000000000000c0 $d
+     /tmp/ccwOHStc.s:315    .text.USART_StructInit:0000000000000000 $t
+     /tmp/ccwOHStc.s:322    .text.USART_StructInit:0000000000000000 USART_StructInit
+     /tmp/ccwOHStc.s:350    .text.USART_ClockInit:0000000000000000 $t
+     /tmp/ccwOHStc.s:357    .text.USART_ClockInit:0000000000000000 USART_ClockInit
+     /tmp/ccwOHStc.s:404    .text.USART_ClockStructInit:0000000000000000 $t
+     /tmp/ccwOHStc.s:411    .text.USART_ClockStructInit:0000000000000000 USART_ClockStructInit
+     /tmp/ccwOHStc.s:433    .text.USART_Cmd:0000000000000000 $t
+     /tmp/ccwOHStc.s:440    .text.USART_Cmd:0000000000000000 USART_Cmd
+     /tmp/ccwOHStc.s:468    .text.USART_ITConfig:0000000000000000 $t
+     /tmp/ccwOHStc.s:475    .text.USART_ITConfig:0000000000000000 USART_ITConfig
+     /tmp/ccwOHStc.s:550    .text.USART_DMACmd:0000000000000000 $t
+     /tmp/ccwOHStc.s:557    .text.USART_DMACmd:0000000000000000 USART_DMACmd
+     /tmp/ccwOHStc.s:588    .text.USART_SetAddress:0000000000000000 $t
+     /tmp/ccwOHStc.s:595    .text.USART_SetAddress:0000000000000000 USART_SetAddress
+     /tmp/ccwOHStc.s:620    .text.USART_WakeUpConfig:0000000000000000 $t
+     /tmp/ccwOHStc.s:627    .text.USART_WakeUpConfig:0000000000000000 USART_WakeUpConfig
+     /tmp/ccwOHStc.s:652    .text.USART_ReceiverWakeUpCmd:0000000000000000 $t
+     /tmp/ccwOHStc.s:659    .text.USART_ReceiverWakeUpCmd:0000000000000000 USART_ReceiverWakeUpCmd
+     /tmp/ccwOHStc.s:687    .text.USART_LINBreakDetectLengthConfig:0000000000000000 $t
+     /tmp/ccwOHStc.s:694    .text.USART_LINBreakDetectLengthConfig:0000000000000000 USART_LINBreakDetectLengthConfig
+     /tmp/ccwOHStc.s:719    .text.USART_LINCmd:0000000000000000 $t
+     /tmp/ccwOHStc.s:726    .text.USART_LINCmd:0000000000000000 USART_LINCmd
+     /tmp/ccwOHStc.s:754    .text.USART_SendData:0000000000000000 $t
+     /tmp/ccwOHStc.s:761    .text.USART_SendData:0000000000000000 USART_SendData
+     /tmp/ccwOHStc.s:778    .text.USART_ReceiveData:0000000000000000 $t
+     /tmp/ccwOHStc.s:785    .text.USART_ReceiveData:0000000000000000 USART_ReceiveData
+     /tmp/ccwOHStc.s:803    .text.USART_SendBreak:0000000000000000 $t
+     /tmp/ccwOHStc.s:810    .text.USART_SendBreak:0000000000000000 USART_SendBreak
+     /tmp/ccwOHStc.s:828    .text.USART_SetGuardTime:0000000000000000 $t
+     /tmp/ccwOHStc.s:835    .text.USART_SetGuardTime:0000000000000000 USART_SetGuardTime
+     /tmp/ccwOHStc.s:858    .text.USART_SetPrescaler:0000000000000000 $t
+     /tmp/ccwOHStc.s:865    .text.USART_SetPrescaler:0000000000000000 USART_SetPrescaler
+     /tmp/ccwOHStc.s:888    .text.USART_SmartCardCmd:0000000000000000 $t
+     /tmp/ccwOHStc.s:895    .text.USART_SmartCardCmd:0000000000000000 USART_SmartCardCmd
+     /tmp/ccwOHStc.s:923    .text.USART_SmartCardNACKCmd:0000000000000000 $t
+     /tmp/ccwOHStc.s:930    .text.USART_SmartCardNACKCmd:0000000000000000 USART_SmartCardNACKCmd
+     /tmp/ccwOHStc.s:958    .text.USART_HalfDuplexCmd:0000000000000000 $t
+     /tmp/ccwOHStc.s:965    .text.USART_HalfDuplexCmd:0000000000000000 USART_HalfDuplexCmd
+     /tmp/ccwOHStc.s:993    .text.USART_OverSampling8Cmd:0000000000000000 $t
+     /tmp/ccwOHStc.s:1000   .text.USART_OverSampling8Cmd:0000000000000000 USART_OverSampling8Cmd
+     /tmp/ccwOHStc.s:1027   .text.USART_OneBitMethodCmd:0000000000000000 $t
+     /tmp/ccwOHStc.s:1034   .text.USART_OneBitMethodCmd:0000000000000000 USART_OneBitMethodCmd
+     /tmp/ccwOHStc.s:1062   .text.USART_IrDAConfig:0000000000000000 $t
+     /tmp/ccwOHStc.s:1069   .text.USART_IrDAConfig:0000000000000000 USART_IrDAConfig
+     /tmp/ccwOHStc.s:1094   .text.USART_IrDACmd:0000000000000000 $t
+     /tmp/ccwOHStc.s:1101   .text.USART_IrDACmd:0000000000000000 USART_IrDACmd
+     /tmp/ccwOHStc.s:1129   .text.USART_GetFlagStatus:0000000000000000 $t
+     /tmp/ccwOHStc.s:1136   .text.USART_GetFlagStatus:0000000000000000 USART_GetFlagStatus
+     /tmp/ccwOHStc.s:1163   .text.USART_ClearFlag:0000000000000000 $t
+ARM GAS  /tmp/ccwOHStc.s 			page 44
 
 
-     /tmp/cchH4OKd.s:1170   .text.USART_ClearFlag:0000000000000000 USART_ClearFlag
-     /tmp/cchH4OKd.s:1188   .text.USART_GetITStatus:0000000000000000 $t
-     /tmp/cchH4OKd.s:1195   .text.USART_GetITStatus:0000000000000000 USART_GetITStatus
-     /tmp/cchH4OKd.s:1294   .text.USART_ClearITPendingBit:0000000000000000 $t
-     /tmp/cchH4OKd.s:1301   .text.USART_ClearITPendingBit:0000000000000000 USART_ClearITPendingBit
+     /tmp/ccwOHStc.s:1170   .text.USART_ClearFlag:0000000000000000 USART_ClearFlag
+     /tmp/ccwOHStc.s:1188   .text.USART_GetITStatus:0000000000000000 $t
+     /tmp/ccwOHStc.s:1195   .text.USART_GetITStatus:0000000000000000 USART_GetITStatus
+     /tmp/ccwOHStc.s:1294   .text.USART_ClearITPendingBit:0000000000000000 $t
+     /tmp/ccwOHStc.s:1301   .text.USART_ClearITPendingBit:0000000000000000 USART_ClearITPendingBit
                      .debug_frame:0000000000000010 $d
 
 UNDEFINED SYMBOLS

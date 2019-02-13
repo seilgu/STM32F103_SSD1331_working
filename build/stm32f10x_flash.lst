@@ -1,4 +1,4 @@
-ARM GAS  /tmp/ccaWNXPb.s 			page 1
+ARM GAS  /tmp/ccOgFwfo.s 			page 1
 
 
    1              		.cpu cortex-m3
@@ -58,7 +58,7 @@ ARM GAS  /tmp/ccaWNXPb.s 			page 1
   31:stm_lib/src/stm32f10x_flash.c ****   * @{
   32:stm_lib/src/stm32f10x_flash.c ****   */ 
   33:stm_lib/src/stm32f10x_flash.c **** 
-ARM GAS  /tmp/ccaWNXPb.s 			page 2
+ARM GAS  /tmp/ccOgFwfo.s 			page 2
 
 
   34:stm_lib/src/stm32f10x_flash.c **** /** @defgroup FLASH_Private_TypesDefinitions
@@ -118,7 +118,7 @@ ARM GAS  /tmp/ccaWNXPb.s 			page 1
   88:stm_lib/src/stm32f10x_flash.c ****   * @}
   89:stm_lib/src/stm32f10x_flash.c ****   */ 
   90:stm_lib/src/stm32f10x_flash.c **** 
-ARM GAS  /tmp/ccaWNXPb.s 			page 3
+ARM GAS  /tmp/ccOgFwfo.s 			page 3
 
 
   91:stm_lib/src/stm32f10x_flash.c **** /** @defgroup FLASH_Private_Macros
@@ -178,7 +178,7 @@ ARM GAS  /tmp/ccaWNXPb.s 			page 1
  145:stm_lib/src/stm32f10x_flash.c ****    |FLASH_HalfCycleAccessCmd            |    Yes     |      Yes      | No change                   
  146:stm_lib/src/stm32f10x_flash.c ****    |-----------------------------------------------------------------------------------------------
  147:stm_lib/src/stm32f10x_flash.c ****    |FLASH_PrefetchBufferCmd             |    Yes     |      Yes      | No change                   
-ARM GAS  /tmp/ccaWNXPb.s 			page 4
+ARM GAS  /tmp/ccOgFwfo.s 			page 4
 
 
  148:stm_lib/src/stm32f10x_flash.c ****    |-----------------------------------------------------------------------------------------------
@@ -238,7 +238,7 @@ ARM GAS  /tmp/ccaWNXPb.s 			page 1
  202:stm_lib/src/stm32f10x_flash.c ****    * New functions used for all STM32F10x devices to manage Bank1:                                 
  203:stm_lib/src/stm32f10x_flash.c ****    *   - These functions are mainly useful for STM32F10x_XL density devices, to have separate contr
  204:stm_lib/src/stm32f10x_flash.c ****    *   - For other devices, these functions are optional (covered by functions listed above)       
-ARM GAS  /tmp/ccaWNXPb.s 			page 5
+ARM GAS  /tmp/ccOgFwfo.s 			page 5
 
 
  205:stm_lib/src/stm32f10x_flash.c ****    ************************************************************************************************
@@ -298,7 +298,7 @@ ARM GAS  /tmp/ccaWNXPb.s 			page 1
   29              		@ frame_needed = 0, uses_anonymous_args = 0
   30              		@ link register save eliminated.
   31              	.LVL0:
-ARM GAS  /tmp/ccaWNXPb.s 			page 6
+ARM GAS  /tmp/ccOgFwfo.s 			page 6
 
 
  256:stm_lib/src/stm32f10x_flash.c ****   uint32_t tmpreg = 0;
@@ -358,7 +358,7 @@ ARM GAS  /tmp/ccaWNXPb.s 			page 1
  282:stm_lib/src/stm32f10x_flash.c **** {
   62              		.loc 1 282 0
   63              		.cfi_startproc
-ARM GAS  /tmp/ccaWNXPb.s 			page 7
+ARM GAS  /tmp/ccOgFwfo.s 			page 7
 
 
   64              		@ args = 0, pretend = 0, frame = 0
@@ -418,7 +418,7 @@ ARM GAS  /tmp/ccaWNXPb.s 			page 1
  101              	.LVL6:
  302:stm_lib/src/stm32f10x_flash.c ****   /* Check the parameters */
  303:stm_lib/src/stm32f10x_flash.c ****   assert_param(IS_FLASH_PREFETCHBUFFER_STATE(FLASH_PrefetchBuffer));
-ARM GAS  /tmp/ccaWNXPb.s 			page 8
+ARM GAS  /tmp/ccOgFwfo.s 			page 8
 
 
  304:stm_lib/src/stm32f10x_flash.c ****   
@@ -478,7 +478,7 @@ ARM GAS  /tmp/ccaWNXPb.s 			page 1
  323:stm_lib/src/stm32f10x_flash.c ****   FLASH->KEYR = FLASH_KEY2;
  139              		.loc 1 323 0
  140 0006 02F18832 		add	r2, r2, #-2004318072
-ARM GAS  /tmp/ccaWNXPb.s 			page 9
+ARM GAS  /tmp/ccOgFwfo.s 			page 9
 
 
  141 000a 5A60     		str	r2, [r3, #4]
@@ -538,7 +538,7 @@ ARM GAS  /tmp/ccaWNXPb.s 			page 1
  176              	.L14:
  177 0010 00200240 		.word	1073881088
  178 0014 23016745 		.word	1164378403
-ARM GAS  /tmp/ccaWNXPb.s 			page 10
+ARM GAS  /tmp/ccOgFwfo.s 			page 10
 
 
  179              		.cfi_endproc
@@ -598,7 +598,7 @@ ARM GAS  /tmp/ccaWNXPb.s 			page 1
  204              		.align	2
  205              	.L17:
  206 000c 00200240 		.word	1073881088
-ARM GAS  /tmp/ccaWNXPb.s 			page 11
+ARM GAS  /tmp/ccOgFwfo.s 			page 11
 
 
  207              		.cfi_endproc
@@ -658,7 +658,7 @@ ARM GAS  /tmp/ccaWNXPb.s 			page 1
  244              		.fpu softvfp
  246              	FLASH_GetUserOptionByte:
  247              	.LFB73:
-ARM GAS  /tmp/ccaWNXPb.s 			page 12
+ARM GAS  /tmp/ccOgFwfo.s 			page 12
 
 
  396:stm_lib/src/stm32f10x_flash.c **** }
@@ -718,7 +718,7 @@ ARM GAS  /tmp/ccaWNXPb.s 			page 1
  450:stm_lib/src/stm32f10x_flash.c ****       /* if the previous operation is completed, proceed to erase the page */
  451:stm_lib/src/stm32f10x_flash.c ****       FLASH->CR2|= CR_PER_Set;
  452:stm_lib/src/stm32f10x_flash.c ****       FLASH->AR2 = Page_Address; 
-ARM GAS  /tmp/ccaWNXPb.s 			page 13
+ARM GAS  /tmp/ccOgFwfo.s 			page 13
 
 
  453:stm_lib/src/stm32f10x_flash.c ****       FLASH->CR2|= CR_STRT_Set;
@@ -778,7 +778,7 @@ ARM GAS  /tmp/ccaWNXPb.s 			page 1
  507:stm_lib/src/stm32f10x_flash.c ****     status = FLASH_WaitForLastBank1Operation(EraseTimeout);
  508:stm_lib/src/stm32f10x_flash.c ****     
  509:stm_lib/src/stm32f10x_flash.c ****     /* Disable the MER Bit */
-ARM GAS  /tmp/ccaWNXPb.s 			page 14
+ARM GAS  /tmp/ccOgFwfo.s 			page 14
 
 
  510:stm_lib/src/stm32f10x_flash.c ****     FLASH->CR &= CR_MER_Reset;
@@ -838,7 +838,7 @@ ARM GAS  /tmp/ccaWNXPb.s 			page 1
  564:stm_lib/src/stm32f10x_flash.c ****      FLASH->CR |= CR_MER_Set;
  565:stm_lib/src/stm32f10x_flash.c ****      FLASH->CR |= CR_STRT_Set;
  566:stm_lib/src/stm32f10x_flash.c ****     
-ARM GAS  /tmp/ccaWNXPb.s 			page 15
+ARM GAS  /tmp/ccOgFwfo.s 			page 15
 
 
  567:stm_lib/src/stm32f10x_flash.c ****     /* Wait for last operation to be completed */
@@ -898,7 +898,7 @@ ARM GAS  /tmp/ccaWNXPb.s 			page 1
  621:stm_lib/src/stm32f10x_flash.c **** 
  622:stm_lib/src/stm32f10x_flash.c ****   /* Get the actual read protection Option Byte value */ 
  623:stm_lib/src/stm32f10x_flash.c ****   if(FLASH_GetReadOutProtectionStatus() != RESET)
-ARM GAS  /tmp/ccaWNXPb.s 			page 16
+ARM GAS  /tmp/ccOgFwfo.s 			page 16
 
 
  624:stm_lib/src/stm32f10x_flash.c ****   {
@@ -958,7 +958,7 @@ ARM GAS  /tmp/ccaWNXPb.s 			page 1
  678:stm_lib/src/stm32f10x_flash.c ****   * @retval FLASH Status: The returned value can be: FLASH_ERROR_PG,
  679:stm_lib/src/stm32f10x_flash.c ****   *         FLASH_ERROR_WRP, FLASH_COMPLETE or FLASH_TIMEOUT. 
  680:stm_lib/src/stm32f10x_flash.c ****   */
-ARM GAS  /tmp/ccaWNXPb.s 			page 17
+ARM GAS  /tmp/ccOgFwfo.s 			page 17
 
 
  681:stm_lib/src/stm32f10x_flash.c **** FLASH_Status FLASH_ProgramWord(uint32_t Address, uint32_t Data)
@@ -1018,7 +1018,7 @@ ARM GAS  /tmp/ccaWNXPb.s 			page 1
  735:stm_lib/src/stm32f10x_flash.c ****   
  736:stm_lib/src/stm32f10x_flash.c ****       *(__IO uint16_t*)Address = (uint16_t)Data;
  737:stm_lib/src/stm32f10x_flash.c **** 
-ARM GAS  /tmp/ccaWNXPb.s 			page 18
+ARM GAS  /tmp/ccOgFwfo.s 			page 18
 
 
  738:stm_lib/src/stm32f10x_flash.c ****       /* Wait for last operation to be completed */
@@ -1078,7 +1078,7 @@ ARM GAS  /tmp/ccaWNXPb.s 			page 1
  792:stm_lib/src/stm32f10x_flash.c ****         half word */
  793:stm_lib/src/stm32f10x_flash.c ****         tmp = Address + 2;
  794:stm_lib/src/stm32f10x_flash.c **** 
-ARM GAS  /tmp/ccaWNXPb.s 			page 19
+ARM GAS  /tmp/ccOgFwfo.s 			page 19
 
 
  795:stm_lib/src/stm32f10x_flash.c ****         *(__IO uint16_t*) tmp = Data >> 16;
@@ -1138,7 +1138,7 @@ ARM GAS  /tmp/ccaWNXPb.s 			page 1
  849:stm_lib/src/stm32f10x_flash.c **** 
  850:stm_lib/src/stm32f10x_flash.c **** /**
  851:stm_lib/src/stm32f10x_flash.c ****   * @brief  Programs a half word at a specified address.
-ARM GAS  /tmp/ccaWNXPb.s 			page 20
+ARM GAS  /tmp/ccOgFwfo.s 			page 20
 
 
  852:stm_lib/src/stm32f10x_flash.c ****   * @note   This function can be used for all STM32F10x devices.
@@ -1198,7 +1198,7 @@ ARM GAS  /tmp/ccaWNXPb.s 			page 1
  906:stm_lib/src/stm32f10x_flash.c ****   
  907:stm_lib/src/stm32f10x_flash.c ****     *(__IO uint16_t*)Address = Data;
  908:stm_lib/src/stm32f10x_flash.c ****     /* Wait for last operation to be completed */
-ARM GAS  /tmp/ccaWNXPb.s 			page 21
+ARM GAS  /tmp/ccOgFwfo.s 			page 21
 
 
  909:stm_lib/src/stm32f10x_flash.c ****     status = FLASH_WaitForLastOperation(ProgramTimeout);
@@ -1258,7 +1258,7 @@ ARM GAS  /tmp/ccaWNXPb.s 			page 1
  963:stm_lib/src/stm32f10x_flash.c ****   *     @arg For @b STM32_Medium-density_devices: value between FLASH_WRProt_Pages0to3
  964:stm_lib/src/stm32f10x_flash.c ****   *       and FLASH_WRProt_Pages124to127
  965:stm_lib/src/stm32f10x_flash.c ****   *     @arg For @b STM32_High-density_devices: value between FLASH_WRProt_Pages0to1 and
-ARM GAS  /tmp/ccaWNXPb.s 			page 22
+ARM GAS  /tmp/ccOgFwfo.s 			page 22
 
 
  966:stm_lib/src/stm32f10x_flash.c ****   *       FLASH_WRProt_Pages60to61 or FLASH_WRProt_Pages62to255
@@ -1318,7 +1318,7 @@ ARM GAS  /tmp/ccaWNXPb.s 			page 1
 1020:stm_lib/src/stm32f10x_flash.c ****     
 1021:stm_lib/src/stm32f10x_flash.c ****     if((status == FLASH_COMPLETE)&& (WRP3_Data != 0xFF))
 1022:stm_lib/src/stm32f10x_flash.c ****     {
-ARM GAS  /tmp/ccaWNXPb.s 			page 23
+ARM GAS  /tmp/ccOgFwfo.s 			page 23
 
 
 1023:stm_lib/src/stm32f10x_flash.c ****       OB->WRP3 = WRP3_Data;
@@ -1378,7 +1378,7 @@ ARM GAS  /tmp/ccaWNXPb.s 			page 1
 1077:stm_lib/src/stm32f10x_flash.c ****       }
 1078:stm_lib/src/stm32f10x_flash.c ****       /* Wait for last operation to be completed */
 1079:stm_lib/src/stm32f10x_flash.c ****       status = FLASH_WaitForLastOperation(EraseTimeout); 
-ARM GAS  /tmp/ccaWNXPb.s 			page 24
+ARM GAS  /tmp/ccOgFwfo.s 			page 24
 
 
 1080:stm_lib/src/stm32f10x_flash.c ****     
@@ -1438,7 +1438,7 @@ ARM GAS  /tmp/ccaWNXPb.s 			page 1
 1134:stm_lib/src/stm32f10x_flash.c ****   if(status == FLASH_COMPLETE)
 1135:stm_lib/src/stm32f10x_flash.c ****   {  
 1136:stm_lib/src/stm32f10x_flash.c ****     /* Enable the Option Bytes Programming operation */
-ARM GAS  /tmp/ccaWNXPb.s 			page 25
+ARM GAS  /tmp/ccOgFwfo.s 			page 25
 
 
 1137:stm_lib/src/stm32f10x_flash.c ****     FLASH->CR |= CR_OPTPG_Set; 
@@ -1498,7 +1498,7 @@ ARM GAS  /tmp/ccaWNXPb.s 			page 1
 1191:stm_lib/src/stm32f10x_flash.c ****     }
 1192:stm_lib/src/stm32f10x_flash.c ****     else
 1193:stm_lib/src/stm32f10x_flash.c ****     {
-ARM GAS  /tmp/ccaWNXPb.s 			page 26
+ARM GAS  /tmp/ccOgFwfo.s 			page 26
 
 
 1194:stm_lib/src/stm32f10x_flash.c ****       OB->USER &= (uint16_t)(~(uint16_t)(OB_USER_BFB2));
@@ -1558,7 +1558,7 @@ ARM GAS  /tmp/ccaWNXPb.s 			page 1
 1222:stm_lib/src/stm32f10x_flash.c **** /**
 1223:stm_lib/src/stm32f10x_flash.c ****   * @brief  Returns the FLASH Write Protection Option Bytes Register value.
 1224:stm_lib/src/stm32f10x_flash.c ****   * @note   This function can be used for all STM32F10x devices.
-ARM GAS  /tmp/ccaWNXPb.s 			page 27
+ARM GAS  /tmp/ccOgFwfo.s 			page 27
 
 
 1225:stm_lib/src/stm32f10x_flash.c ****   * @param  None
@@ -1618,7 +1618,7 @@ ARM GAS  /tmp/ccaWNXPb.s 			page 1
  313 0008 01D1     		bne	.L31
 1244:stm_lib/src/stm32f10x_flash.c ****   {
 1245:stm_lib/src/stm32f10x_flash.c ****     readoutstatus = SET;
-ARM GAS  /tmp/ccaWNXPb.s 			page 28
+ARM GAS  /tmp/ccOgFwfo.s 			page 28
 
 
 1246:stm_lib/src/stm32f10x_flash.c ****   }
@@ -1678,7 +1678,7 @@ ARM GAS  /tmp/ccaWNXPb.s 			page 1
  350 0004 13F0200F 		tst	r3, #32
  351 0008 01D1     		bne	.L37
 1265:stm_lib/src/stm32f10x_flash.c ****   {
-ARM GAS  /tmp/ccaWNXPb.s 			page 29
+ARM GAS  /tmp/ccOgFwfo.s 			page 29
 
 
 1266:stm_lib/src/stm32f10x_flash.c ****     bitstatus = SET;
@@ -1738,7 +1738,7 @@ ARM GAS  /tmp/ccaWNXPb.s 			page 1
  381              		@ args = 0, pretend = 0, frame = 0
  382              		@ frame_needed = 0, uses_anonymous_args = 0
  383              		@ link register save eliminated.
-ARM GAS  /tmp/ccaWNXPb.s 			page 30
+ARM GAS  /tmp/ccOgFwfo.s 			page 30
 
 
  384              	.LVL14:
@@ -1798,7 +1798,7 @@ ARM GAS  /tmp/ccaWNXPb.s 			page 1
  393 000c 7047     		bx	lr
  394              	.LVL16:
  395              	.L43:
-ARM GAS  /tmp/ccaWNXPb.s 			page 31
+ARM GAS  /tmp/ccOgFwfo.s 			page 31
 
 
 1331:stm_lib/src/stm32f10x_flash.c ****   }
@@ -1858,7 +1858,7 @@ ARM GAS  /tmp/ccaWNXPb.s 			page 1
 1362:stm_lib/src/stm32f10x_flash.c ****   /* Check the parameters */
 1363:stm_lib/src/stm32f10x_flash.c ****   assert_param(IS_FLASH_GET_FLAG(FLASH_FLAG)) ;
 1364:stm_lib/src/stm32f10x_flash.c ****   if(FLASH_FLAG == FLASH_FLAG_OPTERR) 
-ARM GAS  /tmp/ccaWNXPb.s 			page 32
+ARM GAS  /tmp/ccOgFwfo.s 			page 32
 
 
 1365:stm_lib/src/stm32f10x_flash.c ****   {
@@ -1918,7 +1918,7 @@ ARM GAS  /tmp/ccaWNXPb.s 			page 1
 1416:stm_lib/src/stm32f10x_flash.c ****    if((FLASH->SR & FLASH_FLAG) != (uint32_t)RESET)
  429              		.loc 1 1416 0
  430 0004 074B     		ldr	r3, .L53
-ARM GAS  /tmp/ccaWNXPb.s 			page 33
+ARM GAS  /tmp/ccOgFwfo.s 			page 33
 
 
  431 0006 DB68     		ldr	r3, [r3, #12]
@@ -1978,7 +1978,7 @@ ARM GAS  /tmp/ccaWNXPb.s 			page 1
  470              		.thumb_func
  471              		.fpu softvfp
  473              	FLASH_ClearFlag:
-ARM GAS  /tmp/ccaWNXPb.s 			page 34
+ARM GAS  /tmp/ccOgFwfo.s 			page 34
 
 
  474              	.LFB79:
@@ -2038,7 +2038,7 @@ ARM GAS  /tmp/ccaWNXPb.s 			page 1
  493              		.align	1
  494              		.global	FLASH_GetStatus
  495              		.syntax unified
-ARM GAS  /tmp/ccaWNXPb.s 			page 35
+ARM GAS  /tmp/ccOgFwfo.s 			page 35
 
 
  496              		.thumb
@@ -2098,7 +2098,7 @@ ARM GAS  /tmp/ccaWNXPb.s 			page 1
  523 0018 054B     		ldr	r3, .L64
  524 001a DB68     		ldr	r3, [r3, #12]
  525 001c 13F0100F 		tst	r3, #16
-ARM GAS  /tmp/ccaWNXPb.s 			page 36
+ARM GAS  /tmp/ccOgFwfo.s 			page 36
 
 
  526 0020 03D0     		beq	.L62
@@ -2158,7 +2158,7 @@ ARM GAS  /tmp/ccaWNXPb.s 			page 1
  558              		.cfi_startproc
  559              		@ args = 0, pretend = 0, frame = 0
  560              		@ frame_needed = 0, uses_anonymous_args = 0
-ARM GAS  /tmp/ccaWNXPb.s 			page 37
+ARM GAS  /tmp/ccOgFwfo.s 			page 37
 
 
  561              		@ link register save eliminated.
@@ -2218,7 +2218,7 @@ ARM GAS  /tmp/ccaWNXPb.s 			page 1
 1538:stm_lib/src/stm32f10x_flash.c ****       }
 1539:stm_lib/src/stm32f10x_flash.c ****     }
 1540:stm_lib/src/stm32f10x_flash.c ****   }
-ARM GAS  /tmp/ccaWNXPb.s 			page 38
+ARM GAS  /tmp/ccOgFwfo.s 			page 38
 
 
 1541:stm_lib/src/stm32f10x_flash.c ****   /* Return the Flash Status */
@@ -2278,7 +2278,7 @@ ARM GAS  /tmp/ccaWNXPb.s 			page 1
 1578:stm_lib/src/stm32f10x_flash.c ****   }
 1579:stm_lib/src/stm32f10x_flash.c ****   /* Return the Flash Status */
 1580:stm_lib/src/stm32f10x_flash.c ****   return flashstatus;
-ARM GAS  /tmp/ccaWNXPb.s 			page 39
+ARM GAS  /tmp/ccOgFwfo.s 			page 39
 
 
 1581:stm_lib/src/stm32f10x_flash.c **** }
@@ -2338,7 +2338,7 @@ ARM GAS  /tmp/ccaWNXPb.s 			page 1
 1602:stm_lib/src/stm32f10x_flash.c ****   {
  640              		.loc 1 1602 0 is_stmt 0 discriminator 1
  641 0014 002C     		cmp	r4, #0
-ARM GAS  /tmp/ccaWNXPb.s 			page 40
+ARM GAS  /tmp/ccOgFwfo.s 			page 40
 
 
  642 0016 F8D1     		bne	.L77
@@ -2398,7 +2398,7 @@ ARM GAS  /tmp/ccaWNXPb.s 			page 1
  687              	.L82:
  483:stm_lib/src/stm32f10x_flash.c **** 
  688              		.loc 1 483 0
-ARM GAS  /tmp/ccaWNXPb.s 			page 41
+ARM GAS  /tmp/ccOgFwfo.s 			page 41
 
 
  689 0010 38BD     		pop	{r3, r4, r5, pc}
@@ -2458,7 +2458,7 @@ ARM GAS  /tmp/ccaWNXPb.s 			page 1
  739              		.cfi_offset 4, -8
  740              		.cfi_offset 14, -4
  741              	.LVL42:
-ARM GAS  /tmp/ccaWNXPb.s 			page 42
+ARM GAS  /tmp/ccOgFwfo.s 			page 42
 
 
  526:stm_lib/src/stm32f10x_flash.c ****   if(status == FLASH_COMPLETE)
@@ -2518,7 +2518,7 @@ ARM GAS  /tmp/ccaWNXPb.s 			page 1
  617:stm_lib/src/stm32f10x_flash.c ****   uint16_t rdptmp = RDP_Key;
  791              		.loc 1 617 0
  792              		.cfi_startproc
-ARM GAS  /tmp/ccaWNXPb.s 			page 43
+ARM GAS  /tmp/ccOgFwfo.s 			page 43
 
 
  793              		@ args = 0, pretend = 0, frame = 0
@@ -2578,7 +2578,7 @@ ARM GAS  /tmp/ccaWNXPb.s 			page 1
  837              		.loc 1 638 0
  838 0030 1A69     		ldr	r2, [r3, #16]
  839 0032 42F04002 		orr	r2, r2, #64
-ARM GAS  /tmp/ccaWNXPb.s 			page 44
+ARM GAS  /tmp/ccOgFwfo.s 			page 44
 
 
  840 0036 1A61     		str	r2, [r3, #16]
@@ -2638,7 +2638,7 @@ ARM GAS  /tmp/ccaWNXPb.s 			page 1
  884 007e 044A     		ldr	r2, .L101
  885 0080 1369     		ldr	r3, [r2, #16]
  886 0082 23F01003 		bic	r3, r3, #16
-ARM GAS  /tmp/ccaWNXPb.s 			page 45
+ARM GAS  /tmp/ccOgFwfo.s 			page 45
 
 
  887 0086 DB04     		lsls	r3, r3, #19
@@ -2698,7 +2698,7 @@ ARM GAS  /tmp/ccaWNXPb.s 			page 1
  939              	.LVL61:
  940              	.L104:
  848:stm_lib/src/stm32f10x_flash.c **** 
-ARM GAS  /tmp/ccaWNXPb.s 			page 46
+ARM GAS  /tmp/ccOgFwfo.s 			page 46
 
 
  941              		.loc 1 848 0
@@ -2758,7 +2758,7 @@ ARM GAS  /tmp/ccaWNXPb.s 			page 1
  987 0050 4FF40050 		mov	r0, #8192
  988              	.LVL67:
  989 0054 FFF7FEFF 		bl	FLASH_WaitForLastOperation
-ARM GAS  /tmp/ccaWNXPb.s 			page 47
+ARM GAS  /tmp/ccOgFwfo.s 			page 47
 
 
  990              	.LVL68:
@@ -2818,7 +2818,7 @@ ARM GAS  /tmp/ccaWNXPb.s 			page 1
  1041 0012 70BD     		pop	{r4, r5, r6, pc}
  1042              	.LVL73:
  1043              	.L114:
-ARM GAS  /tmp/ccaWNXPb.s 			page 48
+ARM GAS  /tmp/ccOgFwfo.s 			page 48
 
 
  905:stm_lib/src/stm32f10x_flash.c ****   
@@ -2878,7 +2878,7 @@ ARM GAS  /tmp/ccaWNXPb.s 			page 1
  934:stm_lib/src/stm32f10x_flash.c **** 
  1095              		.loc 1 934 0
  1096 0006 4FF40050 		mov	r0, #8192
-ARM GAS  /tmp/ccaWNXPb.s 			page 49
+ARM GAS  /tmp/ccOgFwfo.s 			page 49
 
 
  1097              	.LVL78:
@@ -2938,7 +2938,7 @@ ARM GAS  /tmp/ccaWNXPb.s 			page 1
  1142 004c 23016745 		.word	1164378403
  1143              		.cfi_endproc
  1144              	.LFE69:
-ARM GAS  /tmp/ccaWNXPb.s 			page 50
+ARM GAS  /tmp/ccOgFwfo.s 			page 50
 
 
  1146              		.section	.text.FLASH_EnableWriteProtection,"ax",%progbits
@@ -2998,7 +2998,7 @@ ARM GAS  /tmp/ccaWNXPb.s 			page 1
  1193 001a 00D0     		beq	.L130
  1194              	.L124:
 1037:stm_lib/src/stm32f10x_flash.c **** 
-ARM GAS  /tmp/ccaWNXPb.s 			page 51
+ARM GAS  /tmp/ccOgFwfo.s 			page 51
 
 
  1195              		.loc 1 1037 0
@@ -3058,7 +3058,7 @@ ARM GAS  /tmp/ccaWNXPb.s 			page 1
  1238 0052 114A     		ldr	r2, .L134
  1239 0054 1369     		ldr	r3, [r2, #16]
  1240 0056 23F01003 		bic	r3, r3, #16
-ARM GAS  /tmp/ccaWNXPb.s 			page 52
+ARM GAS  /tmp/ccOgFwfo.s 			page 52
 
 
  1241 005a DB04     		lsls	r3, r3, #19
@@ -3118,7 +3118,7 @@ ARM GAS  /tmp/ccaWNXPb.s 			page 1
  1286              	.L134:
  1287 0098 00200240 		.word	1073881088
  1288 009c 23016745 		.word	1164378403
-ARM GAS  /tmp/ccaWNXPb.s 			page 53
+ARM GAS  /tmp/ccOgFwfo.s 			page 53
 
 
  1289 00a0 00F8FF1F 		.word	536868864
@@ -3178,7 +3178,7 @@ ARM GAS  /tmp/ccaWNXPb.s 			page 1
 1061:stm_lib/src/stm32f10x_flash.c ****     /* Wait for last operation to be completed */
  1338              		.loc 1 1061 0
  1339 0026 1A69     		ldr	r2, [r3, #16]
-ARM GAS  /tmp/ccaWNXPb.s 			page 54
+ARM GAS  /tmp/ccOgFwfo.s 			page 54
 
 
  1340 0028 42F04002 		orr	r2, r2, #64
@@ -3238,7 +3238,7 @@ ARM GAS  /tmp/ccaWNXPb.s 			page 1
 1081:stm_lib/src/stm32f10x_flash.c ****       {
  1385              		.loc 1 1081 0
  1386 0074 0528     		cmp	r0, #5
-ARM GAS  /tmp/ccaWNXPb.s 			page 55
+ARM GAS  /tmp/ccOgFwfo.s 			page 55
 
 
  1387 0076 CBD0     		beq	.L137
@@ -3298,7 +3298,7 @@ ARM GAS  /tmp/ccaWNXPb.s 			page 1
  1439 000a 1349     		ldr	r1, .L150+4
  1440              	.LVL111:
  1441 000c 9960     		str	r1, [r3, #8]
-ARM GAS  /tmp/ccaWNXPb.s 			page 56
+ARM GAS  /tmp/ccOgFwfo.s 			page 56
 
 
 1129:stm_lib/src/stm32f10x_flash.c ****   
@@ -3358,7 +3358,7 @@ ARM GAS  /tmp/ccaWNXPb.s 			page 1
  1487 0054 00200240 		.word	1073881088
  1488 0058 23016745 		.word	1164378403
  1489 005c 00F8FF1F 		.word	536868864
-ARM GAS  /tmp/ccaWNXPb.s 			page 57
+ARM GAS  /tmp/ccOgFwfo.s 			page 57
 
 
  1490              		.cfi_endproc
@@ -3418,7 +3418,7 @@ ARM GAS  /tmp/ccaWNXPb.s 			page 1
  1526              	.LVL120:
  1527              	.L153:
 1630:stm_lib/src/stm32f10x_flash.c ****   {
-ARM GAS  /tmp/ccaWNXPb.s 			page 58
+ARM GAS  /tmp/ccOgFwfo.s 			page 58
 
 
  1528              		.loc 1 1630 0
@@ -3478,7 +3478,7 @@ ARM GAS  /tmp/ccaWNXPb.s 			page 1
  1572 000c 00D0     		beq	.L162
  1573              	.L160:
  575:stm_lib/src/stm32f10x_flash.c **** 
-ARM GAS  /tmp/ccaWNXPb.s 			page 59
+ARM GAS  /tmp/ccOgFwfo.s 			page 59
 
 
  1574              		.loc 1 575 0
@@ -3523,96 +3523,96 @@ ARM GAS  /tmp/ccaWNXPb.s 			page 1
  1610              		.file 5 "cmsis_boot/system_stm32f10x.h"
  1611              		.file 6 "stm_lib/inc/stm32f10x.h"
  1612              		.file 7 "stm_lib/inc/stm32f10x_flash.h"
-ARM GAS  /tmp/ccaWNXPb.s 			page 60
+ARM GAS  /tmp/ccOgFwfo.s 			page 60
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 stm32f10x_flash.c
-     /tmp/ccaWNXPb.s:16     .text.FLASH_SetLatency:0000000000000000 $t
-     /tmp/ccaWNXPb.s:23     .text.FLASH_SetLatency:0000000000000000 FLASH_SetLatency
-     /tmp/ccaWNXPb.s:48     .text.FLASH_SetLatency:0000000000000010 $d
-     /tmp/ccaWNXPb.s:53     .text.FLASH_HalfCycleAccessCmd:0000000000000000 $t
-     /tmp/ccaWNXPb.s:60     .text.FLASH_HalfCycleAccessCmd:0000000000000000 FLASH_HalfCycleAccessCmd
-     /tmp/ccaWNXPb.s:82     .text.FLASH_HalfCycleAccessCmd:0000000000000014 $d
-     /tmp/ccaWNXPb.s:87     .text.FLASH_PrefetchBufferCmd:0000000000000000 $t
-     /tmp/ccaWNXPb.s:94     .text.FLASH_PrefetchBufferCmd:0000000000000000 FLASH_PrefetchBufferCmd
-     /tmp/ccaWNXPb.s:116    .text.FLASH_PrefetchBufferCmd:0000000000000014 $d
-     /tmp/ccaWNXPb.s:121    .text.FLASH_Unlock:0000000000000000 $t
-     /tmp/ccaWNXPb.s:128    .text.FLASH_Unlock:0000000000000000 FLASH_Unlock
-     /tmp/ccaWNXPb.s:146    .text.FLASH_Unlock:0000000000000010 $d
-     /tmp/ccaWNXPb.s:152    .text.FLASH_UnlockBank1:0000000000000000 $t
-     /tmp/ccaWNXPb.s:159    .text.FLASH_UnlockBank1:0000000000000000 FLASH_UnlockBank1
-     /tmp/ccaWNXPb.s:177    .text.FLASH_UnlockBank1:0000000000000010 $d
-     /tmp/ccaWNXPb.s:183    .text.FLASH_Lock:0000000000000000 $t
-     /tmp/ccaWNXPb.s:190    .text.FLASH_Lock:0000000000000000 FLASH_Lock
-     /tmp/ccaWNXPb.s:206    .text.FLASH_Lock:000000000000000c $d
-     /tmp/ccaWNXPb.s:211    .text.FLASH_LockBank1:0000000000000000 $t
-     /tmp/ccaWNXPb.s:218    .text.FLASH_LockBank1:0000000000000000 FLASH_LockBank1
-     /tmp/ccaWNXPb.s:234    .text.FLASH_LockBank1:000000000000000c $d
-     /tmp/ccaWNXPb.s:239    .text.FLASH_GetUserOptionByte:0000000000000000 $t
-     /tmp/ccaWNXPb.s:246    .text.FLASH_GetUserOptionByte:0000000000000000 FLASH_GetUserOptionByte
-     /tmp/ccaWNXPb.s:262    .text.FLASH_GetUserOptionByte:0000000000000008 $d
-     /tmp/ccaWNXPb.s:267    .text.FLASH_GetWriteProtectionOptionByte:0000000000000000 $t
-     /tmp/ccaWNXPb.s:274    .text.FLASH_GetWriteProtectionOptionByte:0000000000000000 FLASH_GetWriteProtectionOptionByte
-     /tmp/ccaWNXPb.s:289    .text.FLASH_GetWriteProtectionOptionByte:0000000000000008 $d
-     /tmp/ccaWNXPb.s:294    .text.FLASH_GetReadOutProtectionStatus:0000000000000000 $t
-     /tmp/ccaWNXPb.s:301    .text.FLASH_GetReadOutProtectionStatus:0000000000000000 FLASH_GetReadOutProtectionStatus
-     /tmp/ccaWNXPb.s:327    .text.FLASH_GetReadOutProtectionStatus:0000000000000014 $d
-     /tmp/ccaWNXPb.s:332    .text.FLASH_GetPrefetchBufferStatus:0000000000000000 $t
-     /tmp/ccaWNXPb.s:339    .text.FLASH_GetPrefetchBufferStatus:0000000000000000 FLASH_GetPrefetchBufferStatus
-     /tmp/ccaWNXPb.s:365    .text.FLASH_GetPrefetchBufferStatus:0000000000000014 $d
-     /tmp/ccaWNXPb.s:370    .text.FLASH_ITConfig:0000000000000000 $t
-     /tmp/ccaWNXPb.s:377    .text.FLASH_ITConfig:0000000000000000 FLASH_ITConfig
-     /tmp/ccaWNXPb.s:406    .text.FLASH_ITConfig:0000000000000018 $d
-     /tmp/ccaWNXPb.s:411    .text.FLASH_GetFlagStatus:0000000000000000 $t
-     /tmp/ccaWNXPb.s:418    .text.FLASH_GetFlagStatus:0000000000000000 FLASH_GetFlagStatus
-     /tmp/ccaWNXPb.s:461    .text.FLASH_GetFlagStatus:0000000000000024 $d
-     /tmp/ccaWNXPb.s:466    .text.FLASH_ClearFlag:0000000000000000 $t
-     /tmp/ccaWNXPb.s:473    .text.FLASH_ClearFlag:0000000000000000 FLASH_ClearFlag
-     /tmp/ccaWNXPb.s:488    .text.FLASH_ClearFlag:0000000000000008 $d
-     /tmp/ccaWNXPb.s:493    .text.FLASH_GetStatus:0000000000000000 $t
-     /tmp/ccaWNXPb.s:500    .text.FLASH_GetStatus:0000000000000000 FLASH_GetStatus
-     /tmp/ccaWNXPb.s:543    .text.FLASH_GetStatus:0000000000000030 $d
-     /tmp/ccaWNXPb.s:548    .text.FLASH_GetBank1Status:0000000000000000 $t
-     /tmp/ccaWNXPb.s:555    .text.FLASH_GetBank1Status:0000000000000000 FLASH_GetBank1Status
-     /tmp/ccaWNXPb.s:598    .text.FLASH_GetBank1Status:0000000000000030 $d
-     /tmp/ccaWNXPb.s:603    .text.FLASH_WaitForLastOperation:0000000000000000 $t
-     /tmp/ccaWNXPb.s:610    .text.FLASH_WaitForLastOperation:0000000000000000 FLASH_WaitForLastOperation
-     /tmp/ccaWNXPb.s:656    .text.FLASH_ErasePage:0000000000000000 $t
-     /tmp/ccaWNXPb.s:663    .text.FLASH_ErasePage:0000000000000000 FLASH_ErasePage
-     /tmp/ccaWNXPb.s:718    .text.FLASH_ErasePage:000000000000003c $d
-     /tmp/ccaWNXPb.s:723    .text.FLASH_EraseAllPages:0000000000000000 $t
-     /tmp/ccaWNXPb.s:730    .text.FLASH_EraseAllPages:0000000000000000 FLASH_EraseAllPages
-ARM GAS  /tmp/ccaWNXPb.s 			page 61
+     /tmp/ccOgFwfo.s:16     .text.FLASH_SetLatency:0000000000000000 $t
+     /tmp/ccOgFwfo.s:23     .text.FLASH_SetLatency:0000000000000000 FLASH_SetLatency
+     /tmp/ccOgFwfo.s:48     .text.FLASH_SetLatency:0000000000000010 $d
+     /tmp/ccOgFwfo.s:53     .text.FLASH_HalfCycleAccessCmd:0000000000000000 $t
+     /tmp/ccOgFwfo.s:60     .text.FLASH_HalfCycleAccessCmd:0000000000000000 FLASH_HalfCycleAccessCmd
+     /tmp/ccOgFwfo.s:82     .text.FLASH_HalfCycleAccessCmd:0000000000000014 $d
+     /tmp/ccOgFwfo.s:87     .text.FLASH_PrefetchBufferCmd:0000000000000000 $t
+     /tmp/ccOgFwfo.s:94     .text.FLASH_PrefetchBufferCmd:0000000000000000 FLASH_PrefetchBufferCmd
+     /tmp/ccOgFwfo.s:116    .text.FLASH_PrefetchBufferCmd:0000000000000014 $d
+     /tmp/ccOgFwfo.s:121    .text.FLASH_Unlock:0000000000000000 $t
+     /tmp/ccOgFwfo.s:128    .text.FLASH_Unlock:0000000000000000 FLASH_Unlock
+     /tmp/ccOgFwfo.s:146    .text.FLASH_Unlock:0000000000000010 $d
+     /tmp/ccOgFwfo.s:152    .text.FLASH_UnlockBank1:0000000000000000 $t
+     /tmp/ccOgFwfo.s:159    .text.FLASH_UnlockBank1:0000000000000000 FLASH_UnlockBank1
+     /tmp/ccOgFwfo.s:177    .text.FLASH_UnlockBank1:0000000000000010 $d
+     /tmp/ccOgFwfo.s:183    .text.FLASH_Lock:0000000000000000 $t
+     /tmp/ccOgFwfo.s:190    .text.FLASH_Lock:0000000000000000 FLASH_Lock
+     /tmp/ccOgFwfo.s:206    .text.FLASH_Lock:000000000000000c $d
+     /tmp/ccOgFwfo.s:211    .text.FLASH_LockBank1:0000000000000000 $t
+     /tmp/ccOgFwfo.s:218    .text.FLASH_LockBank1:0000000000000000 FLASH_LockBank1
+     /tmp/ccOgFwfo.s:234    .text.FLASH_LockBank1:000000000000000c $d
+     /tmp/ccOgFwfo.s:239    .text.FLASH_GetUserOptionByte:0000000000000000 $t
+     /tmp/ccOgFwfo.s:246    .text.FLASH_GetUserOptionByte:0000000000000000 FLASH_GetUserOptionByte
+     /tmp/ccOgFwfo.s:262    .text.FLASH_GetUserOptionByte:0000000000000008 $d
+     /tmp/ccOgFwfo.s:267    .text.FLASH_GetWriteProtectionOptionByte:0000000000000000 $t
+     /tmp/ccOgFwfo.s:274    .text.FLASH_GetWriteProtectionOptionByte:0000000000000000 FLASH_GetWriteProtectionOptionByte
+     /tmp/ccOgFwfo.s:289    .text.FLASH_GetWriteProtectionOptionByte:0000000000000008 $d
+     /tmp/ccOgFwfo.s:294    .text.FLASH_GetReadOutProtectionStatus:0000000000000000 $t
+     /tmp/ccOgFwfo.s:301    .text.FLASH_GetReadOutProtectionStatus:0000000000000000 FLASH_GetReadOutProtectionStatus
+     /tmp/ccOgFwfo.s:327    .text.FLASH_GetReadOutProtectionStatus:0000000000000014 $d
+     /tmp/ccOgFwfo.s:332    .text.FLASH_GetPrefetchBufferStatus:0000000000000000 $t
+     /tmp/ccOgFwfo.s:339    .text.FLASH_GetPrefetchBufferStatus:0000000000000000 FLASH_GetPrefetchBufferStatus
+     /tmp/ccOgFwfo.s:365    .text.FLASH_GetPrefetchBufferStatus:0000000000000014 $d
+     /tmp/ccOgFwfo.s:370    .text.FLASH_ITConfig:0000000000000000 $t
+     /tmp/ccOgFwfo.s:377    .text.FLASH_ITConfig:0000000000000000 FLASH_ITConfig
+     /tmp/ccOgFwfo.s:406    .text.FLASH_ITConfig:0000000000000018 $d
+     /tmp/ccOgFwfo.s:411    .text.FLASH_GetFlagStatus:0000000000000000 $t
+     /tmp/ccOgFwfo.s:418    .text.FLASH_GetFlagStatus:0000000000000000 FLASH_GetFlagStatus
+     /tmp/ccOgFwfo.s:461    .text.FLASH_GetFlagStatus:0000000000000024 $d
+     /tmp/ccOgFwfo.s:466    .text.FLASH_ClearFlag:0000000000000000 $t
+     /tmp/ccOgFwfo.s:473    .text.FLASH_ClearFlag:0000000000000000 FLASH_ClearFlag
+     /tmp/ccOgFwfo.s:488    .text.FLASH_ClearFlag:0000000000000008 $d
+     /tmp/ccOgFwfo.s:493    .text.FLASH_GetStatus:0000000000000000 $t
+     /tmp/ccOgFwfo.s:500    .text.FLASH_GetStatus:0000000000000000 FLASH_GetStatus
+     /tmp/ccOgFwfo.s:543    .text.FLASH_GetStatus:0000000000000030 $d
+     /tmp/ccOgFwfo.s:548    .text.FLASH_GetBank1Status:0000000000000000 $t
+     /tmp/ccOgFwfo.s:555    .text.FLASH_GetBank1Status:0000000000000000 FLASH_GetBank1Status
+     /tmp/ccOgFwfo.s:598    .text.FLASH_GetBank1Status:0000000000000030 $d
+     /tmp/ccOgFwfo.s:603    .text.FLASH_WaitForLastOperation:0000000000000000 $t
+     /tmp/ccOgFwfo.s:610    .text.FLASH_WaitForLastOperation:0000000000000000 FLASH_WaitForLastOperation
+     /tmp/ccOgFwfo.s:656    .text.FLASH_ErasePage:0000000000000000 $t
+     /tmp/ccOgFwfo.s:663    .text.FLASH_ErasePage:0000000000000000 FLASH_ErasePage
+     /tmp/ccOgFwfo.s:718    .text.FLASH_ErasePage:000000000000003c $d
+     /tmp/ccOgFwfo.s:723    .text.FLASH_EraseAllPages:0000000000000000 $t
+     /tmp/ccOgFwfo.s:730    .text.FLASH_EraseAllPages:0000000000000000 FLASH_EraseAllPages
+ARM GAS  /tmp/ccOgFwfo.s 			page 61
 
 
-     /tmp/ccaWNXPb.s:777    .text.FLASH_EraseAllPages:0000000000000038 $d
-     /tmp/ccaWNXPb.s:782    .text.FLASH_EraseOptionBytes:0000000000000000 $t
-     /tmp/ccaWNXPb.s:789    .text.FLASH_EraseOptionBytes:0000000000000000 FLASH_EraseOptionBytes
-     /tmp/ccaWNXPb.s:895    .text.FLASH_EraseOptionBytes:0000000000000090 $d
-     /tmp/ccaWNXPb.s:902    .text.FLASH_ProgramWord:0000000000000000 $t
-     /tmp/ccaWNXPb.s:909    .text.FLASH_ProgramWord:0000000000000000 FLASH_ProgramWord
-     /tmp/ccaWNXPb.s:1002   .text.FLASH_ProgramWord:0000000000000068 $d
-     /tmp/ccaWNXPb.s:1007   .text.FLASH_ProgramHalfWord:0000000000000000 $t
-     /tmp/ccaWNXPb.s:1014   .text.FLASH_ProgramHalfWord:0000000000000000 FLASH_ProgramHalfWord
-     /tmp/ccaWNXPb.s:1066   .text.FLASH_ProgramHalfWord:0000000000000038 $d
-     /tmp/ccaWNXPb.s:1071   .text.FLASH_ProgramOptionByteData:0000000000000000 $t
-     /tmp/ccaWNXPb.s:1078   .text.FLASH_ProgramOptionByteData:0000000000000000 FLASH_ProgramOptionByteData
-     /tmp/ccaWNXPb.s:1141   .text.FLASH_ProgramOptionByteData:0000000000000048 $d
-     /tmp/ccaWNXPb.s:1147   .text.FLASH_EnableWriteProtection:0000000000000000 $t
-     /tmp/ccaWNXPb.s:1154   .text.FLASH_EnableWriteProtection:0000000000000000 FLASH_EnableWriteProtection
-     /tmp/ccaWNXPb.s:1287   .text.FLASH_EnableWriteProtection:0000000000000098 $d
-     /tmp/ccaWNXPb.s:1294   .text.FLASH_ReadOutProtection:0000000000000000 $t
-     /tmp/ccaWNXPb.s:1301   .text.FLASH_ReadOutProtection:0000000000000000 FLASH_ReadOutProtection
-     /tmp/ccaWNXPb.s:1405   .text.FLASH_ReadOutProtection:0000000000000090 $d
-     /tmp/ccaWNXPb.s:1412   .text.FLASH_UserOptionByteConfig:0000000000000000 $t
-     /tmp/ccaWNXPb.s:1419   .text.FLASH_UserOptionByteConfig:0000000000000000 FLASH_UserOptionByteConfig
-     /tmp/ccaWNXPb.s:1487   .text.FLASH_UserOptionByteConfig:0000000000000054 $d
-     /tmp/ccaWNXPb.s:1494   .text.FLASH_WaitForLastBank1Operation:0000000000000000 $t
-     /tmp/ccaWNXPb.s:1501   .text.FLASH_WaitForLastBank1Operation:0000000000000000 FLASH_WaitForLastBank1Operation
-     /tmp/ccaWNXPb.s:1547   .text.FLASH_EraseAllBank1Pages:0000000000000000 $t
-     /tmp/ccaWNXPb.s:1554   .text.FLASH_EraseAllBank1Pages:0000000000000000 FLASH_EraseAllBank1Pages
-     /tmp/ccaWNXPb.s:1601   .text.FLASH_EraseAllBank1Pages:0000000000000038 $d
+     /tmp/ccOgFwfo.s:777    .text.FLASH_EraseAllPages:0000000000000038 $d
+     /tmp/ccOgFwfo.s:782    .text.FLASH_EraseOptionBytes:0000000000000000 $t
+     /tmp/ccOgFwfo.s:789    .text.FLASH_EraseOptionBytes:0000000000000000 FLASH_EraseOptionBytes
+     /tmp/ccOgFwfo.s:895    .text.FLASH_EraseOptionBytes:0000000000000090 $d
+     /tmp/ccOgFwfo.s:902    .text.FLASH_ProgramWord:0000000000000000 $t
+     /tmp/ccOgFwfo.s:909    .text.FLASH_ProgramWord:0000000000000000 FLASH_ProgramWord
+     /tmp/ccOgFwfo.s:1002   .text.FLASH_ProgramWord:0000000000000068 $d
+     /tmp/ccOgFwfo.s:1007   .text.FLASH_ProgramHalfWord:0000000000000000 $t
+     /tmp/ccOgFwfo.s:1014   .text.FLASH_ProgramHalfWord:0000000000000000 FLASH_ProgramHalfWord
+     /tmp/ccOgFwfo.s:1066   .text.FLASH_ProgramHalfWord:0000000000000038 $d
+     /tmp/ccOgFwfo.s:1071   .text.FLASH_ProgramOptionByteData:0000000000000000 $t
+     /tmp/ccOgFwfo.s:1078   .text.FLASH_ProgramOptionByteData:0000000000000000 FLASH_ProgramOptionByteData
+     /tmp/ccOgFwfo.s:1141   .text.FLASH_ProgramOptionByteData:0000000000000048 $d
+     /tmp/ccOgFwfo.s:1147   .text.FLASH_EnableWriteProtection:0000000000000000 $t
+     /tmp/ccOgFwfo.s:1154   .text.FLASH_EnableWriteProtection:0000000000000000 FLASH_EnableWriteProtection
+     /tmp/ccOgFwfo.s:1287   .text.FLASH_EnableWriteProtection:0000000000000098 $d
+     /tmp/ccOgFwfo.s:1294   .text.FLASH_ReadOutProtection:0000000000000000 $t
+     /tmp/ccOgFwfo.s:1301   .text.FLASH_ReadOutProtection:0000000000000000 FLASH_ReadOutProtection
+     /tmp/ccOgFwfo.s:1405   .text.FLASH_ReadOutProtection:0000000000000090 $d
+     /tmp/ccOgFwfo.s:1412   .text.FLASH_UserOptionByteConfig:0000000000000000 $t
+     /tmp/ccOgFwfo.s:1419   .text.FLASH_UserOptionByteConfig:0000000000000000 FLASH_UserOptionByteConfig
+     /tmp/ccOgFwfo.s:1487   .text.FLASH_UserOptionByteConfig:0000000000000054 $d
+     /tmp/ccOgFwfo.s:1494   .text.FLASH_WaitForLastBank1Operation:0000000000000000 $t
+     /tmp/ccOgFwfo.s:1501   .text.FLASH_WaitForLastBank1Operation:0000000000000000 FLASH_WaitForLastBank1Operation
+     /tmp/ccOgFwfo.s:1547   .text.FLASH_EraseAllBank1Pages:0000000000000000 $t
+     /tmp/ccOgFwfo.s:1554   .text.FLASH_EraseAllBank1Pages:0000000000000000 FLASH_EraseAllBank1Pages
+     /tmp/ccOgFwfo.s:1601   .text.FLASH_EraseAllBank1Pages:0000000000000038 $d
                      .debug_frame:0000000000000010 $d
 
 NO UNDEFINED SYMBOLS
